@@ -1,0 +1,156 @@
+
+.section
+	width: 100%
+	margin: 0 auto
+	padding: 0
+	display: block
+	position: relative
+	background: $colors.white
+	//border: 1px solid $colors.grey
+
+	&__area
+		max-width: 100%
+		min-width: 100%
+		margin: 0 auto
+		display: flex
+
+
+	&__header
+		margin: 0 0 20px 0
+		padding: 0 40px
+		display: flex
+		justify-content: space-between
+		align-items: baseline
+
+	&__title
+		margin: 0
+		color: #303030
+		font-size: 24px
+		font-weight: 300
+		white-space: nowrap
+
+	&__separator
+		width: 100%
+		margin: 0 0 0 10px
+		display: block
+		border-top: 4px solid #f0f0f0
+
+
+	&-content
+		margin: 0
+		padding: 15px
+		display: block
+
+	&__area__full
+		width: 100%
+		padding: 0 40px
+
+	&__area__main
+		width: 70%
+		padding: 0 25px 0 50px
+
+	&__area__sidebar
+		width: 30%
+		padding: 0 50px 0 25px
+
+
+
+	&__footer
+		margin: 20px 0 0 0
+		display: flex
+		justify-content: center
+
+
+
+	&--home
+		background-color: transparent
+
+	&--people
+		background: #fff
+
+
+
+	&--gender
+		width: 100%
+		padding: 0
+		display: flex
+
+		&--man
+			width: 50%
+			padding: 35px 50px
+			background-color: #b1e0ef
+
+		&--woman
+			width: 50%
+			padding: 35px 50px
+			background-color: #ffe4e4
+
+
+
+	&-search
+		padding: 0
+		background: none
+		border: 0
+
+		.section-headline
+			padding: 0
+			display: none
+
+		.section-content
+			padding: 0
+
+		.form
+
+			.search-field
+				width: 70%
+				float: left
+				transition: border-color 150ms ease-in-out
+
+				&:focus
+					border-color: $colors.blue
+
+			.search-button
+				width: 30%
+				float: left
+
+
+
+
+	&-latest-posts
+		display: block
+
+		li
+			clearfix()
+			margin: 0 0 10px 0
+			padding: 0 0 10px 0
+
+		img
+			width: 100px
+			height: 100px
+			float: left
+
+		.post-title
+			margin: 0
+			display: block
+
+
+	&-tags
+
+		li
+			width: 50%
+			margin: 0
+			float: left
+
+
+
+
+	&-featured-post
+	&-featured-project
+
+		.post-title
+			margin: 5px 0
+			font-size: 1.05em
+
+		img
+			width: 100%
+			display: block

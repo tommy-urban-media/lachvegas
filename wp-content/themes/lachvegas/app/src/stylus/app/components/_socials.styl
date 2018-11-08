@@ -1,0 +1,27 @@
+.socials
+	display: flex
+	margin-right: 10px
+	
+	&__item
+		margin: 0
+		
+		a
+			width: auto
+			margin-left: 10px
+			color: #808080
+			display: block
+			font-size: 28px
+			transition: unquote($settings.transition)
+			
+		&.facebook
+			& > a:hover
+				color: $socials.facebook
+				
+		&.twitter
+			& > a:hover
+				color: $socials.twitter
+			
+		&.pinterest
+			& > a:hover
+				color: $socials.pinterest
+			

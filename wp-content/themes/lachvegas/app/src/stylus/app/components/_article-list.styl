@@ -1,0 +1,67 @@
+
+.article-list
+
+	display: block
+
+
+	&-item
+		margin: 0 0 20px 0
+		padding: 20px
+		border: 1px solid darken($colors.white, 10%)
+		background-color: $colors.white
+
+
+
+.article-list
+	width: 100%
+	display: block
+
+	.grid-sizer
+		width: 23.5%
+	.gutter-sizer
+		width: 2%
+
+	&-item
+		width: 31%
+		margin: 0
+		margin-bottom: 30px
+		display: block
+		float: left
+		border: 1px solid darken($colors.white, 10%)
+		background-color: $colors.white
+
+		&:nth-child(3n+2)
+			margin: 0 3%
+
+		&:nth-child(3n+4)
+			clear: both
+
+
+	@media screen and (max-width: 960px)
+
+		.grid-sizer
+			width: 48%
+		.gutter-sizer
+			width: 4%
+
+		&-item
+			width: 46%
+			margin: 1% 2%
+
+			&:nth-child(2n+2)
+			&:nth-child(3n+2)
+			&:nth-child(3n+4)
+				margin: 1% 2%
+				float: left
+				clear: none
+
+
+	@media screen and (max-width: 500px)
+
+		.grid-sizer
+			width: 100%
+		.gutter-sizer
+			width: 0%
+
+		&-item
+			width: 96%

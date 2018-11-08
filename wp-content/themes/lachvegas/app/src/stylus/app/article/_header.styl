@@ -1,0 +1,120 @@
+
+.article-list
+
+  .article-header
+
+    .article-title
+      margin: 0
+      font-size: 18px
+      font-weight: bold
+
+
+.article-header
+
+  display: block
+
+
+  .article-title-link
+    display: inline
+    margin: 0 10px 0 0
+    font-weight: bold
+    font-size: 14px
+
+  .article-title-overline
+    display: inline-block
+    font-size: 14px
+    color: lighten($colors.black, 75%)
+
+
+  .article-title
+    display: block
+    font-size: 32px
+
+    & > a
+      transition: all 150ms ease-in-out
+
+      &:hover
+        color: $colors.black
+
+
+
+  .article-category
+    margin: 0 10px 0 0
+    color: $colors.blue
+    text-decoration: underline
+
+  .article-heading
+    text-align: left
+
+
+
+  .article-author-info
+    padding: 10px 0
+    display: inline-block
+
+  .article-meta
+    padding: 0
+    font-size: 11px
+
+
+  .article-meta
+    color: lighten($colors.black, 70%)
+
+  .article-stats
+    float: right
+
+  .article-statistics
+    clearfix()
+    display: block
+    padding: 0
+
+    .article-views
+    .article-likes
+    .article-comments
+      margin: 0 10px 0 0
+      padding: 4px 0
+      font-size: 12px
+      color: $colors.grey
+
+      &:after
+        content: '|'
+        margin: 0 0px 0 6px
+        display: inline-block
+
+      &:last-child:after
+        display: none
+
+
+
+  .article-excerpt
+    margin: 20px 0
+    font-weight: bold
+
+
+
+  .article-views
+  .article-likes
+  .article-comments
+    margin: 0
+    float: left
+
+  .article-likes
+  a.article-comments
+    padding: 10px 15px
+    cursor: pointer
+    color: $colors.orange
+    transition: background-color 150ms ease-in-out
+
+    &:hover
+      text-decoration: none
+      background-color: alpha($colors.black, 10%)
+
+
+
+
+
+.article
+  .article-title
+  .article-meta
+    @media screen and (max-width: 1000px)
+      padding: 0 20px

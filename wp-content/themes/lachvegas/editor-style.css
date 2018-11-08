@@ -1,0 +1,107 @@
+/*
+ * 
+ * Editor Style CSS for the wordpress backends TinyMCE editor.
+ * Define all necessary styles for text, headlines, paragraphs, etc. here
+ *
+ * Use advanced Tiny MCE Editor to be able to select
+ *
+ */
+
+
+/**************
+GENERIC CLASSES
+**************/
+
+.clear 	{ clear: both; }
+.left 	{ float: left; }
+.right 	{ float: right; }
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.text-small { font-size: 1em; }
+.text-normal { font-size: 1.5em; }
+.text-large { font-size: 2em; }
+
+.vertical-top { vertical-align: top; }
+.vertical-middle { vertical-align: middle !important; }
+.vertical-bottom { vertical-align: bottom; }
+
+.bold { font-weight: bold; }
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.underline { text-deoration: underline; }
+
+.justify,
+.text-block { text-deoration: underline; }
+
+.overflow-hidden { overflow: hidden; }
+.display-block { display: block; }
+.display-none { display: none; }
+.position-absolute { position: absolute; }
+.position-relative { position: relative; }
+
+.line-height-200 {
+	line-height: 200%;
+	}	
+	
+.text-bg-large {
+	float: left;
+	width: 360px;
+	height: 54px;
+	margin: 0 15px 0 0;
+	text-align: center;
+	line-height: 54px;
+	font-size: 1.6em;
+	background: url(images/layout/text-bg-large.jpg);
+	}	
+	
+.text-bg-short {
+	float: left;
+	width: 166px;
+	height: 54px;
+	margin: 0 15px 0 0;
+	text-align: center;
+	line-height: 54px;
+	font-size: 1.6em;
+	background: url(images/layout/text-bg-short.jpg);
+	}
+	
+
+/*************
+DEFAULT STYLES
+*************/
+
+a,
+a:focus {
+	color: #818181;  
+	text-decoration: none;
+	}
+a:hover,
+a:focus {
+	color: #ff3f2d; 
+	text-decoration: none;	
+	}
+
+h1, h2, h3, h4, h5, h6 { clear: both; }
+
+p, strong, label {
+	color: #666;
+	font-family: "Helvetica", Arial;
+	}
+p {
+	}
+
+strong { font-weight: bold; }
+
+
+
+/**************
+PAGE SPECIFIC CLASSES
+**************/
+
+a.text-link {
+	line-height: 100%;
+	}

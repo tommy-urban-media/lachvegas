@@ -1,0 +1,130 @@
+$menuheight = 40px
+
+
+.headermenu
+  display: block
+  height: $menuheight
+  text-align: center
+  position: relative 
+  z-index: 1
+
+  .menu-icon
+    width: 32px
+    height: 4px
+    display: none
+    float: right
+    margin-top: 24px
+    margin-right: 20px
+    cursor: pointer
+    position: relative
+    background-color: $colors.white
+
+    &:hover
+      background-color: $colors.grey
+
+      &:before
+      &:after
+        background-color: $colors.grey
+
+    &:before
+    &:after
+      content: ''
+      width: 32px
+      height: 4px
+      position: absolute
+      left: 0
+      top: -8px
+      background-color: $colors.white
+
+    &:after
+      top: 8px
+
+  .menu-title
+    padding: 10px 10px
+    display: inline-block
+    vertical-align: top
+    color: lighten($colors.black, 50%) 
+    font-weight: 900
+
+  .menu-mainmenu-container
+    display: inline-block
+
+  ul
+    margin: 0 auto
+    list-style: none
+
+  .menu-item
+    float: left
+    text-align: center
+    position: relative
+
+    &.current-menu-item
+      & > a
+        color: $colors.blue
+        background-color: darken($colors.white, 5%)
+
+    &:hover
+      .sub-menu
+        display: block
+
+      & > a
+        color: $colors.blue
+        text-decoration: none
+        background-color: darken($colors.white, 5%)
+
+    a
+      padding: 0 10px
+      display: block
+      color: $colors.grey
+      font-size: 12px
+      line-height: $menuheight
+      transition: all 150ms ease-in-out
+
+    .sub-menu
+      position: absolute
+      display: none
+      background-color: darken($colors.white, 5%)
+      box-shadow: 2px 2px 3px alpha($colors.black, 15%)
+
+  @media screen and (max-width: 960px)
+
+    width: 100%
+    right: 0
+    position: absolute
+
+    .menu-icon
+      display: block
+
+    .menu-title
+      display: none
+
+    .menu-mainmenu-container
+      width: 100%
+      position: absolute
+      top: 52px
+      left: 0
+      clear: both
+      background-color: $colors.white
+
+    .menu
+      display: none
+      border: 1px solid $colors.lightGrey
+
+      .menu-item
+        width: 100%
+        float: none
+        text-align: left
+
+        a
+          color: $colors.black
+          padding-left: 25px
+
+      .sub-menu
+        display: block
+        position: relative
+        background-color: $colors.white
+        box-shadow: none
+
+        a
+          color: $colors.black
+          padding-left: 25px

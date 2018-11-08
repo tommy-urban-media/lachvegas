@@ -1,0 +1,36 @@
+
+.article-teaser
+  height: 200px
+  position: relative
+
+  .image-wrapper
+    border: 1px solid #d9d9d9
+    position: absolute
+
+
+  &__content-block
+    height: 200px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    position: relative
+    z-index: 2
+
+  &__title
+    color: $colors.white
+    font-size: 20px
+    font-weight: bold
+    text-shadow: 0 0 24px #222
+
+  &__tag
+    padding: 5px 0
+    display: block
+    color: $colors.white
+    font-size: 14px
+    text-shadow: 0 0 24px #222
+
+  &__content
+    @extends $fontStyleDefault
+
+  

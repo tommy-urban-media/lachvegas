@@ -1,0 +1,76 @@
+
+
+.article-title
+  margin: 0 0 15px 0
+
+  & > a:hover
+    color: $colors.blue
+
+
+.article-content
+  margin: 20px 0
+
+
+.article-excerpt
+.article-content
+  clearfix()
+
+  p
+    margin: 0 0 15px 0
+    color: $colors.black
+    font-size: 1.05em
+    line-height: 165%
+
+  ol
+    padding-left: 20px
+    list-style: decimal
+
+
+  ul
+    padding-left: 20px
+    list-style: disc
+
+  ol
+  ul
+    li
+      margin: 0 0 10px 0
+      font-size: 1.15em
+      line-height: 165%
+
+
+  table
+    width: 100%
+    overflow: auto
+
+    th
+    td
+      padding: 8px 12px
+      text-align: left
+      white-space: nowrap
+
+    td[align="right"]
+      text-align: right
+
+    th
+    thead td
+      padding: 8px 12px
+      color: $colors.white
+      background-color: $colors.black
+
+    tbody
+
+      tr
+
+        &:nth-child(2n+1)
+          td
+            background-color: darken($colors.white, 5%)
+
+
+        &.highlight
+          td
+            color: $colors.white
+            background-color: lighten($colors.orange, 20%)
+
+            a
+              color: $colors.white
+              text-decoration: underline

@@ -1,0 +1,260 @@
+
+.list
+	width: 100%
+	display: block
+	
+	&:after
+		content: ''
+		display: block
+		clear: both
+	
+	ul
+		display: block
+		
+		&:after
+			content: ''
+			display: block
+			clear: both
+		
+		li
+			width: 23.5%
+			margin: 0 1% 1.5% 1%
+			float: left
+			
+			&:first-child,
+			&:nth-child(4n+1)
+				margin-left: 0
+				
+			&:nth-child(4n+4)
+				margin-right: 0
+				
+
+
+	&--teaser
+		padding: 0 30px
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+
+		.list-item
+			width: 31.3333%
+			height: 180px
+			display: block
+			padding: 25px
+			margin: 1%
+			background: url('http://localhost/lachvegas/wp-content/uploads/2018/11/background-board-carpentry-326333-300x200.jpg') center center no-repeat
+
+			&:nth-child(2)
+			&:nth-child(4)
+			&:nth-child(9)
+				background: url('http://localhost/lachvegas/wp-content/uploads/2018/11/abstract-ancient-antique-235985-300x201.jpg') center center no-repeat
+
+			&:nth-child(3)
+			&:nth-child(5)
+			&:nth-child(7)
+				background: url('http://localhost/lachvegas/wp-content/uploads/2018/11/abstract-background-dark-247671-300x200.jpg') center center no-repeat
+
+
+		.post-title
+			display: block
+			margin: 0 0 10px 0
+			color: #fff
+			font-size: 16px
+			font-weight: 700
+			line-height: 130%
+			text-align: left
+
+			&:hover
+				color: $colors.red !important
+
+
+
+	&--teaser-text
+		padding: 0 30px
+		display: flex
+		justify-content: space-between
+		flex-wrap: wrap
+
+		.list-item
+			width: 40%
+			height: 180px
+			display: block
+			padding: 25px
+			margin: 1%
+
+
+
+	&--slider
+		width: 100%
+		display: flex
+		overflow: hidden
+
+		.list-item
+			width: 100%
+			min-width: 600px
+			margin: 0 10%
+			display: block
+			text-align: center
+
+		.post-title
+			margin: 0 10%
+			max-width: 80%
+			display: block
+			color: #fff
+			font-size: 42px
+			font-weight: 700
+			letter-spacing: 1px
+			position: relative
+			text-shadow: #000 0 1px 3px
+
+		.post-image
+			width: 100%
+			max-width: 600px
+			height: 350px
+			margin: 0 auto
+			display: flex
+			justify-content: center
+			align-items: center
+			position: relative
+
+			img
+				position: absolute
+
+			&:before
+				content: ''
+				width: 100%
+				height: 100%
+				background-color: alpha(#000, 0.5)
+				position: absolute
+				left: 0
+				top: 0 
+
+
+
+	&--people
+		display: flex
+		justify-content: center
+
+		li
+			width: 120px
+			margin: 0 20px
+			text-align: center
+
+			.image-wrapper
+				width: 80px
+				height: 80px
+				display: block
+				margin: 0 auto
+				border-radius: 50%
+				overflow: hidden
+
+			.person-role
+				margin: 10px 0 5px 0
+				color: #c0c0c0
+				display: block
+				font-size: 12px
+
+			.person-name
+				color: #303030
+				display: block
+				font-size: 13px
+				font-weight: bold
+
+
+
+	&--news
+
+		& > li
+			margin: 0 0 25px 0
+			padding: 0 0 25px 0
+			display: block
+			border-bottom: 1px solid #e0e0e0
+
+			&:last-child
+				border-bottom: 0
+
+			&:after
+				content: ''
+				display: table
+				clear: both
+
+		.post-title
+			display: block
+			margin: 0 0 10px 0
+			color: #303030
+			font-size: 22px
+			font-weight: 700
+			line-height: 130%
+			text-align: left
+
+			&:hover
+				color: $colors.red
+
+		.post-meta
+			display: block
+			padding-bottom: 8px
+			font-size: 13px
+			font-weight: 600
+			color: #505050
+
+
+		.post-date
+			color: #505050
+			font-weight: 500
+
+			&:after
+				content: '-'
+				margin: 0 0 0 4px
+
+
+		.post-content
+			display: block
+			color: #505050
+			font-size: 90%
+			line-height: 150%
+
+			.read-more-link
+				display: block
+				margin: 5px 0 0 0
+				color: #505050
+				font-weight: 700
+
+				&:hover
+					color: $colors.red
+
+
+
+
+
+	&--featured
+		display: grid
+		grid-gap: 20px
+		grid-template-columns: 1fr 1fr 1fr
+
+		.list-item
+			display: block
+
+
+	&--shortnews
+		display: block
+
+		.list-item
+			width: 100%
+			margin: 0
+			padding: 0
+
+			a
+				@extends $fontStyleDefault
+				margin: 0 0 8px 0
+				padding: 0 0 8px 0
+				display: block
+				border-bottom: 1px solid #f0f0f0
+
+			&:hover a
+				text-decoration: underline
+
+			&:last-child
+				a
+					border: 0
+				
+			

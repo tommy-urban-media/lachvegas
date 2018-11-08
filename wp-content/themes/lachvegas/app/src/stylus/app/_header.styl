@@ -1,0 +1,54 @@
+
+.header
+	width: 100%
+	height: 40px
+	margin: 0 auto
+	padding: 0
+	color: $colors.white
+	position: fixed
+	left: 0
+	top: 0
+	text-align: center
+	background-color: $colors.black
+	border-bottom: 2px solid $colors.black
+	z-index: 99
+
+	.header-inner
+		width: 100%
+		max-width: 1000px
+		margin: 0 auto
+		display: flex
+		justify-content: space-between
+
+	  @media screen and (max-width: 1000px)
+			padding: 0 20px
+
+	.page-title
+		line-height: 42px
+		color: $colors.white
+
+	.page-name
+		font-family: 'Playfair Display SC', serif
+		font-size: 20px
+		line-height: 40px
+		vertical-align: top
+
+	.page-name-num
+		font-size: 22px
+
+	.page-name-txt
+		width: 200px
+		display: inline-block
+		font-size: 13px
+		line-height: 16px
+		text-align: left
+
+	.page-slogan
+		display: none
+		white-space: nowrap
+		font-size: 12px
+		font-weight: 100
+
+	a
+		color: $colors.white
+		text-decoration: none
