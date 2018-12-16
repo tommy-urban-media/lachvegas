@@ -13,8 +13,8 @@ $menuheight = 40px
     height: 4px
     display: none
     float: right
-    margin-top: 24px
-    margin-right: 20px
+    margin-top: 18px
+    margin-right: 12px
     cursor: pointer
     position: relative
     background-color: $colors.white
@@ -58,19 +58,30 @@ $menuheight = 40px
     text-align: center
     position: relative
 
+    &.support-link a
+      margin-top: 5px
+      color: #fff
+      line-height: 28px
+      background: $colors.red
+      border: 1px solid lighten($colors.red, 25%)
+      border-radius: 4px
+
+      &:hover
+        color: #fff
+        border-color: lighten($colors.red, 30%)
+        background: lighten($colors.red, 15%)
+
     &.current-menu-item
       & > a
-        color: $colors.blue
-        background-color: darken($colors.white, 5%)
+        color: $colors.white
 
     &:hover
       .sub-menu
         display: block
 
       & > a
-        color: $colors.blue
+        color: $colors.white
         text-decoration: none
-        background-color: darken($colors.white, 5%)
 
     a
       padding: 0 10px
@@ -86,12 +97,10 @@ $menuheight = 40px
       background-color: darken($colors.white, 5%)
       box-shadow: 2px 2px 3px alpha($colors.black, 15%)
 
+
   @media screen and (max-width: 960px)
-
-    width: 100%
-    right: 0
-    position: absolute
-
+    display: none
+    
     .menu-icon
       display: block
 

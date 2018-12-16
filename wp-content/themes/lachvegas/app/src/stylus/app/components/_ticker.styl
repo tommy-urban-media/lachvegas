@@ -2,15 +2,19 @@ $height = 38px;
 
 .ticker
   width: 100%
-  margin: 0
-  display: flex
+  max-width: 1000px
+  margin: 0 0 0 -500px
+  display: none
   flex-wrap: wrap
   z-index: 100
   position: fixed
-  left: 0
+  left: 50%
   bottom: 0
   color: $colors.white
   overflow: hidden
+
+  @media screen and (min-width: 1000px)
+    display: flex
 
   &__head
     width: 100%

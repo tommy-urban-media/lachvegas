@@ -40,10 +40,7 @@ $theme_social_media 	= get_option("theme_social_media_page");
 	// Add the blog description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
 
-
-	wp_title( '&raquo;', true, 'right' );
-
-	bloginfo( 'name' );
+	// bloginfo( 'name' );
 
 	if ( $site_description && ( is_home() || is_front_page() ) )
 		echo ' - ' . $site_description;
@@ -51,7 +48,9 @@ $theme_social_media 	= get_option("theme_social_media_page");
 
 	// Add a page number if necessary:
 	if ( $paged >= 2 || $page >= 2 )
-		echo ' | ' . sprintf( __( 'Page %s', 'theme' ), max( $paged, $page ) );
+		echo sprintf( __( 'Seite %s', 'theme' ), max( $paged, $page ) ) . ' - ';
+
+	wp_title( '&raquo;', true, 'right' );
 
 	?>
 </title>
@@ -116,10 +115,15 @@ $theme_social_media 	= get_option("theme_social_media_page");
 
 ?>
 
-<?php
-if ( isset($theme_social_media['google_analytics_id']) && !empty($theme_social_media['google_analytics_id']) )
-	theme_google_analytics( $theme_social_media['google_analytics_id'] );
-?>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23558535-12"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-23558535-12');
+</script>
+
 
 </head>
 
@@ -129,22 +133,34 @@ if ( isset($theme_social_media['google_analytics_id']) && !empty($theme_social_m
 
 	<header class="header">
 
-		<div class="header-inner">
+		<div class="header__inner">
 
 			<p class="page-title">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 					<span class="page-name">
-						<span class="page-name-num">Lach</span>
-						<span class="page-name-txt">Vegas</span>
+						<span class="page-name-num">Lach</span><span class="page-name-txt">Vegas</span>
 					</span>
 					<span class="page-slogan"><?php echo get_bloginfo('description') ?></span>
 				</a>
 			</p>
 
-			<nav class="headermenu">
-				<span class="menu-icon"></span>
-				<?php wp_nav_menu( array('theme_location' => 'headermenu') ); ?>
-			</nav>
+			<div class="header__right">
+				<nav class="headermenu" data-component="Menu">
+					<span class="menu-icon"></span>
+					<?php wp_nav_menu( array('theme_location' => 'headermenu') ); ?>
+				</nav>
+				<div class="action-bar">
+					<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+						<label class="search-label" for="search-input"><i class="fa fa-search"></i></label>
+						<div class="search-area">
+							<div class="search-group">
+								<input type="search" id="search-input" class="search-field" placeholder="Suchbegriff eingeben" value="<?php echo get_search_query(); ?>" name="s" />
+								<button type="submit" class="search-submit">Suchen &raquo; </button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 
 	</header>
@@ -152,10 +168,12 @@ if ( isset($theme_social_media['google_analytics_id']) && !empty($theme_social_m
 	<main class="main" role="main">
 
 		<div class="mainmenu-wrapper">
-			<nav class="mainmenu" role="navigation">
+			<nav class="mainmenu" role="navigation" data-component="Menu">
 				<span class="menu-icon"></span>
 				<?php wp_nav_menu( array('theme_location' => 'mainmenu') ); ?>
 			</nav>
 
-			<?php get_template_part('template-parts/socials'); ?>
+			<?php // get_template_part('template-parts/socials'); ?>
 		</div>
+
+		<?php get_template_part('template-parts/topics'); ?>

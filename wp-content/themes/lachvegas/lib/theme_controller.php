@@ -84,7 +84,7 @@ class ThemeController {
   }
 
 
-  public static function getDate ()
+  public static function getDate()
   {
     $weekDays = [
       '', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'
@@ -95,5 +95,11 @@ class ThemeController {
     echo $weekDay . ' der ' . date('d.m.Y');
   }
 
+
+
+  public static function getQuery() {
+
+
+  }
 
 }

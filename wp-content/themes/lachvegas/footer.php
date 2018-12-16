@@ -16,10 +16,10 @@
 			<?php endif;?>
 
 			<div class="footer-copyright">
-				<p>&copy; 2016 - <?php echo date('Y') ?> LachVegas.de</p>
+				<p>&copy; 2016 - <?php echo date('Y') ?> <a href="http://lachvegas.de">lachvegas.de</a></p>
 			</div>
 		</div>
-		<?php get_template_part('template-parts/socials'); ?>
+		<?php // get_template_part('template-parts/socials'); ?>
 	</div>
 
 	<!--

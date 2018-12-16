@@ -1,78 +1,70 @@
 <?php get_header() ?>
 
-<main class="main" role="main">
+<div class="content content-wrapper">
 
-	<div class="content content-wrapper">
-
-		<?php if ($categoryDescription = category_description($cat)): ?>
-			<div class="category-description">
-				<?php echo $categoryDescription ?>
-			</div>
-		<?php endif ?>
+	<?php if ($description = get_the_archive_description()): ?>
+		<div class="category-description">
+			<?php echo $description ?>
+		</div>
+	<?php endif ?>
 
 	<?php if ( have_posts() ) : ?>
 
-	<section class="section">
-		<div class="section__area">
-			<div class="section__area__main">
+	<div class="content__area">
+		<div class="content__area--primary">
+			<h1 class="category-title"><?php echo get_the_archive_title(true); ?></h1>
+			<?php if (have_posts()): ?>
 
-			<h1 class="category-title"><?php echo get_the_archive_title(false); ?></h1>
+				<ol class="list list--news">
+					<?php $i = 0; ?>
+					<?php while ( have_posts() ) : the_post(); setup_postdata($post)?>
+						<li class="list-item">
 
-			<?php //$queryNews = new WP_Query($args)?>
-				<?php if (have_posts()): ?>
+							<?php if ($i == 4): ?>
+								<?php get_template_part('template-parts/ads/jochen-scheisser')?>
+							<?php endif ?>
 
-					<ul class="list list--teaser">
-						<?php while ( have_posts() ) : the_post();?>
-							<li class="news-list__item">
+							<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
+							<span class="post-meta">
+								<?= $subtitle ?>
+							</span>
+							<?php endif ?>
 
-								<a class="post-title" href="<?php echo get_permalink()?>">
-									<?php the_title()?>
-								</a>
+							<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
+								<?php the_title() ?>
+							</a>
 
-								<span class="post-meta">
-									<?php echo _e('geschrieben von ')?> <a class="contact-link" href="#"><?php the_author()?></a> | <?php echo the_date('d. M. Y')?>
-								</span>
+							<div class="post-content">
+								<?php if (has_post_thumbnail()):?>
+									<a href="<?= get_the_permalink($post->ID) ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
+										<figure class="post-image post-image--teaser">
+											<?php the_post_thumbnail('article_thumbnail')?>
+										</figure>
+									</a>
+								<?php endif ?>
+								<span class="post-date"><?php echo the_date('d.m.Y')?></span>
+								<?php echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
+							</div>
+						</li>
 
-								<div class="post-content">
+					<?php $i++ ?>
+					<?php endwhile; ?>
+				</ol>
 
-									<?php if (has_post_thumbnail()):?>
-										<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-											<figure class="post-image post-image--teaser">
-												<?php the_post_thumbnail('article_thumbnail')?>
-											</figure>
-										</a>
-									<?php endif ?>
+				<?php previous_posts_link('Zurück'); ?>
+				<?php next_posts_link('Weiter'); ?>
 
-									<?php the_content()?>
-								</div>
+				<?php wp_reset_postdata();?>
 
-							</li>
-						<?php endwhile; ?>
-					</ul>
+			<?php endif; ?>
+		</div>
+		<div class="content__area--secondary">
+			<?php echo get_template_part('sidebar')?>
+		</div>
+	</div>
 
-					<?php previous_posts_link('Zurück'); ?>
-					<?php next_posts_link('Weiter' ); ?>
+	<?php endif ?>
 
-					<?php wp_reset_postdata();?>
-
-				<?php endif; ?>
-
-				</div>
-
-				<div class="section__area__sidebar">
-					Blub
-				</div>
-
-			</div>
-
-		</section>
-
-		<?php endif ?>
-
-	</div><!-- .content -->
-
-	<?php // echo get_template_part('sidebar'); ?>
-
-</main>
+</div><!-- .content -->
 
 <?php get_footer(); ?>

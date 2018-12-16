@@ -5,7 +5,7 @@
  */
 ?>
 
-<?php echo get_template_part('template-parts/ads/pappel'); ?>
+<?php showAD('portrait'); ?>
 <?php //echo get_template_part('template-parts/sidebar', 'posts'); ?>
 
 <?php //echo get_template_part('template-parts/sidebar', 'tags'); ?>

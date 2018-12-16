@@ -17,6 +17,7 @@ export default class App {
   init () {
 
     this.getNodes();
+    this.setupTheme();
 
   }
 
@@ -45,6 +46,15 @@ export default class App {
 
       }
 
+    });
+
+  }
+
+
+  setupTheme () {
+
+    $('.search-label').on('click', () => {
+      $('.search-area').toggleClass('is-expanded');
     });
 
   }

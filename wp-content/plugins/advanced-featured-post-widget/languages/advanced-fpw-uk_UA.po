@@ -1,0 +1,330 @@
+# Copyright (C) 2014 
+# This file is distributed under the same license as the package.
+msgid ""
+msgstr ""
+"Project-Id-Version: advanced-fpw\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-featured-post-"
+"widget\n"
+"POT-Creation-Date: 2014-02-18 13:41:36+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-06-09 18:53+0200\n"
+"Last-Translator: Waldemar Stoffel <stoffel@atelier-fuenf.de>\n"
+"Language-Team: http://getvoip.com/\n"
+"Language: uk_UA\n"
+"X-Generator: Poedit 1.6.5\n"
+
+#: advanced-fpw.php:117
+msgid "FAQ"
+msgstr "Часті питання"
+
+#: advanced-fpw.php:118
+msgid "Donate"
+msgstr "Жертвувати"
+
+#: advanced-fpw.php:130 advanced-fpw.php:201 advanced-fpw.php:213
+msgid "Settings"
+msgstr "Налаштування"
+
+#: advanced-fpw.php:142
+msgid "Styling of the links"
+msgstr "Стилізація посилань"
+
+#: advanced-fpw.php:144
+msgid "Link style:"
+msgstr "Cтиль посиланнь:"
+
+#: advanced-fpw.php:146
+msgid "Hover style:"
+msgstr "Наведіть стиль:"
+
+#: advanced-fpw.php:154
+msgid "Just put some css code here."
+msgstr "Просто поставити деякий CSS код тут."
+
+#: advanced-fpw.php:212
+msgid ""
+"http://wasistlos.waldemarstoffel.com/plugins-fur-wordpress/advanced-featured-"
+"post-widget"
+msgstr ""
+"http://wasistlos.waldemarstoffel.com/plugins-fur-wordpress/advanced-featured-"
+"пост-віджет"
+
+#: advanced-fpw.php:215
+msgid ""
+"Style the links of the widget. If you leave this empty, your theme will "
+"style the hyperlinks."
+msgstr ""
+"Стиль лінку віджету. Якщо залишити це порожнє, ваша тема будеу стилі "
+"гіперпосилання."
+
+#: advanced-fpw.php:216
+msgid "Just input something like,"
+msgstr "Просто введіть щось на кшталт:"
+
+#: advanced-fpw.php:221
+msgid "to get fat, blue, underlined links."
+msgstr "товстіти, синій, підкреслені посилання."
+
+#: advanced-fpw.php:222
+msgid ""
+"You most probably have to use &#34;!important&#34; at the end of each line, "
+"to make it work."
+msgstr ""
+"Вам швидше за все доведеться використовувати &#34;!важливим&#34; в кінці "
+"кожного рядка, щоб зробити його роботу."
+
+#: class-lib/A5_ImageClass.php:40
+msgid "Permalink to"
+msgstr "Постійне посилання на"
+
+#: class-lib/AFPW_WidgetClass.php:18
+msgid ""
+"You can feature a certain post in this widget and display it, where and "
+"however you want, in your widget areas. A backup post can be given to avoid "
+"dubble content. Define, on what pages the widget will show."
+msgstr ""
+"Ви можете вставити певний пост в цей віджет і відображати його, де і як "
+"хочете, у вашій області віджетів. Резервне повідомлення може бути додано, "
+"щоб уникнути повторів у зміст. Визначте, на які сторінки віджет покаже пост. "
+
+#: class-lib/AFPW_WidgetClass.php:126
+msgid "Homepage"
+msgstr "Домашня сторінка"
+
+#: class-lib/AFPW_WidgetClass.php:127
+msgid "Frontpage (e.g. a static page as homepage)"
+msgstr "Головна (наприклад статична сторінки - це стартова сторінка)"
+
+#: class-lib/AFPW_WidgetClass.php:128
+msgid "&#34;Page&#34; pages"
+msgstr "&#34, стор&#34, сторінок"
+
+#: class-lib/AFPW_WidgetClass.php:129
+msgid "Category pages"
+msgstr "Сторінки категорій"
+
+#: class-lib/AFPW_WidgetClass.php:130
+msgid "Single post pages"
+msgstr "Повідомлення окремої сторінки"
+
+#: class-lib/AFPW_WidgetClass.php:131
+msgid "Archive pages"
+msgstr "Архів сторінки"
+
+#: class-lib/AFPW_WidgetClass.php:132
+msgid "Tag pages"
+msgstr "Сторінки тегів"
+
+#: class-lib/AFPW_WidgetClass.php:133
+msgid "Attachments"
+msgstr "Вкладення"
+
+#: class-lib/AFPW_WidgetClass.php:134
+msgid "Custom Taxonomy pages (only available, if having a plugin)"
+msgstr ""
+"Користувальницька Систематика сторінки (доступно тільки, якщо вони мають "
+"плагін)"
+
+#: class-lib/AFPW_WidgetClass.php:135
+msgid "Author pages"
+msgstr "Автор сторінки"
+
+#: class-lib/AFPW_WidgetClass.php:136
+msgid "Search Results"
+msgstr "Результати пошуку"
+
+#: class-lib/AFPW_WidgetClass.php:137
+msgid "&#34;Not Found&#34;"
+msgstr "&#34;Не знайдено&#34;"
+
+#: class-lib/AFPW_WidgetClass.php:140
+msgid "Check all"
+msgstr "Перевірте всі"
+
+#: class-lib/AFPW_WidgetClass.php:144
+msgid "Above thumbnail"
+msgstr "Над ескізом"
+
+#: class-lib/AFPW_WidgetClass.php:144
+msgid "Under thumbnail"
+msgstr "Під мініатюрою"
+
+#: class-lib/AFPW_WidgetClass.php:144
+msgid "Don't show title"
+msgstr "Не показувати назву?"
+
+#: class-lib/AFPW_WidgetClass.php:146
+msgid "Title:"
+msgstr "Назва:"
+
+#: class-lib/AFPW_WidgetClass.php:147
+msgid "Choose here the post, you want to appear in the widget."
+msgstr "Виберіть пост, який буде відображатися в віджеті."
+
+#: class-lib/AFPW_WidgetClass.php:147 class-lib/AFPW_WidgetClass.php:148
+msgid "Take a random post"
+msgstr "Візьміть випадкову пошту"
+
+#: class-lib/AFPW_WidgetClass.php:148
+msgid ""
+"Choose here the backup post. It will appear, when a single post page shows "
+"the featured article."
+msgstr ""
+"Виберіть резервний пост. Він з'явиться, коли один пост показує  Краща стаття."
+
+#: class-lib/AFPW_WidgetClass.php:149
+msgid ""
+"Post ID (if you want a custom post type or simply don't want to use the "
+"dropdown menu):"
+msgstr ""
+"Повідомлення ID (якщо ви хочете користуватися типом запису або просто не "
+"хочете використовувати меню, що випадає):"
+
+#: class-lib/AFPW_WidgetClass.php:150
+msgid ""
+"ID for backup post (if you want a custom post type or simply you don't want "
+"to use the dropdown menu):"
+msgstr ""
+"ID для резервного повідомленням (якщо ви хочете користуватися типом запису "
+"або просто ви не хочете використовувати меню, що випадає):"
+
+#: class-lib/AFPW_WidgetClass.php:151
+msgid "Check to show the categories in which the post is filed."
+msgstr "Перевірте категорії, по яких цей пост подано."
+
+#: class-lib/AFPW_WidgetClass.php:152
+msgid ""
+"Give some text that you want in front of the post's categtories (i.e 'filed "
+"under':"
+msgstr ""
+"Дати деякий текст, який ви хочете, щоб перед post categtories (тобто 'подала "
+"в розділі':"
+
+#: class-lib/AFPW_WidgetClass.php:153
+msgid "Check to get the first image of the post as thumbnail."
+msgstr "Перевірте, що отримати перше зображення поста у мініатюрі."
+
+#: class-lib/AFPW_WidgetClass.php:154
+msgid "Width of the thumbnail (in px):"
+msgstr "Ширина ескізу (в пікселях):"
+
+#: class-lib/AFPW_WidgetClass.php:155
+msgid ""
+"If wanting a border around the image, write the style here. %s would make it "
+"a black border, 1px wide."
+msgstr ""
+"Якщо хто хоче рамку навколо зображення, написати стиль тут. %s зробить  "
+"чорну рамку, 1px в ширину."
+
+#: class-lib/AFPW_WidgetClass.php:156
+msgid "Check to %snot %s display the thumbnail of the post."
+msgstr "Перевірте %snot %s відображення слайдшоу у пості."
+
+#: class-lib/AFPW_WidgetClass.php:157
+msgid ""
+"Choose, whether or not to display the title and whether it comes above or "
+"under the thumbnail."
+msgstr "Виберіть, чи слід відображати назву над ескізом, або ж під ескізом."
+
+#: class-lib/AFPW_WidgetClass.php:158
+msgid "Weight of the Post Title:"
+msgstr "Ширина заголовоку:"
+
+#: class-lib/AFPW_WidgetClass.php:159
+msgid ""
+"If the excerpt of the post is not defined, by default the first 3 sentences "
+"of the post are shown. You can enter your own excerpt here, if you want."
+msgstr ""
+"Якщо витяг з поста не визначений, за замовчуванням перші 3 уривки з посту "
+"показані. Можна ввести власний уривок тут, якщо ви хочете."
+
+#: class-lib/AFPW_WidgetClass.php:160
+msgid "In case there is no excerpt defined, how many sentences are displayed:"
+msgstr "У випадку коли уривків не визначенно, скільки стрічок відображаються:"
+
+#: class-lib/AFPW_WidgetClass.php:161
+msgid "Check to display words instead of sentences."
+msgstr "Перевірте, щоб відобразити слова замість пропозицій."
+
+#: class-lib/AFPW_WidgetClass.php:162
+msgid "Check to display the full post instead of an excerpt."
+msgstr "Перевірте, щоб відобразити повний пост замість виписки."
+
+#: class-lib/AFPW_WidgetClass.php:163
+msgid "Check to have each sentence in a new line."
+msgstr "Перевірте, чи є кожне речення з нового рядка."
+
+#: class-lib/AFPW_WidgetClass.php:164
+msgid "Check to %snot %s display the excerpt."
+msgstr "Перевірте %snot %s відображення уривка."
+
+#: class-lib/AFPW_WidgetClass.php:165
+msgid ""
+"Check to suppress shortcodes in the widget (in case the content is showing)."
+msgstr ""
+"Перевірте, щоб придушити шорткоди в віджеті (у разі, якщо зміст їх показує)."
+
+#: class-lib/AFPW_WidgetClass.php:166
+msgid ""
+"Check to return the excerpt unfiltered (might avoid interferences with other "
+"plugins)."
+msgstr ""
+"Перевірте, щоб повернути уривок нефільтроване (може уникнути інтерференції з "
+"іншими плагінами)."
+
+#: class-lib/AFPW_WidgetClass.php:167
+msgid "Check to have an additional 'read more' link at the end of the excerpt."
+msgstr "Перевірте, чи додано 'читати далі' у кінці посилання або уривку."
+
+#: class-lib/AFPW_WidgetClass.php:168
+msgid "Write here some text for the 'read more' link. By default, it is %s:"
+msgstr ""
+"Напишіть тут текст для 'Читати далі' для посилання. За умовчанням це %s:"
+
+#: class-lib/AFPW_WidgetClass.php:169
+msgid "If you want to style the 'read more' link, you can enter a class here."
+msgstr ""
+"Якщо ви хочете, щоб стиль 'Читати далі' посилання був клікабельним, ви "
+"можете ввести клас тут. "
+
+#: class-lib/AFPW_WidgetClass.php:170
+msgid ""
+"Check, where you want to show the widget. By default, it is showing on the "
+"homepage and the category pages:"
+msgstr ""
+"Перевірте, де ви хочете показати віджет За замовчуванням він показує "
+"наДомашню сторінку і сторінки категорій:"
+
+#: class-lib/AFPW_WidgetClass.php:171
+msgid ""
+"Here you can finally style the widget. Simply type something like%1$s"
+"%2$sborder: 2px solid;%2$sborder-color: #cccccc;%2$spadding: 10px;%3$s%2$sto "
+"get just a gray outline and a padding of 10 px. If you leave that section "
+"empty, your theme will style the widget."
+msgstr ""
+"Тут Ви можете завршити стиль віджета Просто наберіть щось подібне%1$s"
+"%2$sborder: 2px solid;%2$sborder-color: #cccccc;%2$spadding: 10px;%3$s%2$sto "
+"щоб отримати тільки сірий контур і заповнення 10 пікселів. Якщо ви залишите "
+"цей розділ порожній, ваша тема буде стиль віджета."
+
+#: advanced-fpw.php:159
+msgid "Widget container:"
+msgstr "Віджет контейнер:"
+
+#: advanced-fpw.php:159
+msgid ""
+"You can enter your own style for the widgets here. This will overwrite the "
+"styles of your theme."
+msgstr ""
+"Ви можете ввести свій власний стиль для віджетів тут. Це призведе до "
+"перезапису стилі вашої теми."
+
+#: advanced-fpw.php:159
+msgid ""
+"If you leave this empty, you can still style every instance of the widget "
+"individually."
+msgstr ""
+"Якщо залишити це порожнім, ви все ще можете укладати кожен екземпляр віджету "
+"індивідуально."

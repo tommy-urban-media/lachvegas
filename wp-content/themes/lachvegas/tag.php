@@ -32,9 +32,7 @@ get_header();
 						<?php endif ?>
 
 						<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-						<span class="post-meta">
-							<?= $subtitle ?>
-						</span>
+						<span class="post-meta"><?= $subtitle ?></span>
 						<?php endif ?>
 
 						<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">

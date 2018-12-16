@@ -1,27 +1,62 @@
+
+.socials-wrapper
+	margin: 0
+	display: flex
+	justify-content: right
+	align-items: center
+	text-align: right
+
 .socials
 	display: flex
-	margin-right: 10px
+	margin-right: 0
+	justify-content: right
+	align-items: baseline
+
+
+	&__title
+		flex: 1
+		color: #909090
+		font-size: 13px
+		font-weight: 200
 	
 	&__item
 		margin: 0
 		
 		a
 			width: auto
-			margin-left: 10px
+			margin-left: 6px
 			color: #808080
 			display: block
 			font-size: 28px
 			transition: unquote($settings.transition)
 			
-		&.facebook
+		&.facebook a
+			color: $socials.facebook
 			& > a:hover
 				color: $socials.facebook
 				
-		&.twitter
+		&.twitter a
+			color: $socials.twitter
 			& > a:hover
 				color: $socials.twitter
+
+		&.email a
+			color: $socials.email
+			& > a:hover
+				color: $socials.email
+
+		&.linkedin a
+			color: $socials.linkedin
+			& > a:hover
+				color: $socials.linkedin
 			
-		&.pinterest
+		&.pinterest a
+			color: $socials.pinterest
 			& > a:hover
 				color: $socials.pinterest
+
+		&.whatsapp a
+			color: $socials.whatsapp
+			& > a:hover
+				color: $socials.whatsapp
 			

@@ -13,42 +13,94 @@
 	border-bottom: 2px solid $colors.black
 	z-index: 99
 
-	.header-inner
+	&__inner
 		width: 100%
 		max-width: 1000px
 		margin: 0 auto
+		position: relative
 		display: flex
+		flex-wrap: nowrap
 		justify-content: space-between
 
 	  @media screen and (max-width: 1000px)
 			padding: 0 20px
 
+	&__right
+		display: flex
+		justify-content: right
+
 	.page-title
 		line-height: 42px
-		color: $colors.white
 
 	.page-name
-		font-family: 'Playfair Display SC', serif
-		font-size: 20px
-		line-height: 40px
-		vertical-align: top
+		width: 130px
+		display: block
+		padding: 0 10px
+		height: 40px
+		font-family: 'Montserrat'
+		font-weight: 600
+		//text-transform: uppercase
+		//box-shadow: 0 1px 1px #fff
+		//border-bottom: 2px solid lighten($colors.red, 20%)
+		//background: linear-gradient(top, $colors.red, darken($colors.red, 25%))
+		background: #f5f5f5 //darken($colors.red, 25%)
 
 	.page-name-num
-		font-size: 22px
+		color: gray
+		font-size: 18px
 
 	.page-name-txt
-		width: 200px
-		display: inline-block
-		font-size: 13px
-		line-height: 16px
+		color: $colors.red
+		font-size: 18px
 		text-align: left
-
-	.page-slogan
-		display: none
-		white-space: nowrap
-		font-size: 12px
-		font-weight: 100
 
 	a
 		color: $colors.white
 		text-decoration: none
+
+
+
+.search-label
+	display: block
+	width: 40px
+	height: 40px
+	font-size: 20px
+	cursor: pointer
+	line-height: 40px
+
+	&:hover
+		color: #fff
+
+.search-area
+	width: 0
+	margin-top: 4px
+	overflow: hidden
+	z-index: 1
+	position: absolute
+	top: 0
+	right: 40px
+	transition: width 250ms ease-in-out
+
+	&.is-expanded
+		width: 320px
+
+	.search-group
+		width: 320px
+
+	.search-field	
+		width: 240px
+		height: 32px
+		padding: 4px 10px
+		font-size: 13px
+		border: 0
+		outline: 0
+		background: #fff
+
+	.search-submit
+		margin-left: -5px
+		height: 32px
+		padding: 4px 10px
+		color: #303030
+		font-size: 13px
+		background: #fff
+		border: 0

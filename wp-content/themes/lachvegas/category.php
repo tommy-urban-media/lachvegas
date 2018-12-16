@@ -10,7 +10,7 @@ $args = array(
 	'posts_per_page' => 10,
 	'paged' => $paged,
 	'offset' => $offset,
-	'post_type' => array('news', 'saying'),
+	'post_type' => array('news', 'post', 'saying', 'guide', 'poem'),
 	'category_name' => get_cat_name( $cat ),
 	'order_by' => 'date', 
 	'order' => 'DESC',
@@ -56,7 +56,7 @@ $query = new WP_Query($args)
 
 								<div class="post-content">
 									<?php if (has_post_thumbnail()):?>
-										<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
+										<a href="<?= get_the_permalink($post->ID) ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
 											<figure class="post-image post-image--teaser">
 												<?php the_post_thumbnail('article_thumbnail')?>
 											</figure>
@@ -87,6 +87,8 @@ $query = new WP_Query($args)
 
 	<?php previous_posts_link('Zurück'); ?>
 	<?php next_posts_link('Weiter' ); ?>
+
+	<?php get_template_part('template-parts/content-areas/gender') ?>
 
 </div><!-- .content -->
 

@@ -133,6 +133,64 @@ class ContentTypeController {
 
     add_post_type_support( 'guide', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
+
+
+    register_post_type('person',
+        array(
+            'labels' => array(
+                'name' => __( 'Personen' ),
+                'singular_name' => __( 'Person' ),
+                'add_new' => __( 'Person eintragen' ),
+                'add_new_item' => __( 'neue Person anlegen' ),
+                'edit_item' => __( 'Person bearbeiten' ),
+                'new_item' => __( 'neue Person' ),
+                'view_item' => __( 'Person anschauen' ),
+                'search_items' => __( 'Person suchen' ),
+                'not_found' => __( 'Person nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+              'slug' => 'person'
+            )
+        )
+    );
+
+    add_post_type_support( 'person', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+
+    register_post_type('poem',
+        array(
+            'labels' => array(
+                'name' => __( 'Gedichte' ),
+                'singular_name' => __( 'Gedicht' ),
+                'add_new' => __( 'Gedicht eintragen' ),
+                'add_new_item' => __( 'neue Gedicht anlegen' ),
+                'edit_item' => __( 'Gedicht bearbeiten' ),
+                'new_item' => __( 'neue Gedicht' ),
+                'view_item' => __( 'Gedicht anschauen' ),
+                'search_items' => __( 'Gedicht suchen' ),
+                'not_found' => __( 'Gedicht nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+              'slug' => 'gedicht'
+            )
+        )
+    );
+
+    add_post_type_support( 'poem', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
   }
 
 

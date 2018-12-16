@@ -1,21 +1,43 @@
 
 
 .footermenu
-  text-align: left
+  text-align: center
+
+  @media screen and (min-width: 1000px)
+    text-align: left
     
   ul
+    width: 100%
+    max-width: 100%
     display: flex
+    flex-wrap: wrap
     list-style: none
 
   .menu-item
-    text-align: left
+    width: 100%
+    
+    @media screen and (min-width: 1000px)
+      width: auto
+      margin-right: 25px
+      text-align: left
 
     a
+      padding: 10px 0
       display: block
-      color: #303030
-      font-size: 12px
-      transition: all 150ms ease-in-out
+      color: #808080
+      font-size: 15px
+      font-family: 'Montserrat'
+      transition: all 150ms ease-in-out	
+
+      @media screen and (min-width: 1000px)
+        padding: 0
+        font-size: 12px
 
       &:hover
         color: $colors.red
         text-decoration: none
+
+        @media screen and (min-width: 1000px)
+          background-color: transparent
+
+

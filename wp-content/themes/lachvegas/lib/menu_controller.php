@@ -12,6 +12,7 @@ class MenuController {
     register_nav_menu( 'mainmenu', 'Hauptmenu' );
     register_nav_menu( 'footermenu', 'Footermenu' );
     register_nav_menu( 'headermenu', 'Headermenu' );
+    register_nav_menu( 'topicmenu', 'Weitere Themen' );
 
   }
   

@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="content content-wrapper">
+<div class="content">
 
 	<?php while ( have_posts() ) : the_post(); setup_postdata($post); ?>
 
@@ -16,9 +16,9 @@
 		<?php //endif;?>
 
 		<?php if( $post_views == 0 ): ?>
-			<?php add_post_meta($post->ID, 'post-views', '1' ); ?>
+			<?php //add_post_meta($post->ID, 'post-views', '1' ); ?>
 		<?php else:?>
-			<?php update_post_meta($post->ID, 'post-views', $post_views ); ?>
+			<?php //update_post_meta($post->ID, 'post-views', $post_views ); ?>
 		<?php endif;?>
 
 		<div class="content__area">
@@ -26,6 +26,8 @@
 				<article class="article" data-id="<?php echo $post->ID ?>">
 
 					<?php //echo get_template_part('template-parts/article', 'jsonld'); ?>
+					
+					<?php get_template_part('template-parts/article-socials') ?>
 
 					<header class="article-header">
 
@@ -88,10 +90,10 @@
 
 						<?php if (has_post_thumbnail()):?>
 							<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
-							<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'article-header'); ?>
+							<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
 							<figure class="post-image">
 								<!-- <a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group"> -->
-									<?php the_post_thumbnail('article-header')?>
+									<?php the_post_thumbnail('full', array('data-pin' => 'pinIt'))?>
 								<!-- </a> -->
 								<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
 									<figcaption class="caption">
@@ -114,14 +116,17 @@
 
 					<footer class="article-footer">
 
+						<?php get_template_part('template-parts/article-socials') ?>
 						<?php // echo get_template_part('template-parts/article', 'related-posts'); ?>
 						<?php // echo get_template_part('template-parts/article', 'vote'); ?>
 						<?php // echo get_template_part('template-parts/article', 'author'); ?>
 
+						<?php if (has_tag()): ?>
 						<div class="tags">
-							<?= __('Tags') ?>:
-							<?= get_the_tag_list('<ul class="tag-list"><li>', '</li><li>', '</li></ul>')?>
+							<span class="tags__title"><?= __('Themen') ?>:</span>
+							<?= get_the_tag_list('<ul class="list list--tags"><li class="list-item">', '</li><li class="list-item">', '</li></ul>')?>
 						</div>
+						<?php endif ?>
 
 
 						<a name="comments"></a>
@@ -138,6 +143,28 @@
 		</div>
 
 		<?php endwhile;?>
+
+
+		<!--
+		<div class="content__area">
+			<div class="content__area--primary">
+				<h3>Produkt der Woche</h3>
+				<?php
+						$current_week = date("W");
+						$productsQuery = new WP_Query( array('posts_per_page' => -1, 'post_type' => array('post'), 'category_name' => get_category_by_slug('produkte')->cat_name, 'date_query' => array('week' => $current_week)) );
+				?>
+				<?php if ( $productsQuery->have_posts() ) : ?>
+				<?php while ( $productsQuery->have_posts() ) : $productsQuery->the_post(); setup_postdata($post)?>
+
+					<?php var_dump($post) ?>
+
+				<?php endwhile ?>
+				<?php endif ?>
+			</div>
+		</div>
+		-->
+
+	
 
 </div>
 

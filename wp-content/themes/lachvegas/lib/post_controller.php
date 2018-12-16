@@ -50,10 +50,10 @@ class PostController {
       if ($count==''){
           $count = 0;
           delete_post_meta($postID, $count_key);
-          add_post_meta($postID, $count_key, '0');
+          //add_post_meta($postID, $count_key, '0');
       } else {
           $count++;
-          update_post_meta($postID, $count_key, $count);
+          //update_post_meta($postID, $count_key, $count);
 
           $_SESSION['viewed_posts'][] = $postID;
       }

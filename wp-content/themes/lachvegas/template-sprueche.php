@@ -34,17 +34,18 @@ $args = array(
 			<?php if ($queryNews->have_posts()): ?>
 			
 				<ul class="masonry">
-					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post();?>
+					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
 						<li class="masonry__item">
 
+							<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_large');?>
 							<a class="quote-box" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-								<figure class="post-image">
+								<figure class="post-image" style="width:<?= $bgImage[1] ?>px; height:<?= $bgImage[2] ?>px;">
 									<?php if (has_post_thumbnail()):?>	
 										<?php the_post_thumbnail('medium_large')?>
 									<?php else: ?>
 										<img src="http://localhost/lachvegas/wp-content/uploads/2018/11/background-board-carpentry-326333-768x512.jpg" />
 									<?php endif ?>
-									<span class="post-title"><?php the_title() ?></span>
+									<span class="post-title"><?php the_content() ?></span>
 								</figure>
 							</a>
 

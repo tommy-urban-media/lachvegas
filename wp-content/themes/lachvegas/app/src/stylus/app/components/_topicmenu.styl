@@ -1,0 +1,46 @@
+
+.topicmenu-wrapper
+  display: block
+
+.topicmenu
+  display: flex
+  font-size: 12px
+  text-align: left
+  position: relative 
+  z-index: 1
+
+  &__title
+    margin-right: 12px
+    color: $colors.black
+
+  .menu-icon
+    display: none
+
+  ul
+    margin: 0 auto
+    list-style: none
+
+  .menu-item
+    float: left
+
+    &.current-menu-item
+      & > a
+        color: $colors.red
+
+    &:hover
+      .sub-menu
+        display: block
+
+      & > a
+        color: $colors.red
+        text-decoration: none
+
+    a
+      padding: 0 12px
+      display: block
+      color: #c0c0c0
+      transition: all 150ms ease-in-out
+
+
+  @media screen and (min-width: 1000px)
+    display: flex

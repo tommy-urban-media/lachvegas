@@ -1,0 +1,38 @@
+
+
+.badge
+	width: 320px
+	height: 320px
+	padding: 100px 50px
+	display: flex
+	flex-direction: column
+	align-items: center
+	text-align: center
+	color: $colors.white
+	font-size: 24px
+	text-decoration: none
+	z-index: 10
+	position: absolute
+	top: -60px
+	right: -40px
+	outline: none
+	border: 0
+	border-radius: 50%
+	box-shadow: 0 1px 2px alpha($colors.black, 10%)
+	background-color: $colors.blue
+	// background: linear-gradient(top, $colors.white, darken($colors.white, 7.5%))
+	transition: all 150ms ease-in-out
+	transform: rotate(10deg)
+
+	&__text
+		display: block
+		text-shadow: #000 0 5px 1px
+		text-transform: uppercase
+
+	&__cta
+		margin: 20px 0
+		padding: 6px 12px
+		display: block
+		color: $colors.white
+		font-size: 18px
+		background: orange
