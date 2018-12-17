@@ -302,18 +302,26 @@ function custom_excerpt($excerpt = '', $excerpt_length = 50, $readmore = "mehr",
 }
 
 
-function getChildCategory( $postID ) {
+function getChildCategory($postID) {
 
 	$categories = wp_get_post_categories( $postID, array('fields' => 'ids') );
 
 	$arguments = array(
-			'taxonomy'    => 'category',
-			'childless'   => true,
-			'include'     => $categories,
+		'taxonomy' => 'category',
+		'childless' => true,
+		'include' => $categories,
 	);
+
+	$term = array();
 	
-	if ( get_terms($arguments) && isset(get_terms($arguments)[0]))
-		return get_terms( $arguments )[0]->name;
+	if (get_terms($arguments) && isset(get_terms($arguments)[0])) {
+
+		$t = get_terms( $arguments )[0];
+		$term['name'] = $t->name;
+		$term['url'] = get_term_link($t->term_id);
+	}
+
+	return (object) $term;
 
 }
 

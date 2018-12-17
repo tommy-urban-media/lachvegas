@@ -25,18 +25,20 @@
                 </figure>
               </a>
               
-              <?php if ($tag = get_the_tags()): ?>
+              <?php //if ($tag = get_the_tags()): ?>
                 <span class="post-meta">
-                  <a href="<?= get_category_link(12) ?>"><?= getChildCategory($post->ID) ?></a>
-                  <?php $tag = get_the_tags();
-                    if ($tag) {
-                      $tag = $tag[0]; 
-                      echo $tag->name;
-                    } 
-                  ?>
+                  <?php if ($category = getChildCategory($post->ID)): ?>
+                    <a class="post-category-link" ref="<?= $category->url ?>"><?= $category->name ?></a>
+                  <?php endif ?>
+
+                  <?php $tag = get_the_tags(); ?>
+                  <?php if ($tag): ?>
+                  <?php $tag = $tag[0]; ?>
+                    <a class="post-tag-link" href="<?= get_term_link($tag->term_id) ?>"><?= $tag->name ?></a> 
+                  <?php endif ?>
                 </span>
-              <?php endif ?>
-              
+              <?php //endif ?>
+
               <a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
                 <span class="news-title"><?php the_title() ?></span>
               </a>

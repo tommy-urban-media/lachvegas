@@ -145,8 +145,8 @@ $queryNews = new WP_Query($args)
 					<?php endif ?>
 				</div>
 				<div class="flex-item">
-					<h4 class="">Regionalmeldungen</h4>
-					<?php $query = new WP_Query( array('posts_per_page' => 5, 'post_type' => array('news'), 'category_name' => 'regionalmeldungen') ); ?>
+					<h4 class="">Berlin/Brandenburg</h4>
+					<?php $query = new WP_Query( array('posts_per_page' => 5, 'post_type' => array('news'), 'category_name' => 'berlin') ); ?>
 					<?php if ( $query->have_posts() ) : ?>
 						<ol class="list list--shortnews">
 							<?php $i = 0; ?>
