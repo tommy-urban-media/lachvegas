@@ -1,5 +1,19 @@
 <?php get_header(); ?>
 
+<?php 
+
+$postSubtitle = get_post_meta($post->ID, 'subtitle', true);
+$postTag = null;
+
+$tag = get_the_tags();
+if ($tag) {
+  $postTag = $tag[0]; 
+}
+
+?>
+
+<?php get_template_part('template-parts/common/breadcrumb') ?>
+
 <div class="content">
 
 	<?php while ( have_posts() ) : the_post(); setup_postdata($post); ?>
@@ -75,6 +89,15 @@
 
 						</div>
 
+						<?php if ($postSubtitle || $postTag): ?>
+						<span class="post-meta">
+							<?php if ($postSubtitle): ?>
+								<span class="post-subtitle"><?= $postSubtitle ?></span>
+							<?php elseif ($postTag): ?>
+								<a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> 
+							<?php endif ?>
+						</span>
+						<?php endif ?>
 
 						<h1 class="article-title">
 							<span class="article-title-headline"><?php the_title()?></span>
@@ -89,19 +112,27 @@
 
 
 						<?php if (has_post_thumbnail()):?>
-							<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
-							<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
-							<figure class="post-image">
-								<!-- <a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group"> -->
-									<?php the_post_thumbnail('full', array('data-pin' => 'pinIt'))?>
-								<!-- </a> -->
-								<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
-									<figcaption class="caption">
-										<?php echo $caption ?>
-									</figcaption>
-								<?php endif ?>
-							</figure>
+
+							<?php if ($post->post_type === 'saying'):?>
+									<img src="<?= get_bloginfo('template_url')?>/app/generated_images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640_mick.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
+							<?php else: ?>
+
+								<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
+								<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
+								<figure class="post-image">
+									<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
+										<?php the_post_thumbnail('article_thumbnail')?>
+									</a>
+									<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
+										<figcaption class="caption">
+											<?php echo $caption ?>
+										</figcaption>
+									<?php endif ?>
+								</figure>
+							<?php endif ?>
 						<?php endif;?>
+
+						
 
 
 					</header>
@@ -167,5 +198,12 @@
 	
 
 </div>
+
+
+<?php 
+if ($post->post_type === 'news'):
+	get_template_part('template-parts/common/news-archive');
+endif 
+?>
 
 <?php get_footer(); ?>

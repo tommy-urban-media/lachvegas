@@ -12,12 +12,38 @@ $args = array(
 	'posts_per_page' => $count,
 	'paged' => $paged,
 	'offset' => $offset,
-	'date_query' => array('year' => array(2017, 2018, 2019)),
-	'post_type' => array('news', 'post', 'poem'),
+	'date_query' => array(
+		array(
+			'year' => array(2017, 2018, 2019, 2020)
+		)
+	),
+	'post_type' => array('guide', 'news', 'post', 'poem', 'statistic', 'quiz'),
 	//'category__not_in' => array(64) // Produkte
 );
 
-$queryNews = new WP_Query($args)
+$queryNews = new WP_Query($args);
+$max_pages = $queryNews->max_num_pages;
+
+
+
+$oldPosts = get_posts(array(
+	'posts_per_page' => -1,
+	'post_type' => 'any',
+	'date_query' => array(
+		array(
+			'month' => date('m'),
+			'day' => date('d')
+		)
+	),
+	'category_name' => get_category_by_slug('wiederholend')->cat_name
+));
+
+foreach($oldPosts as $p) {
+	wp_update_post(array(
+		'ID' => $p->ID,
+		'post_date' => date('Y-m-d 06:00:00')
+	));
+}
 
 ?>
 
@@ -25,73 +51,39 @@ $queryNews = new WP_Query($args)
 
 	<div class="content__area">
 		<div class="content__area--primary">
-			<section class="section section--news">
-				<div class="section__content">
-					<?php if ( $queryNews->have_posts() ) : ?>
-						<ol class="list list--news">
-							<?php $i = 0; ?>
-							<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
-								<li class="list-item">
 
-									<?php if ($i == 4): ?>
-										<?php showAD('banner'); ?>
-									<?php endif ?>
+			<?php if ( $queryNews->have_posts() ) : ?>
+				<ol class="list list--news">
+					<?php $i = 0; ?>
+					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
+						
+						<?php if ($i == 4): ?>
+							<li class="list-item">
+								<?php showAD('banner'); ?>
+							</li>
+						<?php endif ?>
+						<li class="list-item">
+							<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
+						</li>
 
-									<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-									<span class="post-meta">
-										<?= $subtitle ?>
-									</span>
-									<?php endif ?>
+					<?php $i++ ?>
+					<?php endwhile; ?>
+					</ol>
+			<?php endif ?>
 
-									<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
-										<?php the_title() ?>
-									</a>
-
-									<div class="post-content">
-										<?php if (has_post_thumbnail()):?>
-											<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-												<figure class="post-image post-image--teaser">
-													<?php the_post_thumbnail('article_thumbnail')?>
-												</figure>
-											</a>
-										<?php endif ?>
-										<span class="post-date"><?php echo the_time(get_option('date_format'));?></span>
-										<?php echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
-									</div>
-								</li>
-
-							<?php $i++ ?>
-							<?php endwhile; ?>
-							</ol>
-					<?php endif ?>
-
-
-					<nav class="pagination">
-						<span class="previous-posts">
-							<?php previous_posts_link( '&laquo; Zurück', $queryNews->max_num_pages ); ?>
-						</span>
-						<span class="next-posts">
-							<?php next_posts_link( 'Weiter &raquo;', $queryNews->max_num_pages ); ?>
-						</span>
-					</nav>
-
-					<?php //if (function_exists("pagination")): ?>
-						<?php //pagination($queryNews->max_num_pages); ?>
-					<?php //endif ?>
-
-					<?php wp_reset_postdata();?>
-
-				</div>
-			</section>
+			<?php echo getPagination($queryNews, $paged)?>
+			<?php wp_reset_postdata();?>
 		</div>
+
 		<div class="content__area--secondary">
 
 			<?php echo get_template_part('sidebar')?>
 
 			<div class="news">
-				Aktuelle Kurzmeldungen
+
+				<h3>Aktuelle Kurzmeldungen</h3>
 				
-				<?php $queryShortNews = new WP_Query( array('post_type' => 'news', 'posts_per_page' => -1, 'category_name' => 'kurzmeldungen') ); ?>
+				<?php $queryShortNews = new WP_Query( array('post_type' => 'news', 'posts_per_page' => 10, 'category_name' => 'kurzmeldungen') ); ?>
 				<?php if ( $queryShortNews->have_posts() ) : ?>
 					<ul class="list list--shortnews">
 						<?php while ( $queryShortNews->have_posts() ) : $queryShortNews->the_post(); setup_postdata($post)?>
@@ -104,16 +96,13 @@ $queryNews = new WP_Query($args)
 				<?php endif ?>	
 
 			</div>
-		
 		</div>
-
 	</div>
 
+	<?php get_template_part('template-parts/common/news-archive') ?>
 
-
-	<div class="content__area">
-		<section class="section section--posts">
-			
+	<section class="section section--posts">
+		<div class="section__pane">
 			<header class="section__header">
 				<h3 class="section__title">Deutschland</h3>
 				<span class="section__separator"></span>
@@ -141,7 +130,7 @@ $queryNews = new WP_Query($args)
 							<?php $i++ ?>
 							<?php endwhile; ?>
 						</ol>
-						<a class="button" href="<?= home_url('/')?>kategorie/deutschland">Alle Nachrichten</a>
+						<a class="button" href="<?= home_url('/')?>deutschland"><span>Alle Nachrichten</span><i class="icon fa fa-angle-double-right"></i></a>
 					<?php endif ?>
 				</div>
 				<div class="flex-item">
@@ -165,7 +154,7 @@ $queryNews = new WP_Query($args)
 							<?php $i++ ?>
 							<?php endwhile; ?>
 						</ol>
-						<a class="button" href="<?= home_url('/')?>kategorie/regionalmeldungen">Alle Regionalmeldungen</a>
+						<a class="button" href="<?= home_url('/')?>regionalmeldungen"><span>Alle Regionalmeldungen</span><i class="icon fa fa-angle-double-right"></i></a>
 					<?php endif ?>
 				</div>
 				<div class="flex-item">
@@ -191,14 +180,14 @@ $queryNews = new WP_Query($args)
 							<?php $i++ ?>
 							<?php endwhile; ?>
 						</ol>
-						<a class="button" href="<?= home_url('/')?>thema/bundeswehr">Alle Bundeswehr Leaks</a>
+						<a class="button" href="<?= home_url('/')?>thema/bundeswehr"><span>Alle Bundeswehr Leaks</span><i class="icon fa fa-angle-double-right"></i></a>
 					<?php endif ?>
 				</div>
 			</div>
 		
 
-		</section>
-	</div>
+		</div>
+	</section>
 
 
 
@@ -221,93 +210,8 @@ $queryNews = new WP_Query($args)
 	-->
 
 
-	<!--
-	<div class="content__area">
-		<section class="section section--people">
-			<header class="section__header">
-				<h3 class="section__title">Unsere Promis</h3>
-				<span class="section__separator"></span>
-			</header>
-			<div class="section__content">
-
-				<?php $personQuery = new WP_Query( array('posts_per_page' => 12, 'post_type' => array('person')) ); ?>
-				<?php if ( $personQuery->have_posts() ) : ?>
-				<ol class="list list--people">
-					<?php $i = 0; ?>
-					<?php while ( $personQuery->have_posts() ) : $personQuery->the_post(); setup_postdata($post)?>
-						
-						<li class="list-item">
-						<a href="<?= get_the_permalink($post->ID) ?>">
-							<span class="image-wrapper"><?php the_post_thumbnail('thumbnail') ?></span>
-							<span class="person-role"><?= get_post_meta($post->ID, 'role', true) ?></span>
-							<span class="person-name"><?php the_title() ?></span>
-						</a>
-						</li>
-
-					<?php endwhile ?>
-				</ol>
-				<?php endif ?>
-						
-					<?php 
-					$people = [
-						/*
-						[
-							'name' => 'Angela Merkel',
-							'role' => 'Rautenwächterin',
-							'url' => '/thema/angela-merkel',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/merkel-150x150.jpg'
-						],
-						[
-							'name' => 'Donald Trump',
-							'role' => 'Quatschkopp',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/donald-trump-loeste-er-fast-150x150.jpg'
-						],
-						[
-							'name' => 'Adolf Hitler',
-							'role' => 'Jahrhunderverbrecher',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/merkel-150x150.jpg'
-						],
-						[
-							'name' => 'Heid Klum',
-							'role' => 'Schnatter-Tante',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/merkel-150x150.jpg'
-						],
-						[
-							'name' => 'Horst Seehofer',
-							'role' => 'Störenfried',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/merkel-150x150.jpg'
-						],
-						[
-							'name' => 'Kim Jong-Un',
-							'role' => 'Raketenmann',
-							'image' => 'http://localhost/lachvegas/wp-content/uploads/2018/10/Borowitz-Trumps-Worst-Hair-Day-150x150.jpg'
-						]
-						*/
-		
-					];
-					?>
-
-					<?php foreach ($people as $person): ?>
-						<li class="list-item">
-							<a href="<?= home_url() ?>/thema/angela-merkel">
-								<span class="image-wrapper">
-									<img src="<?= $person['image'] ?>" />
-								</span>
-								<span class="person-role"><?= $person['role'] ?></span>
-								<span class="person-name"><?= $person['name'] ?></span>
-							</a>
-						</li>
-					<?php endforeach ?>
-
-				</ol>
-			</div>
-		</section>
-	</div>
-	-->
-	
-
-
-	<?php // get_template_part('template-parts/content-areas/gender') ?>
+	<?php get_template_part('template-parts/sections/promis') ?>
+	<?php get_template_part('template-parts/sections/gender') ?>
 				
 
 	<?php 
@@ -343,57 +247,8 @@ $queryNews = new WP_Query($args)
 	<?php endwhile ?>
 	<?php endif ?>
 
-
-	<div class="content__area">
-		<section class="section section--posts">
-			
-			<header class="section__header">
-				<h3 class="section__title">Ratgeber</h3>
-				<span class="section__separator"></span>
-			</header>
-			
-			<?php $query = new WP_Query( array('posts_per_page' => 6, 'post_type' => array('guide')) ); ?>
-			<?php if ( $query->have_posts() ) : ?>
-				<ol class="list list--teaser">
-					<?php $i = 0; ?>
-					<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
-						<li class="list-item">
-
-							<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-							<span class="post-meta">
-								<?= $subtitle ?>
-							</span>
-							<?php endif ?>
-
-							<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
-								<span class="news-title"><?php the_title() ?></span>
-							</a>
-
-							<div class="post-content">
-								<?php if (has_post_thumbnail()):?>
-									<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-										<figure class="post-image post-image--teaser">
-											<?php the_post_thumbnail('article_thumbnail')?>
-										</figure>
-									</a>
-								<?php endif ?>
-								<!-- <span class="post-date"><?php echo the_date('d.m.Y')?></span> -->
-								<?php //echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
-							</div>
-						</li>
-
-					<?php $i++ ?>
-					<?php endwhile; ?>
-				</ol>
-			<?php endif ?>
-			
-			<footer class="section__footer">
-				<a href="<?= home_url() ?>/kategorie/10-dinge" class="button button__section">Mehr aus diesem Bereich</a>
-			</footer>
-
-		</section>
-	</div>
-
+	
+	<?php get_template_part('template-parts/sections/ratgeber') ?>
 
 
 	<!--
@@ -436,36 +291,61 @@ $queryNews = new WP_Query($args)
 
 	<?php showAD('superbanner'); ?>
 
+	<?php get_template_part('template-parts/category-sections/quiz') ?>
 	<?php get_template_part('template-parts/category-sections/politik') ?>
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
+
+	<?php showAD('superbanner'); ?>
+
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
 	<?php get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 
+	<?php showAD('superbanner'); ?>
 
-	<div class="content__area">
-		<section class="section section--posts">
+
+
+
+	<section class="section section--sprueche">
+		<div class="section__pane">
 			<header class="section__header">
-				<h3 class="section__title">Spruch des Tages</h3>
+				<h3 class="section__title">Sprüche und Blödsinn</h3>
 				<span class="section__separator"></span>
 			</header>
-			<?php $query = new WP_Query( array('posts_per_page' => 5, 'post_type' => array('saying') )); ?>
+			<?php $query = new WP_Query( array('posts_per_page' => 7, 'post_type' => array('saying') )); ?>
 			<?php if ( $query->have_posts() ) : ?>
-				<ol class="grid grid--sayings">
+				<ol class="teasers-images">
 					<?php $i = 0; ?>
 					<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
 						
-						<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_large');?>
-						<li class="grid-item">
+						<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_2x');?>
+						<li>
 							<?php if (has_post_thumbnail()):?>
+								<!--
 								<div class="quote-box <?php echo ($i > 0) ? 'quote-box--small' : 'quote-box--medium' ?>">
-								<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
+								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
 									<figure class="post-image" style="width:<?= $bgImage[1] ?>px; height:<?= $bgImage[2] ?>px;">
-										<?php the_post_thumbnail('medium_large')?>
-										<span class="post-title"><?php the_content() ?></span>
+										<?php the_post_thumbnail('medium_2x')?>
+										<span class="post-title"><?php the_title() ?></span>
 									</figure>
 								</a>
 								</div>
+								-->
+
+								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
+									<img src="<?= get_bloginfo('template_url')?>/app/generated_images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640_mick.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
+								</a>
+
+							<?php else: ?>
+
+								<?php if (!imageExists(sanitize_title(get_the_title($post->ID)) . '_640_640.png')): ?>
+									<?php generateImage(get_the_title($post->ID)); ?>
+								<?php endif ?>
+								
+								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
+									<img src="<?= home_url('/')?>images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
+								</a>
+								
 							<?php endif ?>
 						</li>
 
@@ -475,42 +355,38 @@ $queryNews = new WP_Query($args)
 			<?php endif ?>
 			
 			<footer class="section__footer">
-				<a href="<?= home_url('/')?>sprueche" class="button button__section">Alle Sprüche</a>
+				<a href="<?= home_url('/')?>sprueche" class="button button__section"><span>Alle Sprüche</span><i class="icon fa fa-angle-double-right"></i></a>
 			</footer>
 
-		</section>
-	</div>
+		</div>
+	</section>
 
 
 
-	<!--
-	<div class="content__area">
-		<section class="section section--posts">
+	<section class="section section--statistics">
+		<div class="section__pane">
 			<header class="section__header">
-				<h3 class="section__title">Aktuelle Umfrage</h3>
+				<h3 class="section__title">Die Besten Statistiken</h3>
 				<span class="section__separator"></span>
 			</header>
-			<?php $query = new WP_Query( array('posts_per_page' => 6, 'post_type' => array('news', 'post', 'guide', 'statistic'), 'category_name' => get_category_by_slug('wissen')->cat_name ) ); ?>
+			<?php $query = new WP_Query( array('posts_per_page' => 3, 'post_type' => array('statistic') ) ); ?>
 			<?php if ( $query->have_posts() ) : ?>
-				<ol class="list list--teaser-text">
-					
+				<ol class="list list--statistics">
 					<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
+						<li class="list-item">
+							<span class="number"><?php echo get_post_meta($post->ID, 'number', true)?></span>
+							<?php the_content() ?>
+						</li>
 					<?php endwhile; ?>
-
 				</ol>
 			<?php endif ?>
 
-			<div class="question">
+			<footer class="section__footer">
+				<a href="<?= home_url('/')?>/statistiken" class="button button__section"><span>Alle Statistiken</span><i class="icon fa fa-angle-double-right"></i></a>
+			</footer>
 
-				<?php /* do_shortcode('[yop_poll id="1"]') */ ?>
-					
-				<?php /* get_poll(1); */ ?>
-
-			</div>
-
-		</section>
-	</div>
-	-->
+		</div>
+	</section>
 
 
 

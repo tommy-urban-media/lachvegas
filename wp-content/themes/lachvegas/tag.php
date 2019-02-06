@@ -5,6 +5,9 @@
 
 get_header(); 
 ?>
+
+<?php get_template_part('template-parts/common/breadcrumb') ?>
+
 <div class="content">
 	<div class="content__area">
 		<div class="content__area--primary">
@@ -13,7 +16,7 @@ get_header();
 				<h1 class="archive-title">
 					Thema: <?php echo __('<span>' . single_tag_title( '', false ) . '</span>'); ?>
 				</h1>
-				<?php if (tag_description()): // Show an optional tag description ?>
+				<?php if (tag_description()):?>
 					<div class="archive-meta"><?php echo tag_description(); ?></div>
 				<?php endif; ?>
 			</header>
@@ -24,44 +27,23 @@ get_header();
 
 				<?php $i = 0; ?>
 				<?php while ( have_posts() ) : the_post();?>
-					
+					<?php if ($i == 4 || $i == 12): ?>
+						<li class="list-item">
+							<?php showAD('banner'); ?>
+						</li>
+					<?php endif ?>
 					<li class="list-item">
-
-						<?php if ($i == 4): ?>
-							<?php get_template_part('template-parts/ads/jochen-scheisser')?>
-						<?php endif ?>
-
-						<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-						<span class="post-meta"><?= $subtitle ?></span>
-						<?php endif ?>
-
-						<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
-							<?php the_title() ?>
-						</a>
-
-						<div class="post-content">
-							<?php if (has_post_thumbnail()):?>
-								<a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-									<figure class="post-image post-image--teaser">
-										<?php the_post_thumbnail('article_thumbnail')?>
-									</figure>
-								</a>
-							<?php endif ?>
-							<span class="post-date"><?php echo the_date('d.m.Y')?></span>
-							<?php echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
-						</div>
+						<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 					</li>
+				<?php $i++ ?>
+				<?php endwhile; ?>
 
-					<?php $i++ ?>
-					<?php endwhile; ?>
+				</ol>
 
-					</ol>
-
-					<?php previous_posts_link('Zurück'); ?>
-					<?php next_posts_link('Weiter'); ?>
+				<?php previous_posts_link('Zurück'); ?>
+				<?php next_posts_link('Weiter'); ?>
 
 			<?php endif; ?>
-
 	
 		</div>
 

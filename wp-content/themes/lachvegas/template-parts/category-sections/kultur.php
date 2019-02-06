@@ -7,7 +7,7 @@ $data = [
   'url' => home_url('/kategorie/kultur'),
   'query' => new WP_Query(
     array(
-      'posts_per_page' => 6, 
+      'posts_per_page' => 3, 
       'post_type' => array(
         'news', 
         'post', 

@@ -3,33 +3,30 @@ Contributors: smackcoders
 Donate link: https://www.paypal.me/smackcoders
 Tags: WordPress exporter, wp exporter, CSV, exporter, all export, export
 Requires at least: 4.4
-Tested up to: 4.8.1
-Stable tag: 1.4
-Version: 1.4
+Tested up to: 5.0.1
+Requires PHP: 5.2.4 or above
+Stable tag: 1.4.2
+Version: 1.4.2
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
-WP Ultimate Exporter is a tool for exporting all the imported Post, Page and Custom Posts as CSV.
+WP Ultimate Exporter is an export tool to export all your Post, Page and Custom Posts data as CSV.
 
 == Description ==
 
-WP Ultimate Exporter enables to export Post, Page and Custom Posts as CSV files. The various filter options are available to ease up the export process to export only minimum precise data. The files are exported based on the filter settings opted by the user as per need. The filters enable to export the files imported by specific author, with specified delimiters and status in a specific period of time.
+WP Ultimate Exporter enables to export Post, Page and Custom Posts as CSV files. The various filter options are available to ease up the export process & to export only minimum precise data. The files are exported based on the filter settings opted by the user as per need. The filters enable to export the files imported by specific author, with specified delimiters and status in a specific period of time.
 
 Please show your support for WP Ultimate Exporter by giving it a [rating](https://wordpress.org/support/view/plugin-reviews/wp-ultimate-exporter?rate=5#postform) :)
 
 = Highlights =
-* Easy export in simple steps.
+* Easy export in two simple steps.
 * Post, page and any custom post export available 
 * Can export any custom fields along with post types
 * Export data with auto delimiters and forced quotes to avoid conflicts 
 * Export data for the specific period of time using date filter
 * Export data based on specific post status 
-* Export data by specific authors  
-
-= Latest Update =
-* Export data based on specific inclusions, 
-* User can include or exclude attributes by their name like post status, title, content etc. 
+* Export data by specific authors   
 
 If you need an import tool, you can check on our [WP Ultimate CSV Importer](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html/?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
@@ -66,7 +63,7 @@ Read the blog to know about our [latest WordPress add-on](https://www.smackcoder
 
 == Installation ==
 
-1. First, install [CSV Importer & Exporter](https://wordpress.org/plugins/wp-ultimate-csv-importer/)
+1. First, install [CSV Importer](https://wordpress.org/plugins/wp-ultimate-csv-importer/) and then install the Exporter.
 2. Extract the wp-ultimate-exporter.zip in wordpress/wp-content/plugins using FTP or through plugin install in wp-admin.
 2. Activate the plugin in the WordPress plugin list.
 
@@ -86,8 +83,13 @@ Yes, you can export all Custom Post listed in the drop down.
 = 2. Is there any limitation on the number exports exported? =
 No, there is no limitation on the records exported. 
 
-
 == Changelog ==
+=1.4.2=
+* Added: WP CSRF Protection
+
+=1.4.1=
+* Added: Compatibility for WordPress 5.0
+* Fixed: Tags Export
 
 = 1.4 =
 * Added extra modules for export
@@ -107,6 +109,11 @@ No, there is no limitation on the records exported.
 * Initial release version. Tested and found to work well without any issues.
 
 == Upgrade Notice ==
+= 1.4.2 =
+* Important update for security fixes.
+
+=1.4.1=
+* Upgrade now for tags export and WordPress 5.0 compatibility.
 
 = 1.4 =
 * Update now to get enhanced UI and compatible for WordPress 4.8.1.

@@ -185,6 +185,7 @@ var App = function () {
 
       this.getNodes();
       this.setupTheme();
+      this.setupModalTriggers();
     }
   }, {
     key: 'getNodes',
@@ -216,6 +217,48 @@ var App = function () {
 
       (0, _jquery2.default)('.search-label').on('click', function () {
         (0, _jquery2.default)('.search-area').toggleClass('is-expanded');
+      });
+    }
+  }, {
+    key: 'setupModalTriggers',
+    value: function setupModalTriggers() {
+
+      setTimeout(function () {
+
+        var el = (0, _jquery2.default)('#modal-1');
+        el.addClass('modal-show');
+
+        el.find('[data-modal-close]').off('click').on('click', function (e) {
+          e.preventDefault();
+          el.removeClass('modal-show');
+        });
+
+        (0, _jquery2.default)('.modal-overlay').on('click', function () {
+          e.preventDefault();
+          el.removeClass('modal-show');
+        });
+      }, 2000);
+
+      (0, _jquery2.default)('[data-modal]').each(function (i, el) {
+
+        var id = (0, _jquery2.default)(el).data('modal');
+        var $modal = (0, _jquery2.default)('#' + id);
+
+        (0, _jquery2.default)(el).on('click', function (e) {
+
+          $modal = (0, _jquery2.default)('#' + (0, _jquery2.default)(e.currentTarget).data('modal'));
+          $modal.addClass('modal-show');
+
+          $modal.find('[data-modal-close]').off('click').on('click', function (e) {
+            e.preventDefault();
+            $modal.removeClass('modal-show');
+          });
+
+          (0, _jquery2.default)('.modal-overlay').on('click', function () {
+            e.preventDefault();
+            $modal.removeClass('modal-show');
+          });
+        });
       });
     }
   }]);
@@ -562,9 +605,17 @@ var _menu = require('./menu');
 
 var _menu2 = _interopRequireDefault(_menu);
 
+var _modal = require('./modal');
+
+var _modal2 = _interopRequireDefault(_modal);
+
 var _ticker = require('./ticker');
 
 var _ticker2 = _interopRequireDefault(_ticker);
+
+var _quiz = require('./quiz');
+
+var _quiz2 = _interopRequireDefault(_quiz);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -572,7 +623,9 @@ exports.default = {
 
   Calendar: _calendar2.default,
   Ticker: _ticker2.default,
-  Menu: _menu2.default
+  Menu: _menu2.default,
+  Modal: _modal2.default,
+  Quiz: _quiz2.default
 
 };
 });
@@ -620,6 +673,191 @@ var Menu = function () {
 }();
 
 exports.default = Menu;
+});
+
+;require.register("src/js/components/modal.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Modal = function () {
+  function Modal() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Modal);
+
+    this.node = (0, _jquery2.default)(options.node);
+    this.init();
+  }
+
+  _createClass(Modal, [{
+    key: 'init',
+    value: function init() {
+      var _this = this;
+
+      this.overlay = document.querySelector('.modal-overlay');
+
+      this.node.find('.modal__close').on('click', function () {
+        _this.node.removeClass('modal-show');
+      });
+
+      this.node.on('click', function () {});
+    }
+  }]);
+
+  return Modal;
+}();
+
+exports.default = Modal;
+});
+
+;require.register("src/js/components/quiz.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Quiz = function () {
+  function Quiz() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Quiz);
+
+    this.node = (0, _jquery2.default)(options.node);
+    this.data = this.node.data('param');
+    this.url = this.node.data('url');
+    this.$currentButtonTarget = null;
+
+    this.user = {
+      answers: []
+    };
+
+    this.answerTexts = {
+      right: ["Richtig! ", "Genau! ", "Richtige Antwort. "],
+      wrong: ["Falsch! "]
+    };
+
+    this.init();
+  }
+
+  _createClass(Quiz, [{
+    key: 'init',
+    value: function init() {
+      var _this = this;
+
+      this.node.find('[data-button]').on('click', function (e) {
+        e.preventDefault();
+
+        var $el = (0, _jquery2.default)(e.currentTarget);
+        var value = $el.data('value');
+
+        _this.$currentButtonTarget = $el;
+        _this.deactivateQuestion($el.closest('[data-question-id]'));
+
+        _this.save({
+          quiz_id: _this.data.id,
+          question_id: $el.closest('[data-question-id]').data('question-id'),
+          question_result: $el.closest('[data-question-result]').data('question-result'),
+          answer_id: $el.data('answer-id'),
+          answer_value: value
+        });
+      });
+    }
+  }, {
+    key: 'save',
+    value: function save(obj) {
+      var _this2 = this;
+
+      var data = Object.assign({}, { action: 'add_quiz_result' }, obj);
+
+      _jquery2.default.ajax({
+        url: this.url,
+        dataType: 'json',
+        data: data,
+        type: 'POST',
+        success: function success(data) {
+
+          if (data.status) {
+
+            var resultEl = _this2.$currentButtonTarget.closest('[data-question-id]').find('[data-answer-text]').show();
+
+            if (data.answer_correct) {
+              resultEl.find('[data-answer-pretext]').addClass('state-is-true').html('<i class="fa fa-check-circle"></i>');
+              resultEl.find('[data-answer-right-wrong]').html(_this2.answerTexts.right[0]);
+            } else {
+              resultEl.find('[data-answer-pretext]').addClass('state-is-false').html('<i class="fa fa-times-circle"></i>');
+              resultEl.find('[data-answer-right-wrong]').html(_this2.answerTexts.wrong[0]);
+            }
+
+            _this2.user.answers.push({
+              question_id: obj.question_id,
+              answer_correct: data.answer_correct
+            });
+
+            resultEl.css('display', 'flex');
+            _this2.deactivateQuestion();
+            _this2.checkSummary();
+          }
+        }
+      });
+    }
+  }, {
+    key: 'deactivateQuestion',
+    value: function deactivateQuestion(selector) {
+      (0, _jquery2.default)(selector).find('[data-button]').attr('disabled', 'disabled');
+    }
+  }, {
+    key: 'checkSummary',
+    value: function checkSummary() {
+      if (this.user.answers.length === this.data.questions.length) {
+        console.log('show results');
+
+        (0, _jquery2.default)('[data-summary-text]').html(this.getSummaryText({
+          correct_answers: this.user.answers.filter(function (answer) {
+            return answer.answer_correct === true;
+          }).length,
+          questions: this.data.questions.length
+        }));
+      } else {
+        console.log('dont show results yet');
+      }
+    }
+  }, {
+    key: 'getSummaryText',
+    value: function getSummaryText() {
+      var obj = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      return 'Du hast ' + obj.correct_answers + ' von ' + obj.questions + ' richtig beantwortet.';
+    }
+  }]);
+
+  return Quiz;
+}();
+
+exports.default = Quiz;
 });
 
 ;require.register("src/js/components/ticker.js", function(exports, require, module) {

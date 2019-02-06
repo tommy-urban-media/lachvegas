@@ -1,4 +1,5 @@
 $menuheight = 40px
+$menuColor = #303030
 
 
 .mainmenu-wrapper
@@ -7,14 +8,14 @@ $menuheight = 40px
   display: flex
   justify-content: space-between
   align-items: center
-  background-color: #303030
+  background-color: $menuColor
 
 .mainmenu
   display: block
   height: $menuheight
   text-align: left
   position: relative 
-  z-index: 1
+  z-index: 2
   //border: 1px solid #e9e9e9
   border-bottom: 0
   
@@ -24,18 +25,18 @@ $menuheight = 40px
     height: 4px
     display: none
     float: right
-    margin-top: 24px
-    margin-right: 20px
+    margin-top: 0px
+    margin-right: 5%
     cursor: pointer
     position: relative
-    background-color: $colors.white
+    background-color: $colors.black
 
     &:hover
-      background-color: $colors.grey
+      background-color: $colors.red
 
       &:before
       &:after
-        background-color: $colors.grey
+        background-color: $colors.red
 
     &:before
     &:after
@@ -45,7 +46,7 @@ $menuheight = 40px
       position: absolute
       left: 0
       top: -8px
-      background-color: $colors.white
+      background-color: $colors.black
 
     &:after
       top: 8px
@@ -94,8 +95,16 @@ $menuheight = 40px
     .sub-menu
       position: absolute
       display: none
-      background-color: darken($colors.white, 5%)
+      background-color: $menuColor
       box-shadow: 2px 2px 3px alpha($colors.black, 15%)
+
+      .menu-item
+        float: none
+        text-align: left 
+
+      a
+        border-right: 0
+
 
   @media screen and (max-width: 960px)
 

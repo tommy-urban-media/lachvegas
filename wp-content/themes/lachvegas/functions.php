@@ -10,6 +10,12 @@ include_once( dirname(__FILE__) . '/lib/shortcode_controller.php' );
 include_once( dirname(__FILE__) . '/lib/widget_controller.php' );
 include_once( dirname(__FILE__) . '/lib/theme_controller.php' );
 
+require __DIR__ . '/app/vendor/autoload.php';
+
+use GDText\Box;
+use GDText\Color;
+
+
 
 add_action( 'after_setup_theme', 'theme_setup' );
 
@@ -369,4 +375,174 @@ function pagination($pages = '', $range = 4)
          if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo "<li><a href='".get_pagenum_link($pages)."'>&raquo;</a></li>";
          echo "</ul></nav>\n";
      }
+}
+
+
+
+
+
+function getPagination($query, $page) {
+
+	ob_start();
+
+	$max_pages = $query->max_num_pages;
+
+	$showPageFirst = false;
+	$showPageLast = false;
+
+	if ($page > 1) {
+		$showPageFirst = true;
+	}
+
+	if ($page < $max_pages-1) {
+		$showPageLast = true;
+	}
+
+	if ($max_pages == 1) {
+		return;
+	} 
+
+	?>
+
+	<nav class="pagination">
+		<span class="previous-posts">
+			<?php previous_posts_link( '&laquo;', $max_pages ); ?>
+		</span>
+
+		<?php if ($showPageFirst): ?>
+			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/1">1</a></span>
+		<?php endif ?>
+
+		<?php if ($page - 1 >= 2): ?>
+		<span class="pagination__dots">...</span>
+		<?php endif ?>
+
+		<?php if ($page >= 3): ?>
+			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= ($page - 1) ?>"><?= ($page - 1) ?></a></span>
+		<?php endif ?>
+
+		<span class="pagination__current"><?= $page ?></span>
+
+		<?php if ($page <= ($max_pages - 2)): ?>
+			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= ($page + 1) ?>"><?= ($page + 1) ?></a></span>
+		<?php endif ?>
+
+		<?php if ($max_pages - $page >= 2): ?>
+		<span class="pagination__dots">...</span>
+		<?php endif ?>
+
+		<?php if ($showPageLast): ?>
+			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= $max_pages?>"><?= $max_pages ?></a></span>
+		<?php endif ?>
+
+		<span class="next-posts">
+			<?php next_posts_link( '&raquo;', $max_pages ); ?>
+		</span>
+	</nav>
+
+	<?php
+
+	return ob_get_clean();
+
+}
+
+
+
+
+function get_custom_field($postID, $key) {
+	if (function_exists('get_field')) {
+		return get_field($key, $postID);
+	}
+	return false; 
+}
+
+
+function imageExists($fileName) {
+	return file_exists("images/" . $fileName);
+}
+
+function generateImage($title) {
+
+	$width = 640;
+	$height = 640;
+	$sizeFactor = 4;
+
+
+	$imageName = sanitize_title($title);
+
+	// var_dump($imageName);
+
+	if ( file_exists("images/". $imageName .".png")) {
+		// continue;
+	}
+
+	$canvas = imagecreatefrompng('images/_default_640_640.png');
+	//$canvas = imagecreatefromjpeg('images/_default.jpg');
+
+	$black = imagecolorallocate( $canvas, 0, 0, 0 ); 
+	$white = imagecolorallocate( $canvas, 255, 255, 255 ); 
+
+	//imagefilledrectangle( $canvas, 9, 9, 189, 89, $white ); 
+
+	$font = "/Library/Fonts/Arial.ttf"; 
+	$text = $title;
+	$fontSize = 32; 
+
+	$wordCount = strlen($text);
+	// var_dump($wordCount);
+
+	if ($wordCount <= 200) {
+		$fontSize = 28;
+	}
+	if ($wordCount <= 150) {
+		$fontSize = 48;
+	}
+	if ($wordCount <= 100) {
+		$fontSize = 64;
+	}
+	if ($wordCount <= 50) {
+		$fontSize = 68;
+	}
+
+	$fontSize *= $sizeFactor; 
+	$font_color = imagecolorallocate($canvas, 255, 255, 255);
+	$stroke_color = imagecolorallocate($canvas, 0, 0, 0);
+
+	$box = new Box($canvas);
+	$box->setFontFace('/Library/Fonts/Arial.ttf'); // http://www.dafont.com/pacifico.font
+	$box->setFontSize($fontSize);
+	$box->setFontColor(new Color(255, 255, 255));
+	$box->setTextShadow(new Color(0, 0, 0, 50), 2, 2);
+	$box->setBox(200, 200, $width*$sizeFactor - 400, $height*$sizeFactor - 600);
+	$box->setTextAlign('center', 'center');
+	$box->draw($text);
+
+	$text = wordwrap($text, 28, "\n");
+
+	$box = imagettfbbox( $fontSize, 0, $font, $text ); 
+	$x = ($width*$sizeFactor - ($box[2] - $box[0])) / 2; 
+	$y = ($height*$sizeFactor - ($box[1] - $box[7])) / 2; 
+	$y -= $box[7]; 
+
+	$y -= 120;
+
+	//imageTTFText( $canvas, $fontSize, 0, $x, $y, $black, $font, $text ); 
+	//imagettfstroketext($canvas, $fontSize, 0, $x, $y, $font_color, $stroke_color, $font, $text, 4);
+
+	imagealphablending($canvas, false);
+	imagesavealpha($canvas, true);
+
+	$imageResized = imagecreatetruecolor($width, $height);
+
+	imagealphablending($imageResized, false);
+	imagesavealpha($imageResized, true);
+
+	imagecopyresampled($imageResized, $canvas, 0, 0, 0, 0, $width, $height, $width*$sizeFactor, $height*$sizeFactor);
+
+	//imagejpeg( $canvas, "images/imagetest.jpg", 100 ); 
+	
+	imagepng( $imageResized, "images/". $imageName ."_640_640.png", 9, PNG_ALL_FILTERS); 
+
+	ImageDestroy( $canvas ); 
+
 }

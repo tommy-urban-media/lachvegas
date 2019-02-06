@@ -10,7 +10,7 @@ $args = array(
 	'posts_per_page' => 10,
 	'paged' => $paged,
 	'offset' => $offset,
-	'post_type' => array('news', 'post', 'saying', 'guide', 'poem'),
+	'post_type' => array('news', 'post', 'saying', 'guide', 'poem', 'quiz'),
 	'category_name' => get_cat_name( $cat ),
 	'order_by' => 'date', 
 	'order' => 'DESC',
@@ -38,41 +38,38 @@ $query = new WP_Query($args)
 					<ol class="list list--news">
 						<?php $i = 0; ?>
 						<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
+							<?php if ($i == 4): ?>
+								<li class="list-item">
+									<?php showAD('banner'); ?>
+								</li>
+							<?php endif ?>
 							<li class="list-item">
-
-								<?php if ($i == 4): ?>
-									<?php get_template_part('template-parts/ads/jochen-scheisser')?>
-								<?php endif ?>
-
-								<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-								<span class="post-meta">
-									<?= $subtitle ?>
-								</span>
-								<?php endif ?>
-
-								<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
-									<?php the_title() ?>
-								</a>
-
-								<div class="post-content">
-									<?php if (has_post_thumbnail()):?>
-										<a href="<?= get_the_permalink($post->ID) ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-											<figure class="post-image post-image--teaser">
-												<?php the_post_thumbnail('article_thumbnail')?>
-											</figure>
-										</a>
-									<?php endif ?>
-									<span class="post-date"><?php echo the_date('d.m.Y')?></span>
-									<?php echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
-								</div>
+								<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 							</li>
-
 						<?php $i++ ?>
 						<?php endwhile; ?>
 					</ol>
 
-					<?php previous_posts_link('Zurück'); ?>
-					<?php next_posts_link('Weiter'); ?>
+					<?php 
+						global $wp_query;
+						$big = 999999999; // need an unlikely integer
+						echo '<div class="paginate-links">';
+							echo paginate_links( array(
+							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+							'format' => '?paged=%#%',
+							'prev_text' => __('<<'),
+							'next_text' => __('>>'),
+							'current' => max( 1, get_query_var('paged') ),
+							'total' => $wp_query->max_num_pages
+							) );
+						echo '</div>';
+					
+					?>
+								
+					<?php //previous_posts_link('Zurück'); ?>
+					<?php //next_posts_link('Weiter'); ?>
+
+					<?php echo getPagination($query, $paged)?>
 
 					<?php wp_reset_postdata();?>
 
@@ -86,9 +83,9 @@ $query = new WP_Query($args)
 	<?php endif ?>
 
 	<?php previous_posts_link('Zurück'); ?>
-	<?php next_posts_link('Weiter' ); ?>
+	<?php next_posts_link('Weiter'); ?>
 
-	<?php get_template_part('template-parts/content-areas/gender') ?>
+	<?php get_template_part('template-parts/sections/gender') ?>
 
 </div><!-- .content -->
 

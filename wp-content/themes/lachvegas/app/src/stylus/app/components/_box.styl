@@ -1,38 +1,33 @@
 
 .box
-
   display: block
-  padding: 10px
   background-color: $colors.white
-  border: 1px solid alpha($colors.grey, 50%)
-  box-shadow: 0 2px 3px alpha($colors.black, 10%)
+  //border: 1px solid alpha($colors.grey, 50%)
+  //box-shadow: 0 2px 3px alpha($colors.black, 10%)
 
-
-  &-headline
-  &-title
+  &__title
     margin: 0
-    padding: 0 0 10px 0
-    font-size: 14px
-    border-bottom: 1px solid darken($colors.white, 10%)
 
-
-  &-content
-    padding: 10px 0
+  &__content
+    padding: 0
 
 
 
 
 
 .infobox
-  width: 300px
-  height: 300px
-  display: block
-  margin: 0 auto 25px auto
+  width: auto
+  height: auto
+  display: none
+  margin: 0 auto
   padding-top: 15px
   align-content: center
   justify-content: center
   position: relative
   overflow: hidden
+
+  @media screen and (min-width: 960px)
+    display: block
 
   &:before
     content: 'Bekloppte Anzeige' 
@@ -53,7 +48,7 @@
   &--banner
     width: 100%
     max-height: 800px
-    height: 120px
+    min-height: 80px
     text-align: left
 
   &--banner-large
@@ -61,6 +56,10 @@
     max-width: 800px
     height: 280px
     text-align: left
+
+  &--square
+    width: 100%
+    height: 100%
 
 
 

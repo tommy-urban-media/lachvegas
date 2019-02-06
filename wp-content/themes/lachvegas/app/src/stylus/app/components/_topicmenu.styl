@@ -3,11 +3,14 @@
   display: block
 
 .topicmenu
-  display: flex
+  display: none
   font-size: 12px
   text-align: left
   position: relative 
   z-index: 1
+
+  @media screen and (min-width: 960px)
+    display: flex
 
   &__title
     margin-right: 12px

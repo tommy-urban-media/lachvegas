@@ -1,8 +1,30 @@
 .pagination
+  margin: 0 0 50px 0
   display: flex
+  align-items: top
+  justify-content: center
+
+  &__dots
+    margin: 0 2px
+    padding: 8px 12px
+    display: block
+    color: #303030
+    border: 1px solid $colors.blue 
 
   a
+  .pagination__current
+    margin: 0 2px
     padding: 8px 12px
-    color: $colors.white
+    display: block
+    color: #303030
     text-align: center
+    background: $colors.white 
+    border: 1px solid $colors.blue 
+
+    &:hover
+      color: $colors.white
+      background: $colors.blue
+
+  .pagination__current
+    color: $colors.white
     background: $colors.blue

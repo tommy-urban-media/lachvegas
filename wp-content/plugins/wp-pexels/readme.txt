@@ -3,7 +3,7 @@ Contributors: wpclever
 Donate link: https://wpclever.net
 Tags: pexels, media library, free stock, free photo
 Requires at least: 4.0
-Tested up to: 4.9.8
+Tested up to: 5.0.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -44,6 +44,12 @@ Visit [plugin documentation website](https://wpclever.net "plugin documentation"
 5. Enjoy!
 
 == Changelog ==
+
+= 2.1.3 =
+* Optimized the code
+
+= 2.1.2 =
+* Compatible with WordPress 5.0.2
 
 = 2.1.1 =
 * Fixed: Some JS issues

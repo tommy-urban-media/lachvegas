@@ -2,7 +2,7 @@
 /*******************************************************************************
  * Plugin Name: WP Ultimate Exporter
  * Description: Backup tool to export all your WordPress data as CSV file. eCommerce data of WooCommerce, MarketPress, eCommerce, eShop, Custom Post and Custom field informations along with default WordPress modules.
- * Version: 1.4
+ * Version: 1.4.2
  * Author: Smackcoders
  * Text Domain: wp-ultimate-exporter
  * Domain Path: /languages/
@@ -20,7 +20,7 @@ if ( ! class_exists( 'ExpSmCSVHandler' ) ) :
 	 */
 	class ExpSmCSVHandler {
 
-		public $version = '1.4';
+		public $version = '1.4.2';
 
 		/**
 		 * The single instance of the class.

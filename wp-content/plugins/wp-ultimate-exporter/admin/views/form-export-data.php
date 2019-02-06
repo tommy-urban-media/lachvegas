@@ -116,6 +116,9 @@ else{
             <div class="col-md-6 mt10"><a href="https://goo.gl/fKvDxH" target="_blank"><?php echo esc_html__('Sample CSV','wp-ultimate-csv-importer');?></a></div>
          </div>
 	<form class="form-horizontal" method="post" name="exportmodule" id="exportmodule" action='<?php echo esc_url(add_query_arg(array('page'=> 'sm-uci-export', 'exportType'=>'export-with-filters'), admin_url() . "admin.php"))?>' onsubmit="return export_module();" >
+
+		<?php wp_nonce_field('sm-uci-import'); ?>
+
 		<div class="template_body whole_body wp_ultimate_csv_importer_pro" xmlns="http://www.w3.org/1999/html" style="margin-top: 40px;">
 			<div id="exportaspecificmodule">
 				<!--    <form class="form-horizontal" method="post" name="exportmodule" action="" onsubmit="return export_module();"> -->
@@ -192,7 +195,7 @@ if($exportType) :
 	?>
 	<div style="width: 98%;" class="template_body whole_body wp_ultimate_csv_importer_pro">
 		<form name="export_filters" id="export_filters" method="post" action="<?php #echo admin_url('admin-ajax.php'); ?>" >
-			<?php wp_nonce_field('export_file','my-nonce'); ?>
+			<?php wp_nonce_field('sm-uci-import'); ?>
 			<input name="action" value="export_file" type="hidden">
 			<input type="hidden" name="moduletobeexport" id="moduletobeexport" value="<?php echo $module; ?>" >
 			<input type="hidden" name="optional_type" id="optional_type" value="<?php echo $exportAs; ?>" >

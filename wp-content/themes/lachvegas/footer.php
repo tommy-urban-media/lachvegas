@@ -19,7 +19,7 @@
 				<p>&copy; 2016 - <?php echo date('Y') ?> <a href="http://lachvegas.de">lachvegas.de</a></p>
 			</div>
 		</div>
-		<?php // get_template_part('template-parts/socials'); ?>
+		<?php get_template_part('template-parts/socials'); ?>
 	</div>
 
 	<!--
@@ -88,7 +88,7 @@
 </div>
 
 
-
+<!--
 <div id="lightbox-overlay"></div>
 <div id="lightbox">
 
@@ -101,8 +101,8 @@
 	</div>
 
 	<div id="lightbox-message"></div>
-
 </div>
+-->
 
 
 <input id="blogurl" type="hidden" value="<?php bloginfo('url');?>" />
@@ -114,6 +114,36 @@
 <script type="text/javascript" src="<?php echo get_bloginfo('template_url')?>/app/public/js/vendor.js"></script>
 <script type="text/javascript" src="<?php echo get_bloginfo('template_url')?>/app/public/js/app.js"></script>
 <script>require('src/js/app')</script>
+
+<!--
+<div class="modal modal-effect1" id="modal-1">
+	<div class="modal__content">
+		<span class="subtitle">Bitte um Mithilfe</span>
+		<h3 class="title">Polizei sucht Schwanzgrapscherin</h3>
+		<p>
+		In der Innenstadt ist eine Schwanzgrapscherin unterwegs und treibt dort ihr Unwesen. 
+		Bereits mehrfach haben sich männliche Personen bei der Polizei beschwert nachdem die Grapschen bei ihnen vorgefasst hatte. 
+		Wenn Sie etwas gesehen haben oder sogar selbst betroffen sind melden Sie sich bitte umgehend bei der Polizei.
+		<br><br>
+		Wir bedanken uns für Ihre Mithilfe
+		</p>
+		<button class="button modal__close" data-modal-close>Interessiert nicht</button>
+	</div>
+</div>
+<div class="modal-overlay"></div>
+-->
+
+<?php /* ?>
+<button class="modal-trigger" data-modal="modal-1">Modal Trigger</button>
+<?php */ ?>
+
+<script
+    type="text/javascript"
+    async defer
+    src="//assets.pinterest.com/js/pinit.js"
+		data-pin-do="buttonBookmark" data-pin-hover="true"
+></script>
+
 
 </body>
 </html>

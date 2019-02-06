@@ -191,6 +191,57 @@ class ContentTypeController {
 
     add_post_type_support( 'poem', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
+
+
+    register_post_type('quiz',
+        array(
+            'labels' => array(
+                'name' => __( 'Quizze' ),
+                'singular_name' => __( 'Quiz' ),
+                'add_new' => __( 'Quiz eintragen' ),
+                'add_new_item' => __( 'neue Quiz anlegen' ),
+                'edit_item' => __( 'Quiz bearbeiten' ),
+                'new_item' => __( 'neue Quiz' ),
+                'view_item' => __( 'Quiz anschauen' ),
+                'search_items' => __( 'Quiz suchen' ),
+                'not_found' => __( 'Quiz nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+              'slug' => 'quiz'
+            )
+        )
+    );
+
+    add_post_type_support( 'quiz', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+
+    register_taxonomy(
+        'people',
+        array(
+            'guide',
+            'news',
+            'poem',
+            'post',
+            'saying',
+            'statistic',
+            'quiz'
+        ),
+        array(
+            'label' => __( 'Personen' ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array( 'slug' => 'profile' )
+        ) 
+    );
+
   }
 
 

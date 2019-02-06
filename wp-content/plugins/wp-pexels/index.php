@@ -3,7 +3,7 @@
   Plugin Name: WP Pexels
   Plugin URI: https://wpclever.net/
   Description: WP Pexels help you search over million free photos from https://pexels.com then insert to content or set as featured image very quickly.
-  Version: 2.1.1
+  Version: 2.1.3
   Author: WPclever.net
   Author URI: https://wpclever.net
   Text Domain: wppx
@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-! defined( 'WPPX_VERSION' ) && define( 'WPPX_VERSION', '2.1.1' );
+! defined( 'WPPX_VERSION' ) && define( 'WPPX_VERSION', '2.1.3' );
 ! defined( 'WPPX_URI' ) && define( 'WPPX_URI', plugin_dir_url( __FILE__ ) );
 ! defined( 'WPPX_REVIEWS' ) && define( 'WPPX_REVIEWS', 'https://wordpress.org/support/plugin/wp-pexels/reviews/?filter=5' );
 ! defined( 'WPPX_CHANGELOGS' ) && define( 'WPPX_CHANGELOGS', 'https://wordpress.org/plugins/wp-pexels/#developers' );
@@ -55,76 +55,7 @@ if ( ! class_exists( 'WPcleverWppx' ) ) {
 
 		function wppx_media_upload_content() {
 			media_upload_header();
-			?>
-            <div id="wppx_area" class="wppx_area">
-                <div class="wppx_area_content">
-                    <div class="wppx_area_content_col wppx_area_content_left">
-                        <div class="wppx_area_content_col_inner">
-                            <div class="wppx_area_content_col_top">
-                                <input type="text" id="wppx_input" name="wppx_input" class="w300"
-                                       placeholder="<?php esc_html_e( 'keyword', 'wppx' ); ?>"/>
-                                <input type="button" id="wppx_search" class="p20"
-                                       value="<?php esc_html_e( 'Search', 'wppx' ); ?>"/>
-                            </div>
-                            <div class="wppx_area_content_col_mid">
-                                <div id="wppx_container" class="wppx_container"></div>
-                            </div>
-                            <div class="wppx_area_content_col_bot">
-                                <div id="wppx_page" class="wppx_page"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="wppx_area_content_col wppx_area_content_right">
-                        <div id="wppx_use_image" class="wppx_area_content_right_inner wppx_area_content_col_inner">
-                            <div class="wppx_area_content_col_mid">
-                                <div id="wppx_view"></div>
-                                <div class="wppx_item_info">
-                                    <div><?php esc_html_e( 'Title', 'wppx' ); ?></div>
-                                    <div>
-                                        <input type="text" id="wppx_title"
-                                               placeholder="<?php esc_html_e( 'title', 'wppx' ); ?>"/>
-                                    </div>
-                                </div>
-                                <div class="wppx_item_info">
-                                    <div><?php esc_html_e( 'Caption', 'wppx' ); ?></div>
-                                    <div>
-                                        <textarea id="wppx_caption" name="wppx_caption"></textarea>
-                                    </div>
-                                </div>
-                                <div class="wppx_item_info">
-                                    <div><?php esc_html_e( 'File name', 'wppx' ); ?></div>
-                                    <div>
-                                        <select name="wppx_filename" id="wppx_filename" class="wppx_select">
-                                            <option
-                                                    value="0"><?php esc_html_e( 'Keep original file name', 'wppx' ); ?></option>
-                                            <option
-                                                    value="1"><?php esc_html_e( 'Generate from title', 'wppx' ); ?></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="wppx_area_content_col_bot">
-                                <div class="wppx_notice">
-                                    <div id="wppx_loading_text"
-                                         class="wppx_loading_text"><?php esc_html_e( 'Saving to Media Library...', 'wppx' ); ?></div>
-                                    <div id="wppx_error" class="wppx_error"></div>
-                                </div>
-                                <div class="wppx_actions one_button">
-                                    <div>
-                                        <a href="https://wpclever.net/downloads/wp-pexels" target="_blank"
-                                           onclick="return confirm('This feature only available in Premium Version!\nBuy it now? Just $15')">
-                                            <button id="wppx_save_only" class="disable">
-												<?php esc_html_e( 'Save to Media Library', 'wppx' ); ?><span></span>
-                                            </button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			<?php
+			self::wppx_area();
 		}
 
 		function wppx_menu() {
@@ -146,74 +77,7 @@ if ( ! class_exists( 'WPcleverWppx' ) ) {
                         <span><?php esc_html_e( 'You can search & save the image(s) to Media Library.', 'wppx' ); ?></span>
                     </h1>
                 </div>
-                <div id="wppx_area" class="wppx_area">
-                    <div class="wppx_area_content">
-                        <div class="wppx_area_content_col wppx_area_content_left">
-                            <div class="wppx_area_content_col_inner">
-                                <div class="wppx_area_content_col_top">
-                                    <input type="text" id="wppx_input" name="wppx_input" class="w300"
-                                           placeholder="<?php esc_html_e( 'keyword', 'wppx' ); ?>"/>
-                                    <input type="button" id="wppx_search" class="p20"
-                                           value="<?php esc_html_e( 'Search', 'wppx' ); ?>"/>
-                                </div>
-                                <div class="wppx_area_content_col_mid">
-                                    <div id="wppx_container" class="wppx_container"></div>
-                                </div>
-                                <div class="wppx_area_content_col_bot">
-                                    <div id="wppx_page" class="wppx_page"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="wppx_area_content_col wppx_area_content_right">
-                            <div id="wppx_use_image" class="wppx_area_content_right_inner wppx_area_content_col_inner">
-                                <div class="wppx_area_content_col_mid">
-                                    <div id="wppx_view"></div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'Title', 'wppx' ); ?></div>
-                                        <div>
-                                            <input type="text" id="wppx_title"
-                                                   placeholder="<?php esc_html_e( 'title', 'wppx' ); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'Caption', 'wppx' ); ?></div>
-                                        <div>
-                                            <textarea id="wppx_caption" name="wppx_caption"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'File name', 'wppx' ); ?></div>
-                                        <div>
-                                            <select name="wppx_filename" id="wppx_filename" class="wppx_select">
-                                                <option
-                                                        value="0"><?php esc_html_e( 'Keep original file name', 'wppx' ); ?></option>
-                                                <option
-                                                        value="1"><?php esc_html_e( 'Generate from title', 'wppx' ); ?></option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wppx_area_content_col_bot">
-                                    <div class="wppx_notice">
-                                        <div id="wppx_loading_text"
-                                             class="wppx_loading_text"><?php esc_html_e( 'Saving to Media Library...', 'wppx' ); ?></div>
-                                        <div id="wppx_error" class="wppx_error"></div>
-                                    </div>
-                                    <div class="wppx_actions one_button">
-                                        <div>
-                                            <a href="https://wpclever.net/downloads/wp-pexels" target="_blank"
-                                               onclick="return confirm('This feature only available in Premium Version!\nBuy it now? Just $15')">
-                                                <button id="wppx_save_only" class="disable">
-													<?php esc_html_e( 'Save to Media Library', 'wppx' ); ?><span></span>
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<?php self::wppx_area(); ?>
             </div>
 			<?php
 		}
@@ -385,52 +249,59 @@ if ( ! class_exists( 'WPcleverWppx' ) ) {
 
 		function wppx_area_content() { ?>
             <div style='display:none'>
-                <div id="wppx_area" class="wppx_area">
-                    <div class="wppx_area_content">
-                        <div class="wppx_area_content_col wppx_area_content_left">
-                            <div class="wppx_area_content_col_inner">
-                                <div class="wppx_area_content_col_top">
-                                    <input type="text" id="wppx_input" name="wppx_input" class="w300"
-                                           placeholder="<?php esc_html_e( 'keyword', 'wppx' ); ?>"/>
-                                    <input type="button" id="wppx_search" class="p20"
-                                           value="<?php esc_html_e( 'Search', 'wppx' ); ?>"/>
-                                </div>
-                                <div class="wppx_area_content_col_mid">
-                                    <div id="wppx_container" class="wppx_container"></div>
-                                </div>
-                                <div class="wppx_area_content_col_bot">
-                                    <div id="wppx_page" class="wppx_page"></div>
-                                </div>
+				<?php self::wppx_area( true ); ?>
+            </div>
+		<?php }
+
+		function wppx_area( $full = false ) {
+			?>
+            <div id="wppx_area" class="wppx_area">
+                <div class="wppx_area_content">
+                    <div class="wppx_area_content_col wppx_area_content_left">
+                        <div class="wppx_area_content_col_inner">
+                            <div class="wppx_area_content_col_top">
+                                <input type="text" id="wppx_input" name="wppx_input" class="w300"
+                                       placeholder="<?php esc_html_e( 'keyword', 'wppx' ); ?>"/>
+                                <input type="button" id="wppx_search" class="p20"
+                                       value="<?php esc_html_e( 'Search', 'wppx' ); ?>"/>
+                            </div>
+                            <div class="wppx_area_content_col_mid">
+                                <div id="wppx_container" class="wppx_container"></div>
+                            </div>
+                            <div class="wppx_area_content_col_bot">
+                                <div id="wppx_page" class="wppx_page"></div>
                             </div>
                         </div>
-                        <div class="wppx_area_content_col wppx_area_content_right">
-                            <div id="wppx_use_image" class="wppx_area_content_right_inner wppx_area_content_col_inner">
-                                <div class="wppx_area_content_col_mid">
-                                    <div id="wppx_view"></div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'Title', 'wppx' ); ?></div>
-                                        <div>
-                                            <input type="text" id="wppx_title"
-                                                   placeholder="<?php esc_html_e( 'title', 'wppx' ); ?>"/>
-                                        </div>
+                    </div>
+                    <div class="wppx_area_content_col wppx_area_content_right">
+                        <div id="wppx_use_image" class="wppx_area_content_right_inner wppx_area_content_col_inner">
+                            <div class="wppx_area_content_col_mid">
+                                <div id="wppx_view"></div>
+                                <div class="wppx_item_info">
+                                    <div><?php esc_html_e( 'Title', 'wppx' ); ?></div>
+                                    <div>
+                                        <input type="text" id="wppx_title"
+                                               placeholder="<?php esc_html_e( 'title', 'wppx' ); ?>"/>
                                     </div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'Caption', 'wppx' ); ?></div>
-                                        <div>
-                                            <textarea id="wppx_caption" name="wppx_caption"></textarea>
-                                        </div>
+                                </div>
+                                <div class="wppx_item_info">
+                                    <div><?php esc_html_e( 'Caption', 'wppx' ); ?></div>
+                                    <div>
+                                        <textarea id="wppx_caption" name="wppx_caption"></textarea>
                                     </div>
-                                    <div class="wppx_item_info">
-                                        <div><?php esc_html_e( 'File name', 'wppx' ); ?></div>
-                                        <div>
-                                            <select name="wppx_filename" id="wppx_filename" class="wppx_select">
-                                                <option
-                                                        value="0"><?php esc_html_e( 'Keep original file name', 'wppx' ); ?></option>
-                                                <option
-                                                        value="1"><?php esc_html_e( 'Generate from title', 'wppx' ); ?></option>
-                                            </select>
-                                        </div>
+                                </div>
+                                <div class="wppx_item_info">
+                                    <div><?php esc_html_e( 'File name', 'wppx' ); ?></div>
+                                    <div>
+                                        <select name="wppx_filename" id="wppx_filename" class="wppx_select">
+                                            <option
+                                                    value="0"><?php esc_html_e( 'Keep original file name', 'wppx' ); ?></option>
+                                            <option
+                                                    value="1"><?php esc_html_e( 'Generate from title', 'wppx' ); ?></option>
+                                        </select>
                                     </div>
+                                </div>
+								<?php if ( $full ) { ?>
                                     <div class="wppx_item_info">
                                         <div><?php esc_html_e( 'Size', 'wppx' ); ?></div>
                                         <div>
@@ -489,13 +360,15 @@ if ( ! class_exists( 'WPcleverWppx' ) ) {
                                                    class="wppx_checkbox"/> <?php esc_html_e( 'Rel nofollow', 'wppx' ); ?>
                                         </div>
                                     </div>
+								<?php } ?>
+                            </div>
+                            <div class="wppx_area_content_col_bot">
+                                <div class="wppx_notice">
+                                    <div id="wppx_loading_text"
+                                         class="wppx_loading_text"><?php esc_html_e( 'Saving to Media Library...', 'wppx' ); ?></div>
+                                    <div id="wppx_error" class="wppx_error"></div>
                                 </div>
-                                <div class="wppx_area_content_col_bot">
-                                    <div class="wppx_notice">
-                                        <div id="wppx_loading_text"
-                                             class="wppx_loading_text"><?php esc_html_e( 'Saving to Media Library...', 'wppx' ); ?></div>
-                                        <div id="wppx_error" class="wppx_error"></div>
-                                    </div>
+								<?php if ( $full ) { ?>
                                     <div class="wppx_actions">
                                         <div>
                                             <input type="hidden" id="wppx_site"/>
@@ -519,13 +392,25 @@ if ( ! class_exists( 'WPcleverWppx' ) ) {
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+								<?php } else { ?>
+                                    <div class="wppx_actions one_button">
+                                        <div>
+                                            <a href="https://wpclever.net/downloads/wp-pexels" target="_blank"
+                                               onclick="return confirm('This feature only available in Premium Version!\nBuy it now? Just $15')">
+                                                <button id="wppx_save_only" class="disable">
+													<?php esc_html_e( 'Save to Media Library', 'wppx' ); ?><span></span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+								<?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-		<?php }
+			<?php
+		}
 	}
 
 	new WPcleverWppx();

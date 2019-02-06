@@ -18,6 +18,7 @@ export default class App {
 
     this.getNodes();
     this.setupTheme();
+    this.setupModalTriggers();
 
   }
 
@@ -55,6 +56,53 @@ export default class App {
 
     $('.search-label').on('click', () => {
       $('.search-area').toggleClass('is-expanded');
+    });
+
+  }
+
+  setupModalTriggers () {
+
+
+    setTimeout(() => {
+
+      let el = $('#modal-1');
+      el.addClass('modal-show');
+
+      el.find('[data-modal-close]').off('click').on('click', (e) => {
+        e.preventDefault();
+        el.removeClass('modal-show');
+      });
+
+      $('.modal-overlay').on('click', () => {
+        e.preventDefault();
+        el.removeClass('modal-show');
+      });
+
+    }, 2000);
+
+
+    $('[data-modal]').each((i, el) => {
+      
+      let id = $(el).data('modal');
+      let $modal = $('#' + id);
+
+      $(el).on('click', (e) => {
+
+        $modal = $('#' + $(e.currentTarget).data('modal'));
+        $modal.addClass('modal-show');
+
+        $modal.find('[data-modal-close]').off('click').on('click', (e) => {
+          e.preventDefault();
+          $modal.removeClass('modal-show');
+        });
+
+        $('.modal-overlay').on('click', () => {
+          e.preventDefault();
+          $modal.removeClass('modal-show');
+        });
+
+      });
+
     });
 
   }

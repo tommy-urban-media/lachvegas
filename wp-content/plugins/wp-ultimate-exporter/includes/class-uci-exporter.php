@@ -629,8 +629,10 @@ class SmUCIExpExporter {
 		$PostData = array();
 		$query1 = $wpdb->prepare("SELECT wp.* FROM $wpdb->posts wp where ID=%d", $id);
 		$result_query1 = $wpdb->get_results($query1);
+                            
 		if (!empty($result_query1)) {
 			foreach ($result_query1 as $posts) {
+                     
 				foreach ($posts as $post_key => $post_value) {
 					if ($post_key == 'post_status') {
 						if (is_sticky($id)) {
@@ -695,12 +697,14 @@ class SmUCIExpExporter {
 	 * @param $optionalType
 	 */
 	public function getTermsAndTaxonomies ($id, $type, $optionalType) {
+        
 		$TermsData = array();
 		if($type == 'WooCommerce' || $type == 'MarketPress') {
 			$type = 'product';
 			$postTags = $postCategory = '';
 			$taxonomies = get_object_taxonomies($type);
 			$get_tags = get_the_terms( $id, 'product_tag' );
+                            
 			if($get_tags){
 				foreach($get_tags as $tags){
 					$postTags .= $tags->name . ',';
@@ -748,9 +752,10 @@ class SmUCIExpExporter {
 			global $wpdb;
 			$postTags = $postCategory = '';
 			$taxonomyId = $wpdb->get_col($wpdb->prepare("select term_taxonomy_id from $wpdb->term_relationships where object_id = %d", $id));
+                           
 			if(!empty($taxonomyId)) {
 				foreach($taxonomyId as $taxonomy) {
-					$taxonomyType = $wpdb->get_col($wpdb->prepare("select taxonomy from $wpdb->term_taxonomy where term_taxonomy_id = %d",$taxonomy));
+			$taxonomyType = $wpdb->get_col($wpdb->prepare("select taxonomy from $wpdb->term_taxonomy where term_taxonomy_id = %d",$taxonomy));
 					if(!empty($taxonomyType)) {
 						foreach($taxonomyType as $termName) {
 							if($termName == 'category')
@@ -775,15 +780,18 @@ class SmUCIExpExporter {
 								else {
 									if(!isset($TermsData['post_tag'])) {
 										$get_tags = wp_get_post_tags($id, array('fields' => 'names'));
+                                                                                    
 										foreach ($get_tags as $tags) {
 											$postTags .= $tags . ',';
 										}
 										$postTags = substr($postTags, 0, -1);
-										if( isset($this->data[$id][$termName]) && $this->data[$id][$termName] == '') {
-										//if( $this->data[$id][$termName] == '' ) {
-											$this->data[$id][$termName] = $postTags;
-										}
+                                                                                
+										if( $this->data[$id][$termName] == '' ) {
+                                                                                        $this->data[$id][$termName] = $postTags;
+                                                                                }
+
 									}
+                                                                      
 								}
 								if(!isset($TermsData['category'])){
 									$get_categories = wp_get_post_categories($id, array('fields' => 'names'));

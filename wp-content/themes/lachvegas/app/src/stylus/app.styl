@@ -24,6 +24,10 @@ global-reset()
 @require 'app/_grid'
 @require 'app/_masonry'
 
+// teasers listings
+@require 'app/_teasers-images'
+@require 'app/_teasers-gender'
+@require 'app/_teasers-vip'
 
 
 @require 'app/form/_mixins'
@@ -34,9 +38,11 @@ global-reset()
 
 
 // individual components
+@require 'app/components/_animation'
 @require 'app/components/_animator'
 @require 'app/components/_badge'
 @require 'app/components/_banner'
+@require 'app/components/_breadcrumb'
 @require 'app/components/_button'
 @require 'app/components/_calendar' 
 @require 'app/components/_category'
@@ -45,11 +51,13 @@ global-reset()
 @require 'app/components/_mainmenu'
 @require 'app/components/_headermenu'
 @require 'app/components/_footermenu'
+@require 'app/components/_news-archive'
 @require 'app/components/_list'
 @require 'app/components/_article-list'
 @require 'app/components/_pagination'
 @require 'app/components/_post-list'
-@require 'app/components/_lightbox'
+@require 'app/components/_modal'
+@require 'app/components/_quiz'
 @require 'app/components/_quote'
 @require 'app/components/_socials'
 @require 'app/components/_ticker'
@@ -76,3 +84,7 @@ global-reset()
 
 // tag page
 @require 'app/tag/_index'
+
+
+// post type person
+@require 'app/_article-person'

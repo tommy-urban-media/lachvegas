@@ -12,47 +12,34 @@
 
 	<div class="content__area">
 		<div class="content__area--primary">
-			<h1 class="category-title"><?php echo get_the_archive_title(true); ?></h1>
+
+			<h1 class="category-title"><?php echo str_replace( array('Archives:', 'Archive:'), "", get_the_archive_title()); ?></h1>
+
 			<?php if (have_posts()): ?>
 
 				<ol class="list list--news">
 					<?php $i = 0; ?>
 					<?php while ( have_posts() ) : the_post(); setup_postdata($post)?>
+						<?php if ($i == 4): ?>
+							<li class="list-item">
+								<?php showAD('banner'); ?>
+							</li>
+						<?php endif ?>
 						<li class="list-item">
-
-							<?php if ($i == 4): ?>
-								<?php get_template_part('template-parts/ads/jochen-scheisser')?>
-							<?php endif ?>
-
-							<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-							<span class="post-meta">
-								<?= $subtitle ?>
-							</span>
-							<?php endif ?>
-
-							<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
-								<?php the_title() ?>
-							</a>
-
-							<div class="post-content">
-								<?php if (has_post_thumbnail()):?>
-									<a href="<?= get_the_permalink($post->ID) ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-										<figure class="post-image post-image--teaser">
-											<?php the_post_thumbnail('article_thumbnail')?>
-										</figure>
-									</a>
-								<?php endif ?>
-								<span class="post-date"><?php echo the_date('d.m.Y')?></span>
-								<?php echo custom_excerpt(get_the_excerpt($post->ID), 24) ?>
-							</div>
+							<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 						</li>
-
 					<?php $i++ ?>
 					<?php endwhile; ?>
 				</ol>
 
-				<?php previous_posts_link('Zurück'); ?>
-				<?php next_posts_link('Weiter'); ?>
+				<nav class="pagination">
+					<span class="previous-posts">
+						<?php previous_posts_link('&laquo;'); ?>
+					</span>
+					<span class="next-posts">
+						<?php next_posts_link('&raquo;'); ?>
+					</span>
+				</nav>
 
 				<?php wp_reset_postdata();?>
 
@@ -64,6 +51,10 @@
 	</div>
 
 	<?php endif ?>
+
+	<?php get_template_part('template-parts/sections/gender') ?>
+	<?php get_template_part('template-parts/sections/promis') ?>
+
 
 </div><!-- .content -->
 
