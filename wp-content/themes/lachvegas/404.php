@@ -18,10 +18,7 @@ get_header(); ?>
         </p>
         <p>Oder warte.. Halt! Nein, nicht weglaufen! </p>
 
-        <p> <a href="<?= home_url('/')?>">&raquo; hier</a> geht's weiter. </p>
-
-        <p>oder hier</p>
-        <p>oder hier</p>
+        <p> <a href="<?= home_url('/')?>">Hier</a> geht's weiter. </p>
 
       </div>
 

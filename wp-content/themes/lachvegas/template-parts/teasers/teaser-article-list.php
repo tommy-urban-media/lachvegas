@@ -83,6 +83,10 @@ $post_data = (object)$post_data;
     <span class="post-meta">
       <span class="post-date"><?php echo the_time(get_option('date_format'));?></span>
 
+      <?php if ($postTag || isset($post_data->taxonomyUrl)): ?>
+        -
+      <?php endif ?>
+
       <?php if ($postTag): ?>
         <a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> 
       <?php endif ?>

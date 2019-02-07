@@ -30,6 +30,8 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 ?>
 
 
+<?php get_template_part('template-parts/common/breadcrumb') ?>
+
 <div class="content content-wrapper">
 	<div class="content__area content__area--full">
 

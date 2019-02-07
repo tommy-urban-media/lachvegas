@@ -14,15 +14,30 @@
       <?php $i = 0; ?>
       <?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
 
+        <?php 
+
+          $externalImageUrl = get_post_meta( $post->ID, 'external_image_url', true );
+          $externalImageSource = get_post_meta( $post->ID, 'external_image_source', true );
+
+        ?>
+
         <li class="list-item">
           <div class="post-content">
             
-            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute('echo=0'); ?>">
+            <a href="<?php the_permalink(); ?>" title="Beitrag: <?= get_the_title($post->ID) ?>">
               <figure class="post-image">
                 <?php if (has_post_thumbnail()):?>
                   <?php the_post_thumbnail('16_9_medium')?>
                 <?php else: ?>
-                  <img src="<?= get_bloginfo('template_url')?>/app/public/lachvegas-placeholder.png" />
+
+                  <?php if ($externalImageUrl): ?>
+                    <img src="<?= $externalImageUrl ?>" alt="External Image" />
+                    <?php if ($externalImageSource): ?>
+                      <figcaption class="caption"><?= $externalImageSource ?></figcaption>
+                    <?php endif ?>
+                  <?php else: ?>
+                    <img src="<?= get_bloginfo('template_url')?>/app/public/lachvegas-placeholder.png" />
+                  <?php endif ?>
                 <?php endif ?>
               </figure>
             </a>

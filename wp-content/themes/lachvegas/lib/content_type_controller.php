@@ -134,7 +134,7 @@ class ContentTypeController {
     add_post_type_support( 'guide', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
-
+    /*
     register_post_type('person',
         array(
             'labels' => array(
@@ -161,6 +161,7 @@ class ContentTypeController {
     );
 
     add_post_type_support( 'person', array('title', 'editor', 'custom-fields', 'thumbnail') );
+    */
 
 
 
@@ -238,7 +239,7 @@ class ContentTypeController {
             'show_ui' => true,
             'show_admin_column' => true,
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'profile' )
+            'rewrite' => array( 'slug' => 'personen' )
         ) 
     );
 

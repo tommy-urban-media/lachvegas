@@ -33,24 +33,16 @@
 
 
 <!--
-	<div id="footer-bottom">
-
-		<ul id="social-list">
-			<li class="facebook-share">
-				<iframe src="https://www.facebook.com/plugins/like.php?href=<?php echo get_bloginfo('url')?>&width=170&layout=button_count&action=like&size=small&show_faces=true&share=true&height=80&appId" width="170" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-			</li>
-			<li class="twitter-share">
-				<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php bloginfo('url')?>" data-lang="de">Tweet</a>
-			</li>
-			<li class="google-share">
-				<div class="g-plusone" data-size="medium" data-href="<?php echo get_bloginfo('url')?>"></div>
-			</li>
-			<li class="xing-share">
-				<script type="XING/Share" data-counter="right" data-lang="de" data-url="<?php bloginfo('url')?>"></script>
-			</li>
-		</ul>
-
-	</div>
+<div id="footer-bottom">
+	<ul id="social-list">
+		<li class="facebook-share">
+			<iframe src="https://www.facebook.com/plugins/like.php?href=<?php echo get_bloginfo('url')?>&width=170&layout=button_count&action=like&size=small&show_faces=true&share=true&height=80&appId" width="170" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		</li>
+		<li class="twitter-share">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php bloginfo('url')?>" data-lang="de">Tweet</a>
+		</li>
+	</ul>
+</div>
 -->
 
 
