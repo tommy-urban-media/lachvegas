@@ -1,0 +1,51 @@
+.teasers-vip
+	display: flex
+	align-items: center
+	justify-content: center
+	flex-wrap: wrap
+
+	li
+		width: 120px
+		margin: 0 20px
+		padding: 15px 0
+		text-align: center
+		border-top-left-radius: 6px
+		border-top-right-radius: 6px
+		transition: background-color 200ms ease
+
+		&:hover
+			color: #fff
+			background-color: $colors.red
+
+			.person-role
+			.person-name
+				color: #fff
+
+		.image-wrapper
+			width: 80px
+			height: 80px
+			display: block
+			margin: 0 auto
+			border-radius: 50%
+			overflow: hidden
+
+		.person-role
+			margin: 10px 0 5px 0
+			color: #c0c0c0
+			display: block
+			font-size: 12px
+
+		.person-name
+			color: #303030
+			display: block
+			font-size: 13px
+			font-weight: bold
+
+
+	&__links
+		padding: 20px 40px
+		text-align: left
+
+		a
+			color: #404040
+			font-size: 12px

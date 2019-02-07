@@ -1,0 +1,6 @@
+{
+    "require": {
+        "stil/gd-text": "^1.1",
+        "treinetic/imageartist": "^1.0"
+    }
+}
