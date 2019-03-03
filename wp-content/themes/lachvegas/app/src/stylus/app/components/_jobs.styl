@@ -1,0 +1,82 @@
+$jobsColor = #fbe4d7
+
+
+.jobs-filters
+  margin-right: 20px
+
+  .panel
+  
+    .panel-header
+      margin: 0
+      padding: 15px 20px
+      font-size: 14px
+      background-color: #f6f6f6
+
+    .panel-content
+      li
+        a
+          padding: 8px 20px
+          display: block
+          color: #505050
+          font-size: 13px
+          transition: all 50ms ease-in-out
+          border-bottom: 1px solid #f0f0f0
+          &:hover
+            color: #fff
+            background-color: steelblue
+
+
+
+.jobs
+  margin: 0
+  padding: 20px
+  background-color: $jobsColor
+
+.jobs-headline
+  margin: 0 0 10px 0
+  font-size: 20px
+  color: darken($jobsColor, 50%)
+
+.jobs-description
+  margin: 0 0 20px 0
+  font-size: 12px
+  color: #909090
+  
+
+.jobs-listing
+  display: flex
+  flex-wrap: wrap
+  margin-bottom: 20px
+
+  .list-item
+    width: 100%
+    display: block
+    border-bottom: 1px solid darken($jobsColor, 10%)
+
+
+.job
+  margin: 6px 0
+  display: block
+
+.job-link
+  //color: #303030
+  color: darken($jobsColor, 50%)
+
+  &:hover
+    .job-title
+      color: darken($jobsColor, 50%)
+      text-decoration: underline
+
+.job-title
+  margin: 0 0 5px 0
+  font-size: 13px
+
+.job-content
+  font-size: 12px
+  color: #505050
+
+.job-date
+  color: #505050
+
+  svg
+    margin-right: 5px

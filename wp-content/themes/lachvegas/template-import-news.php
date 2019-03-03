@@ -17,7 +17,6 @@ function savePost($arr) {
 }
 
 $filepath = dirname(__FILE__) . '/_KURZMELDUNGEN_CSV.csv';
-//$filepath = '/Users/Tommykrueger/Desktop/Websiteinhalte/LachVegas/_KURZMELDUNGEN_CSV.csv';
 $file = fopen($filepath, 'r');
 
 $data = array();

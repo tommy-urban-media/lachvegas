@@ -11,7 +11,8 @@ $args = array(
 	'paged' => $paged,
 	'offset' => $offset,
 	'post_type' => array('news', 'post', 'saying', 'guide', 'poem', 'quiz'),
-	'category_name' => get_cat_name( $cat ),
+	'cat' => get_queried_object_id(),
+	//'category_name' => get_cat_name( $cat ),
 	'order_by' => 'date', 
 	'order' => 'DESC',
 );
@@ -49,27 +50,11 @@ $query = new WP_Query($args)
 						<?php $i++ ?>
 						<?php endwhile; ?>
 					</ol>
+			
+					<?php echo getPagination($query, $paged, true, $cat)?>
 
-					<?php 
-						global $wp_query;
-						$big = 999999999; // need an unlikely integer
-						echo '<div class="paginate-links">';
-							echo paginate_links( array(
-							'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
-							'format' => '?paged=%#%',
-							'prev_text' => __('<<'),
-							'next_text' => __('>>'),
-							'current' => max( 1, get_query_var('paged') ),
-							'total' => $wp_query->max_num_pages
-							) );
-						echo '</div>';
-					
-					?>
-								
 					<?php //previous_posts_link('Zurück'); ?>
 					<?php //next_posts_link('Weiter'); ?>
-
-					<?php echo getPagination($query, $paged)?>
 
 					<?php wp_reset_postdata();?>
 
@@ -81,9 +66,6 @@ $query = new WP_Query($args)
 		</div>
 
 	<?php endif ?>
-
-	<?php previous_posts_link('Zurück'); ?>
-	<?php next_posts_link('Weiter'); ?>
 
 	<?php get_template_part('template-parts/sections/gender') ?>
 

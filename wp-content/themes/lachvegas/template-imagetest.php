@@ -61,7 +61,7 @@ for ($i=0; $i<count($texts); $i++) {
 
 	//imagefilledrectangle( $canvas, 9, 9, 189, 89, $white ); 
 
-	$font = "/Library/Fonts/Arial.ttf"; 
+	$font = "/Library/Fonts/Arial+Bold.ttf"; 
 	$text = $texts[$i];
 	//$text = strtoupper($texts[$i]);
 	$fontSize = 32; 
@@ -157,7 +157,9 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
 			<table class="table">
 				<tr>
 					<th>ID</th>
+					<th>PostThumb</th>
 					<th>Bild</th>
+					<th>Merged</th>
 					<th>Spruch</th>
 					<th>Aktion</th>
 				</tr>

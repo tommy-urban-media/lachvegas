@@ -60,9 +60,9 @@ $theme_social_media 	= get_option("theme_social_media_page");
 <!-- <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" /> -->
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/app/public/css/app.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-<link rel="shortcut icon" type="image/png" href="<?php bloginfo('template_url'); ?>/public/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="<?php bloginfo('template_url'); ?>/app/images/eyes.png" />
 
-<style>@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900');</style>
+<style>@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900|Indie+Flower');</style>
 
 
 <!--
@@ -124,6 +124,13 @@ $theme_social_media 	= get_option("theme_social_media_page");
   gtag('config', 'UA-23558535-12');
 </script>
 
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8733678720071428",
+    enable_page_level_ads: true
+  });
+</script>
 
 </head>
 
@@ -147,6 +154,7 @@ $theme_social_media 	= get_option("theme_social_media_page");
 			<p class="page-title">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
 					<span class="page-name">
+						<img src="<?= get_bloginfo('template_url')?>/app/images/eyes.svg" style="width: 36px;" width="36px" />
 						<span class="page-name-num">Lach</span><span class="page-name-txt">Vegas</span>
 					</span>
 					<span class="page-slogan"><?php echo get_bloginfo('description') ?></span>
@@ -175,6 +183,8 @@ $theme_social_media 	= get_option("theme_social_media_page");
 	</header>
 
 	<main class="main" role="main">
+
+		<p class="page-slogan">Die Website für Bekloppte, Wahnsinnige und alle die es noch werden wollen</p>
 
 		<div class="mainmenu-wrapper">
 			<nav class="mainmenu" role="navigation" data-component="Menu">

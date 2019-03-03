@@ -9,6 +9,7 @@ include_once( dirname(__FILE__) . '/lib/post_controller.php' );
 include_once( dirname(__FILE__) . '/lib/shortcode_controller.php' );
 include_once( dirname(__FILE__) . '/lib/widget_controller.php' );
 include_once( dirname(__FILE__) . '/lib/theme_controller.php' );
+include_once( dirname(__FILE__) . '/lib/classes/import.php' );
 
 require __DIR__ . '/app/vendor/autoload.php';
 
@@ -26,8 +27,7 @@ if ( !function_exists( 'theme_setup' ) ):
     show_admin_bar( false );
 
 	  add_editor_style();
-		add_theme_support( 'post-thumbnails' );
-		
+		add_theme_support( 'post-thumbnails' );	
 
 		add_image_size( 'medium_large', '768', '0', false ); 
 		add_image_size( 'medium_large', '768', '0', false ); 
@@ -52,6 +52,8 @@ if ( !function_exists( 'theme_setup' ) ):
     //new ShortcodeController();
     //new WidgetController();
 		new PostController();
+
+		$import = new Import();
 
     //if (is_admin() && current_user_can('manage_options'))
       //  new TS_ThemeOptions();
@@ -381,7 +383,7 @@ function pagination($pages = '', $range = 4)
 
 
 
-function getPagination($query, $page) {
+function getPagination($query, $page, $is_category = false, $category_id = false) {
 
 	ob_start();
 
@@ -402,6 +404,13 @@ function getPagination($query, $page) {
 		return;
 	} 
 
+	$link = '';
+	if ($is_category) {
+		$link = get_category_link($category_id);
+	} else {
+		$link = home_url('/');
+	}
+	
 	?>
 
 	<nav class="pagination">
@@ -410,7 +419,7 @@ function getPagination($query, $page) {
 		</span>
 
 		<?php if ($showPageFirst): ?>
-			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/1">1</a></span>
+			<span class="pagination_page"><a href="<?= $link ?>page/1">1</a></span>
 		<?php endif ?>
 
 		<?php if ($page - 1 >= 2): ?>
@@ -418,13 +427,13 @@ function getPagination($query, $page) {
 		<?php endif ?>
 
 		<?php if ($page >= 3): ?>
-			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= ($page - 1) ?>"><?= ($page - 1) ?></a></span>
+			<span class="pagination_page"><a href="<?= $link ?>page/<?= ($page - 1) ?>"><?= ($page - 1) ?></a></span>
 		<?php endif ?>
 
 		<span class="pagination__current"><?= $page ?></span>
 
 		<?php if ($page <= ($max_pages - 2)): ?>
-			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= ($page + 1) ?>"><?= ($page + 1) ?></a></span>
+			<span class="pagination_page"><a href="<?= $link ?>page/<?= ($page + 1) ?>"><?= ($page + 1) ?></a></span>
 		<?php endif ?>
 
 		<?php if ($max_pages - $page >= 2): ?>
@@ -432,7 +441,7 @@ function getPagination($query, $page) {
 		<?php endif ?>
 
 		<?php if ($showPageLast): ?>
-			<span class="pagination_page"><a href="<?php echo home_url('/')?>page/<?= $max_pages?>"><?= $max_pages ?></a></span>
+			<span class="pagination_page"><a href="<?= $link ?>page/<?= $max_pages?>"><?= $max_pages ?></a></span>
 		<?php endif ?>
 
 		<span class="next-posts">
@@ -447,6 +456,41 @@ function getPagination($query, $page) {
 }
 
 
+/*
+function custom_pre_get_posts( $query ) {  
+	if( $query->is_main_query() && !$query->is_feed() && !is_admin() && is_category()) {  
+			$query->set( 'paged', str_replace( '/', '', get_query_var( 'page' ) ) );  }  } 
+	
+	add_action('pre_get_posts','custom_pre_get_posts'); 
+	
+	function custom_request($query_string ) { 
+			 if( isset( $query_string['page'] ) ) { 
+					 if( ''!=$query_string['page'] ) { 
+							 if( isset( $query_string['name'] ) ) { unset( $query_string['name'] ); } } } return $query_string; } 
+	
+	add_filter('request', 'custom_request');
+*/
+
+
+function prefix_change_cpt_archive_per_page( $query ) {
+
+	//* for cpt or any post type main archive
+	if ( $query->is_main_query() && !is_admin() ) {
+			$query->set( 'posts_per_page', '10' );
+	}
+
+}
+add_action( 'pre_get_posts', 'prefix_change_cpt_archive_per_page' );
+
+function prefix_change_category_cpt_posts_per_page( $query ) {
+
+	if ( $query->is_main_query() && ! is_admin() && is_category() ) {
+			$query->set( 'post_type', array('news', 'post', 'saying', 'guide', 'poem', 'quiz') );
+			$query->set( 'posts_per_page', '10' );
+	}
+
+}
+add_action( 'pre_get_posts', 'prefix_change_category_cpt_posts_per_page' );
 
 
 function get_custom_field($postID, $key) {

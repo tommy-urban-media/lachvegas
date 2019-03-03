@@ -26,7 +26,7 @@ if ($id) {
 
 } 
 
-var_dump($quiz['results']);
+// var_dump($quiz['results']);
 
 ?>
 

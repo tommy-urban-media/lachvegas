@@ -12,8 +12,15 @@ if ($tag) {
   $postTag = $tag[0]; 
 }
 
-$excerpt = custom_excerpt(get_the_excerpt($post->ID), 24);
 
+$postExternalImageUrl = get_post_meta($post->ID, 'external_image_url', true);
+$postExternalImageSource = get_post_meta($post->ID, 'external_image_source', true);
+$post_data['externalImageUrl'] = $postExternalImageUrl;
+$post_data['externalImageSource'] = $postExternalImageSource;
+
+$post_data['is_video'] = (bool) get_post_meta($post->ID, 'is_video', true);
+
+$excerpt = custom_excerpt(get_the_excerpt($post->ID), 24);
 
 $postPersonTaxomony = get_the_terms($post->ID, 'people');
 
@@ -67,6 +74,26 @@ $post_data = (object)$post_data;
     </a>
   <?php endif ?>
 
+  <?php if (!empty($post_data->externalImageUrl)): ?>
+    <a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+      <figure class="post-image post-image--teaser">
+
+        <?php if($post_data->is_video): ?>
+          <span class="post-media-type is-video">
+            <i class="fa fa-play-circle"></i>
+            Video
+          </span>
+        <?php endif ?>
+
+        <img src="<?= $post_data->externalImageUrl ?>" />
+
+        <?php if (isset($post_data->externalImagSource)): ?>
+        <figcaption class="caption"><?= $post_data->externalImagSource ?></figcaption>
+        <?php endif ?>
+      </figure>
+    </a>
+  <?php endif ?>
+
   <?php if (isset($post_data->taxonomyImageUrl)): ?>
     <a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
       <figure class="post-image post-image--teaser">
@@ -77,6 +104,12 @@ $post_data = (object)$post_data;
         <?php endif ?>
       </figure>
     </a>
+  <?php endif ?>
+
+  <?php if (isset($postTag)): ?>
+    <?php //if (strtolower($postTag)): ?>
+
+    <?php //endif ?>
   <?php endif ?>
 
   <?php //if ($post->post_type === 'news'): ?>

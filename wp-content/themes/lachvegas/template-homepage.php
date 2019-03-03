@@ -17,7 +17,7 @@ $args = array(
 			'year' => array(2017, 2018, 2019, 2020)
 		)
 	),
-	'post_type' => array('guide', 'news', 'post', 'poem', 'statistic', 'quiz'),
+	'post_type' => array('guide', 'news', 'post', 'poem', /*'statistic',*/ 'quiz'),
 	//'category__not_in' => array(64) // Produkte
 );
 
@@ -28,7 +28,7 @@ $max_pages = $queryNews->max_num_pages;
 
 $oldPosts = get_posts(array(
 	'posts_per_page' => -1,
-	'post_type' => 'any',
+	'post_type' => array('guide', 'news', 'post', 'poem', /*'statistic',*/ 'quiz'),
 	'date_query' => array(
 		array(
 			'month' => date('m'),
@@ -77,7 +77,7 @@ foreach($oldPosts as $p) {
 
 		<div class="content__area--secondary">
 
-			<?php echo get_template_part('sidebar')?>
+			<?php get_template_part('sidebar')?>
 
 			<div class="news">
 
@@ -100,7 +100,8 @@ foreach($oldPosts as $p) {
 	</div>
 
 	<?php get_template_part('template-parts/common/news-archive') ?>
-
+	<?php get_template_part('template-parts/sections/special-day') ?>
+	
 	<section class="section section--posts">
 		<div class="section__pane">
 			<header class="section__header">
@@ -118,10 +119,13 @@ foreach($oldPosts as $p) {
 							<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
 								<li class="list-item">
 
-									<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-									<span class="post-meta"><?= $subtitle ?></span>
-									<?php endif ?>
-
+									<span class="post-meta">
+										<span class="post-date"><?php echo the_time(get_option('date_format'));?></span> 
+										<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
+											<?= $subtitle ?>
+										<?php endif ?>
+									</span>
+									
 									<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
 										<span class="news-title"><?php the_title() ?></span>
 									</a>
@@ -142,9 +146,12 @@ foreach($oldPosts as $p) {
 							<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
 								<li class="list-item">
 
-									<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
-									<span class="post-meta"><?= $subtitle ?></span>
-									<?php endif ?>
+									<span class="post-meta">
+										<span class="post-date"><?php echo the_time(get_option('date_format'));?></span> 
+										<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
+											<?= $subtitle ?>
+										<?php endif ?>
+									</span>
 
 									<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
 										<span class="news-title"><?php the_title() ?></span>
@@ -166,11 +173,12 @@ foreach($oldPosts as $p) {
 							<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
 								<li class="list-item">
 
-									<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
 									<span class="post-meta">
-										<?= $subtitle ?>
+										<span class="post-date"><?php echo the_time(get_option('date_format'));?></span> 
+										<?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
+											<?= $subtitle ?>
+										<?php endif ?>
 									</span>
-									<?php endif ?>
 
 									<a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
 										<span class="news-title"><?php the_title() ?></span>
@@ -209,45 +217,8 @@ foreach($oldPosts as $p) {
 	</div>
 	-->
 
-
 	<?php get_template_part('template-parts/sections/promis') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
-				
-
-	<?php 
-		$query = new WP_Query(array(
-			'posts_per_page' => 1, 
-			'date_query' => array(
-				array(
-					'day' => 30, //date('d'),
-					'month' => 5 //date('m')
-				)
-			),
-			'category_name' => get_category_by_slug('feiertage')->cat_name
-		)); 	
-	?>
-	<?php if ( $query->have_posts() ) : ?>
-	<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
-	<div class="content__area">
-		<section class="section section--posts">
-			<header class="section__header">
-				<h3 class="section__title">Heute ist <strong><?php the_title() ?></strong></h3>
-				<span class="section__separator"></span>
-			</header>
-			<div class="section-content">
-				<?php the_content() ?>
-				<p>01.05. - Tag der Arbeit</p>
-				<p>12.05. - Muttertag</p>
-				<p>30.05. - Vatertag</p>
-				<p>1. Mai - Tag der Arbeit</p>
-				<p>03.10. - Tag der Deutschen Einheit</p>
-			</div>
-		</section>
-	</div>
-	<?php endwhile ?>
-	<?php endif ?>
-
-	
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
 
 
@@ -302,7 +273,6 @@ foreach($oldPosts as $p) {
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 
 	<?php showAD('superbanner'); ?>
-
 
 
 
@@ -362,7 +332,7 @@ foreach($oldPosts as $p) {
 	</section>
 
 
-
+	<!--
 	<section class="section section--statistics">
 		<div class="section__pane">
 			<header class="section__header">
@@ -387,6 +357,7 @@ foreach($oldPosts as $p) {
 
 		</div>
 	</section>
+	-->
 
 
 

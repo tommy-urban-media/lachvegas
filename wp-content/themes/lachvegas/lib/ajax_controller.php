@@ -11,7 +11,6 @@ use GDText\Color;
 
 require __DIR__ . '/classes/image.php';
 
-
 class AjaxController {
 
 

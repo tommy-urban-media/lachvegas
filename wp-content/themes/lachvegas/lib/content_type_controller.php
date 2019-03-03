@@ -134,34 +134,48 @@ class ContentTypeController {
     add_post_type_support( 'guide', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
-    /*
-    register_post_type('person',
+    register_post_type('job',
         array(
             'labels' => array(
-                'name' => __( 'Personen' ),
-                'singular_name' => __( 'Person' ),
-                'add_new' => __( 'Person eintragen' ),
-                'add_new_item' => __( 'neue Person anlegen' ),
-                'edit_item' => __( 'Person bearbeiten' ),
-                'new_item' => __( 'neue Person' ),
-                'view_item' => __( 'Person anschauen' ),
-                'search_items' => __( 'Person suchen' ),
-                'not_found' => __( 'Person nicht gefunden' ),
+                'name' => __( 'Stellenangebote' ),
+                'singular_name' => __( 'Stellenangebot' ),
+                'add_new' => __( 'Stellenangebot eintragen' ),
+                'add_new_item' => __( 'neue Stellenangebot anlegen' ),
+                'edit_item' => __( 'Stellenangebot bearbeiten' ),
+                'new_item' => __( 'neue Stellenangebot' ),
+                'view_item' => __( 'Stellenangebot anschauen' ),
+                'search_items' => __( 'Stellenangebot suchen' ),
+                'not_found' => __( 'Stellenangebot nicht gefunden' ),
                 'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
             ),
             'public' => true,
             'hierarchical' => false,
             'has_archive' => true,
             'capability_type' => 'post',
-            'taxonomies' => array('category', 'post_tag'),
+            'taxonomies' => array('post_tag'),
             'rewrite' => array(
-              'slug' => 'person'
+              'slug' => 'job'
             )
         )
     );
 
-    add_post_type_support( 'person', array('title', 'editor', 'custom-fields', 'thumbnail') );
-    */
+    add_post_type_support( 'job', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+    register_taxonomy(
+        'job_categories',
+        array(
+            'job'
+        ),
+        array(
+            'label' => __( 'Job Kategorien' ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array( 'slug' => 'job-kategorien' )
+        ) 
+    );
+
 
 
 
