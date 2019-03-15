@@ -155,7 +155,6 @@ class AjaxController {
     public function generateImageFromPostTitle() {
 
       $id = $_REQUEST['id'];
-
       $p = get_post($id);
 
       if ($p) {
@@ -188,7 +187,10 @@ class AjaxController {
         $image->generate();
 
         $path = $image->getPath();
+        $fullPath = $image->getFullPath();
         update_post_meta($p->ID, 'image_name', $path );
+
+        $image->savePostThumbnail($p->ID, $fullPath);
 
       }
 

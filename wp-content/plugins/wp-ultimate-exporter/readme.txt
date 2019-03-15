@@ -1,34 +1,36 @@
 ﻿=== WP Ultimate Exporter ===
 Contributors: smackcoders
 Donate link: https://www.paypal.me/smackcoders
-Tags: WordPress exporter, wp exporter, CSV, exporter, all export, export
+Tags: WordPress exporter, wp exporter, CSV, exporter, all export, export, csv export
 Requires at least: 4.4
-Tested up to: 5.0.1
+Tested up to: 5.0.3
 Requires PHP: 5.2.4 or above
-Stable tag: 1.4.2
-Version: 1.4.2
+Stable tag: 1.4.3
+Version: 1.4.3
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
 
-WP Ultimate Exporter is an export tool to export all your Post, Page and Custom Posts data as CSV.
+WP Ultimate Exporter is a WordPress export tool to download Post, Page and Custom Posts data as CSV.
 
 == Description ==
 
 WP Ultimate Exporter enables to export Post, Page and Custom Posts as CSV files. The various filter options are available to ease up the export process & to export only minimum precise data. The files are exported based on the filter settings opted by the user as per need. The filters enable to export the files imported by specific author, with specified delimiters and status in a specific period of time.
 
+The WP Ultimate Exporter is an add-on of [WP Ultimate CSV Importer](https://wordpress.org/plugins/wp-ultimate-csv-importer/)], so make sure you have it installed.
+
 Please show your support for WP Ultimate Exporter by giving it a [rating](https://wordpress.org/support/view/plugin-reviews/wp-ultimate-exporter?rate=5#postform) :)
 
 = Highlights =
 * Easy export in two simple steps.
-* Post, page and any custom post export available 
+* Post, Page and Custom Post CSV export 
 * Can export any custom fields along with post types
-* Export data with auto delimiters and forced quotes to avoid conflicts 
-* Export data for the specific period of time using date filter
-* Export data based on specific post status 
-* Export data by specific authors   
+* WordPress Export with auto delimiters and forced quotes to avoid conflicts 
+* WordPress Export data for the specific period of time using date filter
+* WordPress Export data based on specific post status 
+* WordPress Export data by specific authors   
 
-If you need an import tool, you can check on our [WP Ultimate CSV Importer](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html/?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
+If you need a WordPress import & export tool, you can check on our [WP Ultimate CSV Importer](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html/?utm_source=WpOrg&utm_medium=Readme&utm_campaign=ListingTraffic)
 
 = Procedure =
 
@@ -49,7 +51,7 @@ Step-2: Filtration <br />
 * Core Module - Post, Page, Custom Post, Category, Tags, Users, Customer Reviews.
 * eCommerce Products – WooCommerce, MarketPress, WP e-Commerce.
 * SEO field - All in One SEO and Yoast SEO.
-* Custom fields – ACF, CMB2, CustomPress, Custom Fields Suite, Types, Pods, CCTM.
+* Custom fields – Toolset Types, ACF, CMB2, CustomPress, Custom Fields Suite, Pods, CCTM.
 * Custom Post – Types, CMB2, CustomPress, Pods, CPT UI, CCTM.
 
 
@@ -59,7 +61,7 @@ Try the demo [WP Ultimate CSV Importer PRO](https://demo.smackcoders.com/wordpre
 
 For technical support and feature request, visit <a href="https://www.smackcoders.com/support.html?utm_source=wordpress&utm_medium=readme&utm_campaign=free_exporter"> Smackcoders support </a>.
 
-Read the blog to know about our [latest WordPress add-on](https://www.smackcoders.com/blog/category/wordpress-products?utm_source=wordpress&utm_medium=readme&utm_campaign=free_exporter) updates.
+Read the blog to know about our [latest WordPress add-on](https://www.smackcoders.com/blog.html?utm_source=wordpress&utm_medium=readme&utm_campaign=free_exporter) updates.
 
 == Installation ==
 
@@ -84,10 +86,14 @@ Yes, you can export all Custom Post listed in the drop down.
 No, there is no limitation on the records exported. 
 
 == Changelog ==
-=1.4.2=
+=1.4.3 =
+* Added: Compatibility for WordPress 5.0.3
+* Fixed: Permission issue with the file export.
+
+= 1.4.2 =
 * Added: WP CSRF Protection
 
-=1.4.1=
+= 1.4.1 =
 * Added: Compatibility for WordPress 5.0
 * Fixed: Tags Export
 
@@ -109,6 +115,9 @@ No, there is no limitation on the records exported.
 * Initial release version. Tested and found to work well without any issues.
 
 == Upgrade Notice ==
+= 1.4.3 =
+* Upgrade now for permission issue fix and compatibility for WordPress 5.0.3
+
 = 1.4.2 =
 * Important update for security fixes.
 

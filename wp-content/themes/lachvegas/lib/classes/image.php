@@ -20,6 +20,7 @@ class Image {
   private $sizeFactor;
 
   private $path;
+  private $full_path;
 
   public function __construct( $options = [] ) {
     if ($options) {
@@ -112,6 +113,7 @@ class Image {
     $this->path = $this->slug . "_640_640.png";
     $this->path2 = $this->slug . "_640_640_mick.png";
     
+    
     $t = imagepng($imageResized, $dir . $this->path, 9, PNG_ALL_FILTERS); 
 
     if ($this->postImage) {
@@ -148,13 +150,58 @@ class Image {
       imagedestroy($c_image);
     }
 
+
+    // copy image to upload folder
+    copy($dir . $this->path, ABSPATH . 'wp-content/uploads/' . $this->path);
+    $this->full_path = ABSPATH . 'wp-content/uploads/' . $this->path;
+
     imagedestroy( $canvas ); 
 
   }
 
 
+  public function savePostThumbnail($postID, $path) {
+    // $filename should be the path to a file in the upload directory.
+    $filename = $path;
+
+    // The ID of the post this attachment is for.
+    $parent_post_id = $postID;
+
+    // Check the type of file. We'll use this as the 'post_mime_type'.
+    $filetype = wp_check_filetype( basename( $filename ), null );
+
+    // Get the path to the upload directory.
+    $wp_upload_dir = wp_upload_dir();
+
+    // Prepare an array of post data for the attachment.
+    $attachment = array(
+      'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ), 
+      'post_mime_type' => $filetype['type'],
+      'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+      'post_content'   => '',
+      'post_status'    => 'inherit'
+    );
+
+    // Insert the attachment.
+    $attach_id = wp_insert_attachment( $attachment, $filename, $parent_post_id );
+
+    // Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+
+    // Generate the metadata for the attachment, and update the database record.
+    $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+    wp_update_attachment_metadata( $attach_id, $attach_data );
+
+    set_post_thumbnail( $parent_post_id, $attach_id );
+  }
+
+
   public function getPath() {
     return $this->path;
+  }
+
+  public function getFullPath() {
+    return $this->full_path;
   }
 
 }

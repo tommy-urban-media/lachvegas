@@ -33,6 +33,8 @@ $jobCategories = get_terms(array(
 	<div class="column small-3 medium-3 large-3">
 		
 		<div class="jobs-filters">
+
+			<!--
 			<div class="panel">
 				<h3 class="panel-header">Anstellungsart</h3>
 				<div class="panel-content">
@@ -50,6 +52,7 @@ $jobCategories = get_terms(array(
 					</ul>
 				</div>
 			</div>
+			-->
 
 			<div class="panel">
 				<h3 class="panel-header">Kategorien</h3>

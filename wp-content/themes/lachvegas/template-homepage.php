@@ -17,7 +17,7 @@ $args = array(
 			'year' => array(2017, 2018, 2019, 2020)
 		)
 	),
-	'post_type' => array('guide', 'news', 'post', 'poem', /*'statistic',*/ 'quiz'),
+	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', /*'statistic',*/ 'quiz'),
 	//'category__not_in' => array(64) // Produkte
 );
 
@@ -77,12 +77,17 @@ foreach($oldPosts as $p) {
 
 		<div class="content__area--secondary">
 
+			<!--
+			<div class="sayings">
+				<img width="300" height="300" src="http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-300x300.png" class="attachment-medium size-medium wp-post-image" alt="" srcset="http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-300x300.png 300w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-150x150.png 150w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-600x600.png 600w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640.png 640w" sizes="(max-width: 300px) 100vw, 300px">
+			</div>
+			-->
+
 			<?php get_template_part('sidebar')?>
 
+			<!--
 			<div class="news">
-
 				<h3>Aktuelle Kurzmeldungen</h3>
-				
 				<?php $queryShortNews = new WP_Query( array('post_type' => 'news', 'posts_per_page' => 10, 'category_name' => 'kurzmeldungen') ); ?>
 				<?php if ( $queryShortNews->have_posts() ) : ?>
 					<ul class="list list--shortnews">
@@ -94,8 +99,9 @@ foreach($oldPosts as $p) {
 					</ul>
 					<?php wp_reset_postdata(); ?>
 				<?php endif ?>	
-
 			</div>
+			-->
+
 		</div>
 	</div>
 
@@ -275,7 +281,7 @@ foreach($oldPosts as $p) {
 	<?php showAD('superbanner'); ?>
 
 
-
+<?php /* ?>
 	<section class="section section--sprueche">
 		<div class="section__pane">
 			<header class="section__header">
@@ -330,7 +336,7 @@ foreach($oldPosts as $p) {
 
 		</div>
 	</section>
-
+<?php */ ?>
 
 	<!--
 	<section class="section section--statistics">

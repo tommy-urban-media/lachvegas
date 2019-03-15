@@ -185,7 +185,7 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
 						<?php endif ?>
 					</td>
 					<td width="128px">
-						<?php if ($image = get_post_meta($post->ID, 'image_name', true)): ?>
+						<?php if (has_post_thumbnail() && $image = get_post_meta($post->ID, 'image_name', true)): ?>
 							<img src="<?= get_bloginfo('template_url')?>/app/generated_images/<?= str_replace('.png', '_mick.png', $image) ?>" width="128" height="128" style="width: 128px; height: 128px; display: block; border: 1px solid #fff; margin: 0 auto;" />
 						<?php else: ?>
 							---

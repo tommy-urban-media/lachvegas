@@ -66,7 +66,6 @@ if ($tag) {
 							| <?php echo the_date('d. M, Y')?>
 							</span>
 
-
 							<div class="article-stats">
 
 								<!--
@@ -94,11 +93,31 @@ if ($tag) {
 							<?php if ($postSubtitle): ?>
 								<span class="post-subtitle"><?= $postSubtitle ?></span>
 							<?php elseif ($postTag): ?>
-								<a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> 
+								<!-- <a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> -->
 							<?php endif ?>
 						</span>
 						<?php endif ?>
 
+						<?php if (has_post_thumbnail()):?>
+							<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
+							<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
+							<figure class="post-image">
+								<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
+									<?php the_post_thumbnail('article_thumbnail')?>
+								</a>
+								<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
+									<figcaption class="caption">
+										<?php echo $caption ?>
+									</figcaption>
+								<?php endif ?>
+							</figure>
+						<?php endif;?>
+
+					</header>
+
+
+					<div class="article-content entry-content">
+						
 						<h1 class="article-title">
 							<span class="article-title-headline"><?php the_title()?></span>
 						</h1>
@@ -108,37 +127,6 @@ if ($tag) {
 								<p><?php echo $post->post_excerpt ?></p>
 							</div>
 						<?php endif;?>
-
-
-
-						<?php if (has_post_thumbnail()):?>
-
-							<?php if ($post->post_type === 'saying'):?>
-									<img src="<?= get_bloginfo('template_url')?>/app/generated_images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640_mick.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
-							<?php else: ?>
-
-								<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
-								<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
-								<figure class="post-image">
-									<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
-										<?php the_post_thumbnail('article_thumbnail')?>
-									</a>
-									<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
-										<figcaption class="caption">
-											<?php echo $caption ?>
-										</figcaption>
-									<?php endif ?>
-								</figure>
-							<?php endif ?>
-						<?php endif;?>
-
-						
-
-
-					</header>
-
-
-					<div class="article-content entry-content">
 
 						<?php the_content()?>
 

@@ -20,23 +20,19 @@ $args = array(
 
 ?>
 
-
 <div class="content">
 
 	<section class="section">
 	<div class="section__area">
 		<div class="section__area__full">
+			<h1 class="page-title"><?php _e('Sprüche')?></h1>
 
-		<h1><?php _e('Sprüche')?></h1>
-
-		<?php $queryNews = new WP_Query($args)?>
-
+			<?php $queryNews = new WP_Query($args)?>
 			<?php if ($queryNews->have_posts()): ?>
 			
-				<ul class="masonry">
+				<div class="masonry">
 					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
-						<li class="masonry__item">
-
+						<article class="masonry__item">
 							<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_large');?>
 							<a class="quote-box" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
 								<figure class="post-image" style="width:<?= $bgImage[1] ?>px; height:<?= $bgImage[2] ?>px;">
@@ -48,10 +44,9 @@ $args = array(
 									<span class="post-title"><?php the_content() ?></span>
 								</figure>
 							</a>
-
-						</li>
+						</article>
 					<?php endwhile; ?>
-				</ul>
+				</div>
 
 				<?php previous_posts_link('Zurück', $queryNews->max_num_pages); ?>
 				<?php next_posts_link('Weiter', $queryNews->max_num_pages); ?>

@@ -1,17 +1,3 @@
-<?php
-/**
- * The Header for the theme.
- */
-
-global $theme_settings;
-global $theme_custom;
-global $theme_social_media;
-
-$theme_settings 		= get_option("theme_settings_page");
-$theme_custom 			= get_option("theme_custom_page");
-$theme_social_media 	= get_option("theme_social_media_page");
-
-?>
 <!DOCTYPE html>
 
 <!--[if IE 6]>
@@ -35,42 +21,31 @@ $theme_social_media 	= get_option("theme_social_media_page");
 <title>
 <?php
 
-	global $page, $paged;
+	// global $page, $paged;
 
 	// Add the blog description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
+	//$site_description = get_bloginfo( 'description', 'display' );
 
 	// bloginfo( 'name' );
 
-	if ( $site_description && ( is_home() || is_front_page() ) )
-		echo ' - ' . $site_description;
+	//if ( $site_description && ( is_home() || is_front_page() ) )
+		//echo ' - ' . $site_description;
 
 
 	// Add a page number if necessary:
-	if ( $paged >= 2 || $page >= 2 )
-		echo sprintf( __( 'Seite %s', 'theme' ), max( $paged, $page ) ) . ' - ';
+	//if ( $paged >= 2 || $page >= 2 )
+		//echo sprintf( __( 'Seite %s', 'theme' ), max( $paged, $page ) ) . ' - ';
 
-	wp_title( '&raquo;', true, 'right' );
-
-	?>
+	wp_title('');
+?>
 </title>
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-
-<!-- <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" /> -->
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/app/public/css/app.css" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <link rel="shortcut icon" type="image/png" href="<?php bloginfo('template_url'); ?>/app/images/eyes.png" />
 
 <style>@import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,500,600,700,800,900|Indie+Flower');</style>
-
-
-<!--
-<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/fancybox/fancybox-1.3.4.css" />
-<link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100,100italic,700,500" rel="stylesheet" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Vollkorn:400,700' rel='stylesheet' type='text/css'>
--->
-
 
 <?php
 
@@ -124,6 +99,7 @@ $theme_social_media 	= get_option("theme_social_media_page");
   gtag('config', 'UA-23558535-12');
 </script>
 
+<?php /* ?>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({
@@ -131,6 +107,7 @@ $theme_social_media 	= get_option("theme_social_media_page");
     enable_page_level_ads: true
   });
 </script>
+<?php */ ?>
 
 </head>
 
@@ -157,7 +134,7 @@ $theme_social_media 	= get_option("theme_social_media_page");
 						<img src="<?= get_bloginfo('template_url')?>/app/images/eyes.svg" style="width: 36px;" width="36px" />
 						<span class="page-name-num">Lach</span><span class="page-name-txt">Vegas</span>
 					</span>
-					<span class="page-slogan"><?php echo get_bloginfo('description') ?></span>
+					<span class="page-slogan"><?php // echo get_bloginfo('description') ?></span>
 				</a>
 			</p>
 

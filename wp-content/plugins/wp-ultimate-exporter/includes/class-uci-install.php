@@ -78,7 +78,7 @@ class SmUCIExpInstall {
 			array(
 				'base'          => SM_UCIEXP_FILE_MANAGING_DIR,
 				'file'          => '.htaccess',
-				'content'       => 'deny from all'
+				'content'       => ''
 			),
 			array(
 				'base'          => SM_UCIEXP_FILE_MANAGING_DIR,
@@ -98,7 +98,7 @@ class SmUCIExpInstall {
 			array(
 				'base'          => SM_UCIEXP_EXPORT_DIR,
 				'file'          => '.htaccess',
-				'content'       => 'deny from all'
+				'content'       => ''
 			),
 			array(
 				'base'          => SM_UCIEXP_EXPORT_DIR,

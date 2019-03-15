@@ -129,12 +129,14 @@
 <button class="modal-trigger" data-modal="modal-1">Modal Trigger</button>
 <?php */ ?>
 
+<!--
 <script
     type="text/javascript"
     async defer
     src="//assets.pinterest.com/js/pinit.js"
 		data-pin-do="buttonBookmark" data-pin-hover="true"
 ></script>
+-->
 
 
 </body>

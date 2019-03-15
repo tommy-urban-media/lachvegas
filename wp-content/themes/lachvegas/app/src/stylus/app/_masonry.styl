@@ -1,15 +1,31 @@
 
 .masonry
-	margin: 0 0 40px 0
-	display: flex
-	flex-wrap: wrap
-	justify-content: center
-	//column-count: 1
-	//column-gap: 30px
-	//column-fill: auto
+	display: block
+
+	@media screen and (min-width: 480px)
+		column-count: 2
+		column-gap: 30px
+		column-fill: initial
+
+	@media screen and (min-width: 640px)
+		column-count: 3
+
+	@media screen and (min-width: 992px)
+		column-count: 4
+
 
 	&__item
-		margin-bottom: 50px
-		width: auto
+		margin-bottom: 30px
+		display: inline-block
+		vertical-align: top 
+		background-color: #fff
+		//border: 1px solid #f0f0f0
+		box-shadow: 0 0 1px 1px alpha(#000, 0.1)
+
+		span
+			display: block
+			padding: 10px 10px
+			color: #4a4a4a
+			font-weight: bold
 
 	
