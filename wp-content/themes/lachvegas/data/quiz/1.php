@@ -35,7 +35,7 @@ $quiz_data = [
     [
       'id' => 2,
       'question_text' => 'Es gibt Frauen die allein durch Nippel-Stimulation der Brust zum Orgasmus kommen können',
-      'answer_text' => 'ja, ca. 1% der Frauen können dadurch zum Orgasmus kommen',
+      'answer_text' => 'Ca. 1% der Frauen können dadurch zum Orgasmus kommen',
       'answers' => [
         [
           'id' => 1,

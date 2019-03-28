@@ -3,8 +3,8 @@
     'posts_per_page' => 1, 
     'date_query' => array(
       array(
-        'day' => date('d'),
-        'month' => date('m')
+        'day' => 16,// date('d'),
+        'month' => 2 //date('m')
       )
     ),
     'category_name' => get_category_by_slug('feiertage')->cat_name
@@ -75,7 +75,7 @@
             <div class="quote">Frauen sind gefährlicher als das FBI. Sie kriegen alles raus.</div>
           </div>
           <div class="holiday-grid-item">
-            <div class="quote">Eine Mutter braucht 9 Monate um ein Baby zu Welt zu bringen. Eine Ehefrau braucht 9 Minuten um aus ihrem Mann einen Narren zu machen</div>
+            <div class="quote">Eine Mutter braucht 9 Monate um ein Baby zu Welt zu bringen. Eine Ehefrau braucht 9 Sekunden um aus ihrem Mann einen Narren zu machen</div>
           </div>
           <!--
           <div class="holiday-grid-item">
@@ -99,9 +99,56 @@
       </article>
 
 
+
+      <article class="holiday">
+        <div class="holiday-grid">
+          <div class="holiday-grid-item">
+            <figure class="image-wrapper holiday-image">
+              <img src="<?= get_bloginfo('template_url')?>/app/images/feiertage/internationaler-frauentag.jpg" alt="Internationaler Frauentag" />
+            </figure>
+          </div>
+          <div class="holiday-grid-item">
+            <div class="holiday-content">
+              <span class="holiday-date">08.03.2019</span>
+              <span class="holiday-subtitle">Tag zu Ehren des Glücks</span>
+              <h3 class="holiday-title">Welttag des Glücks</h3>
+              <div class="holiday-content-text">
+                <p>Heute ist der Tag zu Ehren des Glücks.</p>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="holiday-grid">
+          <div class="holiday-grid-item">
+            <div class="quote">Glück hat man oder man hat es nicht</div>
+          </div>
+          <div class="holiday-grid-item">
+            <div class="quote">en zu machen</div>
+          </div>
+          <div class="holiday-grid-item">
+            <div class="quote">Männer tun was sie tun müssen und Frauen sagen ihnen was das ist.</div>
+          </div>
+        </div>
+
+        <div class="holiday-grid">
+          <div class="holiday-grid-item holiday-grid-item--center">
+            <a class="button" href="<?= home_url('/') ?>frauen">mehr erfahren</a>
+          </div>
+        </div>
+
+      </article>
+
+
     </div>
   </div>
 </section>
 
 <?php endwhile ?>
 <?php endif ?>
+
+
+Internationaler Tag des totalen Schwachsinns
+Tag der Weisheit
+Tag der Schöpfung

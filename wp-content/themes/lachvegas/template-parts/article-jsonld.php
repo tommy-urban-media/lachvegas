@@ -15,14 +15,14 @@
   "mainEntityOfPage" : {
     "@type" : "WebPage",
     "@id" : "https://google.com/article",
-    "url" : "https://www.welt.de/wirtschaft/article160704675/Das-deutsche-Job-Maerchen-erreicht-historische-Ausmasse.html"
+    "url" : "<?php echo get_the_permalink()?>"
   },
   "headline" : "<?php the_title(); ?>",
   "datePublished" : "<?php echo get_the_date('Y-m-d')?>",
   "dateModified" : "<?php echo get_the_modified_date('Y-m-d')?>",
   "publisher" : {
     "@type" : "Organization",
-    "name" : "Tommy Krüger",
+    "name" : "Lachvegas",
     "logo" : {
       "@type" : "ImageObject",
       "url" : "<?php echo get_bloginfo('template_url') ?>/images/layout/logo.png",

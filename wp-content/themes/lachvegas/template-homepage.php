@@ -17,7 +17,7 @@ $args = array(
 			'year' => array(2017, 2018, 2019, 2020)
 		)
 	),
-	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', /*'statistic',*/ 'quiz'),
+	'post_type' => array('guide', /*'news',*/ 'post', 'poem', /*'saying', 'statistic',*/ 'quiz'),
 	//'category__not_in' => array(64) // Produkte
 );
 
@@ -105,9 +105,13 @@ foreach($oldPosts as $p) {
 		</div>
 	</div>
 
-	<?php get_template_part('template-parts/common/news-archive') ?>
-	<?php get_template_part('template-parts/sections/special-day') ?>
+	<?php // get_template_part('template-parts/common/news-archive') ?>
+	<?php // get_template_part('template-parts/sections/special-day') ?>
+
+	<?php get_template_part('template-parts/sections/sayings') ?>
 	
+
+	<?php /* ?>
 	<section class="section section--posts">
 		<div class="section__pane">
 			<header class="section__header">
@@ -202,6 +206,7 @@ foreach($oldPosts as $p) {
 
 		</div>
 	</section>
+	<?php */ ?>
 
 
 
@@ -266,11 +271,13 @@ foreach($oldPosts as $p) {
 	</div>
 	-->
 
+	<?php get_template_part('template-parts/category-sections/quiz') ?>
+
 	<?php showAD('superbanner'); ?>
 
-	<?php get_template_part('template-parts/category-sections/quiz') ?>
 	<?php get_template_part('template-parts/category-sections/politik') ?>
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
+	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
 
 	<?php showAD('superbanner'); ?>
 
@@ -279,6 +286,10 @@ foreach($oldPosts as $p) {
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 
 	<?php showAD('superbanner'); ?>
+
+	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
+
+	
 
 
 <?php /* ?>

@@ -12,8 +12,84 @@ if ($tag) {
 
 ?>
 
-<?php get_template_part('template-parts/common/breadcrumb') ?>
 
+
+
+<div class="article-wrapper">
+
+	<?php get_template_part('template-parts/common/breadcrumb') ?>
+
+	<article class="article" id="sitecontent" data-id="<?= $post->ID ?>">
+
+		<?php get_template_part('template-parts/article-jsonld'); ?>		
+		<?php get_template_part('template-parts/article-socials') ?>
+
+		<section class="article-header">
+			<h1 class="article-title">
+				<span class="article-title-headline"><?php the_title()?></span>
+			</h1>
+
+			<?php if (has_post_thumbnail()):?>
+				<?php $post_thumbnail_id = get_post_thumbnail_id( $post->ID ); ?>
+				<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
+				<figure class="post-image">
+					<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
+						<?php the_post_thumbnail('full')?>
+						<?php //the_post_thumbnail('article_thumbnail')?>
+					</a>
+					<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
+						<figcaption class="caption">
+							<?php echo $caption ?>
+						</figcaption>
+					<?php endif ?>
+				</figure>
+			<?php endif;?>
+
+		</section>
+
+		<?php if ( $post->post_excerpt ):?>
+			<section class="article-excerpt">
+				<p><?php echo $post->post_excerpt ?></p>
+			</section>
+		<?php endif;?>
+
+		<section class="article-body article-content">
+			<?php the_content() ?>
+		</section>
+		
+		<?php if (has_tag()): ?>
+			<div class="tags">
+				<span class="tags__title"><?= __('Themen') ?>:</span>
+				<?= get_the_tag_list('<ul class="list list--tags"><li class="list-item">', '</li><li class="list-item">', '</li></ul>')?>
+			</div>
+		<?php endif ?>
+
+
+		<footer class="article-footer">
+			<?php get_template_part('template-parts/article-socials') ?>
+			<?php //get_template_part('template-parts/article/top-article'); ?>
+			<?php get_template_part('template-parts/article/related-posts'); ?>
+			<?php // echo get_template_part('template-parts/article', 'vote'); ?>
+			<?php // echo get_template_part('template-parts/article', 'author'); ?>
+		</footer>
+
+	</article>
+
+	<aside class="article-footer-components">
+
+		<div class="component"><?php get_template_part('template-parts/sidebar/news'); ?></div>
+		<!-- <div class="component"><?php showAD('portrait'); ?></div> -->
+		<div class="component"><?php get_template_part('template-parts/common/jobs'); ?></div>
+
+	</aside>
+
+</div>
+
+
+
+
+
+<?php /* ?>
 <div class="content">
 
 	<?php while ( have_posts() ) : the_post(); setup_postdata($post); ?>
@@ -37,7 +113,7 @@ if ($tag) {
 
 		<div class="content__area">
 			<div class="content__area--primary">
-				<article class="article" data-id="<?php echo $post->ID ?>">
+				<article class="article" id="sitecontent" role="main" data-id="<?php echo $post->ID ?>">
 
 					<?php //echo get_template_part('template-parts/article', 'jsonld'); ?>
 					
@@ -103,7 +179,8 @@ if ($tag) {
 							<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
 							<figure class="post-image">
 								<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
-									<?php the_post_thumbnail('article_thumbnail')?>
+									<?php the_post_thumbnail('full')?>
+									<?php //the_post_thumbnail('article_thumbnail')?>
 								</a>
 								<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
 									<figcaption class="caption">
@@ -136,7 +213,7 @@ if ($tag) {
 					<footer class="article-footer">
 
 						<?php get_template_part('template-parts/article-socials') ?>
-						<?php // echo get_template_part('template-parts/article', 'related-posts'); ?>
+						<?php get_template_part('template-parts/article/related-posts'); ?>
 						<?php // echo get_template_part('template-parts/article', 'vote'); ?>
 						<?php // echo get_template_part('template-parts/article', 'author'); ?>
 
@@ -157,7 +234,7 @@ if ($tag) {
 				</article>
 			</div>
 			<div class="content__area--secondary">
-				<?php echo get_template_part('sidebar')?>
+				<?php //echo get_template_part('sidebar')?>
 			</div>
 		</div>
 
@@ -186,7 +263,7 @@ if ($tag) {
 	
 
 </div>
-
+<?php */ ?>
 
 <?php 
 if ($post->post_type === 'news'):

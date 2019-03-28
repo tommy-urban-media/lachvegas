@@ -9,7 +9,8 @@
 use GDText\Box;
 use GDText\Color;
 
-require __DIR__ . '/classes/image.php';
+include_once __DIR__ . '/classes/image.php';
+include_once __DIR__ . '/models/saying.php';
 
 class AjaxController {
 
@@ -33,6 +34,9 @@ class AjaxController {
 
       add_action( 'wp_ajax_nopriv_generate_image_from_post_title', array( &$this, 'generateImageFromPostTitle') );
       add_action( 'wp_ajax_generate_image_from_post_title', array( &$this, 'generateImageFromPostTitle') );
+
+      add_action( 'wp_ajax_nopriv_save_post', array( &$this, 'savePost') );
+      add_action( 'wp_ajax_save_post', array( &$this, 'savePost') );
 
     }
 
@@ -196,7 +200,6 @@ class AjaxController {
 
       $this->response['message'] = 'Done';
       $this->response['status'] = true;
-
       $this->respond();
 
     }
@@ -217,6 +220,42 @@ class AjaxController {
       }
   
       return realpath(str_replace(wp_basename($file), $info['file'], $file));
+    }
+
+
+    public function savePost() {
+        $id = $_REQUEST['id'];
+        $type = $_REQUEST['type'];
+        $title = $_REQUEST['title'];
+        $description = $_REQUEST['title'];
+        $categories = explode('.', $_REQUEST['categories']);
+        $tags = explode('.', $_REQUEST['tags']);
+        $image = $_REQUEST['image'];
+
+        // add default category for this post
+        $categories[] = 'Sprüche';
+        
+        //$p = get_post($id);
+
+        $data = [
+            'id' => $id,
+            'date' => date('Y-m-d H:i:s'),
+            'title' => $title,
+            'description' => $description,
+            'category' => $categories,
+            'tags' => $tags,
+            'image' => $image
+        ];
+
+        switch($type) {
+            case 'saying':
+                $saying = new Saying($data);
+                $saying->save();
+                $saying->generateImage();
+                break;
+        }
+
+        exit;
     }
   
 

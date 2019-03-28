@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Add Post
+ * Template Name: Save New Post
  */
 get_header(); 
 
@@ -67,7 +67,7 @@ $categories = get_categories(array(
                         </select>
                     </div>
                     <div class="field-group">
-                        <label class="label" for="relation_people">Tags</label>
+                        <label class="label" for="relation_people">People</label>
                         <select class="select" multiple="multiple" name="relation_people" id="relation_people">
                             <?php foreach($people as $person): ?>
                                 <option value="<?= $person->term_id ?>"><?= $person->name ?></option>
@@ -78,7 +78,13 @@ $categories = get_categories(array(
 
                 <div class="form-group">
                     <input type="text" name="post_title" placeholder="Title" />
+                </div>
+                
+                <div class="form-group">
                     <input type="text" name="post_date" placeholder="Date" />
+                </div>
+
+                <div class="form-group">
                     <textarea name="post_content" placeholder="Content"></textarea>
                 </div>
 

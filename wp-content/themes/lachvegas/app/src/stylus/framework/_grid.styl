@@ -1,30 +1,21 @@
 $options = {
-
-	width: 1200,
+	width: 1000,
 	grid: 12,
-
 	size: {
 		xs: 480px,
 		sm: 768px,
 		md: 992px,
 		lg: 1296px
 	}
-
 }
 
 
 .container
 	width: 100%
 	margin: 0 auto
-	clear: both
-	// overflow: hidden
-
-	&:after
-		content: ''
-		height: 0
-		clear: both
-		float: none
-		display: block
+	display: flex
+	justify-content: space-between
+	align-content: center
 
 	&.large
 		max-width: $options.size.lg
@@ -49,18 +40,10 @@ $options = {
 
 .column
 	display: block
-	float: left
-
-	&.column-with-margin
-		margin: 0 24px 24px 0
-
-	&:last-child
-		margin-right: 0
-
 
 
 // define columns for very small devices
-@media screen and (min-width: 0px) and (max-width: $options.size.sm)
+@media screen and (min-width: 0px)
 
 	for num in (1..$options.grid)
 		.extrasmall-{num}
@@ -69,7 +52,7 @@ $options = {
 
 
 // define columns for small devices
-@media screen and (min-width: $options.size.sm) and (max-width: $options.size.md)
+@media screen and (min-width: $options.size.sm)
 
 	for num in (1..$options.grid)
 		.small-{num}
@@ -78,7 +61,7 @@ $options = {
 
 
 // define columns for medium devices
-@media screen and (min-width: $options.size.md) and (max-width: $options.size.lg)
+@media screen and (min-width: $options.size.md)
 
 	for num in (1..$options.grid)
 		.medium-{num}

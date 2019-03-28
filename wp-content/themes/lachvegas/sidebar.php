@@ -4,6 +4,10 @@
  *
  */
 
+
+echo get_template_part('template-parts/sidebar/news');
+
+
 $rand = rand(0,1);
 
 if ($rand) {
@@ -20,7 +24,7 @@ if ($rand) {
 
 ?>
 
-<?php //echo get_template_part('template-parts/sidebar', 'posts'); ?>
+
 
 <?php //echo get_template_part('template-parts/sidebar', 'tags'); ?>
 <?php // echo get_template_part('template-parts/sidebar', 'about'); ?>

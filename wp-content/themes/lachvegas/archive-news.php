@@ -44,14 +44,16 @@
 				<?php wp_reset_postdata();?>
 
 			<?php endif; ?>
+
 		</div>
 		<div class="content__area--secondary">
-			<?php echo get_template_part('sidebar')?>
+			<?php // echo get_template_part('sidebar')?>
 		</div>
 	</div>
 
 	<?php endif ?>
 
+	<?php get_template_part('template-parts/common/news-archive') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/promis') ?>
 

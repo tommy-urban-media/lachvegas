@@ -159,7 +159,7 @@ class ContentTypeController {
         )
     );
 
-    add_post_type_support( 'job', array('title', 'editor', 'custom-fields', 'thumbnail') );
+    add_post_type_support('job', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
     register_taxonomy(
@@ -168,11 +168,39 @@ class ContentTypeController {
             'job'
         ),
         array(
-            'label' => __( 'Job Kategorien' ),
+            'label' => __('Job Kategorien'),
             'show_ui' => true,
             'show_admin_column' => true,
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'job-kategorien' )
+            'rewrite' => array('slug' => 'job-kategorien')
+        ) 
+    );
+
+    register_taxonomy(
+        'job_places',
+        array(
+            'job'
+        ),
+        array(
+            'label' => __('Job Orte'),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'job-places')
+        ) 
+    );
+
+    register_taxonomy(
+        'job_features',
+        array(
+            'job'
+        ),
+        array(
+            'label' => __('Job Features'),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'job-features')
         ) 
     );
 

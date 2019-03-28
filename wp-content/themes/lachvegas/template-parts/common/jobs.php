@@ -48,37 +48,14 @@ usort($posts, 'fn');
 
 <div class="jobs">
   <h3 class="jobs-headline"><span style="font-weight: 300;">LV</span> Stellenmarkt</h3>
-  <p class="jobs-description">Aktuelle Stellenangebote für Verrückte, Bekloppte und die die es noch werden wollen</p>
+  <p class="jobs-description">Aktuelle Stellenangebote für Verrückte, Bekloppte und Alle die es noch werden wollen</p>
   <ul class="jobs-listing">
-
     <?php foreach ($posts as $post): ?>
     <li class="list-item">
       <?php get_template_part('template-parts/teasers/job') ?>
     </li>
     <?php endforeach ?>
     <?php wp_reset_query(); ?>
-
-    <!-- 
-    <div class="job"> 
-      <a href="#" class="job-link" target="_blank">
-        <h3 class="job-title">Gebetsbuchverteiler (m)</h3>
-        <div class="job-content">
-          <div class="job-description">Bei den Salafisten zum Verteilen des Koran auf dem Gehweg</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="job"> 
-      <a href="#" class="job-link" target="_blank">
-        <h3 class="job-title">Ausrüstungstechniker/-in Schwerpunkt Spannerausrüstung und Fernaufklärung</h3>
-        <div class="job-content">
-          <div class="job-company">farfield GmbH</div>
-          <div class="job-description"></div>
-        </div>
-      </a>
-    </div>
-    -->
-
   </ul>
-  <a href="<?= home_url('/') ?>stellenmarkt" class="button">Alle Job-Angebote</a>
+  <a href="<?= home_url('/') ?>stellenmarkt" class="button"><span>Zum Stellenmarkt</span><i class="icon fa fa-angle-double-right"></i></a>
 </div>

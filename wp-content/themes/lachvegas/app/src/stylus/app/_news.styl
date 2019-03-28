@@ -1,0 +1,53 @@
+
+$options = {
+	columns: 6,
+	rows: 4
+}
+
+.news
+	display: block
+	padding: 0 20px 20px 20px
+	border: 1px solid #f0f0f0
+
+.news-list
+	display: block
+
+	&__item
+		display: block
+		margin: 0 0 15px 0
+		padding: 0 0 15px 0
+
+		.post-date
+			display: inline-block
+			margin-right: 10px
+			color: #888
+			font-size: 11px
+
+			&.is-today
+				color: $colors.red
+
+
+		.post-meta
+			display: block
+			margin-bottom: 5px
+			
+		.post-tag-link
+			padding: 0 4px 0 0
+			color: #404040
+			font-size: 11px
+			border-right: 1px solid #f0f0f0
+
+			&:hover
+				color: $colors.red
+				text-decoration: underline
+
+			&:last-child
+				border: 0
+
+		.post-title
+			color: #404040
+			font-size: 14px
+			font-weight: 500
+
+			&:hover
+				color: $colors.red

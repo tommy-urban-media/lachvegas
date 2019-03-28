@@ -7,7 +7,7 @@ $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 $offset = ($paged - 1) * $count;
 
 $args = array(
-	'posts_per_page' => 50,
+	'posts_per_page' => 100,
 	'paged' => $paged,
 	'offset' => $offset,
 	'post_type' => array('saying'),

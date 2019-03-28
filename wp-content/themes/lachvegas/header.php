@@ -159,17 +159,20 @@
 
 	</header>
 
-	<main class="main" role="main">
+	<main class="main">
 
-		<p class="page-slogan">Die Website für Bekloppte, Wahnsinnige und alle die es noch werden wollen</p>
+		<div class="subheader">
+			<h1 class="page-slogan">Die Website für Bekloppte, Wahnsinnige und alle die es noch werden wollen</h1>
+			<?php get_template_part('template-parts/socials'); ?>
+		</div>
 
 		<div class="mainmenu-wrapper">
 			<nav class="mainmenu" role="navigation" data-component="Menu">
 				<span class="menu-icon"></span>
 				<?php wp_nav_menu( array('theme_location' => 'mainmenu') ); ?>
 			</nav>
-
-			<?php // get_template_part('template-parts/socials'); ?>
 		</div>
 
-		<?php get_template_part('template-parts/topics'); ?>
+		<div class="topicmenu-wrapper">
+			<?php get_template_part('template-parts/topics'); ?>
+		</div>
