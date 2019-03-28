@@ -4,9 +4,8 @@
  *
  */
 
-
-echo get_template_part('template-parts/sidebar/news');
-
+get_template_part('template-parts/sidebar/news');
+get_template_part('template-parts/sidebar/question-of-the-day');
 
 $rand = rand(0,1);
 

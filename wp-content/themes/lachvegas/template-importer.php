@@ -30,7 +30,7 @@ $datasets = [
 		'post_type' => 'saying',
 		'field_id' => 'saying_id',
 		'fields' => [
-			'ID', 'Img', 'Title', 'Categories', 'Imported', 'Action'
+			'ID', 'Img', 'Title', 'Categories', 'Tags', 'Action'
 		]
 	],
 	[
@@ -59,7 +59,7 @@ if (isset($_REQUEST['dataset'])) {
 		$csvReader = new CSVReader($path . $DATA->file);
 		$csvReader->readAll();
 
-		$DATA->entries = $csvReader->getData();
+		var_dump( $DATA->entries = $csvReader->getData() );
 
 		// read all previously imported posts and merge them with the csv data
 		$args = array(
@@ -83,32 +83,33 @@ if (isset($_REQUEST['dataset'])) {
 				$field_id = get_post_meta($id, $DATA->field_id, true);
 				//$import_hash = get_post_meta($id, 'import_hash', true);
 	
-				if (!empty($job_id) && $d->id == $field_id) {
+				if (!empty($field_id) && (int)$d->id == (int)$field_id) {
 					$imported = true;
 				}
 			} 
 	
-			$post_data = array(
-				'id' => $d->id,
-				//'date' => $d[1],
-				'title' => $d->title,
-				//'category' => $d->category
-			);
-	
 			if (isset($_REQUEST['import_all']) && !empty($_REQUEST['import_all'])) {
-				//if ($post_data['id'] <= 100) {
-					$job = new Job($post_data);
-					$job->save();
-				//}
+
+				// echo 'import all data from post type ' . $DATA->post_type;
+				if ((int)$d->id == 16) {
+					switch ($DATA->post_type) {
+						case 'saying':
+							//echo 'import saying';
+							//var_dump($d);
+							$saying = new Saying($d);
+							$saying->save();
+							break;
+					}
+				}
+
 			}
 	
 			if ($imported) {
-				$post_data['imported'] = true;
+				$d->imported = true;
 			} else {
-				$post_data['imported'] = false;
+				$d->imported = false;
 			}
-	
-			$entries[] = $post_data;
+
 		}
 	}
 
@@ -136,7 +137,7 @@ if (isset($_REQUEST['dataset'])) {
 				<br><br><br>
 
 				<form class="form" action="" method="post">
-					<input type="hidden" name="post_type" value="<?= $DATA->post_type ?>" />
+					<!-- <input type="hidden" name="post_type" value="<?= $DATA->post_type ?>" />-->
 					<input type="submit" name="import_all" value="Alle Importieren" />
 				</form>
 
@@ -149,26 +150,23 @@ if (isset($_REQUEST['dataset'])) {
 						<?php endforeach ?>
 					</tr>
 					<?php foreach($DATA->entries as $entry): ?>
+						<?php if (is_object($entry)): ?>
 						<tr>
 							<?php foreach($entry as $key => $value): ?>
-								<td><?= $value ?></td>
-								<?php /* ?>
-								<td><?= $entry->img ?></td>
-								<td><?= date('d.m.Y', strtotime($entry['date'])) ?></td>
-								<td><?= $entry->title ?></td>
-								<td><?= $entry->categories ?></td>
-								<td><?= $entry->imported ? 1 : 0 ?></td>
-								<?php */ ?>
+								<?php $bgClass = false; ?>
+								<?php if (isset($entry->imported) && $entry->imported === true): $bgClass = 'style="background-color: lightgreen;"'; endif ?>
+								<td <?= $bgClass ?>><?= $value ?></td>
 							<?php endforeach ?>
-							<td>
+							<td <?= $bgClass ?>>
 								<button type="button" class="button" data-post-type="<?= $DATA->post_type ?>" data-id="<?= $post->ID ?>"><?= ($entry->imported) ? 'Update' : 'Import' ?></button>
 							</td>
 						</tr>
+						<?php endif ?>
 					<?php endforeach ?>
 				</table>
 
 			<?php else: ?>
-				<p>Bitte wählen Sie einen Datensatz aus</p>
+				<p><br><br>KEINE Daten - Bitte wählen Sie einen Datensatz aus</p>
 			<?php endif ?>
 
 		</div>

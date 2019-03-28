@@ -46,7 +46,7 @@ usort($posts, 'fnn');
 
 
 
-<section class="news">
+<section class="news section-sidebar">
   <h3 class="news-headline">Schlagzeilen</h3>
   <ul class="news-list">
     <?php foreach ($posts as $post): ?>

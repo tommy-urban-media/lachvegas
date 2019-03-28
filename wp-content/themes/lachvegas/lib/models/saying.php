@@ -8,13 +8,19 @@ class Saying {
     protected $_data;
     protected $_post_type = 'saying';
 
+    protected $_scheme = [
+        'id' => 'ID',
+        'title' => 'post_title'
+    ];
+
     public function __construct($data = []) {
         $this->set('_data', $data);
+
+        if (!isset($this->_data->date)) {
+            $this->_data->date = date('Y-m-d');
+        }
     }
 
-    /**
-     * 
-     */
     public function set($property, $value) {
         if (isset($value))
             $this->{$property} = $value;
@@ -36,9 +42,9 @@ class Saying {
     public function save() {
 
         $arr = [
-            'post_date' => date('Y-m-d', strtotime($this->_data['date'])),
-            'post_title' => $this->_data['title'],
-            'post_content' => $this->_data['description'],
+            'post_date' => date('Y-m-d', strtotime($this->_data->date)),
+            'post_title' => $this->_data->title,
+            //'post_content' => $this->_data['description'],
             'post_type' => $this->_post_type,
             'post_status' => 'publish'
         ];
@@ -50,7 +56,7 @@ class Saying {
             'meta_query' => array(
                 array(
                     'key' => 'saying_id',
-                    'value' => $this->_data['id'],
+                    'value' => $this->_data->id,
                     'compare' => '=='
                     )
                 )
@@ -73,16 +79,17 @@ class Saying {
             }
         }
 
-        $this->saveRelation($this->_data['category']);
-        $this->saveField('saying_id', $this->_data['id']);
+        $this->saveRelation($this->_data->categories);
+        $this->saveRelation($this->_data->tags, 'post_tag');
+        $this->saveField('saying_id', $this->_data->id);
         //$this->saveField('job_company', $this->_data['company']);
 
         return $this->_ID;
     }
 
-    public function saveRelation($category) {
+    public function saveRelation($category, $tax = 'category') {
         if ($this->_ID) {
-            wp_set_object_terms($this->_ID, $category, 'category' );
+            wp_set_object_terms($this->_ID, $category, $tax );
         }
     }
 
