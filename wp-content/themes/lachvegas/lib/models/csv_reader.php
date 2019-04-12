@@ -32,18 +32,17 @@ class CSVReader {
     }
 
     public function prepareData() {
-        
-        var_dump($this->_data[0]);
+
         $headers = $this->_data[0];
 
         unset($this->_data[0]);
 
         for ($i=1; $i<count($this->_data)-1; $i++) {
-            // $data = $this->splitLine($this->_data[$i]);
+			// $data = $this->splitLine($this->_data[$i]);
             $array = new stdClass();
 
-            for ($j=0; $j<count($data)-1; $j++) {
-                $array->{$headers[$j]} = $data[$j];
+            for ($j=0; $j<count($headers)-1; $j++) {
+                $array->{$headers[$j]} = $this->_data[$i][$j];
             }
 
             $this->_data[$i] = $array;

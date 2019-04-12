@@ -14,6 +14,11 @@ $data = [
         'guide', 
         'statistic'
       ), 
+      'orderby' => 'date',
+      'date_query' => array(
+        'relation' => 'OR',
+        'before' => date('Y-m-d H:i', time())
+      ),
       'category_name' => get_category_by_slug('kultur')->cat_name
     )
   ),

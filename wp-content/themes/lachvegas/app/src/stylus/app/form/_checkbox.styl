@@ -1,0 +1,63 @@
+.type-checkbox
+  margin: 0
+  padding: 0 0 5px 0
+  cursor: default
+
+  [type=radio]
+    position: absolute
+    left: -9999px
+
+  label
+    cursor: pointer
+    display: inline-block
+    padding: 0
+    left: 30px
+    max-width: calc(100% - 40px)
+    position: relative
+
+    &:before
+      width: 18px
+      height: 18px
+      content: ""
+      display: inline-block
+      cursor: pointer
+      position: absolute
+      border: 1px solid #c0c0c0
+      border-radius: 2px
+      background-color: #f9f9f9
+      transition: border 150ms ease-in-out
+      left: -30px 
+      top: 0
+      
+
+    &:after
+      width: 12px
+      height: 12px
+      content: ""
+      display: inline-block
+      z-index: 1
+      position: absolute
+      margin: -2px 0 0 -3px
+      cursor: pointer
+      border-radius: 50%
+      background-color: $colors.red
+      transform: scale(0, 0)
+      transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33)
+      left: -23px
+      top: 6px
+
+  input:focus + label
+    &:before
+      outline: none
+      outline-offset: -2px
+
+  input:checked + label
+    &:after
+      transform: scale(1, 1)
+
+  input:disabled + label
+    opacity: 0.65
+
+    &:before
+    &:after
+      cursor: not-allowed

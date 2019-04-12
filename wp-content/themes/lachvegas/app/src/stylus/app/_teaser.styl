@@ -1,6 +1,6 @@
 .teaser
 	display: flex
-	justify-content: space-between
+	justify-content: left
 
 	&__image
 		width: 240px
@@ -23,9 +23,46 @@
 			height: 100%
 			max-height: 150px
 
+	&__tags
+		margin: 0 0 10px 0
+		display: none
+
+	&__subtitle
+		display: block
+		margin: 0 0 5px 0
+		font-size: 14px
+		font-weight: 500
+
+	&__time
+		width: 25%
+		min-width: 25%
+		padding-right: 32px
+		display: block
+		text-align: right
+
+		.post-date
+			color: #909090
+			font-size: 16px
+			font-weight: 500
+
+			&.is-today
+				color: $colors.red
+
 	&__content
 		font-size: 14px
 
+		.post-title
+			font-size: 18px
+			font-weight: 700
+
 		.post-excerpt
 			line-height: 150%
+
+
+	&--small
+		
+		.teaser__content
+			.post-title
+				font-size: 12px
+				font-weight: normal
 	

@@ -11,7 +11,8 @@ $teaser = [
 	'subtitle' => get_post_meta($post->ID, 'subtitle', true),
 	'excerpt' => custom_excerpt(get_the_excerpt($post->ID), 24),
 	'tags' => get_the_tags(),
-	'is_today' => false
+	'is_today' => false,
+	'is_archive' => (get_the_date('Y', $post->ID) < date('Y')) ? true : false
 ];
 
 // the post entry is from today or not
@@ -123,8 +124,8 @@ $post_data = (object)$post_data;
 
 			<img src="<?= $post_data->externalImageUrl ?>" />
 
-			<?php if (isset($post_data->externalImagSource)): ?>
-			<figcaption class="caption"><?= $post_data->externalImagSource ?></figcaption>
+			<?php if (isset($post_data->externalImageSource)): ?>
+			<figcaption class="caption"><?= $post_data->externalImageSource ?></figcaption>
 			<?php endif ?>
 		</figure>
 		</a>
@@ -146,20 +147,29 @@ $post_data = (object)$post_data;
 				
 		<?php if ($postTag or isset($post_data->taxonomyUrl) or !empty($teaser->subtitle)): ?>
 		<span class="post-meta">
-
-			<?php if (!empty($teaser->subtitle)): ?>
-				<span class="teaser-subtitle"><?= $teaser->subtitle ?></span>
+			
+			<?php if ($teaser->type === 'news'): ?>
+				<!-- <span class="post-date"><?php echo the_time(get_option('date_format'));?></span> -->
 			<?php endif ?>
 				
 			<?php if (!empty($teaser->tags)): ?>
+				<div class="teaser__tags">
 				<?php foreach($teaser->tags as $tag): ?>
 					<a class="post-tag-link" href="<?= get_term_link($tag->term_id) ?>"><?= $tag->name ?></a> 
 				<?php endforeach ?>
+				</div>
 			<?php endif ?>
-
+				
+			<!--
 			<?php if (isset($post_data->taxonomyUrl)): ?>
 				<a class="post-tag-link" href="<?= $post_data->taxonomyUrl ?>"><?= $post_data->taxonomyName ?></a>
 			<?php endif ?>
+			-->
+
+			<?php if (!empty($teaser->subtitle)): ?>
+				<span class="teaser__subtitle"><?= $teaser->subtitle ?></span>
+			<?php endif ?>
+
 		</span>
 		<?php endif ?>
 
@@ -167,12 +177,16 @@ $post_data = (object)$post_data;
 			<?php the_title() ?>
 		</a>
 
-		<?php if ($post->post_type != 'news' && (strlen($excerpt) > 2)): ?>
+		<?php //if ($post->post_type != 'news' && (strlen($excerpt) > 2)): ?>
     		<div class="post-excerpt">
-				<span class="post-date"><?php echo the_time(get_option('date_format'));?> - </span>
+				<span class="post-date">
+					<?php echo the_time(get_option('date_format'));?>
+					<?php if($teaser->is_archive): ?>(Archiv)<?php endif ?> - 
+				</span>
+				
 				<?php echo $excerpt ?>
 			</div>
-		<?php endif ?>
+		<?php //endif ?>
 
 	</div>
 </article>

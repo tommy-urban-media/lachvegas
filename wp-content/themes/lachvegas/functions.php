@@ -9,7 +9,6 @@ include_once( dirname(__FILE__) . '/lib/post_controller.php' );
 include_once( dirname(__FILE__) . '/lib/shortcode_controller.php' );
 include_once( dirname(__FILE__) . '/lib/widget_controller.php' );
 include_once( dirname(__FILE__) . '/lib/theme_controller.php' );
-include_once( dirname(__FILE__) . '/lib/classes/import.php' );
 
 require __DIR__ . '/app/vendor/autoload.php';
 
@@ -52,8 +51,6 @@ if ( !function_exists( 'theme_setup' ) ):
     //new ShortcodeController();
     //new WidgetController();
 		new PostController();
-
-		$import = new Import();
 
     //if (is_admin() && current_user_can('manage_options'))
       //  new TS_ThemeOptions();
@@ -438,6 +435,10 @@ function getPagination($query, $page, $is_category = false, $category_id = false
 	} else {
 		$link = home_url('/');
 	}
+
+	if (is_archive()) {
+		$link = get_post_type_archive_link('news');
+	}
 	
 	?>
 
@@ -624,3 +625,16 @@ function generateImage($title) {
 
 // prevent ACF plugin to remove wp default custom fields
 add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
+
+
+
+function fnn($a, $b) {
+  $a_date = $a->post_date;
+  $b_date = $b->post_date;
+
+  $a_date = substr($a_date, 5);
+  $b_date = substr($b_date, 5);
+
+  return $a_date < $b_date;
+}

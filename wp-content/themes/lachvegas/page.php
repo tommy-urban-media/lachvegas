@@ -8,7 +8,7 @@ get_header();
 
 <div class="content">
 	<div class="content__area">
-		<div class="content__area--primary entry-content">
+		<div class="content__area--primary">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				<article class="article" data-id="<?php echo $post->ID ?>">
@@ -31,5 +31,9 @@ get_header();
 
 	</div>
 </div>
+
+<?php // get_template_part('template-parts/sections/gender') ?>
+<?php get_template_part('template-parts/sections/newsletter') ?>
+<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 
 <?php get_footer(); ?>

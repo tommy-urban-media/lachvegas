@@ -22,8 +22,8 @@ $modal = [
   [
     'id' => 2,
     'title' => 'Glaubst du dass der Klimawandel noch aufzuhalten ist?',
-    'subtitle' => '',
-    'content' => '',
+    'subtitle' => 'Klimawandel',
+    'content' => 's fsdf sdfsdahsdfs euqw sdf hdiaze27eh qdastd76 asdasd sdf sdf',
     'buttons' => [
       [
         'id' => 1,
@@ -42,7 +42,7 @@ $modal = [
   [
     'id' => 3,
     'title' => 'Du glaubst du hast ein Schrumpfhirn?',
-    'subtitle' => '',
+    'subtitle' => 'Frage des Tages',
     'content' => 'Kein Problem. Jetzt Wartenummer ziehen und Schrumpfhirn beim nächsten Arztbesuch entfernen lassen.',
     'buttons' => []
   ]
@@ -52,16 +52,21 @@ $modal = [
 $rand = rand(0, count($modal)-1);
 $item = $modal[$rand];
 $item = (object)$item;
+
+$post = get_post(2090);
+
 ?>
 
 <div class="modal modal-effect1" id="modal-1">
-	<div class="modal__content">
-		<span class="subtitle"><?= $item->subtitle ?></span>
-		<h3 class="title"><?= $item->title ?></h3>
-		<div class=""><?= $item->content ?></div>
-    <?php foreach($item->buttons as $button): ?>
-		  <button class="button modal__close" data-modal-close><?= $button['name'] ?></button>
-    <?php endforeach ?>
-	</div>
+  <div class="modal__stage">
+    <div class="modal__header">
+      <span class="icon"><i class="fa fa-question-circle"></i></span>
+      <span class="subtitle"><?= $item->subtitle ?></span>
+      <h3 class="title"><?= $item->title ?></h3>
+    </div>
+    <div class="modal__content">
+      <?php get_template_part('template-parts/common/poll'); ?>
+    </div>
+  </div>
 </div>
 <div class="modal-overlay"></div>

@@ -41,7 +41,7 @@
 </title>
 
 <link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/app/public/css/app.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/app/public/css/app.css?set=1" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <link rel="shortcut icon" type="image/png" href="<?php bloginfo('template_url'); ?>/app/images/eyes.png" />
 
@@ -111,7 +111,7 @@
 
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-component="InfoBox">
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -176,3 +176,5 @@
 		<div class="topicmenu-wrapper">
 			<?php get_template_part('template-parts/topics'); ?>
 		</div>
+
+		<?php // get_template_part('template-parts/common/newsticker'); ?>

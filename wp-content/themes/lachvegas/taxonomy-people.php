@@ -2,8 +2,9 @@
 
 
 <?php 
+//global $post;
 
-$postSubtitle = get_post_meta($post->ID, 'subtitle', true);
+//$postSubtitle = get_post_meta($post->ID, 'subtitle', true);
 $postTag = null;
 //$role = get_post_meta($post->ID, 'role', true);
 $role = get_custom_field(get_queried_object(), 'taxonomy_roles');
@@ -14,6 +15,7 @@ if ($tag) {
   $postTag = $tag[0]; 
 }
 
+$roles = [];
 if ($role) {
 	$roles = explode(',', $role); 
 }
@@ -30,12 +32,12 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 ?>
 
 
-<?php get_template_part('template-parts/common/breadcrumb') ?>
-
 <div class="content content-wrapper">
 	<div class="content__area content__area--full">
 
 	<?php // while (have_posts()) : the_post(); setup_postdata($post); ?>
+
+	<?php get_template_part('template-parts/common/breadcrumb') ?>
 
 		<article class="article-person">
 			<header class="article-person__header">
@@ -130,27 +132,14 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 		</div>
 
 		<aside class="content__area--secondary">
-		
-			<?php if ( $queryShortNews->have_posts() ) : ?>
-				<h3>Kurzmeldungen</h3>
-				<ul class="list list--shortnews">
-					<?php while ( $queryShortNews->have_posts() ) : $queryShortNews->the_post(); setup_postdata($post)?>
-						<li class="list-item">	
-							<a href="<?php echo get_the_permalink($post->ID) ?>"><?php the_title(); ?></a>
-						</li>
-					<?php endwhile; ?>
-				</ul>
-				<?php wp_reset_postdata(); ?>
-			<?php endif ?>
-
 			<?php get_template_part('sidebar') ?>
-
 		</aside>
 
 	</div>
 
-
 	<?php get_template_part('template-parts/sections/gender') ?>
+	<?php get_template_part('template-parts/sections/newsletter') ?>
+	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 
 </div>
 

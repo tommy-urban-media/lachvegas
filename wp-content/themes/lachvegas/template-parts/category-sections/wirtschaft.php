@@ -7,13 +7,18 @@ $data = [
   'url' => home_url('/kategorie/wirtschaft'),
   'query' => new WP_Query(
     array(
-      'posts_per_page' => 3, 
+      'posts_per_page' => 50, 
       'post_type' => array(
         'news', 
         'post', 
         'guide', 
         'statistic'
       ), 
+      'orderby' => 'date',
+      'date_query' => array(
+        'relation' => 'OR',
+        'before' => date('Y-m-d H:i', time())
+      ),
       'category_name' => get_category_by_slug('wirtschaft')->cat_name
     )
   ),

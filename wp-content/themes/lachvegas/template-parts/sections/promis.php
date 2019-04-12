@@ -1,14 +1,5 @@
 <?php 
 
-/*
-$personQuery = new WP_Query( 
-  array(
-    'posts_per_page' => 10, 
-    'post_type' => array('person')
-  ) 
-); 
-*/
-
 $terms = get_terms(
   array(
     'hide_empty' => false,
@@ -47,22 +38,26 @@ $terms = get_terms(
           ?>
 
           <?php if ($imageUrl): ?>
-          <?php if ($i <= 5): ?>
-          <li class="list-item">
-            <a href="<?= get_term_link($term->term_id) ?>">
-              <span class="image-wrapper">
-                <img src="<?= $imageUrl; ?>" alt="<?= $term->name ?>"/>
-              </span>
-              <span class="person-role"><?= get_field('taxonomy_subtitle', $term->taxonomy . '_' . $term->term_id) ?></span>
-              <span class="person-name"><?= $term->name ?></span>
-            </a>
-          </li>
-          <?php $i++?>
-          <?php endif ?>
+            <?php if ($i <= 5): ?>
+            <li class="list-item">
+              <a href="<?= get_term_link($term->term_id) ?>">
+                <span class="image-wrapper">
+                  <img src="<?= $imageUrl; ?>" alt="<?= $term->name ?>"/>
+                </span>
+                <span class="person-role"><?= get_field('taxonomy_subtitle', $term->taxonomy . '_' . $term->term_id) ?></span>
+                <span class="person-name"><?= $term->name ?></span>
+              </a>
+            </li>
+            <?php $i++?>
+            <?php endif ?>
           <?php endif ?>
         <?php endforeach ?>
       </ol>
       
+      <footer class="section__footer">
+        <a href="<?= home_url() ?>/personen" class="button button__section"><span>Alle Personen</span><i class="icon fa fa-angle-double-right"></i></a>
+      </footer>
+
     </div>
   </div>
 </div>

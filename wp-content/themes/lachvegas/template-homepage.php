@@ -12,38 +12,66 @@ $args = array(
 	'posts_per_page' => $count,
 	'paged' => $paged,
 	'offset' => $offset,
+	//'orderby' => 'modified',
+	'orderby' => 'date',
 	'date_query' => array(
+		'relation' => 'OR',
+		'before' => date('Y-m-d H:i', time())
+	),
+	'post_status' => 'publish',
+	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', 'statistic', 'quiz'),
+	'tax_query' => array(
+		'relation' => 'OR',
 		array(
-			'year' => array(2017, 2018, 2019, 2020)
+			'taxonomy' => 'post_settings',
+			'field' => 'name',
+			'terms' => array('teasable')
 		)
 	),
-	'post_type' => array('guide', /*'news',*/ 'post', 'poem', /*'saying', 'statistic',*/ 'quiz'),
-	//'category__not_in' => array(64) // Produkte
+
+	/*
+	'category__in' => array(
+		get_category_by_slug('_teasable')->term_id,
+		get_category_by_slug('_wiederholend')->term_id
+	)
+	*/
+
+	/*
+	'meta_query' => array(
+		array(
+			'key' => 'teasable',
+			'value' => true,
+			'compare' => '='
+		)
+	)
+	*/
 );
 
-$queryNews = new WP_Query($args);
-$max_pages = $queryNews->max_num_pages;
+$newPostsQuery = new WP_Query($args);
+$max_pages = $newPostsQuery->max_num_pages;
 
-
-
-$oldPosts = get_posts(array(
+/*
+$oldPostsQuery = new WP_Query(array(
 	'posts_per_page' => -1,
-	'post_type' => array('guide', 'news', 'post', 'poem', /*'statistic',*/ 'quiz'),
+	'post_type' => array('guide', 'news', 'post', 'poem', 'statistic', 'quiz'),
 	'date_query' => array(
+		'relation' => 'or',
 		array(
 			'month' => date('m'),
 			'day' => date('d')
+		),
+		array(
+			'month' => date('m'),
+			'day' => date('d')-1
 		)
 	),
-	'category_name' => get_category_by_slug('wiederholend')->cat_name
+	'category_name' => get_category_by_slug('_wiederholend')->cat_name
 ));
+*/
 
-foreach($oldPosts as $p) {
-	wp_update_post(array(
-		'ID' => $p->ID,
-		'post_date' => date('Y-m-d 06:00:00')
-	));
-}
+//$mergedQuery = new WP_Query();
+//$mergedQuery->posts = array_merge( $newPostsQuery->posts, $oldPostsQuery->posts );
+//$mergedQuery->post_count = $newPostsQuery->post_count + $oldPostsQuery->post_count;
 
 ?>
 
@@ -52,16 +80,17 @@ foreach($oldPosts as $p) {
 	<div class="content__area">
 		<div class="content__area--primary">
 
-			<?php if ( $queryNews->have_posts() ) : ?>
+			<?php if ( $newPostsQuery->have_posts() ) : ?>
 				<ol class="list list--news">
 					<?php $i = 0; ?>
-					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
-						
+					<?php while ( $newPostsQuery->have_posts() ) : $newPostsQuery->the_post(); setup_postdata($post)?>
+					
 						<?php if ($i == 4): ?>
 							<li class="list-item">
 								<?php showAD('banner'); ?>
 							</li>
 						<?php endif ?>
+
 						<li class="list-item">
 							<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 						</li>
@@ -71,7 +100,7 @@ foreach($oldPosts as $p) {
 					</ol>
 			<?php endif ?>
 
-			<?php echo getPagination($queryNews, $paged)?>
+			<?php echo getPagination($newPostsQuery, $paged)?>
 			<?php wp_reset_postdata();?>
 		</div>
 
@@ -228,7 +257,13 @@ foreach($oldPosts as $p) {
 	</div>
 	-->
 
+	<?php // get_template_part('template-parts/sidebar/news') ?>
+	<!-- => Alle Schlagzeilen in der Chronologie -->
+
+	<?php get_template_part('template-parts/sections/topics') ?>
 	<?php get_template_part('template-parts/sections/promis') ?>
+	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
 

@@ -13,6 +13,10 @@ $args = array(
 	'post_type' => array('news', 'post', 'saying', 'guide', 'poem', 'quiz'),
 	'cat' => get_queried_object_id(),
 	//'category_name' => get_cat_name( $cat ),
+	'date_query' => array(
+		'relation' => 'OR',
+		'before' => date('Y-m-d H:i', time())
+	),
 	'order_by' => 'date', 
 	'order' => 'DESC',
 );

@@ -285,6 +285,60 @@ class ContentTypeController {
         ) 
     );
 
+    // add some post settings
+    register_taxonomy(
+        'post_settings',
+        array(
+            'guide',
+            'news',
+            'poem',
+            'post',
+            'saying',
+            'statistic',
+            'quiz'
+        ),
+        array(
+            'label' => __( 'Post Settings' ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'hierarchical' => true,
+            'rewrite' => false
+        ) 
+    );
+
+
+
+
+    register_post_type('poll',
+        array(
+            'labels' => array(
+                'name' => __( 'Umfragen' ),
+                'singular_name' => __( 'Umfrage' ),
+                'add_new' => __( 'Umfrage eintragen' ),
+                'add_new_item' => __( 'neue Umfrage anlegen' ),
+                'edit_item' => __( 'Umfrage bearbeiten' ),
+                'new_item' => __( 'neue Umfrage' ),
+                'view_item' => __( 'Umfrage anschauen' ),
+                'search_items' => __( 'Umfrage suchen' ),
+                'not_found' => __( 'Umfrage nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+              'slug' => 'umfragen'
+            )
+        )
+    );
+
+    add_post_type_support( 'poll', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+
   }
 
 

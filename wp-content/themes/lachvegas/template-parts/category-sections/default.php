@@ -13,10 +13,14 @@
     <ol class="list list--category">
       <?php $i = 0; ?>
       <?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
-        <li class="list-item">
-          <?php get_template_part('template-parts/teasers/teaser-category-article-list') ?>
-        </li>
-      <?php $i++ ?>
+        <?php if (has_post_thumbnail($post->ID)): ?>
+          <?php if ($i <= 2): ?>
+            <li class="list-item">
+              <?php get_template_part('template-parts/teasers/teaser-category-article-list') ?>
+            </li>
+          <?php $i++ ?>
+          <?php endif ?>
+        <?php endif ?>
       <?php endwhile; ?>
 
       <?php if ($i < 3) : ?>

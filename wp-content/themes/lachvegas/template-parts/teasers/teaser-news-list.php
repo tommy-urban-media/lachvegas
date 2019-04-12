@@ -53,14 +53,15 @@ $post_data = (object)$post_data;
 ?>
 
 
-<article class="teaser">
+<article class="teaser teaser--small">
 	<div class="teaser__content">
 		<span class="post-meta">
 			<span class="post-date<?= $teaser->is_today ? ' is-today' : '' ?>"><?= ($teaser->is_today) ? 'heute' : $teaser->date ?></span>
 			<?php if (!empty($teaser->subtitle)): ?>
 				<span class="teaser-subtitle"><?= $teaser->subtitle ?></span>
 			<?php endif ?>
-				
+			
+			<!--
 			<?php if (!empty($teaser->tags)): ?>
 				<?php foreach($teaser->tags as $tag): ?>
 					<a class="post-tag-link" href="<?= get_term_link($tag->term_id) ?>"><?= $tag->name ?></a> 
@@ -70,6 +71,8 @@ $post_data = (object)$post_data;
 			<?php if (isset($post_data->taxonomyUrl)): ?>
 				<a class="post-tag-link" href="<?= $post_data->taxonomyUrl ?>"><?= $post_data->taxonomyName ?></a>
 			<?php endif ?>
+			-->
+
 		</span>
 
 		<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">

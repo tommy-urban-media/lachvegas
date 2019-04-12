@@ -11,12 +11,24 @@ $jobsArgs = array(
       'month' => $today['mon']
     ),
     array(
+      'year' => 2020,
+      'month' => $today['mon']-1
+    ),
+    array(
       'year' => 2019,
       'month' => $today['mon']
     ),
     array(
+      'year' => 2019,
+      'month' => $today['mon']-1
+    ),
+    array(
       'year' => 2018,
       'month' => $today['mon']
+    ),
+    array(
+      'year' => 2018,
+      'month' => $today['mon']-1
     ),
     'relation' => 'OR'
   )

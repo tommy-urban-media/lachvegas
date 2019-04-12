@@ -53,4 +53,9 @@ get_header();
 	</div>
 </div>
 
+
+<?php get_template_part('template-parts/sections/gender') ?>
+<?php get_template_part('template-parts/sections/newsletter') ?>
+<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
+
 <?php get_footer(); ?>

@@ -73,7 +73,7 @@ export default class App {
         el.removeClass('modal-show');
       });
 
-      $('.modal-overlay').on('click', () => {
+      $('.modal-overlay').on('click', (e) => {
         e.preventDefault();
         el.removeClass('modal-show');
       });

@@ -10,6 +10,8 @@ use GDText\Box;
 use GDText\Color;
 
 include_once __DIR__ . '/classes/image.php';
+include_once __DIR__ . '/models/job.php';
+include_once __DIR__ . '/models/news.php';
 include_once __DIR__ . '/models/saying.php';
 
 class AjaxController {
@@ -31,6 +33,9 @@ class AjaxController {
 
       add_action( 'wp_ajax_nopriv_add_quiz_result', array( &$this, 'addQuizResult') );
       add_action( 'wp_ajax_add_quiz_result', array( &$this, 'addQuizResult') );
+
+      add_action( 'wp_ajax_nopriv_save_poll_result', array( &$this, 'savePollResult') );
+      add_action( 'wp_ajax_save_poll_result', array( &$this, 'savePollResult') );
 
       add_action( 'wp_ajax_nopriv_generate_image_from_post_title', array( &$this, 'generateImageFromPostTitle') );
       add_action( 'wp_ajax_generate_image_from_post_title', array( &$this, 'generateImageFromPostTitle') );
@@ -152,6 +157,70 @@ class AjaxController {
       $this->respond();
 
     }
+    
+
+
+    public function savePollResult() {
+    
+      @session_start();
+
+      $pollID = $_REQUEST['poll_id'];
+      $pollAnswerID = $_REQUEST['poll_answer_id'];
+
+      $IP = $_SERVER['REMOTE_ADDR'];
+
+      if (!empty($pollID)) {
+        
+        $poll = get_post($pollID);
+
+        if ($poll) {
+
+          //var_dump($pollAnswerID);
+          
+          $pollVotes = get_post_meta($poll->ID, 'poll_votes', true); 
+          $pollDataJson = get_post_meta($poll->ID, 'poll_data', true); 
+          $pollData = json_decode($pollDataJson);
+
+          //var_dump($pollData);
+          $results_number = 0;
+          $pollVotes += 1;
+
+          foreach ($pollData as $d) {
+            if ($d->id == $pollAnswerID) {
+              $d->votes += 1;
+              $results_number = round($d->votes * 100 / $pollVotes);
+            }
+          }
+
+          update_post_meta($poll->ID, 'poll_votes', $pollVotes);
+          update_post_meta($poll->ID, 'poll_data', json_encode($pollData));
+
+          $responseData = [
+            'votes' => $pollVotes,
+            'results_number' => $results_number . '%',
+            'results' => $pollData
+          ];
+
+          $this->response['message'] = 'Danke für die Abstimmung';
+          $this->response['status'] = true;
+          $this->response['data'] = $responseData;
+
+        } else {
+          $this->response['message'] = 'Poll not found';
+          $this->response['status'] = false;
+        }
+
+        $this->response['results'] = $quiz['results'];
+
+      }
+      else {
+        $this->response['message'] = 'No Poll Id given';
+        $this->response['status'] = false;
+      }
+
+      $this->respond();
+
+    }
 
 
 
@@ -206,7 +275,7 @@ class AjaxController {
 
 
     private function scaled_image_path($attachment_id, $size = 'thumbnail') {
-      $file = get_attached_file($attachment_id, true);
+        $file = get_attached_file($attachment_id, true);
       if (empty($size) || $size === 'full') {
           // for the original size get_attached_file is fine
           return realpath($file);
@@ -223,35 +292,35 @@ class AjaxController {
     }
 
 
+	/**
+	 *  Saving new post type or update existing one by given import id
+	 */
     public function savePost() {
+
         $id = $_REQUEST['id'];
-        $type = $_REQUEST['type'];
-        $title = $_REQUEST['title'];
-        $description = $_REQUEST['title'];
-        $categories = explode('.', $_REQUEST['categories']);
-        $tags = explode('.', $_REQUEST['tags']);
-        $image = $_REQUEST['image'];
+		$postType = $_REQUEST['post_type'];
+        $params = $_REQUEST['params'];
 
-        // add default category for this post
-        $categories[] = 'Sprüche';
-        
-        //$p = get_post($id);
+		$data =  new stdClass();
+		$data->id = $id;
+		$data->date = date('Y-m-d H:i:s');
 
-        $data = [
-            'id' => $id,
-            'date' => date('Y-m-d H:i:s'),
-            'title' => $title,
-            'description' => $description,
-            'category' => $categories,
-            'tags' => $tags,
-            'image' => $image
-        ];
+		foreach ($params as $key => $value) {
+			$data->{$key} = $value;
+		}
 
-        switch($type) {
+        switch($postType) {
+			case 'job':
+				$job = new Job($data);
+				$job->save();
+				break;
+			case 'news':
+				$news = new News($data);
+				$news->save();
+				break;
             case 'saying':
                 $saying = new Saying($data);
                 $saying->save();
-                $saying->generateImage();
                 break;
         }
 

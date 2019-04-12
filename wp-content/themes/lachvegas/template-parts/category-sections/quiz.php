@@ -7,7 +7,7 @@ $data = [
   'url' => home_url('/kategorie/quizze'),
   'query' => new WP_Query(
     array(
-      'posts_per_page' => 3, 
+      'posts_per_page' => 10, 
       'post_type' => array(
         'quiz'
       )

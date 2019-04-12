@@ -233,7 +233,7 @@ var App = function () {
           el.removeClass('modal-show');
         });
 
-        (0, _jquery2.default)('.modal-overlay').on('click', function () {
+        (0, _jquery2.default)('.modal-overlay').on('click', function (e) {
           e.preventDefault();
           el.removeClass('modal-show');
         });
@@ -590,6 +590,123 @@ var Calendar = function Calendar() {
 exports.default = Calendar;
 });
 
+;require.register("src/js/components/fortunecookie.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var FortuneCookie = function () {
+    function FortuneCookie() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, FortuneCookie);
+
+        this.node = (0, _jquery2.default)(options.node);
+        this.data = this.node.data('param');
+        this.url = this.node.data('url');
+
+        console.log(this.data);
+
+        this.init();
+    }
+
+    _createClass(FortuneCookie, [{
+        key: 'init',
+        value: function init() {
+            var _this = this;
+
+            this.node.find('[data-button]').on('click', function (e) {
+                e.preventDefault();
+                (0, _jquery2.default)(e.currentTarget).hide();
+                _this.node.find('[data-ribbon]').show();
+                _this.setCookie('lv_fortune_cookie', 1, 1);
+            });
+        }
+    }, {
+        key: 'getCookie',
+        value: function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    }, {
+        key: 'setCookie',
+        value: function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+            var expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+    }, {
+        key: 'save',
+        value: function save(obj) {
+            var _this2 = this;
+
+            var data = Object.assign({}, { action: 'save_poll_result' }, obj);
+
+            _jquery2.default.ajax({
+                url: this.url,
+                dataType: 'json',
+                data: data,
+                type: 'POST',
+                success: function success(data) {
+
+                    _this2.node.removeClass('state-is-pending');
+
+                    if (data.status) {
+                        _this2.node.find('[data-results]').show();
+                    }
+
+                    if (data.data) {
+
+                        setTimeout(function () {
+                            (0, _jquery2.default)('[data-results-number]').text(data.data.results_number);
+
+                            for (var i in data.data.results) {
+                                var res = data.data.results[i];
+                                var id = res.id;
+                                var votes_percent = Math.round(res.votes * 100 / data.data.votes, 2);
+
+                                (0, _jquery2.default)('[data-results-item="' + id + '"]').css({ width: votes_percent + '%' });
+                                (0, _jquery2.default)('[data-results-item="' + id + '"]').text(votes_percent + '%');
+                            }
+                        }, 500);
+                    }
+                },
+                error: function error(_error) {
+                    _this2.node.removeClass('state-is-pending');
+                }
+            });
+        }
+    }]);
+
+    return FortuneCookie;
+}();
+
+exports.default = FortuneCookie;
+});
+
 ;require.register("src/js/components/index.js", function(exports, require, module) {
 'use strict';
 
@@ -597,9 +714,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _infobox = require('./infobox');
+
+var _infobox2 = _interopRequireDefault(_infobox);
+
 var _calendar = require('./calendar');
 
 var _calendar2 = _interopRequireDefault(_calendar);
+
+var _fortunecookie = require('./fortunecookie');
+
+var _fortunecookie2 = _interopRequireDefault(_fortunecookie);
 
 var _menu = require('./menu');
 
@@ -608,6 +733,10 @@ var _menu2 = _interopRequireDefault(_menu);
 var _modal = require('./modal');
 
 var _modal2 = _interopRequireDefault(_modal);
+
+var _poll = require('./poll');
+
+var _poll2 = _interopRequireDefault(_poll);
 
 var _ticker = require('./ticker');
 
@@ -621,13 +750,69 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
 
+  FortuneCookie: _fortunecookie2.default,
+  InfoBox: _infobox2.default,
   Calendar: _calendar2.default,
   Ticker: _ticker2.default,
   Menu: _menu2.default,
   Modal: _modal2.default,
+  Poll: _poll2.default,
   Quiz: _quiz2.default
 
 };
+});
+
+;require.register("src/js/components/infobox.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var InfoBox = function () {
+    function InfoBox() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, InfoBox);
+
+        this.node = (0, _jquery2.default)(options.node);
+        this.$currentButtonTarget = null;
+
+        console.log(this.data);
+
+        this.boxes = [''];
+
+        this.init();
+    }
+
+    _createClass(InfoBox, [{
+        key: 'init',
+        value: function init() {
+
+            this.collectBoxes();
+        }
+    }, {
+        key: 'collectBoxes',
+        value: function collectBoxes() {
+
+            console.log('collecting boxes ...');
+        }
+    }]);
+
+    return InfoBox;
+}();
+
+exports.default = InfoBox;
 });
 
 ;require.register("src/js/components/menu.js", function(exports, require, module) {
@@ -721,6 +906,121 @@ var Modal = function () {
 }();
 
 exports.default = Modal;
+});
+
+;require.register("src/js/components/poll.js", function(exports, require, module) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Poll = function () {
+  function Poll() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, Poll);
+
+    this.node = (0, _jquery2.default)(options.node);
+    this.data = this.node.data('param');
+    this.url = this.node.data('url');
+    this.$currentButtonTarget = null;
+
+    console.log(this.data);
+
+    this.init();
+  }
+
+  _createClass(Poll, [{
+    key: 'init',
+    value: function init() {
+      var _this = this;
+
+      this.node.find('[data-button]').on('click', function (e) {
+        e.preventDefault();
+
+        var answerID = _this.getAnswerID();
+
+        if (!answerID) {
+          console.warn('Antwort fehlt');
+        } else {
+
+          _this.node.addClass('state-is-pending');
+
+          _this.save({
+            poll_id: _this.data.id,
+            poll_answer_id: answerID //$el.data('answer-id'),
+          });
+        }
+      });
+    }
+  }, {
+    key: 'getAnswerID',
+    value: function getAnswerID() {
+      var answerID = this.node.find('[name="question_' + this.data.id + '"]:checked').val();
+
+      if (!answerID) {
+        return false;
+      }
+      return answerID;
+    }
+  }, {
+    key: 'save',
+    value: function save(obj) {
+      var _this2 = this;
+
+      var data = Object.assign({}, { action: 'save_poll_result' }, obj);
+
+      _jquery2.default.ajax({
+        url: this.url,
+        dataType: 'json',
+        data: data,
+        type: 'POST',
+        success: function success(data) {
+
+          _this2.node.removeClass('state-is-pending');
+
+          if (data.status) {
+            _this2.node.find('[data-results]').show();
+          }
+
+          if (data.data) {
+
+            setTimeout(function () {
+              (0, _jquery2.default)('[data-results-number]').text(data.data.results_number);
+
+              for (var i in data.data.results) {
+                var res = data.data.results[i];
+                var id = res.id;
+                var votes_percent = Math.round(res.votes * 100 / data.data.votes, 2);
+
+                (0, _jquery2.default)('[data-results-item="' + id + '"]').css({ width: votes_percent + '%' });
+                (0, _jquery2.default)('[data-results-item="' + id + '"]').text(votes_percent + '%');
+              }
+            }, 500);
+          }
+        },
+        error: function error(_error) {
+          _this2.node.removeClass('state-is-pending');
+        }
+      });
+    }
+  }]);
+
+  return Poll;
+}();
+
+exports.default = Poll;
 });
 
 ;require.register("src/js/components/quiz.js", function(exports, require, module) {
