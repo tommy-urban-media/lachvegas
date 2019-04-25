@@ -58,6 +58,8 @@ class Saying extends SModel {
             }
         }
 
+        $this->_data->categories .= '.Sprüche';
+
         $this->saveRelation($this->_data->categories);
         $this->saveRelation($this->_data->tags, 'post_tag');
         $this->saveField('saying_id', $this->_data->id);

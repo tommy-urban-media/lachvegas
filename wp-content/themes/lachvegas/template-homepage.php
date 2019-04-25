@@ -16,7 +16,7 @@ $args = array(
 	'orderby' => 'date',
 	'date_query' => array(
 		'relation' => 'OR',
-		'before' => date('Y-m-d H:i', time())
+		'before' => date('Y-m-d H:i:s', strtotime('+1 day'))
 	),
 	'post_status' => 'publish',
 	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', 'statistic', 'quiz'),
@@ -87,7 +87,7 @@ $oldPostsQuery = new WP_Query(array(
 					
 						<?php if ($i == 4): ?>
 							<li class="list-item">
-								<?php showAD('banner'); ?>
+								<?php get_template_part('template-parts/ads/frontend/banner') ?> <?php //showAD('banner'); ?>
 							</li>
 						<?php endif ?>
 
@@ -263,6 +263,9 @@ $oldPostsQuery = new WP_Query(array(
 	<?php get_template_part('template-parts/sections/topics') ?>
 	<?php get_template_part('template-parts/sections/promis') ?>
 	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+	
+	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
+
 	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
@@ -308,19 +311,19 @@ $oldPostsQuery = new WP_Query(array(
 
 	<?php get_template_part('template-parts/category-sections/quiz') ?>
 
-	<?php showAD('superbanner'); ?>
+	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/politik') ?>
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
 	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
 
-	<?php showAD('superbanner'); ?>
+	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
 	<?php get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 
-	<?php showAD('superbanner'); ?>
+	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
 

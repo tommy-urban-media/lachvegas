@@ -106,6 +106,7 @@ class ContentTypeController {
     add_post_type_support( 'saying', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
+    /*
     register_post_type('guide',
         array(
             'labels' => array(
@@ -132,7 +133,7 @@ class ContentTypeController {
     );
 
     add_post_type_support( 'guide', array('title', 'editor', 'custom-fields', 'thumbnail') );
-
+    */
 
     register_post_type('job',
         array(
@@ -337,6 +338,48 @@ class ContentTypeController {
 
     add_post_type_support( 'poll', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
+
+
+    register_post_type('fortune_cookie',
+        array(
+            'labels' => array(
+                'name' => __( 'Glueckskekse' ),
+                'singular_name' => __( 'Glueckskeks' ),
+                'add_new' => __( 'Glueckskeks eintragen' ),
+                'add_new_item' => __( 'neue Glueckskeks anlegen' ),
+                'edit_item' => __( 'Glueckskeks bearbeiten' ),
+                'new_item' => __( 'neue Glueckskeks' ),
+                'view_item' => __( 'Glueckskeks anschauen' ),
+                'search_items' => __( 'Glueckskeks suchen' ),
+                'not_found' => __( 'Glueckskeks nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+              'slug' => 'glueckskeks'
+            )
+        )
+    );
+
+    add_post_type_support( 'fortune_cookie', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+    register_taxonomy(
+        'fortune_cookie_categories',
+        array(
+            'fortune_cookie'
+        ),
+        array(
+            'label' => __('Glückskeks Kategorien'),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'glueckskeks-kategorien')
+        ) 
+    );
 
 
   }

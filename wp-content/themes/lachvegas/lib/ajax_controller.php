@@ -43,6 +43,9 @@ class AjaxController {
       add_action( 'wp_ajax_nopriv_save_post', array( &$this, 'savePost') );
       add_action( 'wp_ajax_save_post', array( &$this, 'savePost') );
 
+      add_action( 'wp_ajax_nopriv_get_box_content', array( &$this, 'getBoxContent') );
+      add_action( 'wp_ajax_get_box_content', array( &$this, 'getBoxContent') );
+
     }
 
     public function addLike() {
@@ -320,11 +323,53 @@ class AjaxController {
 				break;
             case 'saying':
                 $saying = new Saying($data);
-                $saying->save();
+                if ($newPostID = $saying->save()) {
+                    $p = get_post($newPostID);
+                    
+                    $options = new stdClass();
+                    $options->width = 640;
+                    $options->height = 640;
+                    $options->sizeFactor = 4;
+                    $options->text = get_the_title($p->ID);
+                    $options->slug = basename($p->ID);
+    
+                    $image = new Image($options);
+                    $image->generate();
+    
+                    $path = $image->getPath();
+                    $fullPath = $image->getFullPath();
+                    update_post_meta($p->ID, 'image_name', $path);
+    
+                    $image->savePostThumbnail($p->ID, $fullPath);
+                }
+
                 break;
         }
 
         exit;
+    }
+
+
+    public function getBoxContent() {
+        $this->response = [
+            'message' => 'loaded',
+            'status' => true
+        ];
+        if (isset($_REQUEST['size'])) {
+            $size = $_REQUEST['size'];
+
+            ob_start();
+
+            $files = array_slice(scandir(__DIR__ . '/../template-parts/ads/' . $size), 2);
+	        $rand = rand(0, count($files)-1);
+
+	        // load all files from this ad type
+            get_template_part('template-parts/ads/'. $size .'/'. str_replace('.php', '', $files[$rand]) );
+            
+            $this->response['html'] = ob_get_clean();
+        }
+
+        $this->respond();
     }
   
 

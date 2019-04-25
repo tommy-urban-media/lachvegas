@@ -58,7 +58,7 @@ $post_data = (object)$post_data;
 		<span class="post-meta">
 			<span class="post-date<?= $teaser->is_today ? ' is-today' : '' ?>"><?= ($teaser->is_today) ? 'heute' : $teaser->date ?></span>
 			<?php if (!empty($teaser->subtitle)): ?>
-				<span class="teaser-subtitle"><?= $teaser->subtitle ?></span>
+				<span class="teaser__subtitle"><?= $teaser->subtitle ?></span>
 			<?php endif ?>
 			
 			<!--

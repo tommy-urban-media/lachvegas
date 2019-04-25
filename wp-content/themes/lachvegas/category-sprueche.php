@@ -2,12 +2,12 @@
 
 get_header();
 
-$count = get_option('posts_per_page', 10);
+$count = get_option('posts_per_page', 20);
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 $offset = ($paged - 1) * $count;
 
 $args = array(
-	'posts_per_page' => 100,
+	'posts_per_page' => 20,
 	'paged' => $paged,
 	'offset' => $offset,
 	'post_type' => array('saying'),
@@ -17,7 +17,7 @@ $args = array(
 	'order' => 'DESC',
 );
 
-$query = new WP_Query($args)
+$querySayings = new WP_Query($args)
 ?>
 
 
@@ -29,13 +29,13 @@ $query = new WP_Query($args)
 		</div>
 	<?php endif ?>
 
-	<?php if ( $query->have_posts() ) : ?>
+	<?php if ( $querySayings->have_posts() ) : ?>
 		<h1 class="category-title"><?php echo single_cat_title() ?></h1>
-		<?php if ($query->have_posts()): ?>
+		<?php if ($querySayings->have_posts()): ?>
 
 			<div class="masonry">
 				<?php $i = 0; ?>
-				<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
+				<?php while ( $querySayings->have_posts() ) : $querySayings->the_post(); setup_postdata($post)?>
 					<div class="masonry__item">
 
 						<?php if (has_post_thumbnail()):?>
@@ -62,7 +62,7 @@ $query = new WP_Query($args)
 				<?php endwhile; ?>
 			</div>
 
-			<?php echo getPagination($query, $paged, true, $cat)?>
+			<?php echo getPagination($querySayings, $paged, true, $cat)?>
 			<?php wp_reset_postdata();?>
 
 		<?php endif; ?>

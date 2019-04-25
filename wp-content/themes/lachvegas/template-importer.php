@@ -7,6 +7,7 @@ include_once __DIR__ . '/lib/models/csv_reader.php';
 //include __DIR__ . '/lib/models/job.php';
 //include __DIR__ . '/lib/models/news.php';
 include_once __DIR__ . '/lib/models/saying.php';
+include_once __DIR__ . '/lib/models/fortune_cookie.php';
 
 get_header(); 
 
@@ -47,7 +48,7 @@ $datasets = [
 		'post_type' => 'saying',
 		'field_id' => 'saying_id',
 		'fields' => [
-			'id', 'img', 'title', 'categories', 'tags'
+			'id', 'ID', 'img', 'title', 'categories', 'tags'
 		]
 	],
 	[
@@ -57,6 +58,15 @@ $datasets = [
 		'field_id' => 'job_id',
 		'fields' => [
 			'id', 'date', 'name', 'category', 'company', 'description', 'is_parttime', 'male', 'female', 'divers', 'place', 'Features'
+		]
+	],
+	[
+		'name' => 'Glueckskekse',
+		'file' => $path . 'Glueckskekse-Sprueche.csv',
+		'post_type' => 'fortune_cookie',
+		'field_id' => 'import_id',
+		'fields' => [
+			'id', 'date', 'title', 'categories', 'tags', 'url'
 		]
 	]
 ];
@@ -102,6 +112,22 @@ if (isset($_REQUEST['update_repeatable_posts'])) {
 }
 
 
+if (isset($_REQUEST['delete_all_news'])) {
+	
+	$news = get_posts(array(
+		'post_type' => 'news',
+		'post_status' => 'any',
+		'numberposts' => -1
+	));
+
+	foreach ($news as $n) {
+		wp_delete_post( $n->ID, true );
+	}
+
+	echo count($news) . ' News gelöscht';
+}
+
+
 
 
 $DATA = null;
@@ -124,7 +150,6 @@ if (isset($_REQUEST['dataset'])) {
 		$DATA->entries = $csvReader->getData();
 		// var_dump($DATA->entries);
 		
-
 		// read all previously imported posts and merge them with the csv data
 		$args = array(
 			'post_status' => 'any',
@@ -143,7 +168,6 @@ if (isset($_REQUEST['dataset'])) {
 
 
 		for ($i=1; $i<count($DATA->entries)-1; $i++) {
-
 			$d = $DATA->entries[$i];
 	
 			$imported = false;
@@ -155,6 +179,11 @@ if (isset($_REQUEST['dataset'])) {
 	
 				if (!empty($field_id) && (int)$d->id == (int)$field_id) {
 					$imported = true;
+					$DATA->entries[$i]->ID = $id;
+
+					if (has_post_thumbnail($id)) {
+						$DATA->entries[$i]->img = get_the_post_thumbnail($id, 'thumbnail');
+					}
 				}
 			}
 	
@@ -177,6 +206,12 @@ if (isset($_REQUEST['dataset'])) {
 							//var_dump($d);
 							$saying = new Saying($d);
 							$saying->save();
+							break;
+						case 'fortune_cookie':
+							//echo 'import saying';
+							//var_dump($d);
+							$fortuneCookie = new FortuneCookie($d);
+							$fortuneCookie->save();
 							break;
 					}
 				//}
@@ -201,7 +236,7 @@ if (isset($_REQUEST['dataset'])) {
 	<div class="content__area">
 		<div class="content__area--wide entry-content" style="padding: 0 40px;">
 
-			<select id="datasets">
+			<select id="datasets" style="max-width: 100%">
 				<option value="">Bitte wählen</option>
 				<?php foreach($datasets as $dataset): ?>
 					<option value="<?= $dataset['name'] ?>"><?= $dataset['file'] ?></option>
@@ -237,7 +272,13 @@ if (isset($_REQUEST['dataset'])) {
 								<?php if (isset($entry->imported) && $entry->imported === true): $bgClass = 'style="background-color: lightgreen;"'; endif ?>
 
 								<?php if (isset($entry->{$field})): ?>
-										<td <?= $bgClass ?>><?= $entry->{$field} ?></td>
+									<td <?= $bgClass ?>>
+										<?php if ('img' == $entry->{$field}): ?>
+											<img src="<?= $entry->{$field}?>" />
+										<?php else: ?>
+											<?= $entry->{$field} ?>
+										<?php endif ?>
+									</td>
 								<?php endif ?>
 							<?php endforeach ?>
 							<td <?= $bgClass ?>>
@@ -254,6 +295,7 @@ if (isset($_REQUEST['dataset'])) {
 				<form class="form" action="" method="post">
           <input type="hidden" name="ajax_url" value="<?php echo admin_url('admin-ajax.php') ?>" />
 					<input type="submit" name="update_repeatable_posts" value="Alte Beiträge aktualisieren" />
+					<input type="submit" name="delete_all_news" value="Alle News löschen" />
 				</form>
 
 			<?php endif ?>
@@ -296,8 +338,8 @@ jQuery(document).ready(function($) {
 			data: {
 				id: id,
 				action: 'save_post',
-                post_type: post_type,
-                params: params
+				post_type: post_type,
+				params: params
 			},
 			success: function(d) {
 				console.log(d);

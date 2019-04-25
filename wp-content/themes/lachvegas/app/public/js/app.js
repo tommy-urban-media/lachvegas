@@ -654,7 +654,9 @@ var FortuneCookie = function () {
         key: 'setCookie',
         value: function setCookie(cname, cvalue, exdays) {
             var d = new Date();
-            d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+            //d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            // set cookie to 24 hours the next day midnight
+            d.setHours(24, 0, 0, 0);
             var expires = "expires=" + d.toUTCString();
             document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
         }
@@ -786,11 +788,18 @@ var InfoBox = function () {
         _classCallCheck(this, InfoBox);
 
         this.node = (0, _jquery2.default)(options.node);
-        this.$currentButtonTarget = null;
+        this.url = (0, _jquery2.default)('#ajax_url').val();
 
         console.log(this.data);
 
-        this.boxes = [''];
+        this.boxes = [];
+        this.renderedBoxes = [];
+
+        this.observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+        };
 
         this.init();
     }
@@ -798,14 +807,85 @@ var InfoBox = function () {
     _createClass(InfoBox, [{
         key: 'init',
         value: function init() {
-
             this.collectBoxes();
+            this.initEvents();
         }
     }, {
         key: 'collectBoxes',
         value: function collectBoxes() {
+            this.boxes = (0, _jquery2.default)('body').find('[data-box]');
+            this.boxes.each(function (i, box) {
+                console.log(box);
+                (0, _jquery2.default)(box).attr('id', 'box-' + i);
+            });
+            console.log('collecting boxes ...', this.boxes);
+        }
+    }, {
+        key: 'initEvents',
+        value: function initEvents() {
+            var _this = this;
 
-            console.log('collecting boxes ...');
+            this.boxes.each(function (i, box) {
+                var observer = new IntersectionObserver(_this.intersectionCallback.bind(_this), _this.observerOptions);
+                observer.observe(box);
+            });
+        }
+    }, {
+        key: 'intersectionCallback',
+        value: function intersectionCallback(entries) {
+            var _this2 = this;
+
+            entries.forEach(function (entry) {
+                var box = entry.target;
+                var visiblePct = Math.floor(entry.intersectionRatio * 100) + "%";
+
+                if (visiblePct == '100%') {
+                    if (!_this2.renderedBoxes.includes((0, _jquery2.default)(box).attr('id'))) {
+                        _this2.loadBoxContent(box);
+                    } else {
+                        console.warn('box already rendered');
+                    }
+                }
+            });
+        }
+    }, {
+        key: 'loadBoxContent',
+        value: function loadBoxContent(box) {
+            var _this3 = this;
+
+            this.renderedBoxes.push((0, _jquery2.default)(box).attr('id'));
+            setTimeout(function () {
+                var size = (0, _jquery2.default)(box).data('size');
+                (0, _jquery2.default)(box).find('.box__stage').html(_this3.renderFrame(size));
+                (0, _jquery2.default)(box).addClass('visible');
+            }, 500);
+        }
+    }, {
+        key: 'renderFrame',
+        value: function renderFrame(size) {
+            var iframe = (0, _jquery2.default)('iframe');
+            iframe.attr('class', 'box-iframe');
+            iframe.attr('src', (0, _jquery2.default)('#blogurl').val() + '/box' + '?size=' + size);
+            return iframe;
+        }
+    }, {
+        key: 'loadAsync',
+        value: function loadAsync(callback) {
+            _jquery2.default.ajax({
+                url: this.url,
+                dataType: 'json',
+                data: {
+                    action: 'get_box_content',
+                    size: 'banner'
+                },
+                type: 'POST',
+                success: function success(response) {
+                    callback(response);
+                },
+                error: function error(_error) {
+                    console.warn(_error);
+                }
+            });
         }
     }]);
 

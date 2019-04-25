@@ -8,7 +8,8 @@ module.exports = {
     },
     stylesheets: {
       joinTo: {
-        'css/app.css': /^src\/stylus\/app.styl/
+        'css/app.css': /^src\/stylus\/app.styl/,
+        'css/box.css': /^src\/stylus\/box.styl/
       }
     }
   },

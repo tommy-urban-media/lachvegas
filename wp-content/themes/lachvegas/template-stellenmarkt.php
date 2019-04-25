@@ -73,7 +73,7 @@ $jobCategories = get_terms(array(
 	<div class="column small-9 medium-9 large-9 panel">
 
 		<?php while ( have_posts() ) : the_post(); ?>
-			<div class="entry-content">
+			<div class="entry-content" style="padding: 0 25px;">
 				<?php the_content() ?>
 			</div>
 		<?php endwhile; ?>

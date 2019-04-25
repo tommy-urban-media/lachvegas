@@ -15,7 +15,7 @@ $args = array(
 	//'category_name' => get_cat_name( $cat ),
 	'date_query' => array(
 		'relation' => 'OR',
-		'before' => date('Y-m-d H:i', time())
+		'before' => date('Y-m-d H:i', strtotime('+1 day'))
 	),
 	'order_by' => 'date', 
 	'order' => 'DESC',

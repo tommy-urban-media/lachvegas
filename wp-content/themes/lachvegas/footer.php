@@ -64,6 +64,7 @@
 
 <input id="blogurl" type="hidden" value="<?php bloginfo('url');?>" />
 <input id="templateurl" type="hidden" value="<?php bloginfo('template_url');?>" />
+<input id="ajax_url" type="hidden" value="<?= admin_url('admin-ajax.php') ?>" />
 
 <?php wp_footer(); ?>
 

@@ -6,7 +6,7 @@
 get_header(); 
 ?>
 
-<?php get_template_part('template-parts/common/breadcrumb') ?>
+<?php // get_template_part('template-parts/common/breadcrumb') ?>
 
 <div class="content">
 	<div class="content__area">

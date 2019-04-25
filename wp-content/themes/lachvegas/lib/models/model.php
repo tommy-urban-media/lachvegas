@@ -14,7 +14,12 @@ class SModel {
 	 */
     public function __construct($data = []) {
         $this->set('_data', $data);
-    }
+	}
+	
+
+	public function getData() {
+		return $this->_data;
+	}
 
 	/**
 	 * @param $property

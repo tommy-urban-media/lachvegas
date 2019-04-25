@@ -7,17 +7,17 @@
     </header>
     <div class="section__content">
 
-      <a href="#" class="">Essen</a>
-      <a href="#" class="button">Trinken</a>
-      <a href="#" class="button">Schlafen</a>
-
-      <a href="#" class="button">Gammeln</a>
-      <a href="#" class="button">Lacheln</a>
-
-      <a href="#" class="button">Sex</a>
-      <a href="#" class="button">Drogen</a>
-      <a href="#" class="button">Fäkalien</a>
-
+      <div class="topic-links">
+        <a href="<?= home_url('/') ?>/themen/essen" class="topic-link">Essen</a>
+        <a href="<?= home_url('/') ?>/themen/bier" class="topic-link">Trinken</a>
+        <a href="<?= home_url('/') ?>/themen/schlafen" class="topic-link">Schlafen</a>
+        <a href="<?= home_url('/') ?>/themen/faulheit" class="topic-link">Gammeln</a>
+        <a href="<?= home_url('/') ?>/themen/faulheit" class="topic-link">Glück</a>
+        <a href="<?= home_url('/') ?>/themen/lustig" class="topic-link">Lachen</a>
+        <a href="<?= home_url('/') ?>/themen/sex" class="topic-link">Sex</a>
+        <a href="<?= home_url('/') ?>/themen/drogen" class="topic-link">Drogen</a>
+        <a href="<?= home_url('/') ?>/themen/eklig" class="topic-link">Fäkalien</a>
+      </div>
 
     </div>
   </div>

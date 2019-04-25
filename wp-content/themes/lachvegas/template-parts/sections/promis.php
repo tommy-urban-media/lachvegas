@@ -55,7 +55,7 @@ $terms = get_terms(
       </ol>
       
       <footer class="section__footer">
-        <a href="<?= home_url() ?>/personen" class="button button__section"><span>Alle Personen</span><i class="icon fa fa-angle-double-right"></i></a>
+        <a href="<?= home_url() ?>/personen" class="button button__section"><span>Alle Personen auf einen Blick</span><i class="icon fa fa-angle-double-right"></i></a>
       </footer>
 
     </div>

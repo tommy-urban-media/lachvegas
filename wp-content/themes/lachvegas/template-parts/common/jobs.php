@@ -4,7 +4,7 @@ $today = getdate();
 
 $jobsArgs = array(
 	'post_type' => 'job',
-  'posts_per_page' => 5,
+  'posts_per_page' => 3,
   'date_query' => array(
     array(
       'year' => 2020,

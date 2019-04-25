@@ -178,3 +178,4 @@
 		</div>
 
 		<?php // get_template_part('template-parts/common/newsticker'); ?>
+		<?php get_template_part('template-parts/ads/frontend/leaderboard'); ?>

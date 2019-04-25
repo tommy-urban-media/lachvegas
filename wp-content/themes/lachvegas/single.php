@@ -67,7 +67,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 				<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
 				<figure class="post-image">
 					<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
-						<?php the_post_thumbnail('full')?>
+						<?php the_post_thumbnail('article_thumbnail')?>
 						<?php //the_post_thumbnail('article_thumbnail')?>
 					</a>
 					<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
@@ -102,7 +102,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			<?php //get_template_part('template-parts/article/puzzle') ?>
 
 			<?php if ($post_data->original_date): ?>
-				<p><em>Hinweis: Dieser Artikel wurde erstmals veröffentlicht am <?php echo date('m.d.Y', strtotime($post_data->original_date)) ?>.</em></p>
+				<p><em>Hinweis: Dieser Artikel wurde erstmals veröffentlicht am <?php echo date('d.m.Y', strtotime($post_data->original_date)) ?>.</em></p>
 			<?php endif ?>
 		</section>
 		

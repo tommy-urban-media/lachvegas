@@ -17,6 +17,11 @@ $cookies->entries = [
     'id' => 3,
     'date' => null,
     'text' => 'Es ist ein kritischer Fehler aufgetreten der nicht rechtzeitig behoben werden konnte weil die Entwickler damit beschäftigt waren ein Zombie-Spiel durch zu spielen'
+  ],
+  [
+    'id' => 4,
+    'date' => null,
+    'text' => 'sudo apt-get install fortune-cookie -g'
   ]
 ];
 

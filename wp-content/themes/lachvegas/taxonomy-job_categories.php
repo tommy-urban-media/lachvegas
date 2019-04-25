@@ -32,7 +32,7 @@ $jobCategories = get_terms(array(
 ?>
 
 
-<?php get_template_part('template-parts/common/breadcrumb') ?>
+<?php // get_template_part('template-parts/common/breadcrumb') ?>
 
 <div class="container">
 	<div class="column small-3 medium-3 large-3">

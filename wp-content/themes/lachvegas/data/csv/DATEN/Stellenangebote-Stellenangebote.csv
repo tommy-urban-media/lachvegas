@@ -228,7 +228,7 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 227;15.8.2019;Intrigant (ehrenamt);;;;;;;;;Ehrenamt
 228;16.8.2019;Professionelle Weckhilfe;;Dienstleistungen;;;;;;;
 229;17.8.2019;Bundesverfassungsgerichtsbeschlussanalyst/-in;;;;;;;;;
-230;18.8.2019;;;;;;;;;;
+230;18.8.2019;Leibesvisiteur (m/w);;;;;;;;;
 231;19.8.2019;;;;;;;;;;
 232;20.8.2019;Säufer, Schluckspecht;;;;;;;;;
 233;21.8.2019;;;;;;;;;;
@@ -265,10 +265,10 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 264;21.9.2019;Kondomtester;;;;1;1;;1;;
 265;22.9.2019;;;;;;;;;;
 266;23.9.2019;Fluchthelfer;;;;;;;;;
-267;24.9.2019;;;;;;;;;;
+267;24.9.2019;Schnäpchenjäger/-in;Dienstleistungen;;;1;;;;;
 268;25.9.2019;;;;;;;;;;
 269;26.9.2019;Personenkraftwagenschrottfahrer;Verkehr;;;;1;1;1;;
-270;27.9.2019;;;;;;;;;;
+270;27.9.2019;Fäkal-Spektral-Analyst;;;;;;;;;
 271;28.9.2019;;;;;;;;;;
 272;29.9.2019;Realist;;Bundeskanzleramt;Zum nächstmöglichen Zeitpunkt suchen wir einen Realist mit ausgewogenem Allgemeinwissen;;1;1;1;Berlin;Vollzeit
 273;30.9.2019;;;;;;;;;;
@@ -295,7 +295,7 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 294;21.10.2019;;;;;;;;;;
 295;22.10.2019;;;;;;;;;;
 296;23.10.2019;Eincremer (m);;;Am Strand;;1;;;;
-297;24.10.2019;;;;;;;;;;
+297;24.10.2019;Pferdehypnotiseur;;;;;;;;;
 298;25.10.2019;Fachkraft für allgemeine Schadensbegrenzung;;toll collect;;;;;;;
 299;26.10.2019;;;;;;;;;;
 300;27.10.2019;Head of Shared Branded Affiliate Conversion Manager;;;;;;;;;
@@ -309,17 +309,17 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 308;4.11.2019;;;;;;;;;;
 309;5.11.2019;Leiter/-in für Mitarbeitervermeidung und Entlassungs-Management;;;;;;;;;
 310;6.11.2019;;;;;;;;;;
-311;7.11.2019;;;;;;;;;;
+311;7.11.2019;Beischlaftester (m);Sexualdienstleistungen;;;;;;;;
 312;8.11.2019;Raffgieraustreiber/-in;;;;;;;;;
 313;9.11.2019;;;;;;;;;;
 314;10.11.2019;Stiefellecker;;;;;;;;;
-315;11.11.2019;;;;;;;;;;
+315;11.11.2019;Ausbildung zu Taktischer Köder;Militär;Bundewehr;Du verwirrst den Gegner;;;;;;Vollzeit
 316;12.11.2019;;;;;;;;;;
-317;13.11.2019;Lebensmittel-Wiederkäuer;;;;;;;;;
+317;13.11.2019;Lebensmittel-Wiederkäuer;Gastronomie;;;;;;;;
 318;14.11.2019;;;;;;;;;;
 319;15.11.2019;;;;;;;;;;
-320;16.11.2019;;;;;;;;;;
-321;17.11.2019;Benzinkanister-Transporteur;;;;;;;;;
+320;16.11.2019;Büronutte;Büro;;;;;;;;
+321;17.11.2019;Benzinkanister-Transporteur;Logistik/Vertrieb;;;;;;;;
 322;18.11.2019;;;;;;;;;;
 323;19.11.2019;;;;;;;;;;
 324;20.11.2019;Sachbearbeiter für Widerspruchslösungen;;;;;;;;;
@@ -334,14 +334,14 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 333;29.11.2019;;;;;;;;;;
 334;30.11.2019;;;;;;;;;;
 335;1.12.2019;;;;;;;;;;
-336;2.12.2019;Kameramann auf der Entbindungsstelle;;;;;;;;;
+336;2.12.2019;Kameramann auf der Entbindungsstelle;Filmbranche;;;;;;;;
 337;3.12.2019;;;;;;;;;;
 338;4.12.2019;;;;;;;;;;
-339;5.12.2019;Referent als Prügelknabe;;;;;;;;;
+339;5.12.2019;Referent als Prügelknabe;;;;;;;;;Referent
 340;6.12.2019;;;;;;;;;;
 341;7.12.2019;;;;;;;;;;
 342;8.12.2019;Papier-Taschentuch-Falttechniker;;;;;;;;;
-343;9.12.2019;;;;;;;;;;
+343;9.12.2019;Bauleiter beim BER als Schwerpunkt Sündenbock;Bau;;Du bist hart im Nehmen und hällst einiges aus? Bereits am ersten Arbeitstag bekommst du als Bauleiter bei uns garantiert einen Einlauf.;;;;;Berlin;
 344;10.12.2019;;;;;;;;;;
 345;11.12.2019;;;;;;;;;;
 346;12.12.2019;Schnapsleichensammler im Stadtpark;Dienstleistungen;;Einsatzort: Weihnachtsmarkt;;;;;;
@@ -355,7 +355,7 @@ id;date;name;category;company;description;is_parttime;male;female;divers;place;F
 354;20.12.2019;;;;;;;;;;
 355;21.12.2019;Bote für schlechte Nachrichten;;;;;;;;;
 356;22.12.2019;;;;;;;;;;
-357;23.12.2019;;;;;;;;;;
+357;23.12.2019;Freiwilliger Bombenentschärfer;Militär;Bundeswehr;;;1;;;;Vollzeit
 358;24.12.2019;;;;;;;;;;
 359;25.12.2019;;;;;;;;;;
 360;26.12.2019;Lötkolbenschnitzer;;;;;;;;;
