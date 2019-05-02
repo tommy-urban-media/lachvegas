@@ -152,8 +152,16 @@ class Image {
 
 
     // copy image to upload folder
-    copy($dir . $this->path, ABSPATH . 'wp-content/uploads/' . $this->path);
-    $this->full_path = ABSPATH . 'wp-content/uploads/' . $this->path;
+
+    //var_dump($dir . $this->path);
+    //var_dump(ABSPATH . 'wp-content/uploads/' . $this->path);
+
+    $abs_path = str_replace('wordpress/', '', ABSPATH);
+
+    //var_dump($abs_path . 'wp-content/uploads/' . $this->path);
+
+    copy($dir . $this->path, $abs_path . 'wp-content/uploads/' . $this->path);
+    $this->full_path = $abs_path . 'wp-content/uploads/' . $this->path;
 
     imagedestroy( $canvas ); 
 

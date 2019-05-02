@@ -177,7 +177,7 @@ $post_data = (object)$post_data;
 			<?php the_title() ?>
 		</a>
 
-		<?php //if ($post->post_type != 'news' && (strlen($excerpt) > 2)): ?>
+		<?php if ( (strlen($excerpt) > 10)): ?>
     		<div class="post-excerpt">
 				<span class="post-date">
 					<?php echo the_time(get_option('date_format'));?>
@@ -186,7 +186,7 @@ $post_data = (object)$post_data;
 				
 				<?php echo $excerpt ?>
 			</div>
-		<?php //endif ?>
+		<?php endif ?>
 
 	</div>
 </article>

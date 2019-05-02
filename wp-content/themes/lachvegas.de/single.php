@@ -20,10 +20,7 @@ $post_data->externalImageSource = $postExternalImageSource;
 
 $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 
-
 ?>
-
-
 
 
 <div class="article-wrapper">
@@ -68,7 +65,6 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 				<figure class="post-image">
 					<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
 						<?php the_post_thumbnail('article_thumbnail')?>
-						<?php //the_post_thumbnail('article_thumbnail')?>
 					</a>
 					<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
 						<figcaption class="caption">
@@ -137,7 +133,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 
 
 <?php get_template_part('template-parts/sections/newsletter'); ?>
-<?php get_template_part('template-parts/sections/lachvegas-fragt-dich'); ?>
+<?php // get_template_part('template-parts/sections/lachvegas-fragt-dich'); ?>
 
 
 

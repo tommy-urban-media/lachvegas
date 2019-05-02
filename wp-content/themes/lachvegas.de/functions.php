@@ -638,3 +638,69 @@ function fnn($a, $b) {
 
   return $a_date < $b_date;
 }
+
+
+
+
+
+add_filter('mailpoet_newsletter_shortcode', 'mailpoet_custom_shortcode', 10, 5);
+
+function mailpoet_custom_shortcode($shortcode, $newsletter, $subscriber, $queue, $newsletter_body) {
+  // always return the shortcode if it doesn't match your own!
+  if ($shortcode === '[custom:news]') {
+
+
+		$args = array(
+			'posts_per_page' => 5,
+			//'orderby' => 'modified',
+			'orderby' => 'date',
+			'date_query' => array(
+				'relation' => 'OR',
+				'before' => date('Y-m-d H:i:s', strtotime('+1 day'))
+			),
+			'post_status' => 'publish',
+			'post_type' => array('news')
+		);
+
+		$newPostsQuery = new WP_Query($args);
+
+		$output = '';
+		global $post;
+
+		if ($newPostsQuery->have_posts()) {
+			
+			$output .= '<h3>News</h3>';
+
+			while ( $newPostsQuery->have_posts() ) {
+				$newPostsQuery->the_post(); 
+				setup_postdata($post);
+
+				$output .= '<div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">';
+				$output .= '<a href="'. get_the_permalink($post->ID) .'">'. get_the_title($post->ID) .'</a>';
+				$output .= '</div>';
+			} 
+
+			wp_reset_postdata();
+		}
+		
+		return $output;
+	}
+  
+}
+
+
+
+add_filter('manage_posts_columns', 'add_img_column');
+add_filter('manage_posts_custom_column', 'manage_img_column', 10, 2);
+
+function add_img_column($columns) {
+		$columns = array_slice($columns, 0, 1, true) + array("img" => "Featured Image") + array_slice($columns, 1, count($columns) - 1, true);
+    return $columns;
+}
+
+function manage_img_column($column_name, $post_id) {
+    if( $column_name == 'img' ) {
+        echo get_the_post_thumbnail($post_id, 'thumbnail');
+    }
+    return $column_name;
+}

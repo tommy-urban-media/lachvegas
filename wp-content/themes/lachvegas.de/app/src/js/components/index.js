@@ -1,5 +1,6 @@
 import InfoBox from './infobox';
 import Calendar from './calendar';
+import CookieBox from './cookiebox';
 import FortuneCookie from './fortunecookie';
 import Menu from './menu';
 import Modal from './modal';
@@ -9,6 +10,7 @@ import Quiz from './quiz';
 
 export default { 
 
+  CookieBox,
   FortuneCookie,
   InfoBox,
   Calendar,

@@ -21,13 +21,17 @@ $gap = 40px
 	&__body
 		display: flex
 		justify-content: space-between
+		flex-wrap: wrap 
 
-		& > div
-			flex-grow: 5
-			flex-basis: 0
-			&:nth-child(2)
-				flex-grow: 2
-				padding-right: 40px
+		@media $query.m
+			flex-wrap: nowrap
+
+			& > div
+				flex-grow: 5
+				flex-basis: 0
+				&:nth-child(2)
+					flex-grow: 2
+					padding-right: 40px
 
 
 	&-sidebar

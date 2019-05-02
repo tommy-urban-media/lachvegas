@@ -109,6 +109,24 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 		<section class="article-body article-content">
 			<?php the_content() ?>
 
+
+			<?php 
+				$relations = get_field('quiz_questions');
+				var_dump($relations);	
+
+				foreach ($relations as $question) {
+					var_dump($question->ID);
+					echo apply_filters('the_content', $question->post_content);
+					$answers = get_field('quiz_answers', $question->ID);
+					
+					foreach ($answers as $answer) {
+						echo apply_filters('the_content', $answer->post_content);
+					}
+					
+				}
+
+			?>
+
 			<div class="quiz" data-component="Quiz" data-param='<?= json_encode($quiz) ?>' data-url="<?php echo admin_url('admin-ajax.php') ?>">
 				<?php foreach($quiz['questions'] as $index => $q): ?>
 					<div class="quiz__item" data-question-id="<?= $q['id'] ?>" data-question-result="<?= $q['result'] ?>">

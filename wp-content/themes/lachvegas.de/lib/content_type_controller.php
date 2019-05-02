@@ -264,6 +264,60 @@ class ContentTypeController {
 
     add_post_type_support( 'quiz', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
+    register_post_type('quiz_question',
+        array(
+            'labels' => array(
+                'name' => __( 'Quiz-Fragen' ),
+                'singular_name' => __( 'Quizfrage' ),
+                'add_new' => __( 'Quizfrage eintragen' ),
+                'add_new_item' => __( 'neue Quizfrage anlegen' ),
+                'edit_item' => __( 'Quizfrage bearbeiten' ),
+                'new_item' => __( 'neue Quizfrage' ),
+                'view_item' => __( 'Quizfrage anschauen' ),
+                'search_items' => __( 'Quizfrage suchen' ),
+                'not_found' => __( 'Quizfrage nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'show_in_menu' => 'edit.php?post_type=quiz',
+            'public' => false,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => false
+        )
+    );
+
+    add_post_type_support( 'quiz_question', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+    register_post_type('quiz_answer',
+        array(
+            'labels' => array(
+                'name' => __( 'Quiz-Antworten' ),
+                'singular_name' => __( 'Quizantwort' ),
+                'add_new' => __( 'Quizantwort eintragen' ),
+                'add_new_item' => __( 'neue Quizantwort anlegen' ),
+                'edit_item' => __( 'Quizantwort bearbeiten' ),
+                'new_item' => __( 'neue Quizantwort' ),
+                'view_item' => __( 'Quizantwort anschauen' ),
+                'search_items' => __( 'Quizantwort suchen' ),
+                'not_found' => __( 'Quizantwort nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'show_in_menu' => 'edit.php?post_type=poll',
+            'public' => false,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => false
+        )
+    );
+
+    add_post_type_support( 'quiz_answer', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
 
 
     register_taxonomy(
@@ -275,7 +329,7 @@ class ContentTypeController {
             'post',
             'saying',
             'statistic',
-            'quiz'
+            //'quiz'
         ),
         array(
             'label' => __( 'Personen' ),
@@ -379,6 +433,33 @@ class ContentTypeController {
             'query_var' => true,
             'rewrite' => array('slug' => 'glueckskeks-kategorien')
         ) 
+    );
+
+
+
+
+    register_post_type('statistic',
+        array(
+            'labels' => array(
+                'name' => __( 'Statistik des Tages' ),
+                'singular_name' => __( 'Statistik' ),
+                'add_new' => __( 'Statistik eintragen' ),
+                'add_new_item' => __( 'neue Statistik anlegen' ),
+                'edit_item' => __( 'Statistik bearbeiten' ),
+                'new_item' => __( 'neue Statistik' ),
+                'view_item' => __( 'Statistik anschauen' ),
+                'search_items' => __( 'Statistik suchen' ),
+                'not_found' => __( 'Statistik nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'public' => false,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => false
+        )
     );
 
 

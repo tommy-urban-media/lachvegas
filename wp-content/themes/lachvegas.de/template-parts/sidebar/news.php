@@ -23,7 +23,7 @@ $newsArgs = array(
     array(
       'year' => 2019,
       'month' => $today['mon'],
-      'day' => $today['mday']-1
+      'day' => ($today['mday'] > 1) ? $today['mday']-1 : 1
     ),
     array(
       'year' => 2019,
@@ -36,7 +36,7 @@ $newsArgs = array(
     array(
       'year' => 2018,
       'month' => $today['mon'],
-      'day' => $today['mday']-1
+      'day' => ($today['mday'] > 1) ? $today['mday']-1 : 1
     ),
     array(
       'year' => 2018,

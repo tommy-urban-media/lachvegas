@@ -22,7 +22,7 @@ export default class InfoBox {
 
     init() {
         this.collectBoxes();
-        this.initEvents();
+        //this.initEvents();
     }
 
     collectBoxes() {

@@ -1,0 +1,30 @@
+.cookie-info
+	max-width: 1000px
+	margin: 0 20px
+	margin-top: 50px
+	padding: 10px
+	display: flex
+	align-items: center
+	justify-content: space-between
+	flex-wrap: wrap 
+	font-size: 11px
+	border: 1px solid #e0e0e0
+	border-radius: 3px
+
+	@media $query.m
+		margin-left: auto
+		margin-right: auto
+		flex-wrap: nowrap
+
+	.link
+		width: 100%
+		padding: 10px
+		color: #404040
+		cursor: pointer
+		border: 1px solid #e0e0e0
+		background: linear-gradient(180deg, #fff, darken(#fff, 10%))
+		border-radius: 3px
+
+		@media $query.m
+			min-width: 340px
+	

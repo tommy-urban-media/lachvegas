@@ -91,6 +91,7 @@
 ?>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<?php if ($_SERVER['SERVER_NAME'] != 'localhost'): ?>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23558535-12"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -98,6 +99,7 @@
   gtag('js', new Date());
   gtag('config', 'UA-23558535-12');
 </script>
+<?php endif ?>
 
 <?php /* ?>
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -123,6 +125,7 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="page-container">
+	
 
 	<header class="header">
 
@@ -160,6 +163,8 @@
 	</header>
 
 	<main class="main">
+		
+		<?php get_template_part('template-parts/cookie-info'); ?>
 
 		<div class="subheader">
 			<h1 class="page-slogan">Die Website für Bekloppte, Wahnsinnige und alle die es noch werden wollen</h1>

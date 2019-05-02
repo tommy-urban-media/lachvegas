@@ -5,18 +5,20 @@
  */
 
 get_template_part('template-parts/sidebar/news');
-get_template_part('template-parts/sidebar/question-of-the-day');
+//get_template_part('template-parts/sidebar/question-of-the-day');
+
+get_template_part('template-parts/sidebar/newest-saying');
 
 $rand = rand(0,1);
 
 if ($rand) {
   
   get_template_part('template-parts/common/jobs');
-  showAD('portrait');
+  //showAD('portrait');
 
 } else {
 
-  showAD('portrait');
+  //showAD('portrait');
   get_template_part('template-parts/common/jobs');
   
 }

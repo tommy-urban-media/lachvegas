@@ -1,6 +1,10 @@
 .teaser
 	display: flex
 	justify-content: left
+	flex-wrap: wrap
+
+	@media $query.m
+		flex-wrap: nowrap
 
 	&__image
 		width: 240px
