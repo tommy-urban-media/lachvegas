@@ -97,7 +97,7 @@ add_filter( 'rest_api_init', function($wp_rest_server){
 
 function post_type_tags_fix($request) {
 	if ( isset($request['tag']) && !isset($request['post_type']) )
-	$request['post_type'] = array('post', 'news', 'guide', 'saying');
+	$request['post_type'] = array('post', 'news', 'guide', 'saying', 'quiz');
 	return $request;
 } 
 add_filter('request', 'post_type_tags_fix');
@@ -690,6 +690,7 @@ function mailpoet_custom_shortcode($shortcode, $newsletter, $subscriber, $queue,
 
 
 
+/*
 add_filter('manage_posts_columns', 'add_img_column');
 add_filter('manage_posts_custom_column', 'manage_img_column', 10, 2);
 
@@ -704,3 +705,4 @@ function manage_img_column($column_name, $post_id) {
     }
     return $column_name;
 }
+*/

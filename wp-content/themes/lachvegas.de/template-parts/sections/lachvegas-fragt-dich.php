@@ -40,7 +40,7 @@ $post = get_post(2090);
   <section class="section section--lachvegas-asks-you">
     <div class="section__pane">
       <header class="section__header">
-        <h3 class="section__title">Lachvegas fragt</h3>
+        <h3 class="section__title">Frage der Woche</h3>
         <span class="section__separator"></span>
       </header>
       <div class="section__content" style="padding: 0 40px;">

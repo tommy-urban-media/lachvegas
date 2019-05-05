@@ -22,9 +22,13 @@
     </div>
 
     <div class="gridbox__item">
-        <?php $post = get_post(2090); get_template_part('template-parts/common/poll'); ?>
-        <span>Mit dem Nachbarn hat es geklappt</span>
-        <strong>0,00002%</strong> aller Ehefrauen schleichen sich in der Nacht aus der Wohnung und besuchen für eine halbe Stunde den Nachbarn ohne dass der Ehemann etwas davon merkt.
+        <?php //$post = get_post(2090); get_template_part('template-parts/common/poll'); ?>
+
+        <span class="gridbox__headline">Statistik des Tages</span>
+        <div class="statistic">
+            <!-- <div class="statistic__subtitle">Mit dem Nachbarn hat es geklappt</div> -->
+            <div class="statistic__text"><strong>0,00002%</strong> aller Ehefrauen schleichen sich in der Nacht aus der Wohnung und besuchen für eine halbe Stunde den Nachbarn ohne dass der Ehemann etwas davon merkt.</div>
+        </div>
     </div>
 
     <div class="gridbox__item">    

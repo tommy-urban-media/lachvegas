@@ -9,11 +9,11 @@ $options = {
 	max-width: 100%
 	
 	@media screen and (min-width: 1000px)
-		height: 520px
+		height: 580px
 		display: grid
 		grid-gap: 20px
 		grid-template-columns: repeat(4, 235px)
-		grid-template-rows: repeat(3, 160px)
+		grid-template-rows: repeat(3, 180px)
 		justify-content: center
 		align-content: end 
 
@@ -42,6 +42,7 @@ $options = {
 			grid-row: 2 / 4
 			color: #fff
 			background: linear-gradient(25deg, #5a8194, darken(#5a8194, 20%))
+			background: transparent url('../img/blue-pane.jpg') no-repeat top center
 		&:nth-child(5)
 			grid-column: 4 / 4
 			background-color: #f0ef20
@@ -60,4 +61,12 @@ $options = {
 		& > img
 			width: auto
 			max-height: 100%
+
+
+	&__headline
+		display: block
+		font-size: 16px
+		font-weight: bold
+		opacity: 0.4
+		text-transform: uppercase
 

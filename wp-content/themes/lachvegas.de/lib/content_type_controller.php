@@ -279,7 +279,7 @@ class ContentTypeController {
                 'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
             ),
             'show_ui' => true,
-            'show_in_menu' => 'edit.php?post_type=quiz',
+            //'show_in_menu' => 'edit.php?post_type=quiz',
             'public' => false,
             'hierarchical' => false,
             'has_archive' => true,
@@ -306,7 +306,7 @@ class ContentTypeController {
                 'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
             ),
             'show_ui' => true,
-            'show_in_menu' => 'edit.php?post_type=poll',
+            //'show_in_menu' => 'edit.php?post_type=poll',
             'public' => false,
             'hierarchical' => false,
             'has_archive' => true,
@@ -350,7 +350,8 @@ class ContentTypeController {
             'post',
             'saying',
             'statistic',
-            'quiz'
+            'quiz',
+            'quiz_question'
         ),
         array(
             'label' => __( 'Post Settings' ),

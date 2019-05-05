@@ -1,11 +1,13 @@
 .poll
   width: auto
   margin: 0
-  padding: 20px
+  padding: 60px
   display: block
   background-color: #f0f0f0
   border: 1px solid #e9e9e9
   position: relative
+  background: transparent url('../img/leaf.jpg') no-repeat top center
+  
 
   &.state-is-pending
     &:before
@@ -23,18 +25,31 @@
       left: 0
       top: 0
       background-color: alpha(#84d4d1, 50%)
+
+  &__bg
+    width: 100%
+    height: 100%
+    display: block
+    z-index: 1
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #000
+    opacity: 0.74
   
   &__stage
     width: 100%
     padding: 0
+    position: relative
+    z-index: 2
 
   &__title
-    margin: 10px 0
+    margin: 0 0 25px 0
+    color: #fff
     font-size: 24px
 
   &__answers
     width: 100%
-    max-width: 600px
     display: flex
     justify-content: left
     flex-wrap: wrap
@@ -54,29 +69,88 @@
 
   &__answers__item
     width: 100%
-    margin: 0 0 5px 0 !important
+    margin: 0 0 8px 0 !important
     padding: 0
+    display: flex
+    align-items: center
+    color: #fff
     list-style: none
+    border-radius: 4px
+    background-color: alpha(#fff, 0.22)
+    transition: background-color 150ms ease-in-out
+
+    &.is-selected
+      background-color: alpha(#90ff30, 0.38)
+      &:hover
+        background-color: alpha(#90ff30, 0.48)
+
+    &:hover
+       background-color: alpha(#fff, 0.32)
+
+    &:before
+      margin: 8px
+      color: #fff
+      width: 32px
+      height: 32px
+      line-height: 32px
+      text-align: center
+      border-radius: 2px
+      border: 1px solid #404040
+      background-color: alpha(#fff, 0.1)
+
+    &:first-child:before
+      content: 'A'
+    &:nth-child(2):before
+      content: 'B'
+    &:nth-child(3):before
+      content: 'C'
+    &:nth-child(4):before
+      content: 'D'
+    &:nth-child(5):before
+      content: 'E'
+    &:nth-child(6):before
+      content: 'F'
+    &:nth-child(7):before
+      content: 'G'
+
+
+    .input-wrapper
+      width: 100%
+      height: 100%
+      display: flex
+      align-items: center
+
+      label
+        width: 100%
+        padding: 10px
+        left: 0
+
+        &:before
+        &:after
+          display: none
+
+
 
 
   &__results__wrapper
     margin-top: 20px
     padding-top: 20px
-    border-top: 1px solid #c0c0c0
+    border-top: 1px solid alpha(#fff, 0.25)
     display: none
 
   &__results
     padding: 0
-    border: 1px solid #f0f0f0
     display: flex
     justify-content: space-between
 
   &__results__title
     margin: 20px 0 10px 0
     display: block
+    color: #fff
 
   &__results__number
-    color: #000000
+    color: #fff
+    font-size: 24px
     font-weight: bold
 
   &__results__text
@@ -96,6 +170,7 @@
     width: 50%
     min-width: 50%
     padding: 0 10px
+    color: #fff
     font-size: 12px
     text-align: right
 
@@ -108,7 +183,8 @@
     color: #fff
     font-size: 13px
     text-shadow: 0 0 1px #404040
-    background-color: #84d4d1
+    //background-color: #84d4d1
+    background-color: alpha(#30d0ff, 0.48)
     border-top-right-radius: 4px
     border-bottom-right-radius: 4px
     transition: width 250ms ease-in-out 150ms

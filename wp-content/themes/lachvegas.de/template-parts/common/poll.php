@@ -19,11 +19,12 @@ $question = (object)[
 ?>
 
 <div class="poll" data-component="Poll" data-url="<?php echo admin_url('admin-ajax.php') ?>" data-param='<?= json_encode($question) ?>'>
+  <div class="poll__bg"></div>
   <div class="poll__stage">
-    <h3 class="poll__title"><?= $question->title ?></h3>
+    <h3 class="poll__title"><?= $question->title ?> </h3>
     <div class="poll__answers">
       <?php foreach ($question->answers as $answer): ?>
-        <div class="poll__answers__item">
+        <div class="poll__answers__item" data-item>
           <!-- <button class="button" data-button data-answer-id="<?= $answer->id ?>"><?= $answer->title ?></button> -->
           <div class="input-wrapper type-radio">
             <input type="radio" id="<?= $question->id?>_answer_<?= $answer->id?>" name="question_<?= $question->id?>" data-answer-id="<?= $answer->id ?>" value="<?= $answer->id ?>"/>
@@ -33,11 +34,11 @@ $question = (object)[
       <?php endforeach ?>
     </div>
 
-    <button class="button" data-button>Speichern</button>
+    <!-- <button class="button" data-button>Speichern</button> -->
 
     <div class="poll__results__wrapper" data-results>
       <div class="poll__results__title">
-        <span class="poll__results__number" data-results-number>0%</span> aller Teilnehmer haben diese Frage genauso beantwortet
+        <span class="poll__results__number" data-results-number>0%</span> aller Teilnehmer haben diese Frage genauso beantwortet (Teilnehmer gesamt: <?= $question->votes ?>)
       </div>
 
       <div class="poll__results" data-results>

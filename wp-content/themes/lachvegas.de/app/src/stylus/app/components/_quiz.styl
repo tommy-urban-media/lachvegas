@@ -1,13 +1,74 @@
 .quiz
   width: 100%
   margin: 0
+  padding: 60px
   display: block
+  position: relative
+  color: #fff
+  background: transparent url('../img/leaf.jpg') no-repeat top center
+
+  &__bg
+    width: 100%
+    height: 100%
+    display: block
+    z-index: 1
+    position: absolute
+    left: 0
+    top: 0
+    background-color: #000
+    opacity: 0.74
+
+
+  &__start
+    margin: 50px 0
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    text-align: center
+    position: relative
+    z-index: 2
+
+  &__subtitle
+    color: #e0e0e0
+    font-size: 13px
+    font-weight: normal
+
+  &__title
+    color: #fff
+    font-size: 24px
+    font-weight: normal
+
+  &__button-start
+    padding: 8px 16px
+    border: 0
+    color: #fff
+    cursor: pointer
+    background-color: alpha(#90ff30, 0.38)
+    &:hover
+      background-color: alpha(#90ff30, 0.48)
+    
+
+  &__stage
+    width: 100%
+    padding: 0
+    display: block
+    position: relative
+    z-index: 2
+
+  &__number
+    display: none
+
+
+  &__questions
+    display: flex
+    flex-wrap: wrap
+
   
-  &__item
+  &__question
     width: 100%
     margin: 20px 0
     padding: 20px 0
-    display: block
+    display: none
     border-top: 1px solid #f0f0f0
 
     &--state-false
@@ -16,18 +77,96 @@
     &--state-true
       background-color: $colors.green
 
-    &__title
+    &-title
       font-size: 18px
 
-    &__content
+    &-content
       padding: 0
 
+      & > p
+        color: #fff !important
 
-  &__actions
-    margin: 25px 0
-    display: flex
-    flex-wrap: wrap
-    justify-content: center
+
+    &-answers
+      margin: 25px 0
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+
+
+    &-answer
+      width: 100%
+      margin: 0 0 8px 0 !important
+      padding: 0
+      display: flex
+      align-items: center
+      color: #fff
+      list-style: none
+      border-radius: 4px
+      background-color: alpha(#fff, 0.22)
+      transition: background-color 150ms ease-in-out
+
+      &.is-selected
+        background-color: alpha(#90ff30, 0.38)
+        &:hover
+          background-color: alpha(#90ff30, 0.48)
+
+      &:hover
+        background-color: alpha(#fff, 0.32)
+
+      &:before
+        margin: 8px
+        color: #fff
+        width: 32px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        border-radius: 2px
+        border: 1px solid #404040
+        background-color: alpha(#fff, 0.1)
+
+      &:first-child:before
+        content: 'A'
+      &:nth-child(2):before
+        content: 'B'
+      &:nth-child(3):before
+        content: 'C'
+      &:nth-child(4):before
+        content: 'D'
+      &:nth-child(5):before
+        content: 'E'
+      &:nth-child(6):before
+        content: 'F'
+      &:nth-child(7):before
+        content: 'G'
+
+
+      .input-wrapper
+        width: 100%
+        height: 100%
+        display: flex
+        align-items: center
+
+        label
+          width: 100%
+          padding: 10px
+          left: 0
+
+          &:before
+          &:after
+            display: none
+
+
+
+  &__summary
+    display: none
+    position: relative
+    z-index: 2
+
+
+
+
+
 
   &__button
     width: 100%
@@ -63,11 +202,18 @@
         background-color: lighten($colors.red, 10%)
 
 
+        
+
+
   &__answer-text
     padding: 20px
     border: 1px solid #f0f0f0
     display: none
     font-style: italic
+
+    & > p
+      color: #fff !important 
+
 
   .state-is-true
   .state-is-false

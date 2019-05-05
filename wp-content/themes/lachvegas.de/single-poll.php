@@ -29,7 +29,7 @@ $post_data->externalImageSource = $postExternalImageSource;
 
 	<article class="article" id="sitecontent" data-id="<?= $post->ID ?>">
 
-		<?php get_template_part('template-parts/article-jsonld'); ?>		
+		<?php get_template_part('template-parts/article/jsonld'); ?>		
 
 		<section class="article-header">
 

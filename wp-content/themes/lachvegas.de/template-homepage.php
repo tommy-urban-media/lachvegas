@@ -137,7 +137,9 @@ $oldPostsQuery = new WP_Query(array(
 	<?php // get_template_part('template-parts/common/news-archive') ?>
 	<?php // get_template_part('template-parts/sections/special-day') ?>
 
-	<?php get_template_part('template-parts/sections/sayings') ?>
+	<?php get_template_part('template-parts/sections/gridbox') ?>
+
+	<?php //get_template_part('template-parts/sections/sayings') ?>
 	
 
 	<?php /* ?>
@@ -261,7 +263,7 @@ $oldPostsQuery = new WP_Query(array(
 	<!-- => Alle Schlagzeilen in der Chronologie -->
 
 	<?php get_template_part('template-parts/sections/topics') ?>
-	<?php get_template_part('template-parts/sections/promis') ?>
+	<?php //get_template_part('template-parts/sections/promis') ?>
 	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
 	
 	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>

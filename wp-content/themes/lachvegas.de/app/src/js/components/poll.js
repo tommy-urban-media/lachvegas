@@ -15,6 +15,27 @@ export default class Poll {
 
   init() {
 
+    this.node.find('[data-item]').on('click', (e) => {
+      e.preventDefault();
+
+      let answerID = $(e.currentTarget).find(`[name="question_${this.data.id}"]`).data('answer-id');
+      console.log('id', answerID);
+      if (!answerID) {
+        console.warn('Antwort fehlt');
+      } else {
+        
+        this.node.find('[data-item]').removeClass('is-selected');
+        $(e.currentTarget).addClass('is-selected');
+
+        this.save({
+          poll_id: this.data.id,
+          poll_answer_id: answerID //$el.data('answer-id'),
+        });
+      }
+
+    });
+
+    /*
     this.node.find('[data-button]').on('click', (e) => {
       e.preventDefault();
 
@@ -33,6 +54,7 @@ export default class Poll {
       }
 
     });
+    */
 
   }
 

@@ -19,16 +19,16 @@ $data = [
   'query' => new WP_Query(
     array(
       'posts_per_page' => 3, 
-      'post_type' => $postTypes,
+      'post_type' => array(
+        'news', 
+        'post', 
+        'guide', 
+        'statistic'
+      ), 
       'orderby' => 'date',
-      'date_query' => $dateQuery,
-      'tax_query' => array(
+      'date_query' => array(
         'relation' => 'OR',
-        array(
-          'taxonomy' => 'post_settings',
-          'field' => 'name',
-          'terms' => array('teasable')
-        )
+        'before' => date('Y-m-d H:i', strtotime('+1 day'))
       ),
       'category_name' => get_category_by_slug('wirtschaft')->cat_name
     )

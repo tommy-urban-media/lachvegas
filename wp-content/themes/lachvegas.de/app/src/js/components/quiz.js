@@ -8,6 +8,11 @@ export default class Quiz {
     this.url = this.node.data('url');
     this.$currentButtonTarget = null;
 
+    console.log(this.data);
+
+    // the active running quiz question the user sees
+    this._current_quiz_question = 1;
+
     this.user = {
       answers: []
     };
@@ -22,15 +27,46 @@ export default class Quiz {
 
   init() {
 
-    this.node.find('[data-button]').on('click', (e) => {
+    // activate the start button to start the quiz
+    this.node.find('[data-button-start]').on('click', (e) => {
+      e.preventDefault();
+      this.showCurrentQuestion();
+    });
+
+
+    this.node.find('[data-item]').on('click', (e) => {
       e.preventDefault();
       
-      let $el = $(e.currentTarget);
-      let value = $el.data('value');
+      let answerID = $(e.currentTarget).find(`[type=radio]`).data('answer-id');
+      console.log('id', answerID);
+      if (!answerID) {
+        console.warn('Antwort fehlt');
+      } else {
+        
+        this.node.find('[data-item]').removeClass('is-selected');
+        $(e.currentTarget).addClass('is-selected');
 
-      this.$currentButtonTarget = $el;
-      this.deactivateQuestion($el.closest('[data-question-id]'));
+        let $parent = $(e.currentTarget).closest('[data-quiz-question]')
 
+        let questionID = $parent.data('question-id');
+
+        this.user.answers.push({
+          question_id: questionID,
+          answer_id: answerID
+        });
+
+        $parent.find('[data-answer-text]').show();
+
+        // show the next question
+        //this._current_quiz_question++;
+        //this.showCurrentQuestion();
+
+        this.showQuestionResult();
+      }
+
+      console.log(this.user);
+
+      /*
       this.save({
         quiz_id: this.data.id,
         question_id: $el.closest('[data-question-id]').data('question-id'),
@@ -38,9 +74,27 @@ export default class Quiz {
         answer_id: $el.data('answer-id'),
         answer_value: value
       });
+      */
     });
 
   }
+
+
+  showCurrentQuestion() {
+    $('[data-quiz-start]').hide();
+    $('[data-quiz-number]').show();
+
+    $('[data-num-current]').html(`${this._current_quiz_question}`);
+    
+    $(`[data-quiz-question]`).hide();
+    $(`[data-quiz-question]:nth-child(${this._current_quiz_question}`).show();
+  }
+
+
+  showQuestionResult(questionID) {
+
+  }
+
 
   save( obj ) {
 
