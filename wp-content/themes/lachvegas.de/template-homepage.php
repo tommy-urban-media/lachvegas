@@ -268,7 +268,7 @@ $oldPostsQuery = new WP_Query(array(
 	
 	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
-	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
+	<?php get_template_part('template-parts/sections/frage-der-woche') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
 

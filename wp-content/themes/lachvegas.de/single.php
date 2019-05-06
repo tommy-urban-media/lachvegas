@@ -29,7 +29,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 
 	<article class="article" id="sitecontent" data-id="<?= $post->ID ?>">
 
-		<?php get_template_part('template-parts/article-jsonld'); ?>		
+		<?php get_template_part('template-parts/article/jsonld'); ?>		
 
 		<section class="article-header">
 
@@ -100,6 +100,12 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			<?php if ($post_data->original_date): ?>
 				<p><em>Hinweis: Dieser Artikel wurde erstmals veröffentlicht am <?php echo date('d.m.Y', strtotime($post_data->original_date)) ?>.</em></p>
 			<?php endif ?>
+
+			<!--
+			Daumen hoch: Der Beitrag ist echt lustig und bekloppt
+			Daumen runter: Der Beitrag ist überhaupt nicht lustig
+			Daumen zur Seite: Ich bin völlig verwirrt
+			-->
 		</section>
 		
 		<?php if (has_tag()): ?>

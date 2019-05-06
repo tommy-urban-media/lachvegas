@@ -26,25 +26,23 @@ $data = [
         'statistic'
       ), 
       'orderby' => 'date',
-      'date_query' => array(
-        'relation' => 'OR',
-        'before' => date('Y-m-d H:i', strtotime('+1 day'))
-      ),
+      'date_query' => $dateQuery,
       'category_name' => get_category_by_slug('gesellschaft')->cat_name
     )
   ),
   'query_small' => new WP_Query(
     array(
-      'posts_per_page' => 20, 
+      'posts_per_page' => 5, 
       'post_type' => 'news', 
       'orderby' => 'date',
       'date_query' => $dateQuery,
       'tax_query' => array(
-        'relation' => 'NOT__IN',
+        'relation' => 'OR',
         array(
           'taxonomy' => 'post_settings',
           'field' => 'name',
-          'terms' => array('teasable')
+          'terms' => array('teasable'),
+          'operator' => 'NOT IN'
         )
       ),
       'category_name' => get_category_by_slug('gesellschaft')->cat_name

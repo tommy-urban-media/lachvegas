@@ -23,7 +23,7 @@ if ( !function_exists( 'theme_setup' ) ):
 
   function theme_setup() {
 
-    show_admin_bar( false );
+    // show_admin_bar( false );
 
 	  add_editor_style();
 		add_theme_support( 'post-thumbnails' );	

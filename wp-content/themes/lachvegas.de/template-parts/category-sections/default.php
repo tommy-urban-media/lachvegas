@@ -79,6 +79,7 @@
               <?php get_template_part('template-parts/teasers/teaser-news-list') ?>
             </li>
           <?php endwhile; ?>
+          <?php wp_reset_query()?>
           </ul>
         </div>
       <?php endif ?>

@@ -111,6 +111,14 @@
         &:hover
           background-color: alpha(#90ff30, 0.48)
 
+      &.is-wrong
+      &.is-wrong:hover
+        background-color: alpha($colors.red, 0.38)
+
+      &.is-correct
+      &.is-correct:hover
+        background-color: alpha(#90ff30, 0.38)
+
       &:hover
         background-color: alpha(#fff, 0.32)
 
@@ -202,17 +210,23 @@
         background-color: lighten($colors.red, 10%)
 
 
-        
+
 
 
   &__answer-text
     padding: 20px
-    border: 1px solid #f0f0f0
+    border: 1px solid alpha(#fff, 0.22)
     display: none
-    font-style: italic
 
     & > p
       color: #fff !important 
+
+
+  &__answer-text-is-correct
+    margin: 0 0 20px 0
+    display: block
+    font-weight: bold
+    text-transform: uppercase
 
 
   .state-is-true

@@ -13,6 +13,8 @@ $dateQuery = array(
   'before' => date('Y-m-d H:i', strtotime('+1 day'))
 );
 
+$category_name = get_category_by_slug('wirtschaft')->cat_name;
+
 $data = [
   'name' => 'Wirtschaft',
   'url' => home_url('/wirtschaft'),
@@ -26,11 +28,8 @@ $data = [
         'statistic'
       ), 
       'orderby' => 'date',
-      'date_query' => array(
-        'relation' => 'OR',
-        'before' => date('Y-m-d H:i', strtotime('+1 day'))
-      ),
-      'category_name' => get_category_by_slug('wirtschaft')->cat_name
+      'date_query' => $dateQuery,
+      'category_name' => $category_name
     )
   ),
   'query_small' => new WP_Query(
@@ -40,14 +39,15 @@ $data = [
       'orderby' => 'date',
       'date_query' => $dateQuery,
       'tax_query' => array(
-        'relation' => 'NOT__IN',
+        'relation' => 'OR',
         array(
           'taxonomy' => 'post_settings',
           'field' => 'name',
-          'terms' => array('teasable')
+          'terms' => array('teasable'),
+          'operator' => 'NOT IN'
         )
       ),
-      'category_name' => get_category_by_slug('wirtschaft')->cat_name
+      'category_name' => $category_name
     )
   ),
   'button_text' => 'Mehr Wirtschaft'

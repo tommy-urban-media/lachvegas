@@ -15,11 +15,22 @@ foreach ($relations as $question) {
     //echo apply_filters('the_content', $question->post_content);
     $answers = get_field('quiz_answers', $question->ID);
     $result_text = get_field('quiz_answer_result_text', $question->ID);
+    $answer_correct = get_field('quiz_answer_correct', $question->ID);
+
+    if (is_array($answer_correct)) {
+        $correctAnswers = [];
+        foreach($answer_correct as $a) {
+            $correctAnswers[] = [
+                'id' => $a->ID
+            ];
+        }
+    }
 
     $q = new stdClass();
     $q->id = $question->ID;
     $q->text = $question->post_content;
     $q->answer_text = $result_text;
+    $q->answer_correct = $correctAnswers;
     $q->answers = [];
     
     foreach ($answers as $answer) {
@@ -98,20 +109,25 @@ if ($id) {
 
                     <div class="quiz__question-answers">
                         <?php foreach($q->answers as $answer): ?>
-                        <div class="quiz__question-answer" data-item>
+                        <div class="quiz__question-answer" data-item data-answer-id="id-<?= $answer->id ?>">
                             <div class="input-wrapper type-radio">
                                 <input type="radio" id="<?= $q->id?>_answer_<?= $answer->id?>" name="question_<?= $q->id?>" data-answer-id="<?= $answer->id ?>" value="<?= $answer->id ?>"/>
                                 <label for="<?= $q->id?>_answer_<?= $answer->id?>"><?= $answer->value ?></label>
                             </div>
                         </div>
-                            
-                        <!-- <button class="quiz__button quiz__button--<?= $answer->value ?>" data-button data-value="<?= $answer->value ?>" data-answer-id="<?= $answer->id ?>"><?= $answer->label ?></button>-->
                         <?php endforeach ?>
                     </div>
 
                     <div class="quiz__answer-text" data-answer-text>
-                        <span data-answer-right-wrong></span>
+                        <span class="quiz__answer-text-is-correct" data-answer-is-correct></span>
                         <?= $q->answer_text ?>
+                        
+                        <?php if ($index === count($quiz->questions)-1): ?>
+                            <button class="button" data-button-summary>Auswertung</button>
+                        <?php else: ?>
+                            <button class="button" data-button-next>Nächste Frage</button>
+                        <?php endif ?>
+
                     </div>
                 </div>
             <?php endforeach ?>

@@ -45,7 +45,7 @@ class ContentTypeController {
         )
     );
 
-    add_post_type_support( 'news', array('title', 'editor', 'custom-fields', 'thumbnail') );
+    add_post_type_support( 'news', array('title', 'editor', 'custom-fields', 'thumbnail', 'excerpt') );
 
 
 
