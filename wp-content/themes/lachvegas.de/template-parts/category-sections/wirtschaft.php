@@ -29,7 +29,7 @@ $data = [
       ), 
       'orderby' => 'date',
       'date_query' => $dateQuery,
-      'category_name' => $category_name
+      'category_name' => get_category_by_slug('wirtschaft')->cat_name
     )
   ),
   'query_small' => new WP_Query(
@@ -39,15 +39,19 @@ $data = [
       'orderby' => 'date',
       'date_query' => $dateQuery,
       'tax_query' => array(
-        'relation' => 'OR',
+        'relation' => 'AND',
         array(
           'taxonomy' => 'post_settings',
           'field' => 'name',
           'terms' => array('teasable'),
           'operator' => 'NOT IN'
+        ),
+        array(
+          'taxonomy' => 'category',
+          'field' => 'name',
+          'terms' => array('wirtschaft')
         )
-      ),
-      'category_name' => $category_name
+      )
     )
   ),
   'button_text' => 'Mehr Wirtschaft'

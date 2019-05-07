@@ -2,7 +2,8 @@
 
 <?php $query = $data['query']; ?>
 <?php $querySmall = isset($data['query_small']) ? $data['query_small'] : null; ?>
-<?php if ($query->have_posts()) : ?>
+
+
 
 <section class="section section--posts">
   <div class="section__pane">
@@ -15,6 +16,7 @@
       <div>
         <ol class="list list--teaser">
           <?php $i = 0; ?>
+          <?php if ($query->have_posts()) : ?>
           <?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
             <?php //if (has_post_thumbnail($post->ID)): ?>
               <?php //if ($i <= 2): ?>
@@ -25,6 +27,9 @@
               <?php //endif ?>
             <?php //endif ?>
           <?php endwhile; ?>
+          <?php wp_reset_query()?>
+          <?php wp_reset_postdata()?>
+          <?php endif ?>
 
           <?php if ($i < 3) : ?>
             
@@ -80,6 +85,7 @@
             </li>
           <?php endwhile; ?>
           <?php wp_reset_query()?>
+          <?php wp_reset_postdata()?>
           </ul>
         </div>
       <?php endif ?>
@@ -91,6 +97,3 @@
 
   </div>
 </section>
-
-<?php endif ?>
-<?php wp_reset_query() ?>

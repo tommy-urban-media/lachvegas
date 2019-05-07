@@ -10,6 +10,8 @@ include_once(dirname(__FILE__) . '/lib/shortcode_controller.php');
 include_once(dirname(__FILE__) . '/lib/widget_controller.php');
 include_once(dirname(__FILE__) . '/lib/theme_controller.php');
 
+include_once(dirname(__FILE__) . '/lib/mailpoet_controller.php');
+
 require __DIR__ . '/app/vendor/autoload.php';
 
 use GDText\Box;
@@ -23,7 +25,7 @@ if ( !function_exists( 'theme_setup' ) ):
 
   function theme_setup() {
 
-    // show_admin_bar( false );
+    show_admin_bar( false );
 
 	  add_editor_style();
 		add_theme_support( 'post-thumbnails' );	
@@ -51,6 +53,8 @@ if ( !function_exists( 'theme_setup' ) ):
     //new ShortcodeController();
     //new WidgetController();
 		new PostController();
+
+		$mailpoetController = new MailpoetController();
 
     //if (is_admin() && current_user_can('manage_options'))
       //  new TS_ThemeOptions();
@@ -639,54 +643,6 @@ function fnn($a, $b) {
   return $a_date < $b_date;
 }
 
-
-
-
-
-add_filter('mailpoet_newsletter_shortcode', 'mailpoet_custom_shortcode', 10, 5);
-
-function mailpoet_custom_shortcode($shortcode, $newsletter, $subscriber, $queue, $newsletter_body) {
-  // always return the shortcode if it doesn't match your own!
-  if ($shortcode === '[custom:news]') {
-
-
-		$args = array(
-			'posts_per_page' => 5,
-			//'orderby' => 'modified',
-			'orderby' => 'date',
-			'date_query' => array(
-				'relation' => 'OR',
-				'before' => date('Y-m-d H:i:s', strtotime('+1 day'))
-			),
-			'post_status' => 'publish',
-			'post_type' => array('news')
-		);
-
-		$newPostsQuery = new WP_Query($args);
-
-		$output = '';
-		global $post;
-
-		if ($newPostsQuery->have_posts()) {
-			
-			$output .= '<h3>News</h3>';
-
-			while ( $newPostsQuery->have_posts() ) {
-				$newPostsQuery->the_post(); 
-				setup_postdata($post);
-
-				$output .= '<div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">';
-				$output .= '<a href="'. get_the_permalink($post->ID) .'">'. get_the_title($post->ID) .'</a>';
-				$output .= '</div>';
-			} 
-
-			wp_reset_postdata();
-		}
-		
-		return $output;
-	}
-  
-}
 
 
 

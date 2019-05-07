@@ -32,15 +32,19 @@ $data = [
       'orderby' => 'date',
       'date_query' => $dateQuery,
       'tax_query' => array(
-        'relation' => 'OR',
+        'relation' => 'AND',
         array(
           'taxonomy' => 'post_settings',
           'field' => 'name',
           'terms' => array('teasable'),
           'operator' => 'NOT IN'
+        ),
+        array(
+          'taxonomy' => 'category',
+          'field' => 'name',
+          'terms' => array('politik')
         )
-      ),
-      'category_name' => get_category_by_slug('politik')->cat_name
+      )
     )
   ),
   'button_text' => 'Mehr Politik'
