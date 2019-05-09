@@ -27,24 +27,7 @@ $args = array(
 			'field' => 'name',
 			'terms' => array('teasable')
 		)
-	),
-
-	/*
-	'category__in' => array(
-		get_category_by_slug('_teasable')->term_id,
-		get_category_by_slug('_wiederholend')->term_id
 	)
-	*/
-
-	/*
-	'meta_query' => array(
-		array(
-			'key' => 'teasable',
-			'value' => true,
-			'compare' => '='
-		)
-	)
-	*/
 );
 
 $newPostsQuery = new WP_Query($args);
@@ -84,12 +67,14 @@ $oldPostsQuery = new WP_Query(array(
 				<ol class="list list--news">
 					<?php $i = 0; ?>
 					<?php while ( $newPostsQuery->have_posts() ) : $newPostsQuery->the_post(); setup_postdata($post)?>
-					
+
+						<!--
 						<?php if ($i == 4): ?>
 							<li class="list-item">
 								<?php get_template_part('template-parts/ads/frontend/banner') ?> <?php //showAD('banner'); ?>
 							</li>
 						<?php endif ?>
+						-->
 
 						<li class="list-item">
 							<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
@@ -104,39 +89,13 @@ $oldPostsQuery = new WP_Query(array(
 			<?php wp_reset_postdata();?>
 		</div>
 
-		<div class="content__area--secondary">
-
-			<!--
-			<div class="sayings">
-				<img width="300" height="300" src="http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-300x300.png" class="attachment-medium size-medium wp-post-image" alt="" srcset="http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-300x300.png 300w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-150x150.png 150w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640-600x600.png 600w, http://localhost/lachvegas/wp-content/uploads/kotzen-ist-eigentlich-gut-denn-dann-kommt-die-ganze-scheisse-wieder-raus-die-man-sonst-verdauen-wuerde_640_640.png 640w" sizes="(max-width: 300px) 100vw, 300px">
-			</div>
-			-->
-
+		<aside class="content__area--secondary">
 			<?php get_template_part('sidebar')?>
-
-			<!--
-			<div class="news">
-				<h3>Aktuelle Kurzmeldungen</h3>
-				<?php $queryShortNews = new WP_Query( array('post_type' => 'news', 'posts_per_page' => 10, 'category_name' => 'kurzmeldungen') ); ?>
-				<?php if ( $queryShortNews->have_posts() ) : ?>
-					<ul class="list list--shortnews">
-						<?php while ( $queryShortNews->have_posts() ) : $queryShortNews->the_post(); setup_postdata($post)?>
-							<li class="list-item">	
-								<a href="<?php echo get_the_permalink($post->ID) ?>"><?php the_title(); ?></a>
-							</li>
-						<?php endwhile; ?>
-					</ul>
-					<?php wp_reset_postdata(); ?>
-				<?php endif ?>	
-			</div>
-			-->
-
-		</div>
+		</aside>
 	</div>
 
-	<?php // get_template_part('template-parts/common/news-archive') ?>
-	<?php // get_template_part('template-parts/sections/special-day') ?>
-
+	<?php //get_template_part('template-parts/common/news-archive') ?>
+	<?php //get_template_part('template-parts/sections/special-day') ?>
 	<?php get_template_part('template-parts/sections/gridbox') ?>
 
 	<?php //get_template_part('template-parts/sections/sayings') ?>
@@ -259,9 +218,7 @@ $oldPostsQuery = new WP_Query(array(
 	</div>
 	-->
 
-	<?php // get_template_part('template-parts/sidebar/news') ?>
-	<!-- => Alle Schlagzeilen in der Chronologie -->
-
+	<?php //get_template_part('template-parts/sidebar/news') ?>
 	<?php get_template_part('template-parts/sections/topics') ?>
 	<?php //get_template_part('template-parts/sections/promis') ?>
 	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
@@ -328,95 +285,6 @@ $oldPostsQuery = new WP_Query(array(
 	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
-
-	
-
-
-<?php /* ?>
-	<section class="section section--sprueche">
-		<div class="section__pane">
-			<header class="section__header">
-				<h3 class="section__title">Sprüche und Blödsinn</h3>
-				<span class="section__separator"></span>
-			</header>
-			<?php $query = new WP_Query( array('posts_per_page' => 7, 'post_type' => array('saying') )); ?>
-			<?php if ( $query->have_posts() ) : ?>
-				<ol class="teasers-images">
-					<?php $i = 0; ?>
-					<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
-						
-						<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_2x');?>
-						<li>
-							<?php if (has_post_thumbnail()):?>
-								<!--
-								<div class="quote-box <?php echo ($i > 0) ? 'quote-box--small' : 'quote-box--medium' ?>">
-								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
-									<figure class="post-image" style="width:<?= $bgImage[1] ?>px; height:<?= $bgImage[2] ?>px;">
-										<?php the_post_thumbnail('medium_2x')?>
-										<span class="post-title"><?php the_title() ?></span>
-									</figure>
-								</a>
-								</div>
-								-->
-
-								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
-									<img src="<?= get_bloginfo('template_url')?>/app/generated_images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640_mick.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
-								</a>
-
-							<?php else: ?>
-
-								<?php if (!imageExists(sanitize_title(get_the_title($post->ID)) . '_640_640.png')): ?>
-									<?php generateImage(get_the_title($post->ID)); ?>
-								<?php endif ?>
-								
-								<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
-									<img src="<?= home_url('/')?>images/<?php echo sanitize_title(get_the_title($post->ID))?>_640_640.png" width="160px" height="160px" alt="<?= get_the_title($post->ID) ?>" />
-								</a>
-								
-							<?php endif ?>
-						</li>
-
-					<?php $i++ ?>
-					<?php endwhile; ?>
-				</ol>
-			<?php endif ?>
-			
-			<footer class="section__footer">
-				<a href="<?= home_url('/')?>sprueche" class="button button__section"><span>Alle Sprüche</span><i class="icon fa fa-angle-double-right"></i></a>
-			</footer>
-
-		</div>
-	</section>
-<?php */ ?>
-
-	<!--
-	<section class="section section--statistics">
-		<div class="section__pane">
-			<header class="section__header">
-				<h3 class="section__title">Die Besten Statistiken</h3>
-				<span class="section__separator"></span>
-			</header>
-			<?php $query = new WP_Query( array('posts_per_page' => 3, 'post_type' => array('statistic') ) ); ?>
-			<?php if ( $query->have_posts() ) : ?>
-				<ol class="list list--statistics">
-					<?php while ( $query->have_posts() ) : $query->the_post(); setup_postdata($post)?>
-						<li class="list-item">
-							<span class="number"><?php echo get_post_meta($post->ID, 'number', true)?></span>
-							<?php the_content() ?>
-						</li>
-					<?php endwhile; ?>
-				</ol>
-			<?php endif ?>
-
-			<footer class="section__footer">
-				<a href="<?= home_url('/')?>/statistiken" class="button button__section"><span>Alle Statistiken</span><i class="icon fa fa-angle-double-right"></i></a>
-			</footer>
-
-		</div>
-	</section>
-	-->
-
-
 
 </div>
 

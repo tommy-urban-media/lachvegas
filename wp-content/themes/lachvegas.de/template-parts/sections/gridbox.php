@@ -43,4 +43,24 @@
         <p>Zusatzzahl: 0</p>
     </div>
 
+    <div class="gridbox__item">    
+        <span class="gridbox__headline">Ratgeber</span>
+        <?php 
+            $posts = get_posts([
+                'posts_per_page' => 1,
+                'category_name' => '10-dinge',
+                'orderby' => 'rand',
+            ]);
+
+            $p = $posts[0];
+        ?>
+
+        <a href="<?= get_the_permalink($p->ID) ?>"><?= get_the_title($p->ID); ?></a>
+        
+    </div>
+
+    <div class="gridbox__item">    
+        <span class="gridbox__headline">Unsere Helden</span>
+    </div>
+
 </section>

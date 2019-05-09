@@ -13,7 +13,7 @@ $sayingsQuery = new WP_Query($sayingArgs);
     <?php while ( $sayingsQuery->have_posts() ) : $sayingsQuery->the_post(); setup_postdata($post)?>
       <?php if (has_post_thumbnail($post->ID)): ?>
         <a href="<?= get_the_permalink( $post->ID )?>">
-          <figure class="image image--sidebar">
+          <figure class="image image-saying">
             <?php the_post_thumbnail( 'thumbnail' ); ?>
           </figure>
         </a>
