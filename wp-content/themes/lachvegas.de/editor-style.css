@@ -32,10 +32,10 @@ GENERIC CLASSES
 .italic { font-style: italic; }
 .uppercase { text-transform: uppercase; }
 .lowercase { text-transform: lowercase; }
-.underline { text-deoration: underline; }
+.underline { text-decoration: underline; }
 
 .justify,
-.text-block { text-deoration: underline; }
+.text-block { text-decoration: underline; }
 
 .overflow-hidden { overflow: hidden; }
 .display-block { display: block; }
@@ -43,32 +43,6 @@ GENERIC CLASSES
 .position-absolute { position: absolute; }
 .position-relative { position: relative; }
 
-.line-height-200 {
-	line-height: 200%;
-	}	
-	
-.text-bg-large {
-	float: left;
-	width: 360px;
-	height: 54px;
-	margin: 0 15px 0 0;
-	text-align: center;
-	line-height: 54px;
-	font-size: 1.6em;
-	background: url(images/layout/text-bg-large.jpg);
-	}	
-	
-.text-bg-short {
-	float: left;
-	width: 166px;
-	height: 54px;
-	margin: 0 15px 0 0;
-	text-align: center;
-	line-height: 54px;
-	font-size: 1.6em;
-	background: url(images/layout/text-bg-short.jpg);
-	}
-	
 
 /*************
 DEFAULT STYLES
@@ -89,10 +63,9 @@ h1, h2, h3, h4, h5, h6 { clear: both; }
 
 p, strong, label {
 	color: #666;
-	font-family: "Helvetica", Arial;
+	font-family: "Helvetica", Arial, sans-serif;
 	}
-p {
-	}
+p {}
 
 strong { font-weight: bold; }
 
