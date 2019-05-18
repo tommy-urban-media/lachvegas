@@ -1,207 +1,211 @@
 $height = 38px;
 
 .ticker
-  width: 100%
-  max-width: 1000px
-  margin: 0 0 0 -500px
-  display: none
-  flex-wrap: wrap
-  z-index: 100
-  position: fixed
-  left: 50%
-  bottom: 0
-  color: $colors.white
-  overflow: hidden
-
-  @media screen and (min-width: 1000px)
-    display: flex
-
-  &__head
     width: 100%
-    height: 24px
-    display: block
-
-  &__body
-    width: 100%
-    height: 48px
-    display: block
+    max-width: 1000px
+    margin: 20px 0 0 -500px
+    display: none
+    flex-wrap: wrap
+    z-index: 100
+    position: relative
+    left: 50%
+    bottom: 0
+    color: $colors.white
+    overflow: hidden
     border: 2px solid $colors.red
-    background-color: #fff
-    //background-color: silver
-    //background: linear-gradient(top, $colors.grey, darken($colors.grey, 35%))
+    
+    @media screen and (min-width: 1000px)
+        display: flex
+        flex-wrap: nowrap
+        justify-content: space-between
+
+    &__header
+        display: block
+        height: 48px
+        padding: 4px 8px
+        text-align: left
+        background: $colors.red
+
+    &__body
+        width: 100%
+        height: 48px
+        display: block
+        background-color: #fff
 
 
-
-  .ticker__title
+.ticker__title
     width: auto
-    padding: 0 2%
-    display: inline-block
-    font-size: 16px
-    font-weight: bold
-    line-height: 28px
-    text-align: center
+    font-size: 13px
+    text-align: left
     text-transform: uppercase
-    background: $colors.red
-
+    
     @media screen and (max-width: 480px)
-      padding: 0 10px
-      font-size: 10px
+        padding: 0 10px
+        font-size: 10px
 
 
-  .ticker__list-wrapper
-    width: 96%
-    margin: 0 2%
+.ticker__list-wrapper
+    width: 100%
     height: 48px
+    display: flex
+    flex-wrap: no-wrap
     overflow: hidden
 
-  .ticker__list
+.ticker__list
     width: 100%
-    display: block
+    display: flex
+    flex-wrap: nowrap
     margin-top: 0
-    padding-right: 100%
-    animation: ticker4 60s linear 5000ms infinite
-    white-space: nowrap
-
+    animation: ticker3 100s linear 2500ms infinite
+    //white-space: nowrap
+    
     &:hover
-      animation-play-state: paused
+        animation-play-state: paused
 
 
-  .ticker__list-item
+.ticker__list-item
     width: auto
     height: 48px
+    margin-right: 5px
     display: block
-    font-size: 16px 
+    font-size: 16px
     line-height: 48px
-    //text-transform: uppercase
     position: relative
-
+    white-space: nowrap
+    
+    &:before
+        content: '+++'
+        margin: 0 5px
+        color: #c0c0c0
+    
     a
-      color: #333333
-
+        color: #333333
+    
+        
     @media screen and (max-width: 600px)
-      padding: 0 20px
-      font-size: 11px
-
-
-
+        padding: 0 20px
+        font-size: 11px
+        
+        
+        
 @keyframes ticker4
-  0%
-    transform: translate3d(0, 0, 0);
-  8%
-    transform: translate3d(0, 0, 0);
-  10%
-    transform: translate3d(0, -10%, 0);
-  12%
-    transform: translate3d(0, -10%, 0);
-  18%
-    transform: translate3d(0, -10%, 0);
-  20%
-    transform: translate3d(0, -20%, 0);
-  22%
-    transform: translate3d(0, -20%, 0);
-  28%
-    transform: translate3d(0, -20%, 0);
-  30%
-    transform: translate3d(0, -30%, 0);
-  32%
-    transform: translate3d(0, -30%, 0);
-  38%
-    transform: translate3d(0, -30%, 0);
-  40%
-    transform: translate3d(0, -40%, 0);
-  42%
-    transform: translate3d(0, -40%, 0);
-  48%
-    transform: translate3d(0, -40%, 0);
-  50%
-    transform: translate3d(0, -50%, 0);
-  52%
-    transform: translate3d(0, -50%, 0);
-  58%
-    transform: translate3d(0, -50%, 0);
-  60%
-    transform: translate3d(0, -60%, 0);
-  62%
-    transform: translate3d(0, -60%, 0);
-  68%
-    transform: translate3d(0, -60%, 0);
-  70%
-    transform: translate3d(0, -70%, 0);
-  72%
-    transform: translate3d(0, -70%, 0);
-  78%
-    transform: translate3d(0, -70%, 0);
-  80%
-    transform: translate3d(0, -80%, 0);
-  82%
-    transform: translate3d(0, -80%, 0);
-  88%
-    transform: translate3d(0, -80%, 0);
-  90%
-    transform: translate3d(0, -90%, 0);
-  92%
-    transform: translate3d(0, -90%, 0);
-  98%
-    transform: translate3d(0, -90%, 0);
+    0%
+        transform: translate3d(0, 0, 0);
+    8%
+        transform: translate3d(0, 0, 0);
+    10%
+        transform: translate3d(0, -10%, 0);
+    12%
+        transform: translate3d(0, -10%, 0);
+    18%
+        transform: translate3d(0, -10%, 0);
+    20%
+        transform: translate3d(0, -20%, 0);
+    22%
+        transform: translate3d(0, -20%, 0);
+    28%
+        transform: translate3d(0, -20%, 0);
+    30%
+        transform: translate3d(0, -30%, 0);
+    32%
+        transform: translate3d(0, -30%, 0);
+    38%
+        transform: translate3d(0, -30%, 0);
+    40%
+        transform: translate3d(0, -40%, 0);
+    42%
+        transform: translate3d(0, -40%, 0);
+    48%
+        transform: translate3d(0, -40%, 0);
+    50%
+        transform: translate3d(0, -50%, 0);
+    52%
+        transform: translate3d(0, -50%, 0);
+    58%
+        transform: translate3d(0, -50%, 0);
+    60%
+        transform: translate3d(0, -60%, 0);
+    62%
+        transform: translate3d(0, -60%, 0);
+    68%
+        transform: translate3d(0, -60%, 0);
+    70%
+        transform: translate3d(0, -70%, 0);
+    72%
+        transform: translate3d(0, -70%, 0);
+    78%
+        transform: translate3d(0, -70%, 0);
+    80%
+        transform: translate3d(0, -80%, 0);
+    82%
+        transform: translate3d(0, -80%, 0);
+    88%
+        transform: translate3d(0, -80%, 0);
+    90%
+        transform: translate3d(0, -90%, 0);
+    92%
+        transform: translate3d(0, -90%, 0);
+    98%
+        transform: translate3d(0, -90%, 0);
 
 
 
 @keyframes ticker3
-
-  0%
-    transform: translate3d(0, 0, 0);
-  100%
-    transform: translate3d(-100%, 0, 0);
+    
+    0%
+        transform: translate3d(0, 0, 0);
+    100%
+        transform: translate3d(-1000%, 0, 0);
 
 
 @keyframes ticker2
-
-  for num in 0..20
-    {5% * num}
-      margin-top: -($height * num)
-    {5% * num + 2.5%}
-      margin-top: -($height * num)
+    
+    for num in 0..20
+        {5% * num}
+            margin-top: -($height * num)
+        {5% * num + 2.5%}
+            margin-top: -($height * num)
 
 
 @keyframes ticker
-
-	0%
-    margin-top: 0
-  5%
-    margin-top: -($height)
-	10%
-    margin-top: -($height*2)
-  15%
-    margin-top: -($height*3)
-	20%
-    margin-top: -($height*4)
-  25%
-    margin-top: -($height*5)
-	30%
-    margin-top: -($height*6)
-  35%
-    margin-top: -($height*4)
-  40%
-    margin-top: -($height*4)
-  45%
-    margin-top: -($height*5)
-  50%
-    margin-top: -($height*5)
-  55%
-    margin-top: -($height*6)
-  60%
-    margin-top: -($height*6)
-  65%
-    margin-top: -($height*7)
-  70%
-    margin-top: -($height*7)
-  75%
-    margin-top: -($height*8)
-  80%
-    margin-top: -($height*8)
-  85%
-    margin-top: -($height*9)
-  90%
-    margin-top: -($height*9)
-  100%
-    margin-top: 0
+    
+    0%
+        margin-top: 0
+    5%
+        margin-top: -($height)
+    10%
+        margin-top: -($height*2)
+    15%
+        margin-top: -($height*3)
+    20%
+        margin-top: -($height*4)
+    25%
+        margin-top: -($height*5)
+    30%
+        margin-top: -($height*6)
+    35%
+        margin-top: -($height*4)
+    40%
+        margin-top: -($height*4)
+    45%
+        margin-top: -($height*5)
+    50%
+        margin-top: -($height*5)
+    55%
+        margin-top: -($height*6)
+    60%
+        margin-top: -($height*6)
+    65%
+        margin-top: -($height*7)
+    70%
+        margin-top: -($height*7)
+    75%
+        margin-top: -($height*8)
+    80%
+        margin-top: -($height*8)
+    85%
+        margin-top: -($height*9)
+    90%
+        margin-top: -($height*9)
+    100%
+        margin-top: 0

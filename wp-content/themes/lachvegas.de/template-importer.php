@@ -7,6 +7,7 @@ include_once __DIR__ . '/lib/models/csv_reader.php';
 //include __DIR__ . '/lib/models/job.php';
 //include __DIR__ . '/lib/models/news.php';
 include_once __DIR__ . '/lib/models/saying.php';
+include_once __DIR__ . '/lib/models/statistic.php';
 include_once __DIR__ . '/lib/models/fortune_cookie.php';
 
 get_header(); 
@@ -251,7 +252,7 @@ if (isset($_REQUEST['dataset'])) {
 				<br><br><br>
 
 				<form class="form" action="" method="post">
-          <input type="hidden" name="ajax_url" value="<?php echo admin_url('admin-ajax.php') ?>" />
+                    <input type="hidden" name="ajax_url" value="<?php echo admin_url('admin-ajax.php') ?>" />
 					<input type="submit" name="import_all" value="Alle Importieren" />
 				</form>
 
@@ -293,7 +294,7 @@ if (isset($_REQUEST['dataset'])) {
 				<p><br><br>KEINE Daten - Bitte wählen Sie einen Datensatz aus</p>
 
 				<form class="form" action="" method="post">
-          <input type="hidden" name="ajax_url" value="<?php echo admin_url('admin-ajax.php') ?>" />
+                    <input type="hidden" name="ajax_url" value="<?php echo admin_url('admin-ajax.php') ?>" />
 					<input type="submit" name="update_repeatable_posts" value="Alte Beiträge aktualisieren" />
 					<input type="submit" name="delete_all_news" value="Alle News löschen" />
 				</form>
