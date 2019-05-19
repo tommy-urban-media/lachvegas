@@ -38,7 +38,7 @@ $posts = new WP_Query($args);
 
 <div class="grid-wrapper">
     
-    <?php while ( $tickerQuery->have_posts() ) : $tickerQuery->the_post(); setup_postdata($post)?>
+    <?php while ( $posts->have_posts() ) : $posts->the_post(); setup_postdata($post)?>
         
         <div class="grid-item">
             <article class="article">
@@ -47,7 +47,7 @@ $posts = new WP_Query($args);
                         <figure class="post-image">
 			                <?php the_post_thumbnail('16_9_medium')?>
                         </figure>
-	                <?php else: ?>
+	                <?php endif ?>
                     <h3 class="article__title"><?= get_the_title($post->ID) ?></h3>
                 </a>
             </article>

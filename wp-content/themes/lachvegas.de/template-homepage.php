@@ -94,7 +94,12 @@ $oldPostsQuery = new WP_Query(array(
 		</aside>
 	</div>
 
-	<?php //get_template_part('template-parts/common/news-archive') ?>
+	<?php //get_template_part('template-parts/sidebar/news') ?>
+	<?php get_template_part('template-parts/sections/topics') ?>
+	<?php //get_template_part('template-parts/sections/promis') ?>
+	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+
+	<?php get_template_part('template-parts/sections/newsletter') ?>
 	<?php //get_template_part('template-parts/sections/special-day') ?>
 	<?php get_template_part('template-parts/sections/gridbox') ?>
 
@@ -218,10 +223,7 @@ $oldPostsQuery = new WP_Query(array(
 	</div>
 	-->
 
-	<?php //get_template_part('template-parts/sidebar/news') ?>
-	<?php get_template_part('template-parts/sections/topics') ?>
-	<?php //get_template_part('template-parts/sections/promis') ?>
-	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+	
 	
 	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
 	<?php ADManager::display('superbanner')?>
