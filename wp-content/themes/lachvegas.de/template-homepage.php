@@ -223,7 +223,8 @@ $oldPostsQuery = new WP_Query(array(
 	<?php //get_template_part('template-parts/sections/promis') ?>
 	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
 	
-	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
+	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
+	<?php ADManager::display('superbanner')?>
 
 	<?php get_template_part('template-parts/sections/frage-der-woche') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>

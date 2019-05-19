@@ -43,6 +43,7 @@
         <p>Zusatzzahl: 0</p>
     </div>
 
+    <!--
     <div class="gridbox__item">    
         <span class="gridbox__headline">Ratgeber</span>
         <?php 
@@ -62,5 +63,6 @@
     <div class="gridbox__item">    
         <span class="gridbox__headline">Unsere Helden</span>
     </div>
+    -->
 
 </section>

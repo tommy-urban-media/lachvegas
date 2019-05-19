@@ -112,16 +112,40 @@
 
 
 .subheader
-	margin-top: 60px
+	margin: 50px 0 10px 0
 	display: flex
 	justify-content: space-between
 
 .page-slogan
 	margin: 0
-	max-width: 340px
-	color: #9c9c9c
+	color: silver
 	font-family: 'Indie Flower', cursive
-	font-size: 18px
-	transform: rotate(-1deg)
+	font-size: 17px
+	//transform: rotate(-1deg)
 	position: relative
-	top: -10px
+
+
+	div
+		margin-right: 5px
+		float: left
+
+		&:nth-child(1)
+		&:nth-child(5)
+		&:nth-child(8)
+		&:nth-child(12)
+			transform: rotate(-2deg)
+
+		&:nth-child(2)
+		&:nth-child(7)
+		&:nth-child(9)
+			transform: rotate(3deg) 
+
+		&:nth-child(3)
+		&:nth-child(6)
+		&:nth-child(10)
+			transform: rotate(2deg) 
+
+		&:nth-child(4)
+		&:nth-child(11)
+		&:nth-child(13)
+			transform: rotate(-3deg) 

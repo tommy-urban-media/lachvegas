@@ -12,12 +12,12 @@ include_once(dirname(__FILE__) . '/lib/theme_controller.php');
 
 include_once(dirname(__FILE__) . '/lib/mailpoet_controller.php');
 
+include_once(dirname(__FILE__) . '/lib/ADManager.php');
+
 require __DIR__ . '/app/vendor/autoload.php';
 
 use GDText\Box;
 use GDText\Color;
-
-
 
 add_action( 'after_setup_theme', 'theme_setup' );
 
@@ -54,7 +54,7 @@ if ( !function_exists( 'theme_setup' ) ):
 		new PostController();
 
 		$mailpoetController = new MailpoetController();
-
+		
     //if (is_admin() && current_user_can('manage_options'))
       //  new TS_ThemeOptions();
   }

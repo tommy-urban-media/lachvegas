@@ -1,16 +1,25 @@
 
 .footer
 	margin-bottom: 0
-	padding: 0 0 100px 0
+	padding: 0 5%
 	border-top: 1px solid #f0f0f0
-	background: #f9f9f9
+	background: #fff
+
+	@media screen and (min-width: 1000px)
+		padding: 0
 
 	&__inner
+	&__bottom
 		max-width: 1000px
 		margin: 0 auto
-		padding: 10px 0
+		padding: 25px 0 0 0
 		display: flex
+		flex-wrap: wrap
 		justify-content: space-between
+
+	&__bottom
+		padding: 0
+		border-top: 1px solid #f0f0f0
 
 	&__menu
 		width: 100%
@@ -20,10 +29,64 @@
 
 	.footer-copyright
 		margin: 20px 0
-		color: #808080
+		color: #909090
 		font-size: 12px
 		text-align: center
 
 		@media screen and (min-width: 1000px)
 			font-size: 12px
 			text-align: left
+
+
+.footer-blocks
+	width: 100%
+	margin-bottom: 50px
+	display: flex
+	justify-content: space-between
+	align-items: stretch
+	flex-wrap: wrap
+	font-size: 13px
+
+	@media screen and (min-width: 728px)
+		flex-wrap: nowrap 
+
+.footer-block
+	width: 100%
+	display: block
+	margin-bottom: 25px
+
+	@media $query.sm
+		width: 50%
+		min-width: 50%
+
+	@media screen and (min-width: 728px)
+		width: 25%
+		min-width: 25%
+
+	&__title
+		width: 80%
+		display: block
+		margin-bottom: 10px
+		padding-bottom: 10px
+		font-size: 12px
+		font-weight: 500
+		text-transform: uppercase
+		border-bottom: 1px solid #f9f9f9
+
+	&__body
+		display: block
+
+
+
+.footer-infobox
+	width: 100%
+	margin-bottom: 10px
+	display: flex
+	justify-content: space-between
+
+.footer-slogan
+	color: #909090
+	font-size: 12px
+
+.footer-socials
+	text-align: right 

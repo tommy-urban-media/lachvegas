@@ -8,25 +8,63 @@
 
 <footer class="footer">
 	<div class="footer__inner">
-		<div class="footer__menu">
-			<?php if (has_nav_menu('footermenu')):?>
-				<nav class="footermenu">
-					<?php wp_nav_menu(array('menu' => 'footermenu')); ?>
-				</nav>
-			<?php endif;?>
 
-			<div class="footer-copyright">
-				<p>&copy; 2016 - <?php echo date('Y') ?> <a href="http://lachvegas.de">lachvegas.de</a></p>
+		<div class="footer-blocks">
+			<div class="footer-block">
+				<span class="footer-block__title">Überblick</span>
+				<div class="footer-block__body">
+					<?php if (has_nav_menu('footermenu')):?>
+						<nav class="footermenu">
+							<?php wp_nav_menu(array('theme_location' => 'footermenu')); ?>
+						</nav>
+					<?php endif;?>
+				</div>
 			</div>
+			<div class="footer-block">
+				<span class="footer-block__title">Ressorts</span>
+				<div class="footer-block__body">
+					<?php if (has_nav_menu('ressortsmenu')):?>
+						<nav class="footermenu">
+							<?php wp_nav_menu(array('theme_location' => 'ressortsmenu')); ?>
+						</nav>
+					<?php endif;?>
+				</div>
+			</div>		
+			<div class="footer-block">
+				<span class="footer-block__title">Kategorien</span>
+				<div class="footer-block__body">
+					<?php if (has_nav_menu('categoriesmenu')):?>
+						<nav class="footermenu">
+							<?php wp_nav_menu(array('theme_location' => 'categoriesmenu')); ?>
+						</nav>
+					<?php endif;?>
+				</div>
+			</div>	
+			<div class="footer-block">
+				<span class="footer-block__title">Stöbern</span>
+				<div class="footer-block__body">
+					<?php if (has_nav_menu('custommenu')):?>
+						<nav class="footermenu">
+							<?php wp_nav_menu(array('theme_location' => 'custommenu')); ?>
+						</nav>
+					<?php endif;?>
+				</div>
+			</div>	
 		</div>
-		<?php get_template_part('template-parts/socials'); ?>
+		
+		<div class="footer-infobox">
+			<div class="footer-slogan">8000 Jahre Menschheits-Evolution hat eines hervorgebracht ... lachvegas.de</div>
+			<div class="footer-socials"><?php get_template_part('template-parts/socials'); ?></div>
+		</div>
+		
 	</div>
 
-	<!--
-	<div class="weather">
-		Berlin, Deutschland 0,0°C
+	
+	<div class="footer__bottom">
+		<div class="footer-copyright">
+			<p>&copy; 2016 - <?php echo date('Y') ?> <a href="http://lachvegas.de">lachvegas.de</a></p>
+		</div>
 	</div>
-	-->
 
 </footer>
 

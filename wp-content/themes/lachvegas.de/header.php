@@ -133,7 +133,20 @@
 		<?php get_template_part('template-parts/cookie-info'); ?>
 
 		<div class="subheader">
-			<h1 class="page-slogan">Die Website für Bekloppte, Wahnsinnige und alle die es noch werden wollen</h1>
+			<h1 class="page-slogan">
+				<div>Die</div>
+				<div>Website</div>
+				<div>für</div>
+				<div>Bekloppte</div>
+				<div>Wahnsinnige</div>
+				<div>und</div>
+				<div>alle</div> 
+				<div>die</div>
+				<div>es</div>
+				<div>noch</div>
+				<div>werden</div>
+				<div>wollen</div>
+			</h1>
 			<?php get_template_part('template-parts/socials'); ?>
 		</div>
 
@@ -148,5 +161,8 @@
 			<?php get_template_part('template-parts/topics'); ?>
 		</div>
 
-		<?php get_template_part('template-parts/common/newsticker'); ?>
-		<?php get_template_part('template-parts/ads/frontend/leaderboard'); ?>
+		<?php ADManager::display('leaderboard')?>
+		<?php get_template_part('partials/common/newsticker'); ?>
+		<?php //get_template_part('template-parts/ads/frontend/leaderboard'); ?>
+
+		
