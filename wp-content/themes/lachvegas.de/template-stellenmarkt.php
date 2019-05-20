@@ -80,7 +80,7 @@ $jobCategories = get_terms(array(
 
 
 		<?php if ($queryNews->have_posts()): ?>
-		<ul class="job-items-list">
+		<ul class="job-list">
 			<?php while ( $queryNews->have_posts() ) : $queryNews->the_post();?>
 				<li class="job-item">
 					<?php get_template_part('template-parts/teasers/job') ?>

@@ -75,7 +75,7 @@ $jobCategories = get_terms(array(
 	<div class="column small-9 medium-9 large-9 panel">
 
 		<?php if ($queryJobs->have_posts()): ?>
-		<ul class="job-items-list">
+		<ul class="job-list">
 			<?php while ($queryJobs->have_posts()) : $queryJobs->the_post(); setup_postdata($post) ?>
 				<li class="job-item">
 					<?php get_template_part('template-parts/teasers/job') ?>

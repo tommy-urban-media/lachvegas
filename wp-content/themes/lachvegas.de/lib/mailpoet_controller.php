@@ -18,17 +18,13 @@ class MailpoetController {
         
         // always return the shortcode if it doesn't match your own!
         if ($shortcode === '[custom:news]') {
-
             $latestNews = $this->renderLatestPosts(5, 'news', 'news');
             return $latestNews;
-    
         }
 
         if ($shortcode === '[custom:posts]') {
-
             $latestPosts = $this->renderLatestPosts(3, 'post', 'posts');
             return $latestPosts;
-    
         }
 
         if ($shortcode === '[custom:statistic]') {
@@ -41,6 +37,7 @@ class MailpoetController {
             return $latestPosts;
         }
         
+        return false;
     }
 
 

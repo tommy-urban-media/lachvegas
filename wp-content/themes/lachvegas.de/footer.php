@@ -51,9 +51,28 @@
 				</div>
 			</div>	
 		</div>
-		
+
+
+        <div class="footer-infobox">
+            <div class="footer-partner">
+                Unsere Partner: <a href="//bierweise.de" target="_blank">bierweise.de</a>
+            </div>
+        </div>
+        
 		<div class="footer-infobox">
-			<div class="footer-slogan">8000 Jahre Menschheits-Evolution hat eines hervorgebracht ... lachvegas.de</div>
+            <?php
+                $phrases = [
+	                '8000 Jahre Menschheits-Evolution hat eines hervorgebracht - <a href="http://lachvegas.de">lachvegas.de</a>',
+                    'Seit über 2000 Jahren wartet die Menschheit auf die Erlösung. Die Antwort ist <a href="http://lachvegas.de">lachvegas.de</a>',
+	                'Es gibt Menschen die haben Ihr Lachen verloren. Mit <a href="http://lachvegas.de">lachvegas.de</a> kann man sein Lachen wiederbekommen',
+	                'Manche Menschen mögen es heiß. Wir mögen es lustig - <a href="http://lachvegas.de">lachvegas.de</a>',
+                    'Die tägliche Dosis Blödsinn - <a href="http://lachvegas.de">lachvegas.de</a>',
+                    'Bei uns bleibt beim Lachen kein Hösschen trocken - <a href="http://lachvegas.de">lachvegas.de</a>',
+                    'Die perfekte Abwechslung für die ganzen schlechten Nachrichten die es in der Welt gibt - <a href="http://lachvegas.de">lachvegas.de</a>',
+                    'Nur wer sich selbst nicht so ernst nimmt, kann mit klarem Kopf das Leben genießen - <a href="http://lachvegas.de">lachvegas.de</a>'
+                ];
+            ?>
+			<div class="footer-slogan"><?= $phrases[rand(0, count($phrases)-1)] ?></div>
 			<div class="footer-socials"><?php get_template_part('template-parts/socials'); ?></div>
 		</div>
 		
