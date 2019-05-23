@@ -93,7 +93,10 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			</section>
 		<?php endif;?>
 
-		<section class="article-body article-content">
+		<section class="article-body article-content state-paywall">
+            
+            <?php get_template_part('partials/common/paywall')?>
+            
 			<?php the_content() ?>
 			<?php //get_template_part('template-parts/article/puzzle') ?>
 
@@ -104,7 +107,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			<!--
 			Daumen hoch: Der Beitrag ist echt lustig und bekloppt
 			Daumen runter: Der Beitrag ist überhaupt nicht lustig
-			Daumen zur Seite: Ich bin völlig verwirrt
+			Daumen zur Seite: Mh.. ich bin völlig verwirrt
 			-->
 		</section>
 		

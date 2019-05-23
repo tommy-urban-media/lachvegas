@@ -462,6 +462,31 @@ class ContentTypeController {
             'rewrite' => false
         )
     );
+    
+    
+        register_post_type('historical_event',
+            array(
+                'labels' => array(
+                  'name' => __( 'Historisches Event' ),
+                  'singular_name' => __( 'Historisches Event' ),
+                  'add_new' => __( 'Historisches Event eintragen' ),
+                  'add_new_item' => __( 'neue Historisches Event anlegen' ),
+                  'edit_item' => __( 'Historisches Event bearbeiten' ),
+                  'new_item' => __( 'neue Historisches Event' ),
+                  'view_item' => __( 'Historisches Event anschauen' ),
+                  'search_items' => __( 'Historisches Event suchen' ),
+                  'not_found' => __( 'Historisches Event nicht gefunden' ),
+                  'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+                ),
+                'show_ui' => true,
+                'public' => false,
+                'hierarchical' => false,
+                'has_archive' => true,
+                'capability_type' => 'post',
+                'taxonomies' => array('category', 'post_tag'),
+                'rewrite' => true
+            )
+        );
 
 
   }

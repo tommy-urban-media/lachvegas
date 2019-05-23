@@ -101,11 +101,11 @@ $oldPostsQuery = new WP_Query(array(
 
 	<?php get_template_part('template-parts/sections/newsletter') ?>
 	<?php //get_template_part('template-parts/sections/special-day') ?>
+    <?php get_template_part('template-parts/sections/history') ?>
 	<?php get_template_part('template-parts/sections/gridbox') ?>
 
 	<?php //get_template_part('template-parts/sections/sayings') ?>
-	
-
+ 
 	<?php /* ?>
 	<section class="section section--posts">
 		<div class="section__pane">
@@ -202,9 +202,7 @@ $oldPostsQuery = new WP_Query(array(
 		</div>
 	</section>
 	<?php */ ?>
-
-
-
+ 
 	<!--
 	<div class="content__area">
 		<section class="section section--posts">
@@ -222,17 +220,14 @@ $oldPostsQuery = new WP_Query(array(
 		</section>
 	</div>
 	-->
-
-	
-	
+ 
 	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
 	<?php ADManager::display('superbanner')?>
 
 	<?php get_template_part('template-parts/sections/frage-der-woche') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
-
-
+ 
 	<!--
 	<div class="content__area">
 		<section class="section section--posts">

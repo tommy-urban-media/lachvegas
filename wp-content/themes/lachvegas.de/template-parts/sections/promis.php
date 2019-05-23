@@ -60,7 +60,7 @@ $terms = get_terms(
 
     </div>
   </div>
-</div>
+</section>
 
 <?php endif ?>
 
