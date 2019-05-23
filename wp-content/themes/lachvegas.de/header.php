@@ -137,7 +137,7 @@
 				<div>Die</div>
 				<div>Website</div>
 				<div>für</div>
-				<div>Bekloppte</div>
+				<div>Bekloppte,</div>
 				<div>Wahnsinnige</div>
 				<div>und</div>
 				<div>alle</div> 
