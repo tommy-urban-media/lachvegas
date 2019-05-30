@@ -127,6 +127,7 @@
 <div class="page-container">
     
     <?php get_template_part('partials/page/header') ?>
+    <?php //get_template_part('partials/page/header') ?>
     
 	<main class="main">
 		
@@ -150,19 +151,23 @@
 			<?php get_template_part('template-parts/socials'); ?>
 		</div>
 
+        <!--
 		<div class="mainmenu-wrapper">
 			<nav class="mainmenu" role="navigation" data-component="Menu">
 				<span class="menu-icon"></span>
 				<?php wp_nav_menu( array('theme_location' => 'mainmenu') ); ?>
 			</nav>
 		</div>
+        -->
 
+        <!--
 		<div class="topicmenu-wrapper">
 			<?php get_template_part('template-parts/topics'); ?>
 		</div>
+        -->
 
 		<?php ADManager::display('leaderboard')?>
-		<?php get_template_part('partials/common/newsticker'); ?>
+		<?php //get_template_part('partials/common/newsticker'); ?>
 		<?php //get_template_part('template-parts/ads/frontend/leaderboard'); ?>
 
 		

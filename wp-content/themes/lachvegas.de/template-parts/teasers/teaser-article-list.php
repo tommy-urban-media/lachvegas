@@ -92,8 +92,8 @@ $post_data = (object)$post_data;
 
 
 <article class="teaser">
-	<?php if (has_post_thumbnail()):?>
-		<figure class="teaser__image">
+	<figure class="teaser__image">
+		<?php if (has_post_thumbnail()):?>
 			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
 				<?php 
 					switch($post->post_type) {
@@ -107,8 +107,8 @@ $post_data = (object)$post_data;
 						
 				?>
 			</a>
-		</figure>
-  	<?php endif ?>
+		<?php endif ?>
+	</figure>
 
 	<?php //var_dump($post_data) ?>
 	<?php if (!empty($post_data->externalImageUrl)): ?>

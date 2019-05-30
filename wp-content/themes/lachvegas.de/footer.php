@@ -69,7 +69,8 @@
                     'Die tägliche Dosis Blödsinn - <a href="http://lachvegas.de">lachvegas.de</a>',
                     'Bei uns bleibt beim Lachen kein Hösschen trocken - <a href="http://lachvegas.de">lachvegas.de</a>',
                     'Die perfekte Abwechslung für die ganzen schlechten Nachrichten die es in der Welt gibt - <a href="http://lachvegas.de">lachvegas.de</a>',
-                    'Nur wer sich selbst nicht so ernst nimmt, kann mit klarem Kopf das Leben genießen - <a href="http://lachvegas.de">lachvegas.de</a>'
+					'Nur wer sich selbst nicht so ernst nimmt, kann mit klarem Kopf das Leben genießen - <a href="http://lachvegas.de">lachvegas.de</a>',
+					'Aufregen war gestern, denn heute wird gelacht'
                 ];
             ?>
 			<div class="footer-slogan"><?= $phrases[rand(0, count($phrases)-1)] ?></div>
@@ -130,11 +131,11 @@
 <script type="text/javascript" src="<?php echo get_bloginfo('template_url')?>/app/public/js/app.js"></script>
 <script>require('src/js/app')</script>
 
-<?php // get_template_part('template-parts/modal/modal') ?>
+<?php //get_template_part('template-parts/modal/modal') ?>
 
 <?php /* ?>
 <button class="modal-trigger" data-modal="modal-1">Modal Trigger</button>
-<?php */ ?>
+<?php */ ?>  
 
 <!--
 <script
@@ -144,6 +145,29 @@
 		data-pin-do="buttonBookmark" data-pin-hover="true"
 ></script>
 -->
+
+
+
+<div class="modal modal-effect1" id="modal-search">
+  <div class="modal__stage">
+    <div class="modal__header">
+      <span class="icon"><i class="fa fa-question-circle"></i></span>
+      <span class="subtitle">Suchen</span>
+      <h3 class="title">Wer suchet der findet</h3>
+    </div>
+    <div class="modal__content">
+			<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+				<div class="search-area">
+					<div class="search-group">
+						<input type="search" id="search-input" class="search-field" placeholder="Suchbegriff eingeben" value="<?php echo get_search_query(); ?>" name="s" />
+						<button type="submit" class="search-submit">Suchen &raquo; </button>
+					</div>
+				</div>
+			</form>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay"></div>
 
 
 </body>

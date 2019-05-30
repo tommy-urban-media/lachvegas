@@ -33,9 +33,9 @@
 		line-height: 42px
 
 	.page-name
-		width: 170px
+		width: 155px
 		display: flex
-		padding: 0 10px
+		padding: 0 0 0 10px
 		height: 40px
 		font-family: 'Montserrat'
 		font-weight: 600
@@ -50,11 +50,11 @@
 
 	.page-name-num
 		color: gray
-		font-size: 18px
+		font-size: 16px
 
 	.page-name-txt
 		color: $colors.red
-		font-size: 18px
+		font-size: 16px
 		text-align: left
 
 	a
@@ -67,7 +67,7 @@
 	display: block
 	width: 40px
 	height: 40px
-	font-size: 20px
+	font-size: 15px
 	cursor: pointer
 	line-height: 40px
 
@@ -75,38 +75,40 @@
 		color: #fff
 
 .search-area
-	width: 0
-	margin-top: 4px
+	//width: 0
+	//margin-top: 4px
 	overflow: hidden
 	z-index: 1
-	position: absolute
-	top: 0
-	right: 40px
+	//position: absolute
+	//top: 0
+	//right: 40px
 	transition: width 250ms ease-in-out
 
 	&.is-expanded
 		width: 320px
 
 	.search-group
-		width: 320px
+		width: 100%
+		display: flex
 
-	.search-field	
-		width: 240px
-		height: 32px
-		padding: 4px 10px
+	.search-field
+		flex-grow: 2
+		height: 40px
+		padding: 6px 12px
 		font-size: 13px
-		border: 0
+		border: 1px solid #f0f0f0
 		outline: 0
 		background: #fff
 
 	.search-submit
 		margin-left: -5px
-		height: 32px
-		padding: 4px 10px
-		color: #303030
+		height: 40px
+		padding: 6px 12px
+		color: #fff
 		font-size: 13px
-		background: #fff
-		border: 0
+		font-weight: bold
+		background: $colors.red
+		border: 1px solid #f0f0f0
 
 
 

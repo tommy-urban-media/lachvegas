@@ -5,6 +5,7 @@ $options = {
 }
 
 .section-newsletter
+	margin: 0
 	padding: 0
 
 .newsletter
@@ -14,7 +15,10 @@ $options = {
 .newsletter-opener
 	width: 30%
 	padding: 20px
-	display: block
+	display: flex
+	align-items: center
+	justify-content: center
+	background-color: #84d4d1
 
 .newsletter-form
 	width: 70%
@@ -45,13 +49,18 @@ $options = {
 		display: inline-block
 		vertical-align: top
 
+		a 
+			color: #000
+			&:hover
+				text-decoration: underline
+
 .newsletter-envelope
 	display: flex
 	justify-content: center
 	position: relative
 
 	svg
-		color: #f0f0f0
+		color: #fff
 		font-size: 160px
 		position: relative
 

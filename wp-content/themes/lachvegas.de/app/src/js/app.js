@@ -54,9 +54,9 @@ export default class App {
 
   setupTheme () {
 
-    $('.search-label').on('click', () => {
-      $('.search-area').toggleClass('is-expanded');
-    });
+    //$('.search-label').on('click', () => {
+      //$('.search-area').toggleClass('is-expanded');
+    //});
 
   }
 
@@ -88,6 +88,7 @@ export default class App {
 
       $(el).on('click', (e) => {
 
+        console.log('opening modal');
         $modal = $('#' + $(e.currentTarget).data('modal'));
         $modal.addClass('modal-show');
 

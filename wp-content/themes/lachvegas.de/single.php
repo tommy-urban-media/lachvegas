@@ -93,16 +93,19 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			</section>
 		<?php endif;?>
 
-		<section class="article-body article-content state-paywall">
+		<section class="article-body article-content <?php /*state-paywall */?>">
             
-            <?php get_template_part('partials/common/paywall')?>
-            
-			<?php the_content() ?>
-			<?php //get_template_part('template-parts/article/puzzle') ?>
+			<?php //get_template_part('partials/common/paywall')?>
+          
+			<div class="entry-content">
+				<?php the_content() ?>
+				
+				<?php //get_template_part('template-parts/article/puzzle') ?>
 
-			<?php if ($post_data->original_date): ?>
-				<p><em>Hinweis: Dieser Artikel wurde erstmals veröffentlicht am <?php echo date('d.m.Y', strtotime($post_data->original_date)) ?>.</em></p>
-			<?php endif ?>
+				<?php if ($post_data->original_date): ?>
+					<p><em>Hinweis: Dieser Artikel wurde erstmals veröffentlicht am <?php echo date('d.m.Y', strtotime($post_data->original_date)) ?>.</em></p>
+				<?php endif ?>
+			</div>
 
 			<!--
 			Daumen hoch: Der Beitrag ist echt lustig und bekloppt
@@ -137,6 +140,8 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 		<div class="component"><?php get_template_part('template-parts/common/jobs'); ?></div>
 
 	</aside>
+
+	<?php get_template_part('template-parts/sections/stupid'); ?>
 
 </div>
 
@@ -323,10 +328,12 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 </div>
 <?php */ ?>
 
-<?php 
+<?php
+/* 
 if ($post->post_type === 'news'):
 	get_template_part('template-parts/common/news-archive');
-endif 
+endif
+*/ 
 ?>
 
 <?php get_footer(); ?>

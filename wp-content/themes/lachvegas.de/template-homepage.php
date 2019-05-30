@@ -19,7 +19,7 @@ $args = array(
 		'before' => date('Y-m-d H:i:s', strtotime('+1 day'))
 	),
 	'post_status' => 'publish',
-	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', 'statistic', 'quiz'),
+	'post_type' => array('guide', /*'news',*/ 'post', 'poem', 'saying', 'statistic', 'quiz'),
 	'tax_query' => array(
 		'relation' => 'OR',
 		array(
@@ -60,6 +60,8 @@ $oldPostsQuery = new WP_Query(array(
 
 <div class="content content-home">
 
+	<?php get_template_part('partials/common/newsticker'); ?>
+
 	<div class="content__area">
 		<div class="content__area--primary">
 
@@ -94,14 +96,14 @@ $oldPostsQuery = new WP_Query(array(
 		</aside>
 	</div>
 
-	<?php //get_template_part('template-parts/sidebar/news') ?>
+	<?php get_template_part('template-parts/sections/news') ?>
+	<?php get_template_part('template-parts/sections/newsletter') ?>
 	<?php get_template_part('template-parts/sections/topics') ?>
 	<?php //get_template_part('template-parts/sections/promis') ?>
-	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
 
-	<?php get_template_part('template-parts/sections/newsletter') ?>
+	<?php //get_template_part('template-parts/sections/newsletter') ?>
 	<?php //get_template_part('template-parts/sections/special-day') ?>
-    <?php get_template_part('template-parts/sections/history') ?>
+    <?php //get_template_part('template-parts/sections/history') ?>
 	<?php get_template_part('template-parts/sections/gridbox') ?>
 
 	<?php //get_template_part('template-parts/sections/sayings') ?>
@@ -222,7 +224,7 @@ $oldPostsQuery = new WP_Query(array(
 	-->
  
 	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
-	<?php ADManager::display('superbanner')?>
+	<?php //ADManager::display('superbanner')?>
 
 	<?php get_template_part('template-parts/sections/frage-der-woche') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
@@ -268,19 +270,19 @@ $oldPostsQuery = new WP_Query(array(
 
 	<?php get_template_part('template-parts/category-sections/quiz') ?>
 
-	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
+	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/politik') ?>
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
 	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
 
-	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
+	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
 	<?php get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 
-	<?php get_template_part('template-parts/ads/frontend/superbanner'); ?>
+	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
 
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
 
