@@ -107,41 +107,41 @@ $post_data = (object)$post_data;
 						
 				?>
 			</a>
+
+		<?php //var_dump($post_data) ?>
+		<?php elseif (!empty($post_data->externalImageUrl)): ?>
+			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+			<figure class="post-image post-image--teaser">
+
+				<?php if($post_data->is_video): ?>
+				<span class="post-media-type is-video">
+					<i class="fa fa-play-circle"></i>
+					Video
+				</span>
+				<?php endif ?>
+
+				<img src="<?= $post_data->externalImageUrl ?>" />
+
+				<?php if (isset($post_data->externalImageSource)): ?>
+				<figcaption class="caption"><?= $post_data->externalImageSource ?></figcaption>
+				<?php endif ?>
+			</figure>
+			</a>
+		<?php endif ?>
+
+		<?php if (!empty($post_data->taxonomyImageUrl)): ?>
+			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+			<figure class="post-image post-image--teaser">
+				<img src="<?= $post_data->taxonomyImageUrl ?>" />
+
+				<?php if (isset($post_data->taxonomyImageUrlSource)): ?>
+				<figcaption class="caption"><?= $post_data->taxonomyImageUrlSource ?></figcaption>
+				<?php endif ?>
+			</figure>
+			</a>
 		<?php endif ?>
 	</figure>
 
-	<?php //var_dump($post_data) ?>
-	<?php if (!empty($post_data->externalImageUrl)): ?>
-		<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-		<figure class="post-image post-image--teaser">
-
-			<?php if($post_data->is_video): ?>
-			<span class="post-media-type is-video">
-				<i class="fa fa-play-circle"></i>
-				Video
-			</span>
-			<?php endif ?>
-
-			<img src="<?= $post_data->externalImageUrl ?>" />
-
-			<?php if (isset($post_data->externalImageSource)): ?>
-			<figcaption class="caption"><?= $post_data->externalImageSource ?></figcaption>
-			<?php endif ?>
-		</figure>
-		</a>
-	<?php endif ?>
-
-	<?php if (!empty($post_data->taxonomyImageUrl)): ?>
-		<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-		<figure class="post-image post-image--teaser">
-			<img src="<?= $post_data->taxonomyImageUrl ?>" />
-
-			<?php if (isset($post_data->taxonomyImageUrlSource)): ?>
-			<figcaption class="caption"><?= $post_data->taxonomyImageUrlSource ?></figcaption>
-			<?php endif ?>
-		</figure>
-		</a>
-	<?php endif ?>
 
 	<div class="teaser__content">
 				

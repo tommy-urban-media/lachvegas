@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="457.46px" height="259.49px" viewBox="0 0 457.46 259.49" enable-background="new 0 0 457.46 259.49" xml:space="preserve">
+<g id="pupils">
+	<circle fill="#F15F26" cx="328.89" cy="126.62" r="119.08"/>
+	<circle fill="#F15F26" cx="124.26" cy="136.77" r="115.42"/>
+	<circle fill="#98DAF0" cx="330.55" cy="124.97" r="80.22"/>
+	<circle fill="#98DAF0" cx="124.26" cy="138.41" r="88.41"/>
+</g>
+<g id="eyes" display="none">
+	
+		<ellipse display="inline" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="311.509" cy="112.98" rx="28.021" ry="28.45"/>
+	
+		<circle display="inline" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="153.72" cy="147.32" r="29.47"/>
+	<ellipse display="inline" fill="#FFFFFF" cx="298.64" cy="102.47" rx="15.16" ry="15.39"/>
+	<circle display="inline" fill="#FFFFFF" cx="167.75" cy="136.77" r="14.03"/>
+</g>
+<g id="eyes-right">
+	
+		<ellipse stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="380.448" cy="124.97" rx="28.021" ry="28.451"/>
+	
+		<circle stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="180.55" cy="143.929" r="29.47"/>
+	<ellipse fill="#FFFFFF" cx="395.609" cy="124.97" rx="15.16" ry="15.39"/>
+	<circle fill="#FFFFFF" cx="198.64" cy="140.36" r="14.03"/>
+</g>
+</svg>

@@ -464,29 +464,56 @@ class ContentTypeController {
     );
     
     
-        register_post_type('historical_event',
-            array(
-                'labels' => array(
-                  'name' => __( 'Historisches Event' ),
-                  'singular_name' => __( 'Historisches Event' ),
-                  'add_new' => __( 'Historisches Event eintragen' ),
-                  'add_new_item' => __( 'neue Historisches Event anlegen' ),
-                  'edit_item' => __( 'Historisches Event bearbeiten' ),
-                  'new_item' => __( 'neue Historisches Event' ),
-                  'view_item' => __( 'Historisches Event anschauen' ),
-                  'search_items' => __( 'Historisches Event suchen' ),
-                  'not_found' => __( 'Historisches Event nicht gefunden' ),
-                  'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
-                ),
-                'show_ui' => true,
-                'public' => false,
-                'hierarchical' => false,
-                'has_archive' => true,
-                'capability_type' => 'post',
-                'taxonomies' => array('category', 'post_tag'),
-                'rewrite' => true
-            )
-        );
+    register_post_type('historical_event',
+        array(
+            'labels' => array(
+                'name' => __( 'Historisches Event' ),
+                'singular_name' => __( 'Historisches Event' ),
+                'add_new' => __( 'Historisches Event eintragen' ),
+                'add_new_item' => __( 'neue Historisches Event anlegen' ),
+                'edit_item' => __( 'Historisches Event bearbeiten' ),
+                'new_item' => __( 'neue Historisches Event' ),
+                'view_item' => __( 'Historisches Event anschauen' ),
+                'search_items' => __( 'Historisches Event suchen' ),
+                'not_found' => __( 'Historisches Event nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'public' => false,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => true
+        )
+    );
+
+
+    register_post_type('fact',
+        array(
+            'labels' => array(
+                'name' => __( 'Fakten' ),
+                'singular_name' => __( 'Fakt' ),
+                'add_new' => __( 'Fakten eintragen' ),
+                'add_new_item' => __( 'neue Fakten anlegen' ),
+                'edit_item' => __( 'Fakten bearbeiten' ),
+                'new_item' => __( 'neue Fakten' ),
+                'view_item' => __( 'Fakten anschauen' ),
+                'search_items' => __( 'Fakten suchen' ),
+                'not_found' => __( 'Fakten nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'public' => false,
+            'hierarchical' => false,
+            'has_archive' => true,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => true
+        )
+    );
+
+    add_post_type_support( 'fact', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
   }
