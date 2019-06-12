@@ -150,21 +150,13 @@
 			</h1>
 			<?php get_template_part('template-parts/socials'); ?>
 		</div>
+        
 
-        <!--
-		<div class="mainmenu-wrapper">
-			<nav class="mainmenu" role="navigation" data-component="Menu">
-				<span class="menu-icon"></span>
-				<?php wp_nav_menu( array('theme_location' => 'mainmenu') ); ?>
-			</nav>
-		</div>
-        -->
-
-        <!--
+        <?php /* ?>
 		<div class="topicmenu-wrapper">
 			<?php get_template_part('template-parts/topics'); ?>
 		</div>
-        -->
+        <?php*/ ?>
 
 		<?php ADManager::display('leaderboard')?>
 		<?php //get_template_part('partials/common/newsticker'); ?>

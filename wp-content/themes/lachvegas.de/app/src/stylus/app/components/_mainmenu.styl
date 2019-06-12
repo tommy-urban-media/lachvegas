@@ -3,156 +3,159 @@ $menuColor = #303030
 
 
 .mainmenu-wrapper
-  margin-bottom: 10px
-  display: flex
-  justify-content: space-between
-  align-items: center
-  background-color: #000
+    margin-bottom: 10px
+    display: none
+    justify-content: space-between
+    align-items: center
+    background-color: #000
+    
+    @media $query.xl
+        display: flex
 
 .mainmenu
-  display: block
-  height: $menuheight
-  text-align: left
-  position: relative 
-  z-index: 100
-  //border: 1px solid #e9e9e9
-  border-bottom: 0
-  
-
-  .menu-icon
-    width: 32px
-    height: 4px
-    display: none
-    float: right
-    margin-top: 0px
-    margin-right: 5%
-    cursor: pointer
+    display: block
+    height: $menuheight
+    text-align: left
     position: relative
-    background-color: $colors.black
-
-    &:hover
-      background-color: $colors.red
-
-      &:before
-      &:after
-        background-color: $colors.red
-
-    &:before
-    &:after
-      content: ''
-      width: 32px
-      height: 4px
-      position: absolute
-      left: 0
-      top: -8px
-      background-color: $colors.white
-
-    &:after
-      top: 8px
-
-  .menu-title
-    padding: 10px 10px
-    display: inline-block
-    vertical-align: top
-    color: lighten($colors.black, 50%) 
-    font-weight: 900
-
-  .menu-mainmenu-container
-    display: inline-block
-
-  ul
-    margin: 0 auto
-    list-style: none
-
-  .menu-item
-    float: left
-    text-align: center
-    position: relative
-
-    &-has-children
-      &>a:after
-        content: "\25be"
-        display: inline-block
-        margin-left: 4px
-        font-weight: 900
-
-    &.current-menu-item
-      & > a
-        color: $colors.red
-
-    &:hover
-      .sub-menu
-        display: block
-
-      & > a
-        color: $colors.red
-        text-decoration: none
-
-    a
-      padding: 0 10px
-      display: block
-      color: #fff
-      font-size: 12px
-      line-height: $menuheight
-      transition: all 150ms ease-in-out
-      border-right: 1px solid #404040
-
-
-    .sub-menu
-      min-width: 100%
-      position: absolute
-      display: none
-      background-color: #000 
-      box-shadow: 2px 2px 3px alpha($colors.black, 15%)
-
-      .menu-item
-        float: none
-        text-align: left 
-        border-bottom: 1px solid #404040
-
-      a
-        border-right: 0
-        white-space: nowrap
-
-
-  @media screen and (max-width: 960px)
-
-    width: 100%
-    right: 0
-    position: absolute
-
+    z-index: 100
+    //border: 1px solid #e9e9e9
+    border-bottom: 0
+    
+    
     .menu-icon
-      display: block
-
-    .menu-title
-      display: none
-
-    .menu-mainmenu-container
-      width: 100%
-      position: absolute
-      top: 52px
-      left: 0
-      clear: both
-      background-color: $colors.white
-
-    .menu
-      display: none
-      border: 1px solid $colors.lightGrey
-
-      .menu-item
-        width: 100%
-        float: none
-        text-align: left
-
-        a
-          color: $colors.black
-          border: 0
-
-      .sub-menu
-        display: block
+        width: 32px
+        height: 4px
+        display: none
+        float: right
+        margin-top: 0px
+        margin-right: 5%
+        cursor: pointer
         position: relative
-        background-color: $colors.white
-        box-shadow: none
-
+        background-color: $colors.black
+        
+        &:hover
+            background-color: $colors.red
+            
+            &:before
+            &:after
+                background-color: $colors.red
+        
+        &:before
+        &:after
+            content: ''
+            width: 32px
+            height: 4px
+            position: absolute
+            left: 0
+            top: -8px
+            background-color: $colors.white
+        
+        &:after
+            top: 8px
+    
+    .menu-title
+        padding: 10px 10px
+        display: inline-block
+        vertical-align: top
+        color: lighten($colors.black, 50%)
+        font-weight: 900
+    
+    .menu-mainmenu-container
+        display: inline-block
+    
+    ul
+        margin: 0 auto
+        list-style: none
+    
+    .menu-item
+        float: left
+        text-align: center
+        position: relative
+        
+        &-has-children
+            &>a:after
+                content: "\25be"
+                display: inline-block
+                margin-left: 4px
+                font-weight: 900
+        
+        &.current-menu-item
+            & > a
+                color: $colors.red
+        
+        &:hover
+            .sub-menu
+                display: block
+            
+            & > a
+                color: $colors.red
+                text-decoration: none
+        
         a
-          color: $colors.black
+            padding: 0 10px
+            display: block
+            color: #fff
+            font-size: 12px
+            line-height: $menuheight
+            transition: all 150ms ease-in-out
+            border-right: 1px solid #404040
+        
+        
+        .sub-menu
+            min-width: 100%
+            position: absolute
+            display: none
+            background-color: #000
+            box-shadow: 2px 2px 3px alpha($colors.black, 15%)
+            
+            .menu-item
+                float: none
+                text-align: left
+                border-bottom: 1px solid #404040
+            
+            a
+                border-right: 0
+                white-space: nowrap
+    
+    
+    @media screen and (max-width: 960px)
+        
+        width: 100%
+        right: 0
+        position: absolute
+        
+        .menu-icon
+            display: block
+        
+        .menu-title
+            display: none
+        
+        .menu-mainmenu-container
+            width: 100%
+            position: absolute
+            top: 52px
+            left: 0
+            clear: both
+            background-color: $colors.white
+        
+        .menu
+            display: none
+            border: 1px solid $colors.lightGrey
+            
+            .menu-item
+                width: 100%
+                float: none
+                text-align: left
+                
+                a
+                    color: $colors.black
+                    border: 0
+            
+            .sub-menu
+                display: block
+                position: relative
+                background-color: $colors.white
+                box-shadow: none
+                
+                a
+                    color: $colors.black
