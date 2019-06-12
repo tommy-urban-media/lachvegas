@@ -2,13 +2,14 @@
 
 $sayingArgs = array(
 	'post_type' => array('saying'),
-  'posts_per_page' => 2
+  'posts_per_page' => 1,
+  'orderby' => 'rand'
 );
 $sayingsQuery = new WP_Query($sayingArgs);
 
 ?>
 
-<section class="newest-saying section-sidebar" style="padding: 0;">
+<section class="newest-saying section-sidebar">
   <?php if ($sayingsQuery->have_posts()): ?>
     <?php while ( $sayingsQuery->have_posts() ) : $sayingsQuery->the_post(); setup_postdata($post)?>
       <?php if (has_post_thumbnail($post->ID)): ?>

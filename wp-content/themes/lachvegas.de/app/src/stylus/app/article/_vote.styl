@@ -1,5 +1,3 @@
-
-
 .post-votes
 
   width: 100%
@@ -45,27 +43,43 @@
 
 
 
-.article-vote
+.article-votes
+    width: 100%
+    margin-top: 50px
+    padding: 20px
+    display: flex
+    flex-wrap: wrap
+    justify-content: center
+    background-color: #f9f9f9
 
-  display: block
+    &__header
+        width: 100%
+        display: flex
+        margin: 0 0 10px 0
+        font-weight: bold
 
-  .button-vote-up
-    width: 50%
-    margin: 0 0 20px 0
-    float: left
-    text-transform: uppercase
-    background-color: $colors.green
+    &__body
+        width: 100%
+        display: flex
+        justify-content: left
 
-  .button-vote-down
-    width: 50%
-    margin: 0 0 20px 0
-    float: left
-    text-transform: uppercase
-    background-color: $colors.red
+    .button-vote-up
+    .button-vote-down
+        width: 160px
+        min-width: 50px
+        margin: 0 0 20px 0
+        padding: 10px
+        color: #fff
+        font-size: 14px
+        cursor: pointer
+        border: 0
 
-  .button-vote-neutral
-    width: 120px
-    background-color: $colors.yellow
+    .button-vote-up
+        background-color: $colors.green
+        &:hover
+            background-color: lighten($colors.green, 15%)
 
-  .article-vote-result
-    display: none
+    .button-vote-down
+        background-color: $colors.red
+        &:hover
+            background-color: lighten($colors.red, 15%)

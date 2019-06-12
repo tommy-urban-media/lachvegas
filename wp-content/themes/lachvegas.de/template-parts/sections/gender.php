@@ -28,7 +28,7 @@
             </div>
 
             <!-- <p>abergläubisch, abhängig, allwissend, ängstlich, anstrengend, arrogant, aufbrausend, aufgeregt, ausgeflippt, kompliziert, leidenschaftlich, modesüchtig, ungeduldig ...</p> -->
-            <p><br><br><a href="<?= home_url('/')?>frauen">Mehr über Frauen</a></p>
+            <p><br><br><a href="<?= home_url('/')?>frauenseite-die-seite-nur-fuer-frauen/">Zur Frauenseite</a></p>
           </div>
         </div>
         <div class="teasers-gender__item">
@@ -56,7 +56,7 @@
             </div>
 
             <!-- <p>akribisch, albern, angeberisch, aufmüpfig, erfinderisch, geduldig, konkret, kumpelhaft, mutig, organisiert, pingelig, präzise, sparsam, stur, vergesslich, vorausschauend, witzig...</p> -->
-            <p><br><br><a href="<?= home_url('/')?>maenner">Mehr über Männer</a></p>
+            <p><br><br><a href="<?= home_url('/')?>maennerseite-die-seite-nur-fuer-maenner/">Zur Männerseite</a></p>
           </div>
         </div>
       </div>

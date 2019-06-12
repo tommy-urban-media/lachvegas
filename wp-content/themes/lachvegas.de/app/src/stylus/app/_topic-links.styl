@@ -9,21 +9,36 @@
   background-color: #f0f0f0
   //border: 1px solid #e9e9e9
   position: relative 
-  background: #f0f0f0
   background-size: 400% 400%
   
-  .topic-link
-    width: auto
-    margin: 0 10px 10px 0
-    padding: 4px 12px
-    cursor: pointer
-    color: #404040
-    line-height: 135%
-    border: 2px solid #404040
-    background-color: #f0f0f0
-    transition: all 150ms ease-in-out
+.topic-link
+  width: auto
+  margin: 0 10px 10px 0
+  padding: 4px 12px
+  cursor: pointer
+  color: #404040
+  line-height: 135%
+  border: 2px solid #404040
+  background-color: #f0f0f0
+  transition: all 150ms ease-in-out
 
+  &:hover
+    color: #fff
+    border-color: $colors.red
+    background-color: $colors.red
+
+
+
+.category-links
+  width: 100%
+  margin: 0
+  padding: 0
+  display: flex
+  flex-wrap: wrap
+  justify-content: left
+  align-items: center
+
+  .topic-link
+    background-color: transparent
     &:hover
-      color: #fff
-      border-color: $colors.red
-      background-color: $colors.red
+      color: $colors.red

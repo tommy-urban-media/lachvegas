@@ -49,6 +49,24 @@ $data = [
       )
     )
   ),
+  'links' => [
+    [
+      'title' => 'Formel 1',
+      'url' => home_url('/') . 'sport/formel1' 
+    ],
+    [
+      'title' => 'Fussball',
+      'url' => home_url('/') . 'sport/fussball' 
+    ],
+    [
+      'title' => 'Olympis',
+      'url' => home_url('/') . 'sport/olympia' 
+    ],
+    [
+      'title' => 'Tennis',
+      'url' => home_url('/') . 'sport/tennis' 
+    ]
+  ],
   'button_text' => 'Mehr Sport'
 ];
 

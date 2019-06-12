@@ -11,7 +11,7 @@
             <?php if ($subtitle): ?>
                 <span style="display: block; color: #c0c0c0; font-size: 13px;"><?= $subtitle ?></span>
             <?php endif ?>
-            <p style="margin-top: 0; color: #303030; font-weight: bold; text-decoration: none;" href="<?= get_the_permalink($post->ID) ?>"><?= get_the_title($post->ID) ?></p>
+            <a style="margin-top: 0; color: #303030; font-weight: bold; text-decoration: none;" href="<?= get_the_permalink($post->ID) ?>"><?= get_the_title($post->ID) ?></a>
         </div>
 
     <?php endwhile ?>

@@ -20,6 +20,10 @@ $post_data->externalImageSource = $postExternalImageSource;
 
 $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 
+$votes = new StdClass();
+$votes->up = get_post_meta($post->ID, 'post_votes_up', true);
+$votes->down = get_post_meta($post->ID, 'post_votes_down', true);
+
 ?>
 
 
@@ -64,7 +68,7 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 				<?php $post_thumbnail = wp_get_attachment_image_src($post_thumbnail_id, 'full'); ?>
 				<figure class="post-image">
 					<a href="<?php echo $post_thumbnail[0]?>" rel="gallery-group">
-						<?php the_post_thumbnail('article_thumbnail')?>
+						<?php the_post_thumbnail('full')?>
 					</a>
 					<?php if ($caption = get_post(get_post_thumbnail_id())->post_excerpt): ?>
 						<figcaption class="caption">
@@ -112,6 +116,19 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			Daumen runter: Der Beitrag ist überhaupt nicht lustig
 			Daumen zur Seite: Mh.. ich bin völlig verwirrt
 			-->
+
+			<div class="article-votes" data-component="PostVote" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
+				<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
+				<div class="article-votes__body">
+					<button class="button-vote-up" data-vote-up title="Der Beitrag ist echt lustig und bekloppt">
+						<i class="fa fa-thumbs-up"></i> lustig <?= ($votes->up) ? '(' . $votes->up . ')' : ''?>
+					</button>
+					<button class="button-vote-down" data-vote-down title="Der Beitrag ist überhaupt nicht lustig">
+						<i class="fa fa-thumbs-down"></i> nicht lustig <?= ($votes->down) ? '(' . $votes->down . ')' : ''?>
+					</button>
+				</div>
+			</div>
+
 		</section>
 		
 		<?php if (has_tag()): ?>
@@ -131,22 +148,24 @@ $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 			<?php // echo get_template_part('template-parts/article', 'author'); ?>
 		</footer>
 
+		<aside class="article-footer-components">
+
+			<div class="component"><?php get_template_part('template-parts/sidebar/news'); ?></div>
+			<div class="component"><?php get_template_part('template-parts/common/jobs'); ?></div>
+
+		</aside>
+
+		<?php ADManager::display('leaderboard')?>
+
 	</article>
 
-	<aside class="article-footer-components">
-
-		<div class="component"><?php get_template_part('template-parts/sidebar/news'); ?></div>
-		<!-- <div class="component"><?php showAD('portrait'); ?></div> -->
-		<div class="component"><?php get_template_part('template-parts/common/jobs'); ?></div>
-
-	</aside>
-
-	<?php get_template_part('template-parts/sections/stupid'); ?>
+	<?php //get_template_part('template-parts/sections/stupid'); ?>
+	<?php get_template_part('template-parts/sections/newsletter'); ?>
 
 </div>
 
 
-<?php get_template_part('template-parts/sections/newsletter'); ?>
+
 <?php // get_template_part('template-parts/sections/lachvegas-fragt-dich'); ?>
 
 

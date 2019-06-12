@@ -1,32 +1,18 @@
 <?php 
 
-$cookies = new stdClass();
+$fortuneCookiesArgs = array(
+	'post_type' => 'fortune_cookie',
+  'posts_per_page' => 1,
+  'orderby' => 'rand'
+);
+$fortuneCookiesQuery = new WP_Query($fortuneCookiesArgs);
 
-$cookies->entries = [
-  [
-    'id' => 1,
-    'date' => null,
-    'text' => 'Ein CGI-Script hat die Berechtigung chmod 737-Max. Prüfen Sie ob alle Require-Regeln des Perl Moduls fehlerfrei konfiguriert sind'
-  ],
-  [
-    'id' => 2,
-    'date' => null,
-    'text' => '404 Nicht gefunden'
-  ],
-  [
-    'id' => 3,
-    'date' => null,
-    'text' => 'Es ist ein kritischer Fehler aufgetreten der nicht rechtzeitig behoben werden konnte weil die Entwickler damit beschäftigt waren ein Zombie-Spiel durch zu spielen'
-  ],
-  [
-    'id' => 4,
-    'date' => null,
-    'text' => 'sudo apt-get install fortune-cookie -g'
-  ]
-];
-
-$rand = rand(0, count($cookies->entries)-1);
-$cookie = $cookies->entries[$rand];
+$p = null;
+while ($fortuneCookiesQuery->have_posts()) {
+  $fortuneCookiesQuery->the_post(); 
+  setup_postdata($post);
+  $p = $post;
+}
 
 ?>
 
@@ -47,7 +33,7 @@ $cookie = $cookies->entries[$rand];
           <?php else: ?>
             <div class="fortune-cookie__button" data-button>Glückskeks öffnen</div>
             <div class="fortune-cookie__ribbon" data-ribbon>
-              <span><?= $cookie['text'] ?></span>
+              <span><?php echo apply_filters( 'the_content', $p->post_content ) ?></span>
             </div>
           <?php endif ?>
           
@@ -56,7 +42,7 @@ $cookie = $cookies->entries[$rand];
     
     </div>
     
-    <footer class="section__footer">
+    <footer class="section__footer" style="justify-content: center">
 
       <?php 
         $mailto = 'mailto:?';

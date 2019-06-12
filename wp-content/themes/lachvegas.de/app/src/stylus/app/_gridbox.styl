@@ -22,6 +22,8 @@ $options = {
 		//margin: 10px 
 		padding: 20px
 		position: relative
+		display: flex
+		align-items: center
 		background-repeat: no-repeat
 		background-size: 100% 100%
 
@@ -41,7 +43,9 @@ $options = {
 			color: #fff
 			background-color: alpha(#000, 0.55) //alpha(#00d657, 0.7)
 		&:nth-child(6)
-			background-color: alpha($colors.red, 0.35)
+			color: #fff
+			//background-color: alpha($colors.red, 0.35)
+			background-color: alpha(#000, 0.35)
 
 		/*
 		
@@ -96,7 +100,17 @@ $options = {
 		font-size: 15px
 		font-weight: bold
 		opacity: 0.8
+		position: absolute
+		left: 20px 
+		top: 20px
 		text-transform: uppercase
+
+		a
+			color: #fff
+			text-decoration: underline
+			&:hover
+				color: #fff
+				text-decoration: none
 
 
 .box-link

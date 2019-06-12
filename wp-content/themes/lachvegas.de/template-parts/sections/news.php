@@ -1,5 +1,26 @@
 <?php
 
+global $category_name;
+
+$tax_query = [];
+
+if ($category_name) {
+  $tax_query = array(
+    'relation' => 'AND',
+    array(
+      'taxonomy' => 'post_settings',
+      'field' => 'name',
+      'terms' => array('teasable'),
+      'operator' => 'NOT IN'
+    ),
+    array(
+      'taxonomy' => 'category',
+      'field' => 'name',
+      'terms' => [$category_name]
+    )
+  );
+}
+
 $today = getdate();
 
 $newsArgs = array(
@@ -43,7 +64,8 @@ $newsArgs = array(
       'month' => $today['mon']-1
     ),
     'relation' => 'OR'
-  )
+  ),
+  'tax_query' => $tax_query
 );
 $newsQuery = new WP_Query($newsArgs);
 
@@ -62,7 +84,7 @@ usort($posts, 'fnn');
 
 
 <section class="section-news">
-  <h3 class="news-headline">News</h3>
+  <h3 class="news-headline">News <?php echo isset($category_name) ? $category_name : '' ?></h3>
   <ul class="news-list">
     <?php $i = 0; ?>
     <?php foreach ($posts as $post): ?>

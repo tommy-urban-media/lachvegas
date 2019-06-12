@@ -84,7 +84,7 @@ $oldPostsQuery = new WP_Query(array(
 
 					<?php $i++ ?>
 					<?php endwhile; ?>
-					</ol>
+				</ol>
 			<?php endif ?>
 
 			<?php echo getPagination($newPostsQuery, $paged)?>
@@ -100,8 +100,40 @@ $oldPostsQuery = new WP_Query(array(
 	<?php get_template_part('template-parts/sections/newsletter') ?>
 	<?php get_template_part('template-parts/sections/topics') ?>
 	<?php //get_template_part('template-parts/sections/promis') ?>
+	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
 
-	<?php //get_template_part('template-parts/sections/newsletter') ?>
+
+
+	<!-- 
+	Ich bin hier überfordert. Ich brauche Hilfe!
+	=> Layer öffnet sich mit Auswahl
+
+	Wofür interessierst du dich?
+
+	Physik
+	- Für Physiker das ultimative Quiz für Physiker
+
+	Feminismus
+	Film
+	Musik
+	Politik
+	Sexualität
+	Sport
+
+
+
+	Bild mit Arsch und Sonne:
+	Schau dir das Bild genau an. Was passiert dort?
+
+	- Ein neuer Stern wird aus einem Schwarzen Loch geboren
+	- Ein Stern sucht sich seinen Weg durch das Wurmloch und erreicht unser Universum
+	- Ein Schwarzes Loch kollabiert zu einem G-Stern
+	- Jemand hat hinten herum das Licht angemacht
+	- Jemandem scheint die Sonne aus dem Arsch
+
+	-->
+
+	
 	<?php //get_template_part('template-parts/sections/special-day') ?>
     <?php //get_template_part('template-parts/sections/history') ?>
 	<?php get_template_part('template-parts/sections/gridbox') ?>
@@ -226,7 +258,7 @@ $oldPostsQuery = new WP_Query(array(
 	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
 	<?php //ADManager::display('superbanner')?>
 
-	<?php get_template_part('template-parts/sections/frage-der-woche') ?>
+	<?php //get_template_part('template-parts/sections/frage-der-woche') ?>
 	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/ratgeber') ?>
  
@@ -268,23 +300,14 @@ $oldPostsQuery = new WP_Query(array(
 	</div>
 	-->
 
-	<?php get_template_part('template-parts/category-sections/quiz') ?>
-
-	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
-
 	<?php get_template_part('template-parts/category-sections/politik') ?>
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
 	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
-
-	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
-
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
 	<?php get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
-
-	<?php //get_template_part('template-parts/ads/frontend/superbanner'); ?>
-
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
+	<?php get_template_part('template-parts/category-sections/quiz') ?>
 
 </div>
 

@@ -170,5 +170,19 @@
 <div class="modal-overlay"></div>
 
 
+
+<!--
+<div class="sticky-box">
+	<div class="sticky-box__header">
+		Wusstest du schon?
+	</div>
+	<div class="sticky-box__body">
+		Das Liebesleben von Eintagsfliegen erstreckt sich über einen Zeitraum von 0 Sekunden pro Tag
+		<a href="/wissen">mehr lesen</a>
+	</div>
+</div>
+-->
+
+
 </body>
 </html>

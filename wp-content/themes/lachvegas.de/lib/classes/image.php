@@ -53,7 +53,7 @@ class Image {
   
     //imagefilledrectangle( $canvas, 9, 9, 189, 89, $white ); 
   
-    $font = "/Library/Fonts/Arial+Bold.ttf"; 
+    $font = get_template_directory() . "/lib/fonts/Arial+Bold.ttf"; 
     $fontSize = 32; 
   
     $wordCount = strlen($this->text);
@@ -77,7 +77,7 @@ class Image {
     $stroke_color = imagecolorallocate($canvas, 0, 0, 0);
   
     $box = new Box($canvas);
-    $box->setFontFace('/Library/Fonts/Arial Bold.ttf'); // http://www.dafont.com/pacifico.font
+    $box->setFontFace(get_template_directory() . "/lib/fonts/Arial Bold.ttf"); // http://www.dafont.com/pacifico.font
     $box->setFontSize($fontSize);
     $box->setFontColor(new Color(255, 255, 255));
     $box->setTextShadow(new Color(0, 0, 0, 50), 12, 12);

@@ -92,8 +92,30 @@
     </div>
     
     <footer class="section__footer">
-      <a href="<?= $data['url'] ?>" class="button button__section"><span><?= $data['button_text'] ?></span><i class="icon fa fa-angle-double-right"></i></a>
+      
+      <!-- 
+        <a href="<?= $data['url'] ?>" class="button button__section"><span><?= $data['button_text'] ?></span><i class="icon fa fa-angle-double-right"></i></a>
+      -->
+      <?php if ( isset($data['links']) && !empty($data['links'])): ?>
+        <h4>Weitere Themen aus dieser Kategorie</h4>
+        <div class="category-links">
+          <?php foreach($data['links'] as $link): ?>
+            <a href="<?= $link['url'] ?>" class="topic-link"><?= $link['title'] ?></a>
+            <!--
+            <a href="<?= home_url('/')?>berlin" class="topic-link">Berlin</a>
+            <a href="<?= home_url('/')?>deutschland" class="topic-link">Deutschland</a>
+            <a href="<?= home_url('/')?>ausland" class="topic-link">Ausland</a>
+            <a href="<?= home_url('/')?>europa" class="topic-link">Europa</a>
+            <a href="<?= home_url('/')?>personen/donald-trump" class="topic-link">Donald Trump</a>
+            -->
+          <?php endforeach ?> 
+        </div>
+      <?php endif ?>
+
     </footer>
+
+
+    
 
   </div>
 </section>

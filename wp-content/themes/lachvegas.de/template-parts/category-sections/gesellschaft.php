@@ -47,6 +47,24 @@ $data = [
       ),
     )
   ),
+  'links' => [
+    [
+      'title' => 'Arbeit',
+      'url' => home_url('/') . 'arbeit' 
+    ],
+    [
+      'title' => 'Beziehung',
+      'url' => home_url('/') . 'beziehung' 
+    ],
+    [
+      'title' => 'Verkehr',
+      'url' => home_url('/') . 'verkehr' 
+    ],
+    [
+      'title' => 'Stellenmarkt',
+      'url' => home_url('/') . 'stellenmarkt' 
+    ]
+  ],
   'button_text' => 'Mehr Gesellschaft'
 ];
 

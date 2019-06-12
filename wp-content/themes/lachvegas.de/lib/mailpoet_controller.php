@@ -27,6 +27,11 @@ class MailpoetController {
             return $latestPosts;
         }
 
+        if ($shortcode === '[custom:fortune_cookie]') {
+            $view = $this->renderStaticView('fortune_cookie');
+            return $view;
+        }
+
         if ($shortcode === '[custom:statistic]') {
             $latestPosts = $this->renderLatestPosts(1, 'statistic', 'statistic');
             return $latestPosts;
@@ -73,6 +78,14 @@ class MailpoetController {
         ob_start();
         get_template_part('lib/templates/mailpoet/' . $template);
         wp_reset_postdata();
+        return ob_get_clean();
+    }
+
+
+
+    public function renderStaticView( $template ) {
+        ob_start();
+        get_template_part('lib/templates/mailpoet/' . $template);
         return ob_get_clean();
     }
 

@@ -69,6 +69,15 @@ $datasets = [
 		'fields' => [
 			'id', 'date', 'title', 'categories', 'tags', 'url'
 		]
+	],
+	[
+		'name' => 'Statistiken',
+		'file' => $path . 'Statistiken-Sprueche.csv',
+		'post_type' => 'statistic',
+		'field_id' => 'import_id',
+		'fields' => [
+			'id', 'date', 'title', 'categories', 'tags'
+		]
 	]
 ];
 
@@ -213,6 +222,12 @@ if (isset($_REQUEST['dataset'])) {
 							//var_dump($d);
 							$fortuneCookie = new FortuneCookie($d);
 							$fortuneCookie->save();
+							break;
+						case 'statistic':
+							//echo 'import saying';
+							//var_dump($d);
+							$statistic = new Statistic($d);
+							$statistic->save();
 							break;
 					}
 				//}

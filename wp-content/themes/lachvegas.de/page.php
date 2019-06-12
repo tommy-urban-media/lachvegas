@@ -6,7 +6,7 @@
 get_header();
 ?>
 
-<div class="content">
+<div class="content content-home">
 	<div class="content__area">
 		<div class="content__area--primary">
 
@@ -30,10 +30,13 @@ get_header();
 		</div>
 
 	</div>
+
+
+	<?php // get_template_part('template-parts/sections/gender') ?>
+	<?php get_template_part('template-parts/sections/newsletter') ?>
+	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>	
+
 </div>
 
-<?php // get_template_part('template-parts/sections/gender') ?>
-<?php get_template_part('template-parts/sections/newsletter') ?>
-<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 
 <?php get_footer(); ?>

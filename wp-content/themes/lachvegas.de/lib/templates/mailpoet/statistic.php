@@ -2,7 +2,7 @@
 
 <?php if ($mail_query->have_posts()): ?>
 
-    <h3>Statistik des Tages</h3>
+    <h3 style="width: 100%; text-align: center;">Statistik des Tages</h3>
 
     <?php while ( $mail_query->have_posts() ): $mail_query->the_post(); setup_postdata($post); ?>
         
@@ -11,7 +11,7 @@
             <?php if ($subtitle): ?>
                 <span style="display: block; color: #c0c0c0; font-size: 13px;"><?= $subtitle ?></span>
             <?php endif ?>
-            <p style="margin-top: 0; color: #303030; font-weight: bold; text-decoration: none;" href="<?= get_the_permalink($post->ID) ?>"><?= get_the_title($post->ID) ?></p>
+            <a style="margin-top: 0; display: block; color: #303030; font-weight: normal; text-align: center; text-decoration: none;" href="<?= get_the_permalink($post->ID) ?>">"<?= get_the_title($post->ID) ?>"</a>
         </div>
 
     <?php endwhile ?>

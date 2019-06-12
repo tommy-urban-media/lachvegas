@@ -8,7 +8,7 @@ get_header();
 
 <?php // get_template_part('template-parts/common/breadcrumb') ?>
 
-<div class="content">
+<div class="content content-home">
 	<div class="content__area">
 		<div class="content__area--primary">
 
@@ -51,11 +51,11 @@ get_header();
 			<?php echo get_template_part('sidebar')?>
 		</div>
 	</div>
+
+	<?php get_template_part('template-parts/sections/gender') ?>
+	<?php get_template_part('template-parts/sections/newsletter') ?>
+	<?php //get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
+
 </div>
-
-
-<?php get_template_part('template-parts/sections/gender') ?>
-<?php get_template_part('template-parts/sections/newsletter') ?>
-<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>
 
 <?php get_footer(); ?>

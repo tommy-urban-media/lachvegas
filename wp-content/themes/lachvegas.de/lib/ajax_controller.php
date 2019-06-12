@@ -310,8 +310,8 @@ class AjaxController {
 
 		foreach ($params as $key => $value) {
 			$data->{$key} = $value;
-		}
-
+        }
+        
         switch($postType) {
 			case 'job':
 				$job = new Job($data);

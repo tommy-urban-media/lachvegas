@@ -1,4 +1,4 @@
-<div class="leaderboard" id="billionaire">
+<div class="ad leaderboard" id="billionaire">
     <div class="stage">
         <h1 class="title">Du bist Milliardär und hast zu viel Geld?</h1>
         <p>Du weißt nicht wofür du dein ganzes Geld ausgeben sollst</p>

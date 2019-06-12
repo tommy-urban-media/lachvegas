@@ -2,12 +2,12 @@
 
 <?php if ($mail_query->have_posts()): ?>
 
-    <h2>Beiträge</h2>
+    <h2>Aktuelle Beiträge</h2>
 
     <?php while ( $mail_query->have_posts() ): $mail_query->the_post(); setup_postdata($post); ?>
         
         <?php $subtitle = get_post_meta($post->ID, 'subtitle', true); ?>
-        <div style="margin-bottom: 40px; padding-bottom: 40px; border-bottom: 1px solid #f0f0f0;">
+        <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f0f0f0;">
             <?php if ($subtitle): ?>
                 <span style="display: block; color: #c0c0c0; font-size: 13px;"><?= $subtitle ?></span>
             <?php endif ?>
@@ -20,7 +20,7 @@
                     </div>
                 <?php endif ?>
 
-                <span style="display: block; font-size: 20px;"><?= get_the_title($post->ID) ?></span>
+                <span style="display: block; font-size: 18px;"><?= get_the_title($post->ID) ?></span>
             </a>
         </div>
 
