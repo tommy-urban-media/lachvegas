@@ -4,8 +4,7 @@
 
 var path = require("path");
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const devMode = process.env.NODE_ENV !== 'production';
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 
 module.exports = {
     mode: "development",
@@ -51,16 +50,12 @@ module.exports = {
                 test: /\.styl(us)?$/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader:ExtractCssChunks.loader,
                         options: {
-                            name: '[name].css',
-                            outputPath: 'assets/css/'
+                            hot: true, // if you want HMR - we try to automatically inject hot reloading but if it's not working, add it to the config
+                            reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
                         }
                     },
-                    {
-                        loader: 'extract-loader'
-                    },
-                    "style-loader",
                     "css-loader",
                     "stylus-loader"
                 ]
@@ -75,5 +70,16 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new ExtractCssChunks(
+            {
+                // Options similar to the same options in webpackOptions.output
+                // both options are optional
+                filename: "[name].css",
+                chunkFilename: "[id].css",
+                orderWarning: true, // Disable to remove warnings about conflicting order between imports
+            }
+        ),
+    ]
 };
