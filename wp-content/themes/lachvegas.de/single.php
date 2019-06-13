@@ -117,25 +117,25 @@ $votes->down = get_post_meta($post->ID, 'post_votes_down', true);
 			Daumen zur Seite: Mh.. ich bin völlig verwirrt
 			-->
 
-			<div class="article-votes" data-component="PostVote" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
-				<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
-				<div class="article-votes__body">
-					<button class="button-vote-up" data-vote-up title="Der Beitrag ist echt lustig und bekloppt">
-						<i class="fa fa-thumbs-up"></i> lustig <?= ($votes->up) ? '(' . $votes->up . ')' : ''?>
-					</button>
-					<button class="button-vote-down" data-vote-down title="Der Beitrag ist überhaupt nicht lustig">
-						<i class="fa fa-thumbs-down"></i> nicht lustig <?= ($votes->down) ? '(' . $votes->down . ')' : ''?>
-					</button>
-				</div>
-			</div>
+		</section>
 
+		<section class="article-votes" data-component="PostVote" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
+			<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
+			<div class="article-votes__body">
+				<button class="button-vote-up" data-vote-up title="Der Beitrag ist echt lustig und bekloppt">
+					<i class="fa fa-thumbs-up"></i> lustig <?= ($votes->up) ? '(' . $votes->up . ')' : ''?>
+				</button>
+				<button class="button-vote-down" data-vote-down title="Der Beitrag ist überhaupt nicht lustig">
+					<i class="fa fa-thumbs-down"></i> nicht lustig <?= ($votes->down) ? '(' . $votes->down . ')' : ''?>
+				</button>
+			</div>
 		</section>
 		
 		<?php if (has_tag()): ?>
-			<div class="tags">
+			<section class="tags">
 				<span class="tags__title"><?= __('Themen') ?>:</span>
 				<?= get_the_tag_list('<ul class="list list--tags"><li class="list-item">', '</li><li class="list-item">', '</li></ul>')?>
-			</div>
+			</section>
 		<?php endif ?>
 
 
