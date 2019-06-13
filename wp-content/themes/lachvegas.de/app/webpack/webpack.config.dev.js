@@ -1,21 +1,19 @@
-/* === dont forget to import style to main.js file === */
-/* ===> import './main.styl'; <=== */
-
-
 var path = require("path");
 
-const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
+const sourcePath = './app/src/';
 
 module.exports = {
     mode: "development",
     watch: true,
-    entry: [
-        "./app/src/js/app.js",
-        "./app/src/stylus/main.styl"
-    ],
+    devtool: 'inline-source-map',
+    entry: {
+        app: ["./app/src/js/app.js", "./app/src/stylus/bundles/app.styl"],
+        main: ["./app/src/stylus/main.styl"]
+    },
     output: {
+        filename: '[name].js',
         path: path.resolve(__dirname, "dist"),
-        filename: "app.js",
         publicPath: "/dist"
     },
     resolve: {
@@ -33,6 +31,7 @@ module.exports = {
                     options: {
                         presets: [
                             ['@babel/preset-env', {
+                                corejs: 3,
                                 useBuiltIns: "usage",
                                 targets: {
                                     browsers: [
@@ -54,10 +53,31 @@ module.exports = {
                         options: {
                             hot: true, // if you want HMR - we try to automatically inject hot reloading but if it's not working, add it to the config
                             reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
+                            sourceMap: true
                         }
                     },
-                    "css-loader",
-                    "stylus-loader"
+                    {
+                        loader: "css-loader",
+                        options: { importLoaders: 1, sourceMap: true }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            ident: 'postcss',
+                            plugins: (loader) => [
+                                require('postcss-import')({ root: loader.resourcePath }),
+                                require('postcss-preset-env')(),
+                                require('cssnano')()
+                            ],
+                            sourceMap: true,
+                        }
+                    },
+                    {
+                        loader: "stylus-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }
                 ]
             },
             {

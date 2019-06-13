@@ -4,12 +4,18 @@
 
 var path = require("path");
 
+const ExtractCssChunks = require("extract-css-chunks-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
     mode: "production",
-    entry: "./app/src/js/app.js",
+    entry: {
+        app: ["./app/src/js/app.js", "./app/src/stylus/bundles/app.styl"],
+        main: ["./app/src/stylus/main.styl"]
+    },
     output: {
+        filename: '[name].js',
         path: path.resolve(__dirname, "dist"),
-        filename: "bundle.js",
         publicPath: "/dist"
     },
     module: {
@@ -22,6 +28,7 @@ module.exports = {
                     options: {
                         presets: [
                             ['@babel/preset-env', {
+                                corejs: 3,
                                 useBuiltIns: "usage",
                                 targets: {
                                     browsers: [
@@ -38,9 +45,27 @@ module.exports = {
             {
                 test: /\.styl(us)?$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "stylus-loader"
+                    {
+                        loader:ExtractCssChunks.loader
+                    },
+                    {
+                        loader: "css-loader",
+                        options: { importLoaders: 1 }
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            ident: 'postcss',
+                            plugins: (loader) => [
+                                require('postcss-import')({ root: loader.resourcePath }),
+                                require('postcss-preset-env')(),
+                                require('cssnano')()
+                            ]
+                        }
+                    },
+                    {
+                        loader: "stylus-loader",
+                    }
                 ]
             },
             {
@@ -53,5 +78,31 @@ module.exports = {
                 }]
             }
         ]
-    }
+    },
+    optimization: {
+        minimizer: [
+            new UglifyJsPlugin({
+                uglifyOptions: {
+                    output: {
+                        comments: false,
+                        ascii_only: true
+                    },
+                    compress: {
+                        comparisons: false
+                    }
+                }
+            })
+        ],
+    },
+    plugins: [
+        new ExtractCssChunks(
+            {
+                // Options similar to the same options in webpackOptions.output
+                // both options are optional
+                filename: "[name].css",
+                chunkFilename: "[id].css",
+                orderWarning: true, // Disable to remove warnings about conflicting order between imports
+            }
+        ),
+    ]
 };
