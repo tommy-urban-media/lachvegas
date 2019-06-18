@@ -18,11 +18,16 @@
   p
     margin: 0 0 15px 0
     color: $colors.black
-    font-size: 1.05em
+    font-size: 13px
     line-height: 165%
 
+    @media $query.m
+      font-size: 15px
+
+
+
   ol
-    padding-left: 50px
+    padding-left: 36px
     list-style: decimal
     counter-reset: ol-counter
     list-style: none
@@ -33,23 +38,34 @@
       position: relative
 
       &:before
-        width: 32px
-        height: 32px
+        width: 24px
+        height: 24px
         content: counter(ol-counter)
         color: $colors.red
-        font-size: 16px
+        font-size: 13px
         font-weight: bold
-        line-height: 32px
+        line-height: 24px
         text-align: center
         position: absolute
         top: 6px 
-        left: -50px
+        left: -36px
         border-radius: 50%
         background-color: #303030
         transform: rotate(5deg)
 
       &:nth-child(2n)
         background-color: #f9f9f9
+
+    @media $query.m
+      padding-left: 50px
+      li
+        &:before
+          width: 32px
+          height: 32px
+          font-size: 16px
+          line-height: 32px
+          top: 6px 
+          left: -50px
 
 
 
@@ -62,8 +78,11 @@
   ul
     li
       margin: 0 0 10px 0
-      font-size: 1.15em
+      font-size: 13px
       line-height: 165%
+
+      @media $query.m
+        font-size: 15px
 
 
   table

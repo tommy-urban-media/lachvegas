@@ -304,6 +304,8 @@ $oldPostsQuery = new WP_Query(array(
 	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
 	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
+	<?php get_template_part('template-parts/category-sections/beziehung-partnerschaft') ?>
+	<?php get_template_part('template-parts/category-sections/beruf-karriere') ?>
 	<?php get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>

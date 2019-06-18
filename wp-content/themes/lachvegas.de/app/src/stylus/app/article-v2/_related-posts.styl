@@ -4,21 +4,26 @@
 
   &__list
     width: 100%
-    display: flex
-    align-items: top
-    flex-wrap: wrap
-    justify-content: space-between
+    //display: flex
+    //align-items: top
+    //flex-wrap: wrap
+    //justify-content: space-between
+    display: grid
+    grid-gap: 20px
+    grid-template-columns: repeat(auto-fill, minmax(210px,1fr))
+    grid-template-rows: none
 
-  &__list__item
-    width: 30%
+  //&__list__item
+    //width: 30%
+    //min-width: 210px
+    //flex: 1
 
   .related-post
     display: block
-    margin-bottom: 40px
+    margin-bottom: 20px
 
     .post-image
       margin: 0 0 10px 0
-      max-height: 121px
       overflow: hidden
 
     a

@@ -90,6 +90,15 @@
 
 
 
+<div class="did-you-know-box">
+	<span class="did-you-know-box__title">Wusstest du schon?</span>
+	<div class="did-you-know-box__body">
+		<p>Fische sind die am seltensten überfahrenen Tiere</p>
+		<p><a href="/unnuetzes-wissen">mehr unnützes Wissen</a></p>
+	</div>
+</div>
+
+
 <!--
 <div id="footer-bottom">
 	<ul id="social-list">

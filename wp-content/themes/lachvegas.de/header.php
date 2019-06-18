@@ -17,6 +17,7 @@
 <head>
 <meta charset="<?php bloginfo('charset'); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="p:domain_verify" content="571f66866ffeafd18f545a47451fff9d"/>
 
 <title>
 <?php
