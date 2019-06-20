@@ -21,8 +21,17 @@ $post_data->externalImageSource = $postExternalImageSource;
 $post_data->original_date = get_post_meta($post->ID, 'original_date', true);
 
 $votes = new StdClass();
-$votes->up = get_post_meta($post->ID, 'post_votes_up', true);
-$votes->down = get_post_meta($post->ID, 'post_votes_down', true);
+$votes->up = get_post_meta($post->ID, 'post_votes_up', true) or 0;
+$votes->down = get_post_meta($post->ID, 'post_votes_down', true) or 0;
+
+if (!$votes->up or $votes->up == "") {
+	$votes->up = 0;
+}
+if (!$votes->down or $votes->down == "") {
+	$votes->down = 0;
+}
+
+$postVotesData = json_encode($votes);
 
 ?>
 
@@ -119,15 +128,18 @@ $votes->down = get_post_meta($post->ID, 'post_votes_down', true);
 
 		</section>
 
-		<section class="article-votes" data-component="PostVote" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
+		<section class="article-votes" data-component="PostVote" data-param="<?= $postVotesData ?>" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
 			<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
 			<div class="article-votes__body">
 				<button class="button-vote-up" data-vote-up title="Der Beitrag ist echt lustig und bekloppt">
-					<i class="fa fa-thumbs-up"></i> lustig <?= ($votes->up) ? '(' . $votes->up . ')' : ''?>
+					<i class="fa fa-thumbs-up"></i> lustig (<span data-votes-up><?= $votes->up?></span>)
 				</button>
 				<button class="button-vote-down" data-vote-down title="Der Beitrag ist überhaupt nicht lustig">
-					<i class="fa fa-thumbs-down"></i> nicht lustig <?= ($votes->down) ? '(' . $votes->down . ')' : ''?>
+					<i class="fa fa-thumbs-down"></i> nicht lustig (<span data-votes-down><?= $votes->down?></span>)
 				</button>
+			</div>
+			<div class="article-votes__footer">
+				<div class="article-votes-bar" data-votes-bar></div>
 			</div>
 		</section>
 		

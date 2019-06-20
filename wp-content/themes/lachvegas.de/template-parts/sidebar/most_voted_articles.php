@@ -6,7 +6,7 @@ $mostViewedArgs = array(
   'orderby' => array( 
     'meta_value_num' => 'DESC'
   ),
-  'meta_key' => 'post_views_count'
+  'meta_key' => 'post_votes_up'
 );
 $mostViewedArticlesQuery = new WP_Query($mostViewedArgs);
 

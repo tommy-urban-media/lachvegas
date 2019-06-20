@@ -36,6 +36,7 @@
       min-height: 42px
       counter-increment: ol-counter
       position: relative
+      line-height: 42px
 
       &:before
         width: 24px
@@ -55,6 +56,22 @@
 
       &:nth-child(2n)
         background-color: #f9f9f9
+      &:nth-child(1n):before
+        transform: rotate(-3deg)
+      &:nth-child(3n):before
+        transform: rotate(3deg)
+      &:nth-child(4n):before
+        transform: rotate(-6deg)
+      &:nth-child(5n):before
+        transform: rotate(-5deg)
+      &:nth-child(6n):before
+        transform: rotate(2deg)
+      &:nth-child(7n):before
+        transform: rotate(3deg)
+      &:nth-child(8n):before
+        transform: rotate(-4deg)
+      &:nth-child(9n):before
+        transform: rotate(3deg)
 
     @media $query.m
       padding-left: 50px
@@ -79,7 +96,7 @@
     li
       margin: 0 0 10px 0
       font-size: 13px
-      line-height: 165%
+      line-height: 42px
 
       @media $query.m
         font-size: 15px

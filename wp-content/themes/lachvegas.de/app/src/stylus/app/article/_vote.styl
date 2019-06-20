@@ -83,3 +83,23 @@
         background-color: $colors.red
         &:hover
             background-color: lighten($colors.red, 15%)
+
+
+.article-votes-bar
+  width: 200px
+  height: 2px
+  display: block
+  background-color: $colors.red
+  z-index: 1
+  position: relative
+
+  &:before
+    width: 0
+    height: 100%
+    content: ''
+    z-index: 2
+    position: absolute
+    left: 0
+    top: 0
+    background-color: $colors.green
+

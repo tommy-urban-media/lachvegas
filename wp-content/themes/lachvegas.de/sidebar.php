@@ -24,7 +24,9 @@ if ($rand) {
 }
 
 // get_template_part('template-parts/common/partnerboerse');
-get_template_part('template-parts/sidebar/most_views_articles');
+get_template_part('template-parts/sidebar/most_voted_articles');
+get_template_part('template-parts/sidebar/most_viewed_articles');
+get_template_part('template-parts/sidebar/random_article');
 
 ?>
 
