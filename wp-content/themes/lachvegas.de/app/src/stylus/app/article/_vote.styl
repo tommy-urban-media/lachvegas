@@ -63,11 +63,15 @@
         display: flex
         justify-content: left
 
+    &__footer
+        width: 100%
+        display: flex
+
     .button-vote-up
     .button-vote-down
         width: 160px
         min-width: 50px
-        margin: 0 0 20px 0
+        margin: 0 0 10px 0
         padding: 10px
         color: #fff
         font-size: 14px
@@ -86,14 +90,15 @@
 
 
 .article-votes-bar
-  width: 200px
-  height: 2px
+  width: 320px
+  height: 4px
   display: block
   background-color: $colors.red
   z-index: 1
   position: relative
+  left: 0
 
-  &:before
+  span
     width: 0
     height: 100%
     content: ''

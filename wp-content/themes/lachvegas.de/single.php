@@ -128,7 +128,7 @@ $postVotesData = json_encode($votes);
 
 		</section>
 
-		<section class="article-votes" data-component="PostVote" data-param="<?= $postVotesData ?>" data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
+		<section class="article-votes" data-component="PostVote" data-param='<?= $postVotesData ?>' data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
 			<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
 			<div class="article-votes__body">
 				<button class="button-vote-up" data-vote-up title="Der Beitrag ist echt lustig und bekloppt">

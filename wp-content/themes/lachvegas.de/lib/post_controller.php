@@ -88,6 +88,8 @@ class PostController {
 
                     $postVotesUp++;
                     update_post_meta($postID, "post_votes_up", $postVotesUp);
+
+                    $this->response['votes'] = $postVotesUp;
                 }
 
                 else if ( isset($_REQUEST['vote_down']) ) {
@@ -99,12 +101,12 @@ class PostController {
 
                     $postVotesDown++;
                     update_post_meta($postID, "post_votes_down", $postVotesDown);
+
+                    $this->response['votes'] = $postVotesDown;
                 }
 
             }
-  
-          
-  
+
             $this->response['status'] = true;
         }
   

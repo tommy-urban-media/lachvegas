@@ -46,10 +46,26 @@ export default class PostVote {
 
     updateVotesBar() {
 
-        let $bar = $('<span class="votes-bar"></span>');
-        $bar.css('width', this.param.votes_up);
-        this.node.find('[data-votes-bar]').append($bar);
+        let up = parseInt(this.param.up)
+        let down = parseInt(this.param.down);
+        let percent = 50;
 
+        if (up !== down) {
+            let sum = up + down;
+            percent = up / sum * 100;
+        }
+
+        let $vbar = this.node.find('[data-votes-bar]');
+        let $voteBar = $vbar.find('.votes-bar');
+
+        if ($voteBar.length) {
+            $voteBar.css('width', percent + '%');
+        } else {
+            let $bar = $('<span class="votes-bar"></span>');
+            $bar.css('width', percent + '%');
+            this.node.find('[data-votes-bar]').append($bar);
+        }
+    
     }
 
 
@@ -68,6 +84,18 @@ export default class PostVote {
             type: 'POST',
             success: (data) => {
                 console.log(data);
+
+                if (obj.hasOwnProperty('vote_down')) {
+                    $('[data-votes-down]').text(data.votes);
+                    this.param.down = data.votes;
+                }
+                if (obj.hasOwnProperty('vote_up')) {
+                    $('[data-votes-up]').text(data.votes);
+                    this.param.up = data.votes;
+                }
+
+                this.updateVotesBar();
+
             }, 
             error: (error) => {
                 console.log(error);
