@@ -66,34 +66,10 @@ $post_data = (object)$post_data;
 
 ?>
 
-<!--
-<?php if (($postSubtitle || $postTag) && $post->post_type != 'news'): ?>
-<span class="post-meta">
-  <?php if ($postSubtitle): ?>
-    <span class="post-subtitle"><?= $postSubtitle ?></span>
-  <?php elseif ($postTag): ?>
-    <a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> 
-  <?php endif ?>
-</span>
-<?php endif ?>
--->
-
-<!--
-<?php if($post->post_type !== 'news'): ?>
-  <a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-    <?php if ($post->post_type === 'news'): ?>
-      <span class="post-date"><?php echo the_time(get_option('date_format'));?></span>
-    <?php endif ?>
-    <?php the_title() ?>
-  </a>
-<?php endif ?>
--->
-
-
-
 <article class="teaser">
-	<figure class="teaser__image">
-		<?php if (has_post_thumbnail()):?>
+	
+	<?php if (has_post_thumbnail()):?>
+		<figure class="teaser__image">
 			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
 				<?php 
 					switch($post->post_type) {
@@ -107,40 +83,40 @@ $post_data = (object)$post_data;
 						
 				?>
 			</a>
+		</figure>
 
-		<?php //var_dump($post_data) ?>
-		<?php elseif (!empty($post_data->externalImageUrl)): ?>
-			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-			<figure class="post-image post-image--teaser">
+	<?php //var_dump($post_data) ?>
+	<?php elseif (!empty($post_data->externalImageUrl)): ?>
+		<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+		<figure class="post-image post-image--teaser">
 
-				<?php if($post_data->is_video): ?>
-				<span class="post-media-type is-video">
-					<i class="fa fa-play-circle"></i>
-					Video
-				</span>
-				<?php endif ?>
+			<?php if($post_data->is_video): ?>
+			<span class="post-media-type is-video">
+				<i class="fa fa-play-circle"></i>
+				Video
+			</span>
+			<?php endif ?>
 
-				<img src="<?= $post_data->externalImageUrl ?>" />
+			<img src="<?= $post_data->externalImageUrl ?>" />
 
-				<?php if (isset($post_data->externalImageSource)): ?>
-				<figcaption class="caption"><?= $post_data->externalImageSource ?></figcaption>
-				<?php endif ?>
-			</figure>
-			</a>
-		<?php endif ?>
+			<?php if (isset($post_data->externalImageSource)): ?>
+			<figcaption class="caption"><?= $post_data->externalImageSource ?></figcaption>
+			<?php endif ?>
+		</figure>
+		</a>
+	<?php endif ?>
 
-		<?php if (!empty($post_data->taxonomyImageUrl)): ?>
-			<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-			<figure class="post-image post-image--teaser">
-				<img src="<?= $post_data->taxonomyImageUrl ?>" />
+	<?php if (!empty($post_data->taxonomyImageUrl)): ?>
+		<a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+		<figure class="post-image post-image--teaser">
+			<img src="<?= $post_data->taxonomyImageUrl ?>" />
 
-				<?php if (isset($post_data->taxonomyImageUrlSource)): ?>
-				<figcaption class="caption"><?= $post_data->taxonomyImageUrlSource ?></figcaption>
-				<?php endif ?>
-			</figure>
-			</a>
-		<?php endif ?>
-	</figure>
+			<?php if (isset($post_data->taxonomyImageUrlSource)): ?>
+			<figcaption class="caption"><?= $post_data->taxonomyImageUrlSource ?></figcaption>
+			<?php endif ?>
+		</figure>
+		</a>
+	<?php endif ?>
 
 
 	<div class="teaser__content">
@@ -148,8 +124,8 @@ $post_data = (object)$post_data;
 		<?php if ($postTag or isset($post_data->taxonomyUrl) or !empty($teaser->subtitle)): ?>
 		<span class="post-meta">
 			
-			<?php if ($teaser->type === 'news'): ?>
-				<!-- <span class="post-date"><?php echo the_time(get_option('date_format'));?></span> -->
+			<?php if ($teaser->type === 'news' && (strlen($excerpt) <= 10)): ?>
+				<span class="post-date"><?php echo the_time(get_option('date_format'));?></span>
 			<?php endif ?>
 				
 			<?php if (!empty($teaser->tags)): ?>
@@ -172,10 +148,16 @@ $post_data = (object)$post_data;
 
 		</span>
 		<?php endif ?>
-
-		<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-			<?php the_title() ?>
-		</a>
+					
+		<?php if ( strlen($post->post_content) >= 10): ?>
+			<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+				<?php the_title() ?>
+			</a>
+		<?php else: ?>
+			<span>
+				<?php the_title() ?>
+			</span>
+		<?php endif ?>
 
 		<?php if ( (strlen($excerpt) > 10)): ?>
     		<div class="post-excerpt">
@@ -190,78 +172,3 @@ $post_data = (object)$post_data;
 
 	</div>
 </article>
-
-
-
-<!--
-<div class="post-content">
-
-  <?php if (has_post_thumbnail()):?>
-    <a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-      <figure class="post-image post-image--teaser">
-        <?php the_post_thumbnail('thumbnail')?>
-      </figure>
-    </a>
-  <?php endif ?>
-
-  <?php if (!empty($post_data->externalImageUrl)): ?>
-    <a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-      <figure class="post-image post-image--teaser">
-
-        <?php if($post_data->is_video): ?>
-          <span class="post-media-type is-video">
-            <i class="fa fa-play-circle"></i>
-            Video
-          </span>
-        <?php endif ?>
-
-        <img src="<?= $post_data->externalImageUrl ?>" />
-
-        <?php if (isset($post_data->externalImagSource)): ?>
-        <figcaption class="caption"><?= $post_data->externalImagSource ?></figcaption>
-        <?php endif ?>
-      </figure>
-    </a>
-  <?php endif ?>
-
-  <?php if (isset($post_data->taxonomyImageUrl)): ?>
-    <a href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-      <figure class="post-image post-image--teaser">
-        <img src="<?= $post_data->taxonomyImageUrl ?>" />
-
-        <?php if (isset($post_data->taxonomyImageUrlSource)): ?>
-        <figcaption class="caption"><?= $post_data->taxonomyImageUrlSource ?></figcaption>
-        <?php endif ?>
-      </figure>
-    </a>
-  <?php endif ?>
-
-  <?php //if ($post->post_type === 'news'): ?>
-    <span class="post-meta">
-      <span class="post-date"><?php echo the_time(get_option('date_format'));?></span>
-
-      <?php if ($postTag || isset($post_data->taxonomyUrl)): ?>
-        -
-      <?php endif ?>
-
-      <?php if ($postTag): ?>
-        <a class="post-tag-link" href="<?= get_term_link($postTag->term_id) ?>"><?= $postTag->name ?></a> 
-      <?php endif ?>
-
-      <?php if (isset($post_data->taxonomyUrl)): ?>
-        <a class="post-tag-link" href="<?= $post_data->taxonomyUrl ?>"><?= $post_data->taxonomyName ?></a>
-      <?php endif ?>
-    </span>
-    <a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-      <?php the_title() ?>
-    </a>
-  <?php //endif ?>
-
-  <?php //if ( !has_category( 'kurzmeldungen', $post->ID) ): ?>
-  <?php if ($post->post_type != 'news' && (strlen($excerpt) > 2)): ?>
-    <div class="post-excerpt"><?php echo $excerpt ?></div>
-  <?php endif ?>
-
-</div>
-
--->

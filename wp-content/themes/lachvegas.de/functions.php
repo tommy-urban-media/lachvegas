@@ -27,21 +27,23 @@ if ( !function_exists( 'theme_setup' ) ):
 
     show_admin_bar( false );
 
-	  add_editor_style();
-		add_theme_support( 'post-thumbnails' );	
+	add_editor_style();
+	add_theme_support( 'post-thumbnails' );	
 
-		add_image_size( 'medium_large', '768', '0', false );
-		add_image_size( 'article_thumbnail', '384', '240', true ); 
-		add_image_size( 'article-header', '1000', '563', true ); 
-		add_image_size( 'medium_2x', '600', '600', true ); 
-		add_image_size( 'portrait_2x', '600', '1200', true ); 
+	add_image_size( 'medium_large', '768', '0', false );
+	add_image_size( 'article_thumbnail', '384', '240', true ); 
+	add_image_size( 'article-header', '1000', '563', true ); 
+	add_image_size( 'medium_2x', '600', '600', true ); 
+	add_image_size( 'portrait_2x', '600', '1200', true ); 
 
-		// add 16 to 9 formats
-		add_image_size( '16_9_small', 128, 72, true ); 
-		add_image_size( '16_9_medium', 256, '144', true ); 
-		add_image_size( '16_9_large', 512, 288, true ); 
-		add_image_size( '16_9_extralarge', 1024, 576, true ); 
-		add_image_size( '16_9_full', 2048, 1152, true ); 
+	// add 16 to 9 formats
+	add_image_size( '16_9_small', 128, 72, true ); 
+	add_image_size( '16_9_medium', 256, '144', true ); 
+	add_image_size( '16_9_large', 512, 288, true ); 
+	add_image_size( '16_9_extralarge', 1024, 576, true ); 
+	add_image_size( '16_9_full', 2048, 1152, true ); 
+
+	add_image_size( 'widescreen', 1000, 400, true ); 
 
 
 		// init the theme specific settings
@@ -49,11 +51,11 @@ if ( !function_exists( 'theme_setup' ) ):
     new AjaxController();
     new MenuController();
     //new TS_Media();
-    //new ShortcodeController();
+    new ShortcodeController();
     //new WidgetController();
-		new PostController();
+	new PostController();
 
-		$mailpoetController = new MailpoetController();
+	$mailpoetController = new MailpoetController();
 		
     //if (is_admin() && current_user_can('manage_options'))
       //  new TS_ThemeOptions();
@@ -100,7 +102,7 @@ add_filter( 'rest_api_init', function($wp_rest_server){
 
 function post_type_tags_fix($request) {
 	if ( isset($request['tag']) && !isset($request['post_type']) )
-	$request['post_type'] = array('post', 'news', 'guide', 'saying', 'quiz');
+	$request['post_type'] = array('post', 'news', 'guide', 'picture', 'saying', 'quiz', 'joke');
 	return $request;
 } 
 add_filter('request', 'post_type_tags_fix');
@@ -251,8 +253,12 @@ function custom_excerpt($excerpt = '', $excerpt_length = 50, $readmore = "mehr",
     array_pop($new_excerpt_words);
     $excerpt_text = implode(' ', $new_excerpt_words);
     $temp_content = strip_tags($excerpt_text, $tags);
-    $short_content = preg_replace('`\[[^\]]*\]`', '', $temp_content);
-    $short_content .= ' ... <a class="read-more-link" href="'. get_the_permalink($post->ID) .'" title="'.$post->post_title.'">'.$readmore.'</a>';
+	$short_content = preg_replace('`\[[^\]]*\]`', '', $temp_content);
+	
+	if ($readmore != false) {
+		$short_content .= ' ... <a class="read-more-link" href="'. get_the_permalink($post->ID) .'" title="'.$post->post_title.'">'.$readmore.'</a>';
+	}
+    
     return $short_content;
 
   }
@@ -354,20 +360,23 @@ function getPagination($query, $page, $is_category = false, $category_id = false
 
 	$link = '';
 	if ($is_category) {
-		$link = get_category_link($category_id);
+
+		if ($category_id) 
+			$link = get_category_link($category_id);
+		else
+			$link = home_url('/') . 'news/';
+
+	} else if (is_archive()) {
+		$link = get_category_link( get_category_by_slug('news') );
 	} else {
 		$link = home_url('/');
-	}
-
-	if (is_archive()) {
-		$link = get_post_type_archive_link('news');
 	}
 	
 	?>
 
 	<nav class="pagination">
 		<span class="previous-posts">
-			<?php previous_posts_link( '&laquo;', $max_pages ); ?>
+			<?php previous_posts_link( '&laquo; zurück', $max_pages ); ?>
 		</span>
 
 		<?php if ($showPageFirst): ?>
@@ -397,7 +406,7 @@ function getPagination($query, $page, $is_category = false, $category_id = false
 		<?php endif ?>
 
 		<span class="next-posts">
-			<?php next_posts_link( '&raquo;', $max_pages ); ?>
+			<?php next_posts_link( 'weiter &raquo;', $max_pages ); ?>
 		</span>
 	</nav>
 
@@ -428,7 +437,7 @@ function prefix_change_cpt_archive_per_page( $query ) {
 
 	//* for cpt or any post type main archive
 	if ( $query->is_main_query() && !is_admin() ) {
-			$query->set( 'posts_per_page', '10' );
+		$query->set( 'posts_per_page', '10' );
 	}
 
 }
@@ -436,9 +445,9 @@ add_action( 'pre_get_posts', 'prefix_change_cpt_archive_per_page' );
 
 function prefix_change_category_cpt_posts_per_page( $query ) {
 
-	if ( $query->is_main_query() && ! is_admin() && is_category() ) {
-			$query->set( 'post_type', array('news', 'post', 'saying', 'guide', 'poem', 'quiz') );
-			$query->set( 'posts_per_page', '10' );
+	if ( $query->is_main_query() && !is_admin() && is_category() ) {
+		$query->set( 'post_type', array('news', 'post', 'saying', 'guide', 'picture', 'poem', 'quiz', 'joke') );
+		$query->set( 'posts_per_page', '10' );
 	}
 
 }

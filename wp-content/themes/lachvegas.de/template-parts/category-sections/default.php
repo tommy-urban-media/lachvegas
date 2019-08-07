@@ -33,7 +33,7 @@
 
           <?php if ($i < 3) : ?>
             
-            <!-- 
+            <?php /* ?>
             <li class="list-item">
               <div class="box box--square">
                 <div class="box__pane" style="padding: 20px; background-color: #e0e0e0;">
@@ -50,9 +50,6 @@
                 </div>
               </div>
             </li>
-            -->
-
-            <!--
             <li class="list-item">
               <div class="infobox infobox--square">
                 <div class="infobox__pane" style="padding: 20px; background-color: #e0e0e0;">
@@ -68,7 +65,7 @@
                 </div>
               </div>
             </li>
-            -->
+            <?php */ ?>
             
           <?php endif ?>
 
@@ -93,21 +90,23 @@
     
     <footer class="section__footer">
       
-      <!-- 
+      <?php /* ?>
         <a href="<?= $data['url'] ?>" class="button button__section"><span><?= $data['button_text'] ?></span><i class="icon fa fa-angle-double-right"></i></a>
-      -->
+      <?php */ ?>
+
       <?php if ( isset($data['links']) && !empty($data['links'])): ?>
         <h4>Weitere Themen aus dieser Kategorie</h4>
         <div class="category-links">
           <?php foreach($data['links'] as $link): ?>
             <a href="<?= $link['url'] ?>" class="topic-link"><?= $link['title'] ?></a>
-            <!--
+            
+            <?php /* ?>
             <a href="<?= home_url('/')?>berlin" class="topic-link">Berlin</a>
             <a href="<?= home_url('/')?>deutschland" class="topic-link">Deutschland</a>
             <a href="<?= home_url('/')?>ausland" class="topic-link">Ausland</a>
             <a href="<?= home_url('/')?>europa" class="topic-link">Europa</a>
             <a href="<?= home_url('/')?>personen/donald-trump" class="topic-link">Donald Trump</a>
-            -->
+            <?php */ ?>
           <?php endforeach ?> 
         </div>
       <?php endif ?>

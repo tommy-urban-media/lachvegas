@@ -5,5 +5,5 @@
         <p>Eine Million ist für dich was für andere ein Euro ist</p>
         <a class="cta" href="<?= home_url('/')?>lachvegas-unterstuetzen/">Jetzt Geld spenden <i class="fa fa-angle-right"></i></a>
     </div>
-    <img src="<?= get_bloginfo('template_url') ?>/app/images/banner/billionaire.jpg" />
+    <img src="<?= get_bloginfo('template_url') ?>/app/images/banner/billionaire.jpg" alt="Bekloppte Werbung: Milliardär - lachvegas.de" />
 </div>

@@ -52,30 +52,34 @@
 			</div>	
 		</div>
 
+		<div class="footer-badges">
+			<div class="footer-badge">
+				<img src="<?php echo get_bloginfo('template_url')?>/app/images/lachvegas-badges.svg" width="100px" height="100px" alt="Lachvegas.de - Prädikat Besonders Sinnlos" style="width: 100px; height: 100px;" />
+			</div>
+		</div>
+
+		<?php
+			$phrases = [
+				'8000 Jahre Menschheits-Evolution hat eines hervorgebracht - <a href="http://lachvegas.de">lachvegas.de</a>',
+				'Seit über 2000 Jahren wartet die Menschheit auf die Erlösung. Die Antwort ist <a href="http://lachvegas.de">lachvegas.de</a>',
+				'Es gibt Menschen die haben Ihr Lachen verloren. Mit <a href="http://lachvegas.de">lachvegas.de</a> kann man sein Lachen wiederbekommen',
+				'Manche Menschen mögen es heiß. Wir mögen es lustig',
+				'Die tägliche Dosis Blödsinn',
+				'Bei uns bleibt beim Lachen kein Hösschen trocken',
+				'Die perfekte Abwechslung für die ganzen schlechten Nachrichten die es in der Welt gibt',
+				'Nur wer sich selbst nicht so ernst nimmt, kann mit klarem Kopf das Leben genießen',
+				'Aufregen war gestern, denn heute wird gelacht',
+				'Wenn Dir das Lachen vergangen ist kommt es erst auf <a href="http://lachvegas.de">lachvegas.de</a> wieder'
+			];
+		?>
+		<div class="footer-slogan"><?= $phrases[rand(0, count($phrases)-1)] ?></div>
 
         <div class="footer-infobox">
             <div class="footer-partner">
                 Unsere Partner: <a href="//bierweise.de" target="_blank">bierweise.de</a>
             </div>
-        </div>
-        
-		<div class="footer-infobox">
-            <?php
-                $phrases = [
-	                '8000 Jahre Menschheits-Evolution hat eines hervorgebracht - <a href="http://lachvegas.de">lachvegas.de</a>',
-                    'Seit über 2000 Jahren wartet die Menschheit auf die Erlösung. Die Antwort ist <a href="http://lachvegas.de">lachvegas.de</a>',
-	                'Es gibt Menschen die haben Ihr Lachen verloren. Mit <a href="http://lachvegas.de">lachvegas.de</a> kann man sein Lachen wiederbekommen',
-	                'Manche Menschen mögen es heiß. Wir mögen es lustig - <a href="http://lachvegas.de">lachvegas.de</a>',
-                    'Die tägliche Dosis Blödsinn - <a href="http://lachvegas.de">lachvegas.de</a>',
-                    'Bei uns bleibt beim Lachen kein Hösschen trocken - <a href="http://lachvegas.de">lachvegas.de</a>',
-                    'Die perfekte Abwechslung für die ganzen schlechten Nachrichten die es in der Welt gibt - <a href="http://lachvegas.de">lachvegas.de</a>',
-					'Nur wer sich selbst nicht so ernst nimmt, kann mit klarem Kopf das Leben genießen - <a href="http://lachvegas.de">lachvegas.de</a>',
-					'Aufregen war gestern, denn heute wird gelacht'
-                ];
-            ?>
-			<div class="footer-slogan"><?= $phrases[rand(0, count($phrases)-1)] ?></div>
 			<div class="footer-socials"><?php get_template_part('template-parts/socials'); ?></div>
-		</div>
+        </div>
 		
 	</div>
 
@@ -89,14 +93,8 @@
 </footer>
 
 
-
-<div class="did-you-know-box">
-	<span class="did-you-know-box__title">Wusstest du schon?</span>
-	<div class="did-you-know-box__body">
-		<p>Fische sind die am seltensten überfahrenen Tiere</p>
-		<p><a href="/unnuetzes-wissen">mehr unnützes Wissen</a></p>
-	</div>
-</div>
+<?php //get_template_part('partials/boxes/did-you-know-box') ?>
+ 
 
 
 <!--
@@ -140,6 +138,7 @@
 <script type="text/javascript" src="<?php echo get_bloginfo('template_url')?>/app/public/js/app.js"></script>
 <script>require('src/js/app')</script>
 
+
 <?php //get_template_part('template-parts/modal/modal') ?>
 
 <?php /* ?>
@@ -165,14 +164,14 @@
       <h3 class="title">Wer suchet der findet</h3>
     </div>
     <div class="modal__content">
-			<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<div class="search-area">
-					<div class="search-group">
-						<input type="search" id="search-input" class="search-field" placeholder="Suchbegriff eingeben" value="<?php echo get_search_query(); ?>" name="s" />
-						<button type="submit" class="search-submit">Suchen &raquo; </button>
-					</div>
+		<form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<div class="search-area">
+				<div class="search-group">
+					<input type="search" id="search-input" class="search-field" placeholder="Suchbegriff eingeben" value="<?php echo get_search_query(); ?>" name="s" />
+					<button type="submit" class="search-submit">Suchen &raquo; </button>
 				</div>
-			</form>
+			</div>
+		</form>
     </div>
   </div>
 </div>
@@ -192,6 +191,15 @@
 </div>
 -->
 
+
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<script
+    type="text/javascript"
+    async defer
+    src="//assets.pinterest.com/js/pinit.js"
+></script>
 
 </body>
 </html>

@@ -1,0 +1,90 @@
+.teasers-ratgeber-headline
+	margin: 0 auto
+	font-family: Indie Flower, cursive
+	font-size: 22px
+	font-weight: 100
+	text-align: center
+	border-top: 1px solid #f0f0f0
+
+	&__text
+		top: -16px
+		position: relative
+		padding: 0 20px
+		background-color: #fff
+
+.teasers-ratgeber-subheadline
+	margin: 0 auto
+	top: -15px
+	position: relative
+	font-size: 12px
+	font-weight: 500
+	text-align: center
+
+
+.teasers-ratgeber
+	margin: 0 -15px
+	padding: 0 40px
+	display: flex
+	justify-content: space-around
+	flex-wrap: wrap
+
+	&__item
+		display: flex
+		flex-basis: 100%
+		flex: 1
+		width: 100%
+		min-width: 100%
+		padding: 0 15px
+		box-sizing: border-box
+
+		@media $query.sm
+			flex-basis: 50%
+			flex: 0 0 auto
+			width: 50%
+			min-width: 50%
+
+		@media $query.m
+			flex-basis: 25%
+			flex: 0 0 auto
+			width: 25%
+			min-width: 25%
+
+		
+	.article-box
+		width: 100%
+		margin: 0 auto
+		padding: 15px 0
+		border-bottom: 1px solid #c0c0c0
+	
+	.image-wrapper
+		width: 100%
+		height: auto
+		min-height: 116px
+		display: block
+		margin: 0 auto 15px auto
+		overflow: hidden
+		background-color: #f9f9f9
+		box-shadow: inset 0 0 16px alpha(#000, 0.15)
+
+	.article-link
+		line-height: 1.1em
+
+		&:hover
+			text-decoration: none
+
+			.article-link-title
+				color: lighten(#404040, 30%)
+
+
+	.article-link-title
+	.article-link-subtitle
+		color: #404040
+		font-size: 12px
+		font-weight: bold
+		hyphens: auto
+		word-break: break-word
+
+	.article-link-subtitle
+		display: block
+		margin: 0 0 5px 0
+		font-weight: normal

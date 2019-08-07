@@ -2,8 +2,9 @@
 
 $ratgeberQuery = new WP_Query( 
   array(
-    'posts_per_page' => 3, 
-    'post_type' => array('guide')
+    'posts_per_page' => 12, 
+    'post_type' => array('post'),
+    'category_name' => '10-dinge'
   ) 
 ); 
 
@@ -12,15 +13,18 @@ $ratgeberQuery = new WP_Query(
 <?php if ($ratgeberQuery->have_posts()): ?>
 <section class="section section--ratgeber">
   <div class="section__pane">
-    <header class="section__header">
-      <h3 class="section__title">Ratgeber</h3>
-      <span class="section__separator"></span>
-    </header>
     <div class="section__content">
-      <ol class="list list--teaser">
+
+      <h3 class="teasers-ratgeber-headline">
+        <span class="teasers-ratgeber-headline__text">Ratgeber</span>
+      </h3>
+
+      <p class="teasers-ratgeber-subheadline">Guter Rat ist teuer heißt es. Bei uns ist er kostenlos</p>
+
+      <ol class="teasers-ratgeber">
         <?php $i = 0; ?>
         <?php while ( $ratgeberQuery->have_posts() ) : $ratgeberQuery->the_post(); setup_postdata($post)?>
-          <li class="list-item">
+          <li class="teasers-ratgeber__item">
 
             <!--
             <?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
@@ -28,32 +32,40 @@ $ratgeberQuery = new WP_Query(
             <?php endif ?>
             -->
 
-            <div class="post-content">
-              <?php if (has_post_thumbnail()):?>
-                <a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
-                  <figure class="post-image post-image--teaser">
-                    <?php the_post_thumbnail('article_thumbnail')?>
-                  </figure>
-                </a>
-              <?php endif ?>
+            <article class="article-box">
               
+              <a class="article-link" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'theme' ), the_title_attribute( 'echo=0' ) ); ?>">
+                <?php if ($i < 4):?>
+                  <figure class="image-wrapper">
+                    <?php if (has_post_thumbnail()):?>
+                      <?php the_post_thumbnail('article_thumbnail')?>
+                    <?php endif ?>
+                  </figure> 
+                <?php endif ?>
+
+                <?php if ($subtitle = get_post_meta($post->ID, 'subtitle', true)): ?>
+                  <span class="article-link-subtitle"><?= $subtitle ?></span>
+                <?php endif ?>
+                <span class="article-link-title"><?php the_title() ?></span>
+              </a>
+
+              <!-- 
               <a class="post-title" href="<?= get_the_permalink($post->ID) ?>">
                 <span class="news-title"><?php the_title() ?></span>
               </a>
+              -->
 
               <!-- <span class="post-date"><?php echo the_date('d.m.Y')?></span> -->
-              <?php echo custom_excerpt(get_the_excerpt($post->ID), 16) ?>
+              <?php //echo custom_excerpt(get_the_excerpt($post->ID), 16) ?>
 
-            </div>
+            </article>
           </li>
 
         <?php $i++ ?>
         <?php endwhile; ?>
       </ol>
+
     </div>
-    <footer class="section__footer">
-      <a href="<?= home_url() ?>/ratgeber" class="button button__section"><span>Mehr aus diesem Bereich</span><i class="icon fa fa-angle-double-right"></i></a>
-    </footer>
   </div>
 </section>
 <?php endif ?>

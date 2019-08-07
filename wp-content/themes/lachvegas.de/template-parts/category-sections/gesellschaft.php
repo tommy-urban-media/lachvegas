@@ -3,10 +3,9 @@
 global $data;
 
 $postTypes = array(
-  'news', 
+  //'news', 
   'post', 
-  'guide', 
-  'statistic'
+  'guide'
 );
 
 $dateQuery = array(
@@ -48,6 +47,7 @@ $data = [
     )
   ),
   'links' => [
+    /*
     [
       'title' => 'Arbeit',
       'url' => home_url('/') . 'arbeit' 
@@ -64,6 +64,7 @@ $data = [
       'title' => 'Stellenmarkt',
       'url' => home_url('/') . 'stellenmarkt' 
     ]
+    */
   ],
   'button_text' => 'Mehr Gesellschaft'
 ];

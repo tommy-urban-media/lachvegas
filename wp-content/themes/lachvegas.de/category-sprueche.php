@@ -2,26 +2,25 @@
 
 get_header();
 
-$count = get_option('posts_per_page', 20);
+$count = get_option('posts_per_page', 50);
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 $offset = ($paged - 1) * $count;
 
 $args = array(
-	'posts_per_page' => 20,
+	'posts_per_page' => 50,
 	'paged' => $paged,
 	'offset' => $offset,
 	'post_type' => array('saying'),
-	'cat' => get_queried_object_id(),
-	//'category_name' => get_cat_name( $cat ),
-	'order_by' => 'date', 
-	'order' => 'DESC',
+	'cat' => get_queried_object_id()
 );
 
 $querySayings = new WP_Query($args)
 ?>
 
 
-<div class="content">
+<div class="content content-home">
+
+	<?php get_template_part('template-parts/common/breadcrumb') ?>
 
 	<?php if ($categoryDescription = category_description($cat)): ?>
 		<div class="category-description">
@@ -29,46 +28,52 @@ $querySayings = new WP_Query($args)
 		</div>
 	<?php endif ?>
 
-	<?php if ( $querySayings->have_posts() ) : ?>
-		<h1 class="category-title"><?php echo single_cat_title() ?></h1>
-		<?php if ($querySayings->have_posts()): ?>
+	<div class="content__area">
+		<div class="content__area--wide">
 
-			<div class="masonry">
-				<?php $i = 0; ?>
-				<?php while ( $querySayings->have_posts() ) : $querySayings->the_post(); setup_postdata($post)?>
-					<div class="masonry__item">
+			<?php if ( $querySayings->have_posts() ) : ?>
+				<h1 class="category-title"><?php echo single_cat_title() ?></h1>
+				<?php if ($querySayings->have_posts()): ?>
 
-						<?php if (has_post_thumbnail()):?>
-							<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
-								<?php the_post_thumbnail('medium'); ?>
+<?php /* ?>
+					<div class="masonry">
+						<?php $i = 0; ?>
+						<?php while ( $querySayings->have_posts() ) : $querySayings->the_post(); setup_postdata($post)?>
+							<div class="masonry__item">
 
-								<span class="article-excerpt">
-									<?php the_title() ?>
-								</span>
-							</a>							
-						<?php endif ?>
+								<?php if (has_post_thumbnail()):?>
+									<a href="<?php the_permalink(); ?>" title="<?= get_the_title($post->ID) ?>">
+										<?php the_post_thumbnail('medium'); ?>
 
-						<?php 
-			
-							if ($i == 4) {
-								//showAD('banner');
-							}
-							//get_template_part('template-parts/teasers/teaser-article-list') 
-						
-						?>
+										<span class="article-excerpt">
+											<?php the_title() ?>
+										</span>
+									</a>							
+								<?php endif ?>
 
+							</div>
+						<?php $i++ ?>
+						<?php endwhile; ?>
 					</div>
-				<?php $i++ ?>
-				<?php endwhile; ?>
-			</div>
+					<?php */ ?>
 
-			<?php echo getPagination($querySayings, $paged, true, $cat)?>
-			<?php wp_reset_postdata();?>
+					<ol class="joke-list">
+						<?php $i = 0; ?>
+						<?php while ( $querySayings->have_posts() ) : $querySayings->the_post(); setup_postdata($post)?>
+							<li class="joke-list__item">
+								<?php get_template_part('partials/teasers/joke') ?>
+							</li>
+						<?php $i++ ?>
+						<?php endwhile; ?>
+					</ol>
 
-		<?php endif; ?>
-	<?php endif ?>
+					<?php echo getPagination($querySayings, $paged, true, $cat)?>
+					<?php wp_reset_postdata();?>
 
-	<?php get_template_part('template-parts/sections/gender') ?>
+				<?php endif; ?>
+			<?php endif ?>
+		</div>
+	</div>
 
 </div><!-- .content -->
 

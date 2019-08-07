@@ -64,8 +64,15 @@ $post_data = (object)$post_data;
 				<span class="teaser__subtitle"><?= $teaser->subtitle ?></span>
 			</span>
 		<?php endif ?>
-		<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-			<?php the_title() ?>
-		</a>
+
+		<?php if ( strlen($post->post_content) >= 10): ?>
+			<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+				<?php the_title() ?>
+			</a>
+		<?php else: ?>
+			<span>
+				<?php the_title() ?>
+			</span>
+		<?php endif ?>
 	</div>
 </article>

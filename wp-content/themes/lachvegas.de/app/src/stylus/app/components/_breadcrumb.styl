@@ -1,9 +1,9 @@
 #breadcrumbs
-  width: 720px
+  width: auto
   max-width: 100%
-  margin: 0 auto
+  margin: 20px 50px 0 50px
   padding: 0
-  display: block
+  display: none
   font-size: 12px
   position: relative
 
@@ -19,3 +19,14 @@
   .breadcrumb_last
     color: #909090
     font-weight: normal
+
+
+  @media $query.m
+      display: block
+
+
+
+.article-wrapper #breadcrumbs
+  width: 100%
+  max-width: 720px
+  margin: 0 auto

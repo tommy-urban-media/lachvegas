@@ -9,6 +9,9 @@ get_header();
 <?php // get_template_part('template-parts/common/breadcrumb') ?>
 
 <div class="content content-home">
+
+	<?php get_template_part('template-parts/common/breadcrumb') ?>
+
 	<div class="content__area">
 		<div class="content__area--primary">
 
@@ -27,11 +30,13 @@ get_header();
 
 				<?php $i = 0; ?>
 				<?php while ( have_posts() ) : the_post();?>
+					<?php /* ?>
 					<?php if ($i == 4 || $i == 12): ?>
 						<li class="list-item">
 							<?php showAD('banner'); ?>
 						</li>
 					<?php endif ?>
+					<?php */ ?>
 					<li class="list-item">
 						<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 					</li>

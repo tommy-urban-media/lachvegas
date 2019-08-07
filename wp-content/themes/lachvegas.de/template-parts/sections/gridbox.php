@@ -5,16 +5,16 @@
         </span> 
 
         <div class="teaser-compact">
-            <div class="teaser-compact__image"><img src="<?= get_bloginfo('template_url')?>/app/images/crazy-face.png" /></div>
+            <div class="teaser-compact__image"><img src="<?= get_bloginfo('template_url')?>/app/images/crazy-face.png" alt="Der Ohrwurm" /></div>
             <div class="teaser-compact__content">
                 <h3 class="teaser-compact__title">Der Ohrwurm</h3>
                 <div class="teaser-compact__content">Dieses Tier bohrt sich blitzartig in dein Ohr und ist kaum wieder wegzukriegen. Er ist hoch ansteckend und kann tagelang sein Unwesen treiben. Manchmal ist er nur sehr schwer wieder wegzukriegen.</div>
             </div>
         </div>
         
-        
-        
-        <!-- <p>Kaiserratte: Sie ist die Eine von 40 Milliarden. Die Allmächtige, die die die Macht hat</p> -->
+        <?php /* ?>
+        <p>Kaiserratte: Sie ist die Eine von 40 Milliarden. Die Allmächtige, die die die Macht hat</p>
+        <?php */ ?>
         
     </div>
     
@@ -41,8 +41,10 @@
             </div>
         <?php endif ?>
 
-        <!-- <img src="http://localhost/lachvegas/wp-content/uploads/5198_640_640-150x150.png" /> -->
-        <!-- Heute den Füller schon angespitzt? -->
+        <?php /* ?>
+        <img src="http://localhost/lachvegas/wp-content/uploads/5198_640_640-150x150.png" />
+        Heute den Füller schon angespitzt?
+        <?php */ ?>
     </div>
 
     <div class="gridbox__item">
@@ -90,7 +92,7 @@
             <div class="statistic__footer">- Angela Merkel</div>
         </div>
 
-        <!--
+        <?php /* ?>
         <div class="teaser-compact">
             <div class="teaser-compact__image">
                 <img src="http://localhost/lachvegas/wp-content/uploads/2018/10/merkel-150x150.jpg" alt="Angela Merkel">
@@ -119,9 +121,10 @@
         Jong-Un: "Die Beste Erfindung des 20. Jahrhunderts war die Atombombe. Und das Gulag."
         Andrea Anales: "Wenn ihr mir nicht zuhören wollt dann SCHREI ICH EUCH AN!".
         Chuck Norris: "Ich weiß nicht woher diese Informationen kommen aber mir soll es recht sein dass die Leute glauben dass ich alles kann und auch noch das Gegenteil davon kenne."
-        -->
 
-        <!-- <a href="/angela-merkel" class="box-link">Mehr</a> -->
+        <a href="/angela-merkel" class="box-link">Mehr</a>
+
+        <?php */ ?>
     </div>
 
     <div class="gridbox__item">
@@ -161,10 +164,10 @@
         
     </div>
 
-    <!--
+    <?php /* ?>
     <div class="gridbox__item">    
         <span class="gridbox__headline">Unsere Helden</span>
     </div>
-    -->
+    <?php */ ?>
 
 </section>

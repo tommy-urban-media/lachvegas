@@ -1,0 +1,54 @@
+.joke-teaser
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+
+    &__content
+        width: 100%
+
+        @media $query.m
+            flex: 2
+
+    &__actions
+        width: 100%
+        margin: 10px 0 0 0
+        display: flex
+        justify-content: center
+
+        @media $query.m
+            flex: 1
+
+    &__button 
+        margin: 0 3px
+        padding: 0 2px
+        display: block
+        width: 48px
+        height: 32px
+        cursor: pointer
+        font-size: 12px
+        line-height: 32px
+        text-align: center
+        background-image: none
+        background: linear-gradient(0deg, #f0f0f0, #fff)
+        border: 1px solid #e0e0e0
+
+        &:focus
+            outline: none 
+            appearance: none
+
+        &:hover
+            background: linear-gradient(0deg, #fff, #fff)
+
+        svg
+            font-size: 12px
+
+    &__subtitle
+        margin: 0 0 10px 0
+        display: block
+        font-weight: bold
+
+    [data-vote-up]
+        color: $colors.green
+    [data-vote-down]
+        color: $colors.red
+

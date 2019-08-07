@@ -3,10 +3,9 @@
 global $data;
 
 $postTypes = array(
-  'news', 
+  //'news', 
   'post', 
-  'guide', 
-  'statistic'
+  'guide'
 );
 
 $dateQuery = array(
@@ -59,7 +58,7 @@ $data = [
       'url' => home_url('/') . 'sport/fussball' 
     ],
     [
-      'title' => 'Olympis',
+      'title' => 'Olympia',
       'url' => home_url('/') . 'sport/olympia' 
     ],
     [

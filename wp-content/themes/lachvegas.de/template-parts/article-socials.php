@@ -16,26 +16,26 @@
   <h4 class="socials__title">Propaganda verbreiten: </h4>
   <ul class="socials socials--post">
     <li class="socials__item facebook" title="Auf Facebook posten">
-      <a target="_blank" href="http://www.facebook.com/sharer.php?u=<?php echo urlencode($url)?>"><i class="fab fa-facebook-square fa-sm"></i></a>
+      <a class="socials__item-link" target="_blank" href="http://www.facebook.com/sharer.php?u=<?php echo urlencode($url)?>"><i class="fab fa-facebook-square fa-sm"></i></a>
     </li>
     <li class="socials__item twitter" title="Auf Twitter zwitschern">
-      <a target="_blank" href="https://twitter.com/share?url=<?php echo urlencode($url) ?>"><i class="fab fa-twitter-square fa-sm"></i></a>
+      <a class="socials__item-link" target="_blank" href="https://twitter.com/share?url=<?php echo urlencode($url) ?>"><i class="fab fa-twitter-square fa-sm"></i></a>
     </li>
     <li class="socials__item email" title="Per E-Mail versenden">
-      <a href="mailto:?subject=<?php echo rawurlencode(htmlspecialchars_decode(get_the_title()))?>&body=Hallo ich habe einen interessanten Artikel gefunden: <?php echo urlencode($url)?>"><i class="fas fa-envelope-square fa-sm"></i></a>
+      <a class="socials__item-link" href="mailto:?subject=<?php echo rawurlencode(htmlspecialchars_decode(get_the_title()))?>&body=Hallo ich habe einen interessanten Artikel gefunden: <?php echo urlencode($url)?>"><i class="fas fa-envelope-square fa-sm"></i></a>
     </li>
     <li class="socials__item linkedin" title="Auf LinkdeIn Propaganda verlinken">
-      <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($url)?>&title=<?php echo htmlspecialchars_decode(get_the_title())?>&summary=Artikel von LachVegas&source=http%3A//lachvegas.de"><i class="fab fa-linkedin fa-sm"></i></a>
+      <a class="socials__item-link" target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode($url)?>&title=<?php echo htmlspecialchars_decode(get_the_title())?>&summary=Artikel von LachVegas&source=http%3A//lachvegas.de"><i class="fab fa-linkedin fa-sm"></i></a>
     </li>
     
     <?php if ($post_thumbnail): ?>
     <li class="socials__item pinterest" title="Auf Pinterest pinnen">
-      <a target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo $post_thumbnail?>&media=<?php echo $post_thumbnail?>"><i class="fab fa-pinterest-square fa-sm"></i></a>
+      <a class="socials__item-link" target="_blank" href="https://pinterest.com/pin/create/button/?url=<?php echo $post_thumbnail?>&media=<?php echo $post_thumbnail?>"><i class="fab fa-pinterest-square fa-sm"></i></a>
     </li>
     <?php endif ?>
 
     <li class="socials__item whatsapp" title="WhatsAppen">
-      <a target="_blank" href="whatsapp://send?text=<?php echo rawurlencode(htmlspecialchars_decode(get_the_title()))?>: <?php echo urlencode($url)?>"><i class="fab fa-whatsapp-square fa-sm"></i></a>
+      <a class="socials__item-link" target="_blank" href="whatsapp://send?text=<?php echo rawurlencode(htmlspecialchars_decode(get_the_title()))?>: <?php echo urlencode($url)?>"><i class="fab fa-whatsapp-square fa-sm"></i></a>
     </li>
   </ul>
 </div>

@@ -40,7 +40,9 @@ class ContentTypeController {
             'capability_type' => 'post',
             'taxonomies' => array('category', 'post_tag'),
             'rewrite' => array(
-              'slug' => 'news'
+              'slug' => 'news',
+              'with_front' => false,
+              'hierarchical' => true
             )
         )
     );
@@ -514,6 +516,66 @@ class ContentTypeController {
     );
 
     add_post_type_support( 'fact', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+    register_post_type('joke',
+        array(
+            'labels' => array(
+                'name' => __( 'Witze' ),
+                'singular_name' => __( 'Witz' ),
+                'add_new' => __( 'Witz eintragen' ),
+                'add_new_item' => __( 'neuen Witz anlegen' ),
+                'edit_item' => __( 'Witz bearbeiten' ),
+                'new_item' => __( 'neuer Witz' ),
+                'view_item' => __( 'Witz anschauen' ),
+                'search_items' => __( 'Witz suchen' ),
+                'not_found' => __( 'Witz nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => false,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+                'slug' => 'witze', 
+                'with_front' => true
+            )
+        )
+    );
+    add_post_type_support( 'joke', array('title', 'editor', 'custom-fields', 'thumbnail') );
+
+
+
+
+    register_post_type('picture',
+        array(
+            'labels' => array(
+                'name' => __( 'Bilder' ),
+                'singular_name' => __( 'Bild' ),
+                'add_new' => __( 'Bild eintragen' ),
+                'add_new_item' => __( 'neuen Bild anlegen' ),
+                'edit_item' => __( 'Bild bearbeiten' ),
+                'new_item' => __( 'neuer Bild' ),
+                'view_item' => __( 'Bild anschauen' ),
+                'search_items' => __( 'Bild suchen' ),
+                'not_found' => __( 'Bild nicht gefunden' ),
+                'not_found_in_trash' => __( 'kein Eintrag im Papierkorb gefunden' )
+            ),
+            'show_ui' => true,
+            'public' => true,
+            'hierarchical' => false,
+            'has_archive' => false,
+            'capability_type' => 'post',
+            'taxonomies' => array('category', 'post_tag'),
+            'rewrite' => array(
+                'slug' => 'bilder', 
+                'with_front' => true
+            )
+        )
+    );
+    add_post_type_support( 'picture', array('title', 'editor', 'custom-fields', 'thumbnail') );
 
 
   }

@@ -3,8 +3,8 @@
 global $data;
 
 $data = [
-  'name' => 'Quizze',
-  'url' => home_url('/kategorie/quizze'),
+  'name' => 'Quiz',
+  'url' => home_url('/quiz'),
   'query' => new WP_Query(
     array(
       'posts_per_page' => 3, 

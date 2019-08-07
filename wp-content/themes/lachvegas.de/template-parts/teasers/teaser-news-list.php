@@ -61,7 +61,7 @@ $post_data = (object)$post_data;
 				<span class="teaser__subtitle"><?= $teaser->subtitle ?></span>
 			<?php endif ?>
 			
-			<!--
+			<?php /* ?>
 			<?php if (!empty($teaser->tags)): ?>
 				<?php foreach($teaser->tags as $tag): ?>
 					<a class="post-tag-link" href="<?= get_term_link($tag->term_id) ?>"><?= $tag->name ?></a> 
@@ -71,13 +71,19 @@ $post_data = (object)$post_data;
 			<?php if (isset($post_data->taxonomyUrl)): ?>
 				<a class="post-tag-link" href="<?= $post_data->taxonomyUrl ?>"><?= $post_data->taxonomyName ?></a>
 			<?php endif ?>
-			-->
+			<?php */ ?>
 
 		</span>
 
-		<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
-			<?php the_title() ?>
-		</a>
-
+		<?php if ( strlen($post->post_content) >= 10): ?>
+			<a class="post-title" href="<?= get_the_permalink($post->ID) ?>" title="<?= get_the_title($post->ID); ?>">
+				<?php the_title() ?>
+			</a>
+		<?php else: ?>
+			<span>
+				<?php the_title() ?>
+			</span>
+		<?php endif ?>
+		
 	</div>
 </article>

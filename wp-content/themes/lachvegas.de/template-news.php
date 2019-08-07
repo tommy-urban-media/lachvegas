@@ -15,11 +15,11 @@ $args = array(
 	'offset' => $offset,
 	'post_type' => 'news',
 	'date_query' => array(
-			array(
-					'year' => array(2016, 2017, 2018, 2019, 2020, 2021, 2022),
-					'month' => array(5,6,7,8,9,10),
-					//'day'	=> date('d')
-			),
+		array(
+			'year' => array(2016, 2017, 2018, 2019, 2020, 2021, 2022),
+			'month' => array(5,6,7,8,9,10),
+			//'day'	=> date('d')
+		),
 	),
 	'order_by' => 'date', 
 	'order' => 'DESC',
@@ -74,7 +74,7 @@ $args = array(
 					</ul>
 
 					<?php previous_posts_link('Zurück', $queryNews->max_num_pages); ?>
-          <?php next_posts_link('Weiter', $queryNews->max_num_pages); ?>
+          			<?php next_posts_link('Weiter', $queryNews->max_num_pages); ?>
 
 					<?php wp_reset_postdata();?>
 

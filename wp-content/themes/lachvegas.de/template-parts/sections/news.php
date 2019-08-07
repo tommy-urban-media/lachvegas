@@ -88,7 +88,7 @@ usort($posts, 'fnn');
   <ul class="news-list">
     <?php $i = 0; ?>
     <?php foreach ($posts as $post): ?>
-      <?php if (!empty($post->post_title) && $i<10): ?>
+      <?php if (!empty($post->post_title) && $i<5): ?>
         <li class="news-list__item">
           <?php get_template_part('template-parts/teasers/teaser-news-list') ?>
         </li>

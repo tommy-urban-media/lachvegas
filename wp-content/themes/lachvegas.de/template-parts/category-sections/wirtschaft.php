@@ -3,10 +3,9 @@
 global $data;
 
 $postTypes = array(
-  'news', 
+  //'news', 
   'post', 
-  'guide', 
-  'statistic'
+  'guide'
 );
 
 $dateQuery = array(
@@ -21,12 +20,7 @@ $data = [
   'query' => new WP_Query(
     array(
       'posts_per_page' => 3, 
-      'post_type' => array(
-        'news', 
-        'post', 
-        'guide', 
-        'statistic'
-      ), 
+      'post_type' => $postTypes, 
       'orderby' => 'date',
       'date_query' => $dateQuery,
       'category_name' => get_category_by_slug('wirtschaft')->cat_name

@@ -1,13 +1,54 @@
 <?php if ( is_home() || is_front_page() || is_category() ): ?>
 
     <?php 
+
+
+        $today = getdate();
+
         $tickerQuery = new WP_Query(
             array(
                 'posts_per_page' => 10,
                 'post_type' => 'news',
-                'orderby' => 'date',
-                'order' => 'DESC',
-                'category_name' => 'gesellschaft'
+                'date_query' => array(
+                    array(
+                      'year' => 2020,
+                      'month' => $today['mon'],
+                      'day' => $today['mday']
+                    ),
+                    array(
+                      'year' => 2020,
+                      'month' => $today['mon']-1,
+                    ),
+                    array(
+                      'year' => 2019,
+                      'month' => $today['mon'],
+                      'day' => $today['mday']
+                    ),
+                    array(
+                      'year' => 2019,
+                      'month' => $today['mon'],
+                      'day' => ($today['mday'] > 1) ? $today['mday']-1 : 1
+                    ),
+                    array(
+                      'year' => 2019,
+                      'month' => $today['mon']-1
+                    ),
+                    array(
+                      'year' => 2018,
+                      'month' => $today['mon']
+                    ),
+                    array(
+                      'year' => 2018,
+                      'month' => $today['mon'],
+                      'day' => ($today['mday'] > 1) ? $today['mday']-1 : 1
+                    ),
+                    array(
+                      'year' => 2018,
+                      'month' => $today['mon']-1
+                    ),
+                    'relation' => 'OR'
+                  ),
+                //'category_name' => 'gesellschaft'
             )
         );
     ?>

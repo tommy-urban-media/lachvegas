@@ -28,15 +28,14 @@
 
   ol
     padding-left: 36px
-    list-style: decimal
     counter-reset: ol-counter
     list-style: none
 
     li
-      min-height: 42px
+      min-height: 34px
       counter-increment: ol-counter
       position: relative
-      line-height: 42px
+      line-height: 28px 
 
       &:before
         width: 24px
@@ -74,15 +73,15 @@
         transform: rotate(3deg)
 
     @media $query.m
-      padding-left: 50px
+      padding-left: 40px
       li
         &:before
-          width: 32px
-          height: 32px
-          font-size: 16px
-          line-height: 32px
+          width: 28px
+          height: 28px
+          font-size: 13px
+          line-height: 28px
           top: 6px 
-          left: -50px
+          left: -40px
 
 
 
@@ -96,7 +95,7 @@
     li
       margin: 0 0 10px 0
       font-size: 13px
-      line-height: 42px
+      line-height: 32px
 
       @media $query.m
         font-size: 15px

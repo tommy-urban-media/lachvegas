@@ -10,10 +10,11 @@ $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 $offset = ($paged - 1) * $count;
 
 $args = array(
-	'posts_per_page' => 50,
+	'posts_per_page' => 10,
 	'paged' => $paged,
 	'offset' => $offset,
 	'post_type' => 'saying',
+	'cat' => get_queried_object_id(),
 	'order_by' => 'date', 
 	'order' => 'DESC',
 );
@@ -27,11 +28,11 @@ $args = array(
 		<div class="section__area__full">
 			<h1 class="page-title"><?php _e('Sprüche')?></h1>
 
-			<?php $queryNews = new WP_Query($args)?>
-			<?php if ($queryNews->have_posts()): ?>
+			<?php $querySayings = new WP_Query($args)?>
+			<?php if ($querySayings->have_posts()): ?>
 			
 				<div class="masonry">
-					<?php while ( $queryNews->have_posts() ) : $queryNews->the_post(); setup_postdata($post)?>
+					<?php while ( $querySayings->have_posts() ) : $querySayings->the_post(); setup_postdata($post)?>
 						<?php if (has_post_thumbnail($post->ID)):?>	
 							<article class="masonry__item">
 								<?php $bgImage = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'medium_large');?>
@@ -46,8 +47,7 @@ $args = array(
 					<?php endwhile; ?>
 				</div>
 
-				<?php previous_posts_link('Zurück', $queryNews->max_num_pages); ?>
-				<?php next_posts_link('Weiter', $queryNews->max_num_pages); ?>
+				<?php echo getPagination($querySayings, $paged, true, false)?>
 				<?php wp_reset_postdata();?>
 
 			<?php endif; ?>

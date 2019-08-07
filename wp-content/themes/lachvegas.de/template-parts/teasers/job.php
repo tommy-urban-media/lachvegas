@@ -6,6 +6,7 @@ $date = get_the_time(get_option('date_format'));
 
 ?>
 
+<?php if (get_the_title($post->ID)): ?>
 <article class="job"> 
   <a href="<?= get_the_permalink($post->ID)?>" class="job-link" target="_blank">
     <h3 class="job-title"><?php the_title() ?></h3>
@@ -16,3 +17,4 @@ $date = get_the_time(get_option('date_format'));
     </div>
   </a>
 </article>
+<?php endif ?>

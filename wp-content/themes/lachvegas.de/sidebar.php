@@ -4,7 +4,7 @@
  *
  */
 
-get_template_part('template-parts/sidebar/news');
+//get_template_part('template-parts/sidebar/news');
 // get_template_part('template-parts/sidebar/question-of-the-day');
 
 get_template_part('template-parts/sidebar/newest-saying');

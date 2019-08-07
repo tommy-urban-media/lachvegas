@@ -1,0 +1,62 @@
+
+.article-teaser-large
+    width: 100%
+    margin: 1px auto 40px auto
+    position: relative
+
+    .image-wrapper
+        //border: 1px solid #f0f0f0
+        z-index: 1
+        position: relative
+
+        img
+            margin: 0 auto
+
+    &-content
+        width: 100%
+        padding: 20px
+        z-index: 2
+        position: relative
+        
+        @media $query.l
+            position: absolute
+            left: 0
+            bottom: 0
+            background: linear-gradient(0deg, alpha(#000, 0.76), alpha(#000, 0.25))
+
+
+    .article-link-subtitle
+        display: block
+        margin: 0 0 10px 0
+        color: $colors.black
+        font-size: 14px
+        font-weight: bold
+
+        @media $query.l
+            color: $colors.white
+
+    .article-link-title
+        width: 100%
+        max-width: 520px
+        display: block
+        margin: 0 0 10px 0
+        color: #303030
+        font-size: 22px
+        font-weight: bold
+
+        @media $query.l
+            color: $colors.white
+            text-shadow: 0 0 24px #222
+
+    .post-excerpt
+        width: 100%
+        max-width: 520px
+        display: block
+        color: #303030
+        font-size: 14px
+        line-height: 150%
+
+        @media $query.l
+            color: #f0f0f0
+        
+    

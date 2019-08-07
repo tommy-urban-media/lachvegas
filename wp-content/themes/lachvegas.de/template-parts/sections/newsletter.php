@@ -5,7 +5,7 @@
 
       <div class="newsletter-envelope">
         <i class="fa fa-envelope"></i>
-        <img src="<?= get_bloginfo('template_url')?>/app/images/eyes.svg" alt="Eyes" width="200px" />
+        <img src="<?= get_bloginfo('template_url')?>/app/images/eyes.svg" alt="Lachvegas" width="200px" />
       </div>
 
     </div>

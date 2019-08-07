@@ -10,7 +10,7 @@
 	display: flex
 	margin-right: 0
 	justify-content: right
-	align-items: top
+	align-items: center
 
 
 	&__title
@@ -21,14 +21,19 @@
 	
 	&__item
 		margin: 0
+		height: 22px
+		display: flex
+		align-items: center
 		
-		a
+		&-link
 			width: auto
 			margin-left: 6px
 			color: #808080
 			display: block
-			font-size: 28px
 			transition: unquote($settings.transition)
+
+			svg
+				font-size: 22px
 			
 		&.facebook a
 			color: $socials.facebook
@@ -59,4 +64,10 @@
 			color: $socials.whatsapp
 			& > a:hover
 				color: $socials.whatsapp
+
+
+
+		&.facebook-like
+			div
+				margin-top: -2px
 			

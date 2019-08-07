@@ -54,6 +54,14 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 							<?php endif ?>
 						</figure>
 					<?php endif;?>
+
+					<?php /* ?>
+					<div class="article-person-nav">
+						<li><a href="#ueber-mich">Über mich</a></li>
+						<li><a href="#beitraege">Beiträge</a></li>
+					</div>
+					<?php */ ?>
+
 				</div>
 
 				<div class="article-person__header--right">
@@ -112,11 +120,13 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 			<ol class="list list--news">
 				<?php $i = 0; ?>
 				<?php while ( $queryPerson->have_posts() ) : $queryPerson->the_post(); setup_postdata($post)?>
+					<?php /* ?>
 					<?php if ($i == 4 || $i == 12): ?>
 						<li class="list-item">
 							<?php showAD('banner'); ?>
 						</li>
 					<?php endif ?>
+					<?php */ ?>
 					<li class="list-item">
 						<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
 					</li>
@@ -132,7 +142,7 @@ $queryShortNews = new WP_Query($queryShortNewsArgs);
 		</div>
 
 		<aside class="content__area--secondary">
-			<?php get_template_part('sidebar') ?>
+			<?php //get_template_part('sidebar') ?>
 		</aside>
 
 	</div>

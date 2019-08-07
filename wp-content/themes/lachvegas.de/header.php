@@ -18,6 +18,7 @@
 <meta charset="<?php bloginfo('charset'); ?>" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="p:domain_verify" content="571f66866ffeafd18f545a47451fff9d"/>
+<meta name="robots" content="index, follow, noarchive, noodp"/>
 
 <title>
 <?php
@@ -102,15 +103,13 @@
 </script>
 <?php endif ?>
 
-<?php /* ?>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-8733678720071428",
-    enable_page_level_ads: true
-  });
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-5632762269034234",
+          enable_page_level_ads: true
+     });
 </script>
-<?php */ ?>
 
 </head>
 
@@ -121,14 +120,13 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v3.2';
+  js.src = 'https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v3.2&appId=430709494322673';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="page-container">
     
     <?php get_template_part('partials/page/header') ?>
-    <?php //get_template_part('partials/page/header') ?>
     
 	<main class="main">
 		
@@ -139,16 +137,22 @@
 				<div>Die</div>
 				<div>Website</div>
 				<div>für</div>
-				<div>Bekloppte,</div>
-				<div>Wahnsinnige</div>
+				<div>Bekloppte</div>
 				<div>und</div>
-				<div>alle</div> 
-				<div>die</div>
-				<div>es</div>
-				<div>noch</div>
-				<div>werden</div>
-				<div>wollen</div>
+				<div>Wahnsinnige</div>
+				<div>aller</div> 
+				<div>Art</div>
 			</h1>
+
+			<!--
+			<p>
+			Schnauze voll von schlechten Nachrichten ???
+			Geht Ihnen das auch so? Sie können die ganzen schlechten News im Internet nicht mehr sehen. Sie regen sich ständig darüber auf was alles schief läuft.
+			Überall schlechte Nachrichten, Mord und Totschlag<br><br>
+			Die Lösung: LACHVEGAS.DE 
+			</p>
+			-->
+
 			<?php get_template_part('template-parts/socials'); ?>
 		</div>
         

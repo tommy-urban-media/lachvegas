@@ -19,7 +19,7 @@ $args = array(
 		'before' => date('Y-m-d H:i:s', strtotime('+1 day'))
 	),
 	'post_status' => 'publish',
-	'post_type' => array('guide', /*'news',*/ 'post', 'poem', 'saying', 'statistic', 'quiz'),
+	'post_type' => array('guide', 'news', 'post', 'poem', 'saying', 'statistic', 'quiz'),
 	'tax_query' => array(
 		'relation' => 'OR',
 		array(
@@ -63,33 +63,56 @@ $oldPostsQuery = new WP_Query(array(
 	<?php get_template_part('partials/common/newsticker'); ?>
 
 	<div class="content__area">
-		<div class="content__area--primary">
-
+		<!-- <div class="content__area--wide"> -->
 			<?php if ( $newPostsQuery->have_posts() ) : ?>
-				<ol class="list list--news">
-					<?php $i = 0; ?>
-					<?php while ( $newPostsQuery->have_posts() ) : $newPostsQuery->the_post(); setup_postdata($post)?>
+				<?php $i = 0; ?>
 
-						<!--
-						<?php if ($i == 4): ?>
-							<li class="list-item">
-								<?php get_template_part('template-parts/ads/frontend/banner') ?> <?php //showAD('banner'); ?>
-							</li>
+				<?php if (is_paged()): ?>
+					<div class="content__area--primary">
+					<ol class="list list--news">
+				<?php endif ?>
+
+				<?php while ( $newPostsQuery->have_posts() ) : $newPostsQuery->the_post(); setup_postdata($post)?>
+					
+					<?php if ($i == 0 && !is_paged()): ?>
+						<div class="content__area--wide">
+							<?php get_template_part('template-parts/teasers/teaser-large') ?>
+						</div>
+					<?php else: ?>
+
+						<?php if($i == 1 && !is_paged()): ?>
+							<div class="content__area--primary">
+							<ol class="list list--news">
 						<?php endif ?>
-						-->
 
-						<li class="list-item">
-							<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
-						</li>
+							<li class="list-item">
+								<?php get_template_part('template-parts/teasers/teaser-article-list') ?>
+							</li>
 
-					<?php $i++ ?>
-					<?php endwhile; ?>
-				</ol>
+						<?php if($i == 9 && !is_paged()): ?>
+							</ol>
+
+							<?php echo getPagination($newPostsQuery, $paged)?>
+							<?php wp_reset_postdata();?>
+
+							</div>
+						<?php endif ?>
+					<?php endif ?>
+				<?php $i++ ?>
+				<?php endwhile; ?>
+
+				<?php if (is_paged()): ?>
+					</ol>
+
+					<?php echo getPagination($newPostsQuery, $paged)?>
+					<?php wp_reset_postdata();?>
+
+					</div>
+				<?php endif ?>
+
+
 			<?php endif ?>
-
-			<?php echo getPagination($newPostsQuery, $paged)?>
-			<?php wp_reset_postdata();?>
-		</div>
+		<!-- </div> -->
 
 		<aside class="content__area--secondary">
 			<?php get_template_part('sidebar')?>
@@ -98,13 +121,10 @@ $oldPostsQuery = new WP_Query(array(
 
 	<?php get_template_part('template-parts/sections/news') ?>
 	<?php get_template_part('template-parts/sections/newsletter') ?>
-	<?php get_template_part('template-parts/sections/topics') ?>
-	<?php //get_template_part('template-parts/sections/promis') ?>
-	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+	<?php get_template_part('template-parts/sections/promis') ?>
 
 
-
-	<!-- 
+	<?php /* ?> 
 	Ich bin hier überfordert. Ich brauche Hilfe!
 	=> Layer öffnet sich mit Auswahl
 
@@ -131,12 +151,14 @@ $oldPostsQuery = new WP_Query(array(
 	- Jemand hat hinten herum das Licht angemacht
 	- Jemandem scheint die Sonne aus dem Arsch
 
-	-->
+	<?php */ ?>
 
 	
 	<?php //get_template_part('template-parts/sections/special-day') ?>
     <?php //get_template_part('template-parts/sections/history') ?>
-	<?php get_template_part('template-parts/sections/gridbox') ?>
+	<?php get_template_part('template-parts/sections/ratgeber') ?>
+	<?php get_template_part('template-parts/sections/fortune-cookie') ?>
+	<?php //get_template_part('template-parts/sections/gridbox') ?>
 
 	<?php //get_template_part('template-parts/sections/sayings') ?>
  
@@ -237,7 +259,7 @@ $oldPostsQuery = new WP_Query(array(
 	</section>
 	<?php */ ?>
  
-	<!--
+	<?php /* ?>
 	<div class="content__area">
 		<section class="section section--posts">
 			
@@ -253,16 +275,15 @@ $oldPostsQuery = new WP_Query(array(
 
 		</section>
 	</div>
-	-->
+	<?php /* ?>
  
 	<?php // get_template_part('template-parts/ads/frontend/superbanner'); ?>
 	<?php //ADManager::display('superbanner')?>
 
 	<?php //get_template_part('template-parts/sections/frage-der-woche') ?>
-	<?php get_template_part('template-parts/sections/gender') ?>
-	<?php get_template_part('template-parts/sections/ratgeber') ?>
+	<?php //get_template_part('template-parts/sections/ratgeber') ?>
  
-	<!--
+	<?php /* ?>
 	<div class="content__area">
 		<section class="section section--posts">
 			<header class="section__header">
@@ -298,18 +319,30 @@ $oldPostsQuery = new WP_Query(array(
 
 		</section>
 	</div>
-	-->
+	<?php */ ?>
 
 	<?php get_template_part('template-parts/category-sections/politik') ?>
-	<?php get_template_part('template-parts/category-sections/wirtschaft') ?>
+	<?php //get_template_part('template-parts/category-sections/wirtschaft') ?>
 	<?php get_template_part('template-parts/category-sections/gesellschaft') ?>
 	<?php get_template_part('template-parts/category-sections/wissen') ?>
 	<?php get_template_part('template-parts/category-sections/beziehung-partnerschaft') ?>
+	<?php get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/category-sections/beruf-karriere') ?>
-	<?php get_template_part('template-parts/category-sections/kultur') ?>
+	<?php //get_template_part('template-parts/category-sections/kultur') ?>
 	<?php get_template_part('template-parts/category-sections/sport') ?>
+	<?php //get_template_part('template-parts/category-sections/panorama') ?>
 	<?php get_template_part('template-parts/category-sections/unterhaltung') ?>
-	<?php get_template_part('template-parts/category-sections/quiz') ?>
+	<?php get_template_part('template-parts/sections/topics') ?>
+	<?php //get_template_part('template-parts/category-sections/quiz') ?>
+
+
+<?php /* ?>
+Wissenschaft und Technik
+Kultur und Freizeit
+Sport
+Promis und Medien
+Essen und Trinken
+<?php */ ?>
 
 </div>
 

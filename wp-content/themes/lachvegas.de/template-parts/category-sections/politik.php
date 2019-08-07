@@ -3,10 +3,9 @@
 global $data;
 
 $postTypes = array(
-  'news', 
+  //'news', 
   'post', 
-  'guide', 
-  'statistic'
+  'guide'
 );
 
 $dateQuery = array(

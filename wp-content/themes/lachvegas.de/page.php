@@ -8,11 +8,13 @@ get_header();
 
 <div class="content content-home">
 	<div class="content__area">
-		<div class="content__area--primary">
+		<div class="content__area--wide">
 
 			<?php while ( have_posts() ) : the_post(); ?>
 				<article class="article" data-id="<?php echo $post->ID ?>">
-					<?php echo get_template_part('template-parts/article', 'jsonld'); ?>
+					<?php get_template_part('template-parts/article/jsonld'); ?>
+                    <?php get_template_part('template-parts/article-socials') ?>	
+					
 					<header class="article-header">
 						<h1 class="article-title">
 							<span class="article-title-headline"><?php the_title()?></span>
@@ -24,17 +26,12 @@ get_header();
 				</article>
 			<?php endwhile; ?>
 		</div>
-
-		<div class="content__area--secondary">
-			<?php echo get_template_part('sidebar')?>
-		</div>
-
 	</div>
 
 
 	<?php // get_template_part('template-parts/sections/gender') ?>
 	<?php get_template_part('template-parts/sections/newsletter') ?>
-	<?php get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>	
+	<?php //get_template_part('template-parts/sections/lachvegas-fragt-dich') ?>	
 
 </div>
 

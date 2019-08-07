@@ -128,6 +128,14 @@ $postVotesData = json_encode($votes);
 
 		</section>
 
+		<?php if (has_tag()): ?>
+			<section class="tags">
+				<span class="tags__title"><?= __('Themen') ?>:</span>
+				<?= get_the_tag_list('<ul class="list list--tags"><li class="list-item">', '</li><li class="list-item">', '</li></ul>')?>
+			</section>
+		<?php endif ?>
+
+
 		<section class="article-votes" data-component="PostVote" data-param='<?= $postVotesData ?>' data-post-id="<?= $post->ID ?>" data-url="<?= admin_url('admin-ajax.php') ?>">
 			<div class="article-votes__header"><span>Beitrag lustig oder nicht lustig?</span></div>
 			<div class="article-votes__body">
@@ -142,14 +150,6 @@ $postVotesData = json_encode($votes);
 				<div class="article-votes-bar" data-votes-bar></div>
 			</div>
 		</section>
-		
-		<?php if (has_tag()): ?>
-			<section class="tags">
-				<span class="tags__title"><?= __('Themen') ?>:</span>
-				<?= get_the_tag_list('<ul class="list list--tags"><li class="list-item">', '</li><li class="list-item">', '</li></ul>')?>
-			</section>
-		<?php endif ?>
-
 
 		<footer class="article-footer">
 			<?php get_template_part('template-parts/article-socials') ?>

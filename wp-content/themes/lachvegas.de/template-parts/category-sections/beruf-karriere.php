@@ -14,7 +14,7 @@ $data = [
     array(
       'posts_per_page' => 3, 
       'post_type' => array(
-        'news', 
+        //'news', 
         'post', 
         'guide', 
         //'statistic'
@@ -46,7 +46,7 @@ $data = [
       )
     )
   ),
-  'button_text' => 'Mehr BEruf & Karriere'
+  'button_text' => 'Mehr Beruf & Karriere'
 ];
 
 ?>

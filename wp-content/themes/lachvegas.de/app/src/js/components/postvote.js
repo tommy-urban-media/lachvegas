@@ -86,11 +86,11 @@ export default class PostVote {
                 console.log(data);
 
                 if (obj.hasOwnProperty('vote_down')) {
-                    $('[data-votes-down]').text(data.votes);
+                    this.node.find('[data-votes-down]').text(data.votes);
                     this.param.down = data.votes;
                 }
                 if (obj.hasOwnProperty('vote_up')) {
-                    $('[data-votes-up]').text(data.votes);
+                    this.node.find('[data-votes-up]').text(data.votes);
                     this.param.up = data.votes;
                 }
 
